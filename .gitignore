@@ -8,7 +8,7 @@ __pycache__/
 dist/
 build/
 
-# Virtual environments
+# Virtual environments (not needed anymore but keep for future)
 venv/
 ENV/
 env/
@@ -26,12 +26,6 @@ env/
 .DS_Store
 Thumbs.db
 
-# Temporary files
+# Old pystructurizr temporary files
 temp_raw.dsl
 *.tmp
-
-# Output (optional - you might want to commit these)
-# c4-core-workspace.dsl
-
-# Temporary DSL files
-temp_raw.dsl

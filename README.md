@@ -1,10 +1,10 @@
 # c4c4 - Channel 4 Core Architecture
 
-Python-based Structurizr DSL generator with Channel 4 branding and customizations.
+Direct Structurizr DSL generator with Channel 4 branding and customizations.
 
 ## Overview
 
-This project generates Structurizr DSL files from Python code using pystructurizr, then post-processes them to add Channel 4-specific features including custom themes, branding, terminology, and relationship identifiers for cross-workspace references.
+This project generates Structurizr DSL files directly in Python, with full control over identifiers, names, and formatting. No external dependencies required - just Python 3.8+!
 
 ## Prerequisites
 
@@ -20,138 +20,93 @@ git clone https://github.com/synchrotron/c4c4.git
 cd c4c4
 ```
 
-### 2. Set up Python virtual environment
+### 2. That's it!
 
-```bash
-# Create a virtual environment
-python -m venv venv
-
-# Activate the virtual environment
-# On macOS/Linux:
-source venv/bin/activate
-# On Windows:
-# venv\Scripts\activate
-```
-
-### 3. Install dependencies
-
-```bash
-# Install all required packages from requirements.txt
-pip install -r requirements.txt
-```
-
-This will install:
-- **pystructurizr**: The core library for generating Structurizr DSL from Python
-- **click**: Command-line interface utilities
-- **python-dotenv**: Environment variable management (for future LeanIX integration)
+No dependencies to install for basic DSL generation. Everything uses Python's standard library.
 
 ## Usage
 
-### Quick Start - Generate DSL
-
-Once your virtual environment is activated and dependencies are installed:
+### Generate DSL
 
 ```bash
-python generate_dsl.py
+python generate_c4_dsl.py
 ```
 
-This will:
-1. Generate base DSL from `main.py` using pystructurizr
-2. Add Channel 4 customizations (themes, branding, terminology, relationship identifiers)
-3. Output the final DSL to `dsl/c4-core-workspace.dsl`
+This will generate `dsl/c4-core-workspace.dsl` with:
+- Clean identifiers (ebs, wda, fsp, etc.)
+- Display names with spaces ("Finance System Platform", etc.)
+- Relationship identifiers for cross-workspace references
+- Channel 4 branding (theme, logo, font)
+- Custom terminology (Team/Platform/Application)
 
-### Manual Step-by-Step Process
-
-If you prefer to run each step individually:
-
-1. **Generate base DSL:**
-```bash
-pystructurizr dump --view main.py > temp_raw.dsl
-```
-
-2. **Post-process with enhancements:**
-```bash
-python post_process_dsl.py temp_raw.dsl dsl/c4-core-workspace.dsl
-```
-
-3. **Clean up temporary files:**
-```bash
-rm temp_raw.dsl
-```
-
-### Preview in Development Mode
-
-For live preview while editing:
+### Preview the DSL
 
 ```bash
-pystructurizr dev --view main.py
+cat dsl/c4-core-workspace.dsl
 ```
-
-Opens a browser with live preview (note: won't include post-processing enhancements).
 
 ## Project Structure
 
 ```
 c4c4/
-├── README.md                  # This file
-├── requirements.txt           # Python dependencies
-├── main.py                    # Core architecture model definition
-├── post_process_dsl.py        # Post-processor for DSL enhancements
-├── generate_dsl.py            # Complete generation workflow
-├── assets/                    # Channel 4 branding assets
+├── README.md                   # This file
+├── requirements.txt            # Python dependencies (future LeanIX integration)
+├── generate_c4_dsl.py          # Main DSL generator
+├── assets/                     # Channel 4 branding assets
 │   ├── 4-logo-black.png
 │   ├── c4-default-theme.json
 │   └── 4Text-Regular.ttf
-└── dsl/                       # Generated DSL output
+└── dsl/                        # Generated DSL output
     └── c4-core-workspace.dsl
 ```
 
 ## Features
 
-### Core Architecture Model (main.py)
+### Architecture Model
+
+The generated DSL includes:
 
 - **Finance System Platform** with 13 applications:
-  - Oracle e-Business Suite, Workday Adaptive, SplashBI, Baseware, and more
+  - Oracle e-Business Suite (ebs), Workday Adaptive (wda), SplashBI (sbi), Baseware (bsw), and more
 - **People Platform** with 3 applications:
-  - 4People, Handle, FES
+  - 4People (fourPo), Handle (hnd), FES (fes)
 - **6 Teams/Departments**: Commercial Finance, Finance, Shared Services, Tax and Treasury, People Ops, All Colleagues
 - **4 Additional Platforms**: Commercial, Small Business Systems, Streaming, Royalties and Sales
-- **Comprehensive relationships** between systems and users
+- **Comprehensive relationships** with named identifiers for cross-workspace references
 
-### Post-Processing Enhancements
+### DSL Features
 
-The post-processor adds the following to the generated DSL:
-
-- ✅ **Workspace metadata**: Name and description
-- ✅ **`!identifiers flat`**: Directive for global identifier scope
-- ✅ **Archetypes**: Maps `application = container` semantically
+- ✅ **Clean identifiers**: Short, memorable (ebs, wda, fsp)
+- ✅ **Display names with spaces**: "Finance System Platform", "Oracle e-Business Suite"
+- ✅ **Relationship identifiers**: ebsToWda, comFinTeamToWda, etc.
+- ✅ **`!identifiers flat`**: Global identifier scope
+- ✅ **Archetypes**: Maps `application = container`
 - ✅ **Custom terminology**: 
   - `person` → "Team"
   - `softwareSystem` → "Platform"
   - `container` → "Application"
-- ✅ **Channel 4 theme**: Custom colour scheme and styling
-- ✅ **Channel 4 branding**: Logo and 4Text font
-- ✅ **Relationship identifiers**: Enables cross-workspace references
-- ✅ **Documentation comments**: Header with project information
-- ✅ **Removes conflicting styles**: Ensures theme takes precedence
+- ✅ **Channel 4 theme**: Custom colors and styling from GitHub
+- ✅ **Channel 4 branding**: Logo and 4Text font from GitHub
+- ✅ **Multiple views**: System Landscape, Context, and Container views
 
 ## Customization
 
 ### Modify the Architecture Model
 
-Edit `main.py` to:
+Edit `generate_c4_dsl.py` to:
 - Add or remove teams, platforms, or applications
 - Change relationships between elements
 - Update descriptions and technologies
-- Add new containers or components
+- Add new views
 
-### Customize Post-Processing
+The DSL is defined as a Python f-string in the `generate()` method, making it easy to edit directly.
 
-Edit `post_process_dsl.py` to change:
+### Customize Branding
+
+Edit the `__init__` method in `generate_c4_dsl.py` to change:
 - Workspace name and description
 - Theme and branding URLs
 - Terminology mappings
-- Identifier naming conventions
 
 ### Update Assets
 
@@ -198,19 +153,14 @@ Then open http://localhost:8080 in your browser.
 
 ### Making Changes
 
-1. Activate your virtual environment:
+1. Edit `generate_c4_dsl.py`
+
+2. Regenerate the DSL:
 ```bash
-source venv/bin/activate
+python generate_c4_dsl.py
 ```
 
-2. Make changes to `main.py` or other files
-
-3. Regenerate the DSL:
-```bash
-python generate_dsl.py
-```
-
-4. Commit your changes:
+3. Commit your changes:
 ```bash
 git add .
 git commit -m "Description of changes"
@@ -219,32 +169,26 @@ git push
 
 ### Adding New Platforms or Applications
 
-In `main.py`, add new software systems or containers:
+In `generate_c4_dsl.py`, add to the DSL string in the `generate()` method:
 
 ```python
 # Add a new platform
-new_platform = model.SoftwareSystem(
-    "New Platform Name",
-    description="Description of the platform"
-)
-
-# Add a new application to existing platform
-new_app = existing_platform.Container(
-    "New Application",
-    description="What this application does",
-    technology="Technology stack"
-)
+newPlatform = softwareSystem "New Platform Name" "Description" {
+    
+    newApp = container "New Application" "What it does" "Technology"
+}
 
 # Add relationships
-team.uses(new_app, "How they use it")
+teamToNewApp = team -> newApp "How they use it"
 ```
 
 ## Roadmap
 
 ### Phase 1: ✅ Complete
-- Static workspace generation from Python
+- Direct DSL generation from Python
 - Channel 4 branding and customizations
-- Cross-workspace relationship references
+- Clean identifiers and relationship references
+- No external dependencies
 
 ### Phase 2: Planned - LeanIX Integration
 - GraphQL client for LeanIX API
@@ -261,17 +205,12 @@ team.uses(new_app, "How they use it")
 
 ## Troubleshooting
 
-### Error: `pystructurizr` command not found
+### Error: Python version too old
 
-Make sure you've activated your virtual environment and installed dependencies:
+Make sure you're using Python 3.8 or higher:
 ```bash
-source venv/bin/activate
-pip install -r requirements.txt
+python --version
 ```
-
-### Error: Module import issues
-
-Ensure you're in the project root directory and the virtual environment is activated.
 
 ### Error: Assets not found (logo/theme/font)
 

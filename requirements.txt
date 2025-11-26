@@ -1,16 +1,11 @@
 # requirements.txt
 # Python dependencies for c4c4 - Channel 4 Core Architecture DSL Generator
 
-# Structurizr Python library
-git+https://github.com/nielsvanspauwen/pystructurizr.git
-
-# Core dependencies (already included with pystructurizr but listed for clarity)
-click>=8.0.0
-
-# Development and utilities
-python-dotenv>=1.0.0
+# No external dependencies needed for basic DSL generation!
+# All generation is done with Python standard library
 
 # Future dependencies for LeanIX integration
 # gql>=3.4.0
 # requests>=2.31.0
 # pydantic>=2.0.0
+# python-dotenv>=1.0.0
