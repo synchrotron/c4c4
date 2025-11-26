@@ -29,3 +29,6 @@ Thumbs.db
 # Old pystructurizr temporary files
 temp_raw.dsl
 *.tmp
+
+# Structurizr generated files (exclude timestamped JSON files)
+dsl/structurizr-*.json
