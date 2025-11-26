@@ -1,0 +1,26 @@
+{
+  "name" : "Channel 4 Architectral Style",
+  "description" : "This theme defines the default styles for various architectural elements with the Enterprise Architecture Model.",
+  "elements" : [ {
+    "tag" : "Container",
+    "stroke" : "#808080",
+	"shape" : "RoundedBox"
+  },{
+    "tag" : "Application",
+    "backgroud" : "#37C400",
+  }, {
+    "tag" : "Person",
+	"shape" : "Person", 
+    "stroke" : "#8080",
+  }, {
+    "tag" : "Legal Entity",
+    "backgroud" : "#2e27ad"
+  }, {
+    "tag" : "Business Unit",
+    "backgroud" : "#2e27ad"
+  }, {
+    "tag" : "Team",
+    "backgroud" : "#2e27ad"
+  }
+  ]
+}
