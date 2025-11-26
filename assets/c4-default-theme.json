@@ -1,26 +1,53 @@
 {
   "name" : "Channel 4 Architectral Style",
   "description" : "This theme defines the default styles for various architectural elements with the Enterprise Architecture Model.",
-  "elements" : [ {
-    "tag" : "Container",
-    "stroke" : "#808080",
-	"shape" : "RoundedBox"
-  },{
-    "tag" : "Application",
-    "backgroud" : "#37C400",
-  }, {
-    "tag" : "Person",
-	"shape" : "Person", 
-    "stroke" : "#8080",
-  }, {
+  "elements" : 
+  [
+    {
+      "tag" : "Container",
+	  "background" : "#37C400",
+      "stroke" : "#808080",
+	  "shape" : "RoundedBox"
+    }, 
+	{
+      "tag" : "Person",
+	  "background" : "#8895FF",
+	  "shape" : "Person", 
+      "stroke" : "#8080"
+  }, 
+  {
     "tag" : "Legal Entity",
-    "backgroud" : "#2e27ad"
-  }, {
+    "background" : "#89CDFF"
+  }, 
+  {
     "tag" : "Business Unit",
-    "backgroud" : "#2e27ad"
-  }, {
-    "tag" : "Team",
-    "backgroud" : "#2e27ad"
+    "background" : "#8895FF"
+  },
+  {	  
+	"tag" : "Software System",
+    "background" : "#dfe3e8"
+  },
+  {         
+    "tag" : "Focus",
+    "background" : "#595959",
+    "color" : "#FFFFFF",
+	"description" : "Which Platform is the focus of the diagram"
+  },
+  {
+    "tag" : "Boundary",
+    "stroke" : "#808080",
+    "color" : "#808080",
+    "border" : "Dotted"
   }
-  ]
+  ],
+  "relationships" : 
+  [ {
+    "tag" : "Relationship",
+    "thickness" : 4,
+    "color" : "#808080",
+    "routing" : "Curved"
+  }, {
+    "tag" : "Integration",
+    "style" : "Solid"
+  } ]
 }
