@@ -1,11 +1,11 @@
 # requirements.txt
 # Python dependencies for c4c4 - Channel 4 Core Architecture DSL Generator
 
-# No external dependencies needed for basic DSL generation!
-# All generation is done with Python standard library
+# LeanIX GraphQL integration
+gql>=3.4.0
+requests>=2.31.0
+requests-toolbelt>=1.0.0
+python-dotenv>=1.0.0
 
-# Future dependencies for LeanIX integration
-# gql>=3.4.0
-# requests>=2.31.0
-# pydantic>=2.0.0
-# python-dotenv>=1.0.0
+# Data validation and parsing
+pydantic>=2.0.0

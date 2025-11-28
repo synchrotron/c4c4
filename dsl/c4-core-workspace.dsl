@@ -1,4 +1,4 @@
-workspace "Channel 4 Core" "Base Line Model" {
+workspace "Channel 4 Core" "Base Line Model - Generated from LeanIX" {
 
     !identifiers flat
 
@@ -9,134 +9,90 @@ workspace "Channel 4 Core" "Base Line Model" {
         }
         
         /* ============================================================
-           PEOPLE / TEAMS
+           ORGANISATIONS / TEAMS (from LeanIX UserGroups)
            ============================================================ */
         
-        comFinTeam = person "Commercial Finance" "Team that analyse financial data, forecast performance, plan budgets and support strategic decisions."
-        
-        allC4 = person "All Colleagues" "All colleagues working at C4" "Legal Entity"
-        
-        finDept = person "Finance" "Oversee financial health, ensure compliance, support strategy, manage budgets and reporting" "Business Unit"
-        
-        sharedServicesTeam = person "Shared Services" "Team that process invoices, management payments, verify expenses, maintain vendor relationships and ensure accuracy."
-        
-        taxTeam = person "Tax and Treasury" "Team that manage cash, investments, debt and ensure tax compliance and reporting"
-        
-        peopleOps = person "People Ops Team" "The people team help attract, support and grow colleagues within the channel"
+        ccf = person "Finance" ""
+        c4 = person "Channel 4" ""
+        ccfrss = person "Shared Services" "Team responsible for any financial transactional incoming and outgoing payment processing. Typica..."
 
         /* ============================================================
-           FINANCE SYSTEM PLATFORM
+           FINANCE SYSTEMS PLATFORM
            ============================================================ */
         
-        fsp = softwareSystem "Finance System Platform" "Applications centred around the management of Colleagues and Employees" {
+        fsp = softwareSystem "Finance Systems Platform" "None" {
             
-            ebs = container "Oracle e-Business Suite" "Financial System of record" "Hosted App"
-            
-            wda = container "Workday Adaptive" "Financial Budgeting, Planning and Consolidation application" "SaaS"
-            
-            sbi = container "SplashBI" "Business Intelligence and Reporting" "BI Tool"
-            
-            bsw = container "Baseware" "Purchase to Pay solution" "SaaS"
-            
-            faf = container "Financial Approval Forms" "Approval workflow management" "Web App"
-            
-            pjc = container "Project Codes" "Project code management" "Web App"
-            
-            tgn = container "Tungsten Network" "Billing and invoicing network" "SaaS"
-            
-            msc = container "Mastercard" "Corporate card management" "SaaS"
-            
-            cmx = container "Cachematrix" "Cash Flow management solution" "SaaS"
-            
-            bbp = container "Barclays Banking Portal" "Banking operations portal" "SaaS"
-            
-            apt = container "AlphaTax" "Tax calculation and reporting" "SaaS"
-            
-            sov = container "Sovos" "Tax compliance solution" "SaaS"
-            
-            exr = container "Exchange Rates" "Currency exchange rate service" "API"
+            atax = container "Alphatax" "Corporation tax compliance software, providing complete control over the preparation and manageme..." "Application"
+            bbp = container "Barclays Banking Portal" "Barclays Online platform used to transact FX deals. File Gateway is a host to host connectivity p..." "Application"
+            bdn = container "Barclays.Net" "Barclays service used to download statements." "Application"
+            bsw = container "Basware" "Enterprise software for financial processes, purchase to pay and financial management. Manage Inv..." "Application"
+            cmx = container "Cachematrix" "SaaS solution for cash management" "Application"
+            ebs = container "E-Business Suite" "Channel4 Oracle E-business Suite application used in Finance department for Accounts, Cash and As..." "Application"
+            faf = container "Finance Approval Form" "" "Application"
+            msc = container "Mastercard" "" "Application"
+            odf = container "Oracle eBS Excel data files" "These are a collection of manually generated .xslx files out of Oracle e-Business that contain va..." "Application"
+            pjc = container "Project Codes" "App used to generate project codes which are used in Oracle and across Channel 4." "Application"
+            sov = container "Sovos" "Sovos helps in digital transformation of tax, with complete, connected offerings for tax determin..." "Application"
+            sbi = container "SplashBI" "SplashBI is an all-in-one framework for visualising, reporting and analysing data." "Application"
+            tgn = container "Tungsten Network" "Tungsten provide a multiple distribution channel service to a single stream invoice feed." "Application"
+            wda = container "Workday Adaptive" "Workday Adaptive is Channel 4 Finance's Planning and Consolidation tool" "Application"
         }
         
         /* ============================================================
-           PEOPLE (HR) PLATFORM
+           PERSON -> APPLICATION RELATIONSHIPS
            ============================================================ */
         
-        hrp = softwareSystem "People Platform" "Applications centred around the management of Colleagues and Employees" {
-            
-            fourPo = container "4People" "HCM People System" "SaaS HCM"
-            
-            hnd = container "Handle" "Freelance payment solution" "SaaS"
-            
-            fes = container "FES" "Freelancer Engagement Solution" "Hosted"
-        }
-        
+        ccfToAtax = ccf -> atax "Uses"
+        ccfToBbp = ccf -> bbp "Uses"
+        c4ToBsw = c4 -> bsw "Uses"
+        ccfToBsw = ccf -> bsw "Uses"
+        ccfrssToBsw = ccfrss -> bsw "Uses"
+        ccfToEbs = ccf -> ebs "Uses"
+        ccfrssToEbs = ccfrss -> ebs "Uses"
+        c4ToFaf = c4 -> faf "Uses"
+        ccfToMsc = ccf -> msc "Uses"
+        ccfToSov = ccf -> sov "Uses"
+        ccfToSbi = ccf -> sbi "Uses"
+        ccfrssToSbi = ccfrss -> sbi "Uses"
+        ccfrssToTgn = ccfrss -> tgn "Uses"
+        ccfToWda = ccf -> wda "Uses"
+
         /* ============================================================
-           OTHER PLATFORMS
+           APPLICATION -> APPLICATION RELATIONSHIPS (from LeanIX Interfaces)
            ============================================================ */
         
-        cmp = softwareSystem "Commercial Platform" "Commercial operations platform"
+        bwpfo = ebs -> bbp "BACS & Wire Payments File Out" "TBC" "Integration"
+        bpsri = bbp -> ebs "Barclay Payment Statement Receipt In" "TBC" "Integration"
+        bsi = bbp -> ebs "Barclay Statement In" "TBC" "Integration"
+        bbdc = ebs -> bsw "Basware Business Department Codes" "TBC" "Integration"
+        bcer = ebs -> bsw "Basware Currency Exchange Rates" "TBC" "Integration"
+        bglcvr = ebs -> bsw "Basware GL Cross Validation Rules" "TBC" "Integration"
+        bglnc = ebs -> bsw "Basware GL Nominal Codes" "TBC" "Integration"
+        bic = ebs -> bsw "Basware Individual Codes" "TBC" "Integration"
+        bis = bsw -> ebs "Basware Invoice Statuses" "TBC" "Integration"
+        bpvpci = ebs -> bsw "Basware Payments/Void Payments/Cancelled Invoices" "TBC" "Integration"
+        bpcc = ebs -> bsw "Basware Pirate Code Combinations" "TBC" "Integration"
+        bprodc = ebs -> bsw "Basware Product Codes" "TBC" "Integration"
+        bprojc = ebs -> bsw "Basware Project Codes" "TBC" "Integration"
+        bws = ebs -> bsw "Basware Suppliers" "TBC" "Integration"
+        b2ebs = bsw -> ebs "Basware to EBS for Approved Invoices" "TBC" "Integration"
+        b2sbi = bsw -> ebs "Basware to SplashBI (Oracle eBS Schema)" "TBC" "Integration"
+        b2sbi2 = bsw -> sbi "Basware to SplashBI (Oracle eBS Schema)" "TBC" "Integration"
+        bur = ebs -> bsw "Basware User Rights" "TBC" "Integration"
+        buriu = ebs -> bsw "Basware User Rights (Inactive users)" "TBC" "Integration"
+        4vatr = sov -> ebs "C4 VAT Returns" "TBC" "Integration"
+        ebstrd = ebs -> bsw "EBS to Basware for Reference & Transactional data" "TBC" "Integration"
+        ebsmc = msc -> ebs "EBS to Mastercard for Employee credit card transactions" "TBC" "Integration"
+        ebplan = ebs -> wda "eBusiness to Planning" "TBC" "Integration"
+        faebs = ebs -> faf "Finance Approval to E-Business Suite" "TBC" "Integration"
+        ebssbi = ebs -> ebs "Oracle EBS to SplashBI (Oracle eBS Schema)" "TBC" "Integration"
+        ebssbi2 = ebs -> sbi "Oracle EBS to SplashBI (Oracle eBS Schema)" "TBC" "Integration"
+        oatax = ebs -> atax "Oracle to AlphaTax" "TBC" "Integration"
+        opisx = ebs -> ebs "Oracle to PublicIS XML Invoice feed" "TBC" "Integration"
+        otunx = ebs -> tgn "Oracle to Tungsten XML Invoice feed" "TBC" "Integration"
+        wdsbi = wda -> ebs "Workday Adaptive to SplashBI (Oracle eBS Schema)" "TBC" "Integration"
+        wdsbi2 = wda -> sbi "Workday Adaptive to SplashBI (Oracle eBS Schema)" "TBC" "Integration"
         
-        sbs = softwareSystem "Small Business Systems" "Small business management systems"
-        
-        c4s = softwareSystem "Channel 4 Streaming Platform" "Content streaming and delivery platform"
-        
-        rsp = softwareSystem "Royalties and Sales Platform" "Royalties and sales management"
-        
-        /* ============================================================
-           RELATIONSHIPS - Finance Platform with Users
-           ============================================================ */
-        
-        taxTeamToExr = taxTeam -> exr "Tax calculation and reporting"
-        taxTeamToSov = taxTeam -> sov "Tax calculation and reporting"
-        taxTeamToApt = taxTeam -> apt "Tax calculation and reporting"
-        taxTeamToBbp = taxTeam -> bbp "Cash Flow management" "" "API"
-        taxTeamToCmx = taxTeam -> cmx "Cash Flow management" "" "API"
-        
-        sharedServicesTeamToMsc = sharedServicesTeam -> msc "Manages all colleagues spend" "" "API"
-        sharedServicesTeamToTgn = sharedServicesTeam -> tgn "Manages Tungsten billing process" "" "API"
-        sharedServicesTeamToBsw = sharedServicesTeam -> bsw "P2P Process Super User"
-        
-        allC4ToPjc = allC4 -> pjc "Creates new codes for C4 shows"
-        allC4ToFaf = allC4 -> faf "Submits request for sign-off limit changes"
-        allC4ToBsw = allC4 -> bsw "Create/Approve PO"
-        allC4ToEbs = allC4 -> ebs "Create/Approve Expenses"
-        
-        finDeptToSbi = finDept -> sbi "Create and distribute insights"
-        finDeptToEbs = finDept -> ebs "AP/AR/GL operation activities"
-        
-        cfTeamToWorkday = comFinTeam -> wda "Produce plans and Budgets"
-        
-        /* ============================================================
-           RELATIONSHIPS - Finance Platform Applications
-           ============================================================ */
-        
-        ebsToExr = ebs -> exr "Financial Data" "File" "Integration"
-        ebsToWda = ebs -> wda "Master and Transactional Data" "ERROR: Bi directional!" "Integration"
-        splashToEBS = sbi -> ebs "Database reads" "VPN" "Integration"
-        bswToEbs = bsw -> ebs "Invoicing and Purchasing Master" "Mule" "Integration"
-        fafToEbs = faf -> ebs "Delegated authority submissions" "Hosted" "Integration"
-        pjcToEbs = pjc -> ebs "Project Master Data" "Automate" "Integration"
-        tgnToEbs = tgn -> ebs "Customer Billing Invoice" "Mule" "Integration"
-        ebsToCmx = ebs -> cmx "Financial Transactional Data" "File" "Integration"
-        bbpToEbs = bbp -> ebs "Bank Statements and Payment files" "Automate" "Integration"
-        ebsToApt = ebs -> apt "Financial Transactional Data" "File" "Integration"
-        ebsToSov = ebs -> sov "Financial Transactional Data" "File" "Integration"
-        
-        /* ============================================================
-           RELATIONSHIPS - HR Platform with Users
-           ============================================================ */
-        
-        allC4ToFes = allC4 -> fes "Freelancer requestors"
-        peopleOpsToFes = peopleOps -> fes "Management of freelancer process"
-        
-        /* ============================================================
-           RELATIONSHIPS - HR Platform Applications
-           ============================================================ */
-        
-        fourPoToWda = fourPo -> wda "Colleague Master Data" "CSV File" "Integration"
-        fesToHnd = fes -> hnd "Freelancer contract data" "Email" "Integration"
-        fesToEbs = fes -> ebs "Project codes" "SFTP" "Integration"
-        hndToEbs = hnd -> ebs "Freelancer Invoice Data" "Email" "Integration"
     }
     
     views {
@@ -154,27 +110,12 @@ workspace "Channel 4 Core" "Base Line Model" {
             font "4Text" https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/4Text-Regular.ttf
         }
         
-        systemLandscape "SystemLandscape" {
+        systemContext fsp "fspContext" {
             include *
             autoLayout
         }
         
-        systemContext fsp "FinancePlatformContext" {
-            include *
-            autoLayout
-        }
-        
-        container fsp "FinancePlatformContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext hrp "PeoplePlatformContext" {
-            include *
-            autoLayout
-        }
-        
-        container hrp "PeoplePlatformContainers" {
+        container fsp "fspContainers" {
             include *
             autoLayout
         }

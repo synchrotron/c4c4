@@ -26,18 +26,28 @@ No dependencies to install for basic DSL generation. Everything uses Python's st
 
 ## Usage
 
-### Generate DSL
+### Generate DSL from LeanIX (Main Workflow)
 
 ```bash
-python generate_c4_dsl.py
+python generate_from_leanix.py
 ```
 
-This will generate `dsl/c4-core-workspace.dsl` with:
-- Clean identifiers (ebs, wda, fsp, etc.)
-- Display names with spaces ("Finance System Platform", etc.)
-- Relationship identifiers for cross-workspace references
-- Channel 4 branding (theme, logo, font)
-- Custom terminology (Team/Platform/Application)
+This will:
+1. Connect to LeanIX using credentials from `.env`
+2. Fetch the Finance Systems Platform and its applications
+3. Fetch all interfaces (integrations)
+4. Map to Structurizr DSL with Channel 4 branding
+5. Save to `dsl/c4-core-workspace.dsl`
+
+### Generate Static Example DSL
+
+For testing or reference, you can generate a static example:
+
+```bash
+python generate_c4_dsl_static.py
+```
+
+This creates a hardcoded example without connecting to LeanIX.
 
 ### Preview the DSL
 
@@ -49,15 +59,22 @@ cat dsl/c4-core-workspace.dsl
 
 ```
 c4c4/
-├── README.md                   # This file
-├── requirements.txt            # Python dependencies (future LeanIX integration)
-├── generate_c4_dsl.py          # Main DSL generator
-├── assets/                     # Channel 4 branding assets
+├── README.md                      # This file
+├── requirements.txt               # Python dependencies
+├── .env                           # LeanIX credentials (not in git)
+├── generate_from_leanix.py        # Main: Generate DSL from LeanIX
+├── generate_c4_dsl_static.py      # Static example generator
+├── leanix/                        # LeanIX integration package
+│   ├── __init__.py
+│   ├── client.py                  # LeanIX GraphQL client
+│   ├── queries.py                 # GraphQL queries
+│   └── mapper.py                  # LeanIX → Structurizr mapper
+├── assets/                        # Channel 4 branding assets
 │   ├── 4-logo-black.png
 │   ├── c4-default-theme.json
 │   └── 4Text-Regular.ttf
-└── dsl/                        # Generated DSL output
-    └── c4-core-workspace.dsl
+└── dsl/                           # Generated DSL output
+    └── c4-core-workspace.dsl      # Main workspace (from LeanIX)
 ```
 
 ## Features
@@ -188,20 +205,21 @@ teamToNewApp = team -> newApp "How they use it"
 - Direct DSL generation from Python
 - Channel 4 branding and customizations
 - Clean identifiers and relationship references
-- No external dependencies
 
-### Phase 2: Planned - LeanIX Integration
-- GraphQL client for LeanIX API
-- Automatic data fetching from EAM
-- Dynamic model generation from live architecture data
-- Mapping LeanIX entities to Structurizr elements
+### Phase 2: ✅ Complete
+- LeanIX GraphQL client
+- Fetch TechPlatform and Applications
+- Map UserGroups to Persons
+- Map Interfaces to Relationships
+- Dynamic DSL generation from live architecture data
 
 ### Phase 3: Planned - Advanced Features
+- Multiple platforms support
 - Component-level diagrams
 - Deployment views
 - Dynamic views for user journeys
 - Filtered views by business capability
-- Automated diagram generation pipeline
+- Automated sync from LeanIX on schedule
 
 ## Troubleshooting
 
