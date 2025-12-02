@@ -132,13 +132,19 @@ class LeanIXMapper:
     
     def _clean_description(self, desc: str) -> str:
         """
-        Clean description text - single line, reasonable length.
+        Clean description text for DSL output.
+        
+        Rules:
+        - Single line (no newlines)
+        - No double quotes (replace with single quotes)
+        - Maximum 100 characters
+        - Trim whitespace
         
         Args:
             desc: Raw description text
             
         Returns:
-            Cleaned description text
+            Cleaned description text safe for DSL
         """
         if not desc:
             return ''
@@ -146,9 +152,15 @@ class LeanIXMapper:
         # Replace newlines with spaces
         desc = ' '.join(desc.split())
         
+        # Replace double quotes with single quotes
+        desc = desc.replace('"', "'")
+        
         # Trim to reasonable length (100 chars)
         if len(desc) > 100:
             desc = desc[:97] + '...'
+        
+        # Final trim
+        desc = desc.strip()
         
         return desc
     
@@ -312,7 +324,181 @@ class LeanIXMapper:
         
         return dsl
     
-    
+    def map_multiple_platforms_to_dsl(self, platforms_data: list, all_interfaces: list) -> str:
+        """
+        Map multiple LeanIX platforms to a single Structurizr DSL workspace.
+        
+        Args:
+            platforms_data: List of platform fact sheets from LeanIX
+            all_interfaces: List of all interface fact sheets
+            
+        Returns:
+            Complete Structurizr DSL as string
+        """
+        # Reset tracking lists for this generation
+        self.missing_acronyms = []
+        self.duplicate_acronyms = []
+        
+        # Track all used identifiers globally to prevent duplicates across platforms
+        used_identifiers = set()
+        
+        # Collect all platforms with their data
+        all_platforms = []
+        all_applications = {}  # app_id -> (app_identifier, app_name, platform_identifier, app_desc)
+        all_organizations = {}  # org_id -> (org_display_name, org_name, org_desc, org_acronym)
+        all_org_to_app_relationships = []
+        
+        # Process each platform
+        for platform_data in platforms_data:
+            platform_id = platform_data.get('id')
+            platform_name = platform_data.get('displayName') or platform_data.get('name')
+            # FIX 1: Clean platform description
+            platform_desc = self._clean_description(platform_data.get('description', ''))
+            if not platform_desc:
+                platform_desc = 'Platform from LeanIX'
+            platform_acronym = platform_data.get('acronym')
+            
+            # Get platform identifier from acronym
+            platform_identifier = self._get_identifier_from_acronym(
+                platform_name, 'Platform', platform_acronym, platform_id
+            )
+            platform_identifier = self._ensure_unique_identifier(
+                platform_identifier, used_identifiers, platform_name, 'Platform'
+            )
+            
+            # Extract child applications
+            applications = []
+            rel_to_apps = platform_data.get('relTechPlatformToApplication', {}).get('edges', [])
+            for edge in rel_to_apps:
+                app = edge.get('node', {}).get('factSheet', {})
+                if app:
+                    applications.append(app)
+            
+            # Store platform info
+            all_platforms.append({
+                'identifier': platform_identifier,
+                'name': platform_name,
+                'desc': platform_desc,
+                'applications': []
+            })
+            
+            # Process applications for this platform
+            for app in applications:
+                app_id = app.get('id')
+                app_display_name = app.get('displayName') or app.get('name')
+                app_name = app.get('name') or app_display_name
+                app_acronym = app.get('acronym')
+                # FIX 1: Clean application description
+                app_desc = self._clean_description(app.get('description', ''))
+                
+                # Get identifier from acronym
+                app_identifier = self._get_identifier_from_acronym(
+                    app_display_name, 'Application', app_acronym, app_id
+                )
+                app_identifier = self._ensure_unique_identifier(
+                    app_identifier, used_identifiers, app_display_name, 'Application'
+                )
+                
+                # Store application
+                all_applications[app_id] = (app_identifier, app_name, platform_identifier, app_desc)
+                all_platforms[-1]['applications'].append({
+                    'identifier': app_identifier,
+                    'name': app_name,
+                    'desc': app_desc
+                })
+                
+                # Get organisations from this application
+                app_orgs = app.get('relApplicationToUserGroup', {}).get('edges', [])
+                for edge in app_orgs:
+                    org = edge.get('node', {}).get('factSheet', {})
+                    if org:
+                        org_id = org.get('id')
+                        org_display_name = org.get('displayName')
+                        org_name = org.get('name') or org_display_name
+                        # FIX 1: Clean organisation description
+                        org_desc = self._clean_description(org.get('description', ''))
+                        org_acronym = org.get('acronym')
+                        
+                        # Store organisation (only if new)
+                        if org_id not in all_organizations:
+                            all_organizations[org_id] = (org_display_name, org_name, org_desc, org_acronym)
+                        
+                        # Store relationship
+                        all_org_to_app_relationships.append((org_id, app_id, 'Uses'))
+        
+        # Build set of all application IDs for interface filtering
+        all_app_ids = set(all_applications.keys())
+        
+        # Extract application-to-application relationships from interfaces
+        all_app_relationships = []
+        
+        for interface_edge in all_interfaces:
+            interface = interface_edge.get('node', {})
+            interface_id = interface.get('id')
+            interface_display_name = interface.get('displayName') or interface.get('name', 'Integration')
+            interface_name = interface.get('name') or interface_display_name
+            interface_desc = self._clean_description(interface.get('description', ''))
+            interface_acronym = interface.get('acronym')
+            
+            # Get base identifier from acronym
+            base_interface_identifier = self._get_identifier_from_acronym(
+                interface_display_name, 'Interface', interface_acronym, interface_id
+            )
+            
+            # Get provider and consumer relationships
+            providers = interface.get('relInterfaceToProviderApplication', {}).get('edges', [])
+            consumers = interface.get('relInterfaceToConsumerApplication', {}).get('edges', [])
+            
+            # Track relationships for this interface
+            relationship_count = 0
+            
+            for provider_edge in providers:
+                provider_app = provider_edge.get('node', {}).get('factSheet', {})
+                provider_id = provider_app.get('id')
+                
+                for consumer_edge in consumers:
+                    consumer_app = consumer_edge.get('node', {}).get('factSheet', {})
+                    consumer_id = consumer_app.get('id')
+                    
+                    # Include if both are in any of our platforms
+                    if provider_id in all_app_ids and consumer_id in all_app_ids:
+                        # Create unique identifier for this specific relationship
+                        if relationship_count == 0:
+                            interface_identifier = base_interface_identifier
+                        else:
+                            interface_identifier = f"{base_interface_identifier}{relationship_count + 1}"
+                        
+                        # Ensure unique across all identifiers
+                        interface_identifier = self._ensure_unique_identifier(
+                            interface_identifier, used_identifiers,
+                            f"{interface_display_name} (relationship {relationship_count + 1})", 'Interface'
+                        )
+                        
+                        relationship_count += 1
+                        
+                        all_app_relationships.append((
+                            interface_identifier,
+                            provider_id,
+                            consumer_id,
+                            interface_name,
+                            interface_desc
+                        ))
+        
+        # Generate DSL with all platforms
+        dsl = self._generate_multi_platform_dsl(
+            all_platforms,
+            all_organizations,
+            all_org_to_app_relationships,
+            all_applications,
+            all_app_relationships,
+            used_identifiers
+        )
+        
+        # Print warnings about missing and duplicate acronyms
+        self._print_acronym_warnings()
+        
+        return dsl
+
     def _print_acronym_warnings(self):
         """Print warnings about missing and duplicate acronyms."""
         if self.missing_acronyms:
@@ -487,6 +673,157 @@ class LeanIXMapper:
         }}
     }}
 }}'''
+        
+        return dsl
+
+    def _generate_multi_platform_dsl(
+        self,
+        all_platforms: list,
+        organizations: dict,
+        org_to_app_relationships: list,
+        all_applications: dict,
+        all_app_relationships: list,
+        used_identifiers: set
+    ) -> str:
+        """Generate DSL for multiple platforms in a single workspace."""
+        
+        # Start DSL
+        dsl = f'''workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {{
+
+    !identifiers flat
+
+    model {{
+    
+        archetypes {{
+            application = container
+        }}
+        
+        /* ============================================================
+           ORGANISATIONS / TEAMS (from LeanIX UserGroups)
+           ============================================================ */
+        
+'''
+        
+        # Add organisations as persons using acronyms
+        org_id_map = {}
+        for org_id, (org_display_name, org_name, org_desc, org_acronym) in organizations.items():
+            # Get identifier from acronym
+            org_identifier = self._get_identifier_from_acronym(
+                org_display_name, 'Organisation', org_acronym, org_id
+            )
+            org_identifier = self._ensure_unique_identifier(
+                org_identifier, used_identifiers, org_display_name, 'Organisation'
+            )
+            
+            org_id_map[org_id] = org_identifier
+            # Description is already cleaned in map_multiple_platforms_to_dsl
+            desc_str = f' "{org_desc}"' if org_desc else ' ""' 
+            dsl += f'        {org_identifier} = person "{org_name}"{desc_str}\n'
+        
+        # Add each platform as a software system
+        for platform in all_platforms:
+            dsl += f'''
+        /* ============================================================
+           {platform["name"].upper()}
+           ============================================================ */
+        
+        {platform["identifier"]} = softwareSystem "{platform["name"]}" "{platform["desc"]}" {{
+            
+'''
+            
+            # Add applications for this platform
+            for app in platform['applications']:
+                # Description is already cleaned in map_multiple_platforms_to_dsl
+                dsl += f'            {app["identifier"]} = container "{app["name"]}" "{app["desc"]}" "Application"\n'
+            
+            dsl += '        }\n'
+        
+        dsl += '''        
+        /* ============================================================
+           PERSON -> APPLICATION RELATIONSHIPS
+           ============================================================ */
+        
+'''
+        
+        # FIX 2: Track relationship identifiers to prevent duplicates
+        relationship_identifiers_used = set()
+        
+        # Add person to application relationships (deduplicated)
+        for org_id, app_id, rel_desc in org_to_app_relationships:
+            org_identifier = org_id_map.get(org_id)
+            if app_id in all_applications:
+                app_identifier, _, _, _ = all_applications.get(app_id)
+                
+                if org_identifier and app_identifier:
+                    rel_identifier = f"{org_identifier}To{app_identifier[0].upper()}{app_identifier[1:]}"
+                    
+                    # FIX 2: Only add if we haven't seen this relationship identifier before
+                    if rel_identifier not in relationship_identifiers_used:
+                        relationship_identifiers_used.add(rel_identifier)
+                        dsl += f'        {rel_identifier} = {org_identifier} -> {app_identifier} "{rel_desc}"\n'
+        
+        dsl += '''
+        /* ============================================================
+           APPLICATION -> APPLICATION RELATIONSHIPS (from LeanIX Interfaces)
+           ============================================================ */
+        
+'''
+        
+        # Add application to application relationships
+        for interface_identifier, provider_id, consumer_id, interface_name, interface_desc in all_app_relationships:
+            if provider_id in all_applications and consumer_id in all_applications:
+                provider_identifier, _, _, _ = all_applications.get(provider_id)
+                consumer_identifier, _, _, _ = all_applications.get(consumer_id)
+                
+                # Description is already cleaned in map_multiple_platforms_to_dsl
+                # Use interface_name for label, interface_desc for description if available
+                label = interface_name
+                if interface_desc:
+                    dsl += f'        {interface_identifier} = {provider_identifier} -> {consumer_identifier} "{label}" "{interface_desc}" "Integration"\n'
+                else:
+                    dsl += f'        {interface_identifier} = {provider_identifier} -> {consumer_identifier} "{label}" "TBC" "Integration"\n'
+        
+        dsl += '''        
+    }
+    
+    views {
+        
+        terminology {
+            person "Team"
+            softwareSystem "Platform"
+            container "Application"
+        }
+        
+'''
+        
+        dsl += f'''        themes {self.theme_url}
+        
+        branding {{
+            logo {self.logo_url}
+            font "{self.font_name}" {self.font_url}
+        }}
+        
+        systemLandscape "SystemLandscape" {{
+            include *
+            autoLayout
+        }}
+'''
+        
+        # Add views for each platform
+        for platform in all_platforms:
+            dsl += f'''        
+        systemContext {platform["identifier"]} "{platform["identifier"]}Context" {{
+            include *
+            autoLayout
+        }}
+        
+        container {platform["identifier"]} "{platform["identifier"]}Containers" {{
+            include *
+            autoLayout
+        }}
+'''
+        
+        dsl += '    }\n}'
         
         return dsl
 

@@ -17,7 +17,6 @@ query GetPlatformById($id: ID!) {
             name
         }
         ... on TechPlatform {
-            acronym
             relTechPlatformToApplication {
                 edges {
                     node {
@@ -27,7 +26,6 @@ query GetPlatformById($id: ID!) {
                             displayName
                             description
                             ... on Application {
-                                acronym
                                 relApplicationToUserGroup {
                                     edges {
                                         node {
@@ -36,9 +34,6 @@ query GetPlatformById($id: ID!) {
                                                 name
                                                 displayName
                                                 description
-                                                ... on UserGroup {
-                                                    acronym
-                                                }
                                             }
                                         }
                                     }
@@ -206,7 +201,6 @@ query GetInterfaces($limit: Int!) {
                 type
                 description
                 ... on Interface {
-                    acronym
                     relInterfaceToProviderApplication {
                         edges {
                             node {
@@ -225,6 +219,67 @@ query GetInterfaces($limit: Int!) {
                                     id
                                     name
                                     displayName
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+"""
+
+# Query to fetch TechPlatforms by tag
+GET_PLATFORMS_BY_TAG = """
+query GetAllPlatforms($limit: Int!) {
+    allFactSheets(
+        filter: {
+            facetFilters: [
+                {facetKey: "FactSheetTypes", keys: ["TechPlatform"]}
+            ]
+        }
+        first: $limit
+    ) {
+        totalCount
+        edges {
+            node {
+                id
+                name
+                displayName
+                type
+                description
+                tags {
+                    name
+                }
+                ... on TechPlatform {
+                    acronym
+                    relTechPlatformToApplication {
+                        edges {
+                            node {
+                                factSheet {
+                                    id
+                                    name
+                                    displayName
+                                    description
+                                    ... on Application {
+                                        acronym
+                                        relApplicationToUserGroup {
+                                            edges {
+                                                node {
+                                                    factSheet {
+                                                        id
+                                                        name
+                                                        displayName
+                                                        description
+                                                        ... on UserGroup {
+                                                            acronym
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

@@ -15,8 +15,8 @@ from leanix.mapper import LeanIXMapper
 def main():
     """Generate DSL from LeanIX data."""
     
-    # Configuration
-    platform_id = "3f828194-de4a-4dee-9ca6-e071cc2e0eae"  # Finance Systems Platform
+    # Configuration - CHANGED: Use tag instead of hardcoded ID
+    tag_name = "Enterprise System"  # Tag to filter platforms
     output_dir = Path("dsl")
     output_file = output_dir / "c4-core-workspace.dsl"
     
@@ -39,21 +39,34 @@ def main():
         return 1
     print()
     
-    # Step 2: Fetch Platform data
-    print(f"Step 2: Fetching Finance Systems Platform")
+    # Step 2: Fetch all platforms with the specified tag
+    print(f"Step 2: Fetching platforms with tag '{tag_name}'")
     print("-" * 70)
-    print(f"  Platform ID: {platform_id}")
     try:
-        platform_data = client.get_platform_by_id(platform_id)
-        platform_name = platform_data.get('displayName') or platform_data.get('name')
-        platform_type = platform_data.get('type')
-        app_count = len(platform_data.get('relTechPlatformToApplication', {}).get('edges', []))
+        platforms_edges = client.get_platforms_by_tag(tag_name, limit=100)
+        platforms_data = [edge.get('node', {}) for edge in platforms_edges]
         
-        print(f"✓ Fetched: {platform_name}")
-        print(f"  Type: {platform_type}")
-        print(f"  Applications: {app_count}")
+        print(f"✓ Fetched {len(platforms_data)} platforms")
+        
+        if platforms_data:
+            print()
+            print("Platforms found:")
+            for idx, platform in enumerate(platforms_data, 1):
+                platform_name = platform.get('displayName') or platform.get('name')
+                platform_type = platform.get('type')
+                app_count = len(platform.get('relTechPlatformToApplication', {}).get('edges', []))
+                print(f"  {idx}. {platform_name} ({platform_type}) - {app_count} applications")
+        else:
+            print(f"⚠️  No platforms found with tag '{tag_name}'")
+            print("Please check:")
+            print("  1. Tag name is correct (case-sensitive)")
+            print("  2. Platforms in LeanIX have this tag applied")
+            return 1
+            
     except Exception as e:
-        print(f"✗ Failed to fetch platform: {e}")
+        print(f"✗ Failed to fetch platforms: {e}")
+        import traceback
+        traceback.print_exc()
         return 1
     print()
     
@@ -73,7 +86,17 @@ def main():
     print("-" * 70)
     try:
         mapper = LeanIXMapper()
-        dsl = mapper.map_platform_to_dsl(platform_data, all_interfaces)
+        
+        # CHANGED: Use new multi-platform method if multiple platforms
+        if len(platforms_data) == 1:
+            # Single platform - use existing method
+            print(f"Generating DSL for single platform: {platforms_data[0].get('displayName')}")
+            dsl = mapper.map_platform_to_dsl(platforms_data[0], all_interfaces)
+        else:
+            # Multiple platforms - use new method
+            print(f"Generating DSL for {len(platforms_data)} platforms")
+            dsl = mapper.map_multiple_platforms_to_dsl(platforms_data, all_interfaces)
+        
         print("✓ DSL generated successfully")
     except Exception as e:
         print(f"✗ Failed to generate DSL: {e}")
@@ -96,10 +119,12 @@ def main():
         
         # Count elements
         person_count = dsl.count('person "')
+        software_system_count = dsl.count('softwareSystem "')
         container_count = dsl.count('container "')
         relationship_count = dsl.count(' -> ')
         
         print(f"  Teams: {person_count}")
+        print(f"  Platforms: {software_system_count}")
         print(f"  Applications: {container_count}")
         print(f"  Relationships: {relationship_count}")
         
@@ -118,7 +143,7 @@ def main():
     print("Next steps:")
     print("  1. Review the generated DSL")
     print("  2. Upload to Structurizr or run Structurizr Lite")
-    print("  3. Verify all applications and relationships are correct")
+    print("  3. Verify all platforms, applications and relationships are correct")
     print()
     print("To preview:")
     print(f"  cat {output_file}")

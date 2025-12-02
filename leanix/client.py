@@ -154,6 +154,68 @@ class LeanIXClient:
         result = self.execute_query(GET_PLATFORM_BY_ID, {'id': platform_id})
         return result.get('factSheet', {})
     
+    def get_platforms_by_tag(self, tag_name: str, limit: int = 100) -> list:
+        """
+        Fetch all platforms with a specific tag.
+        
+        Args:
+            tag_name: Tag name to filter by (e.g., "Enterprise System")
+            limit: Maximum number of platforms to fetch
+            
+        Returns:
+            List of platform fact sheets with applications and organizations
+        """
+        from .queries import GET_PLATFORMS_BY_TAG
+        
+        # Fetch all TechPlatforms
+        result = self.execute_query(GET_PLATFORMS_BY_TAG, {'limit': limit})
+        all_edges = result.get('allFactSheets', {}).get('edges', [])
+        
+        # Filter by tag in Python (more reliable than GraphQL facet filtering)
+        filtered_edges = []
+        for edge in all_edges:
+            node = edge.get('node', {})
+            tags = node.get('tags', [])
+            tag_names = [tag.get('name') for tag in tags]
+            
+            # Case-insensitive tag matching
+            if any(tag_name.lower() == t.lower() for t in tag_names):
+                filtered_edges.append(edge)
+        
+        return filtered_edges
+    
+
+    
+    def get_platforms_by_tag(self, tag_name: str, limit: int = 100) -> list:
+        """
+        Fetch all platforms with a specific tag.
+        
+        Args:
+            tag_name: Tag name to filter by (e.g., "Enterprise System")
+            limit: Maximum number of platforms to fetch
+            
+        Returns:
+            List of platform fact sheets with applications and organizations
+        """
+        from .queries import GET_PLATFORMS_BY_TAG
+        
+        # Fetch all TechPlatforms
+        result = self.execute_query(GET_PLATFORMS_BY_TAG, {'limit': limit})
+        all_edges = result.get('allFactSheets', {}).get('edges', [])
+        
+        # Filter by tag in Python (more reliable than GraphQL facet filtering)
+        filtered_edges = []
+        for edge in all_edges:
+            node = edge.get('node', {})
+            tags = node.get('tags', [])
+            tag_names = [tag.get('name') for tag in tags]
+            
+            # Case-insensitive tag matching
+            if any(tag_name.lower() == t.lower() for t in tag_names):
+                filtered_edges.append(edge)
+        
+        return filtered_edges
+
     def get_all_interfaces(self) -> list:
         """
         Fetch all interfaces (integrations) from LeanIX.
@@ -183,11 +245,11 @@ class LeanIXClient:
             }
             """
             result = self.execute_query(query)
-            print(f"✓ Connected to LeanIX successfully")
+            print(f"âœ“ Connected to LeanIX successfully")
             print(f"  Total applications in workspace: {result['allFactSheets']['totalCount']}")
             return True
         except Exception as e:
-            print(f"✗ Failed to connect to LeanIX: {e}")
+            print(f"âœ— Failed to connect to LeanIX: {e}")
             return False
 
 
@@ -205,7 +267,7 @@ def main():
         print()
         print("Fetching applications...")
         apps = client.get_applications(limit=5)
-        print(f"✓ Fetched {len(apps)} applications (limited to 5 for testing)")
+        print(f"âœ“ Fetched {len(apps)} applications (limited to 5 for testing)")
         
         if apps:
             print("\nFirst application:")
