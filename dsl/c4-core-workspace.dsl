@@ -68,7 +68,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         c4X = person "Channel 4" ""
         ccfrss = person "Shared Services" "Team responsible for any financial transactional incoming and outgoing payment processing. Typica..."
         c4mpXX = person "Consumer Product" ""
-        c4mpXXX = person "Digital Marketing" ""
+        c4mpXXX = person "Digital Marketing (Product)" ""
         c4ccXXXXXXXXXXXXXXXXX = person "Content & Commissioning" ""
         c4cX = person "Corporate" ""
         c4cpX = person "Employee Relations" ""
