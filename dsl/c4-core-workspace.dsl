@@ -350,6 +350,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             sl = container "Sumo Logic" "Sumo Logic is a cloud-based log management and analytics service that leverages machine-generated..." "saas"
             tr = container "Tag Recommender" "A Data Science led application to aid the Channel 4 Streaming editors with tagging for Brands" "iaas"
             thin = container "ThinkAnalytics" "World leaders in AI personalized content discovery, hyper-targeted advertising and customer insight." "saas"
+            yosp = container "YoSpace" "Dynamic Ad Insertion (replacement of linear ads) on live streams to our owned and operated stream..." "saas"
         }
 
         /* ============================================================
@@ -378,7 +379,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         c4csToCc = c4cs -> cc "Uses"
         c4csToFsh = c4cs -> fsh "Uses"
         c4csToInno = c4cs -> inno "Uses"
-        c4caToSc = c4ca -> sc "Uses"
+        c4caToSc = c4ca -> sc "AV = Audio Visual"
         c4csToSc = c4cs -> sc "Uses"
         c4csXToSc = c4csX -> sc "Uses"
         c4ccToStel = c4cc -> stel "Uses"
@@ -481,7 +482,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         c4ccXXToPge = c4ccXX -> pge "Uses"
         c4ccXXXXXXXXXXXXXXXXToPge = c4ccXXXXXXXXXXXXXXXX -> pge "Uses"
         c4ccXToPge = c4ccX -> pge "Uses"
-        c4ccXXXToPge = c4ccXXX -> pge "Uses"
+        c4ccXXXToPge = c4ccXXX -> pge "Not all information is available and needs to be obtained from other sources. Clunky"
         ccfToPge = ccf -> pge "Uses"
         c4cpToPge = c4cp -> pge "Uses"
         c4csXXXXToPge = c4csXXXX -> pge "Uses"
@@ -663,7 +664,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         c4csXXXXXXXToC4 = c4csXXXXXXX -> c4 "Uses"
         c4csToDcri = c4cs -> dcri "Uses"
         c4ciXXToDcrs = c4ciXX -> dcrs "Uses"
-        c4mmToDcrs = c4mm -> dcrs "Uses"
+        c4mmToDcrs = c4mm -> dcrs "C4 Audience Team and Marketing team use the Data Clean Room solution for creating overlapping aud..."
         c4mmXXToDcrs = c4mmXX -> dcrs "Uses"
         c4csToDf = c4cs -> df "Uses"
         c4csXToDf = c4csX -> df "Uses"
@@ -671,7 +672,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         c4mpXToWa = c4mpX -> wa "Uses"
         ccfToAtax = ccf -> atax "Uses"
         ccfToBbp = ccf -> bbp "Uses"
-        c4XToBsw = c4X -> bsw "Uses"
+        c4XToBsw = c4X -> bsw "Raise and approve POs"
         ccfToBsw = ccf -> bsw "Uses"
         ccfrssToBsw = ccfrss -> bsw "Uses"
         ccfToEbs = ccf -> ebs "Uses"
@@ -749,7 +750,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         c4ccXXXToPepl = c4ccXXX -> pepl "Uses"
         c4mcToPepl = c4mc -> pepl "Uses"
         c4caXToAnda = c4caX -> anda "Uses"
-        c4ccXXXToAnda = c4ccXXX -> anda "Uses"
+        c4ccXXXToAnda = c4ccXXX -> anda "Clunky and difficult to use."
         c4cfXToCms = c4cfX -> cms "Uses"
         c4caXXXXXToFa = c4caXXXXX -> fa "Uses"
         c4ctXXToTime = c4ctXX -> time "Uses"
@@ -780,6 +781,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         atsf = passX -> stel "A55 to Stellar for Advanced Schedule data flow" "SFTP" "Integration"
         aptf = acti -> wda "Active Pay to Financial Planning" "Mule" "Integration"
         atoe = acti -> ebs "ActivPay to Oracle EBS" "Mule" "Integration"
+        asst = yosp -> c4sl "Ad Serving System to C4S" "Alternative" "Integration"
         aate = wa -> cedw "Adobe Analytics to EDW" "Alternative" "Integration"
         apff = ap -> pbm "Agency Portal fetch from Pirate for Brand" "Mule" "Integration"
         apffX = ap -> stel "Agency Portal fetch from Stellar for Programme" "Mule" "Integration"
@@ -823,6 +825,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         btmiX = modX -> bynd "Bynder to MediaGenix Image Tagging Changes" "Alternative" "Integration"
         chpt = er -> bor "C4 HR & Payroll to PowerBI Reporting" "Mule" "Integration"
         4io = ebs -> come "C4 intl overages" "SFTP" "Integration"
+        cpty = yosp -> stel "C4 Promo to YoSpace for Advertisements" "Mule" "Integration"
         4vatr = sov -> ebs "C4 VAT Returns" "Alternative" "Integration"
         cbsd = sm -> cedw "C4S Braintree Subscriber data to EDW" "Alternative" "Integration"
         cetf = free -> pepl "C4S EPG to Freely" "Alternative" "Integration"
@@ -831,6 +834,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         cfvs = cdna -> free "C4S Freely Video Stream from CDN" "Alternative" "Integration"
         cmif = cdna -> modX "C4S MoD Images from CDN" "Alternative" "Integration"
         cqte = ova -> cedw "C4S QoS to EDW" "Alternative" "Integration"
+        csty = yosp -> osp "C4S Streams to YoSpace" "Alternative" "Integration"
         ctaa = wa -> c4sl "C4S to Adobe Analytics" "Alternative" "Integration"
         ctb = barb -> c4sl "C4S to BARB" "Alternative" "Integration"
         ctc7 = c4sl -> c7t "C4S to C4 7A Titles" "Alternative" "Integration"
@@ -1077,6 +1081,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         waad = wa -> cedw "Web Analytics (AA) data to EDW" "Alternative" "Integration"
         wdsbi = wda -> ebs "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Mule" "Integration"
         wdsbi2 = wda -> sbi "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Mule" "Integration"
+        ytf = yosp -> fsh "YoSpace to Freewheel" "Alternative" "Integration"
         
     }
     
@@ -1093,161 +1098,6 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         branding {
             logo https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/4-logo-black.png
             font "4Text" https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/4Text-Regular.ttf
-        }
-        
-        systemLandscape "SystemLandscape" {
-            include *
-            autoLayout
-        }
-        
-        systemContext cp "cpContext" {
-            include *
-            autoLayout
-        }
-        
-        container cp "cpContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext bms "bmsContext" {
-            include *
-            autoLayout
-        }
-        
-        container bms "bmsContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext csp "cspContext" {
-            include *
-            autoLayout
-        }
-        
-        container csp "cspContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext dap "dapContext" {
-            include *
-            autoLayout
-        }
-        
-        container dap "dapContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext fsp "fspContext" {
-            include *
-            autoLayout
-        }
-        
-        container fsp "fspContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext lpp "lppContext" {
-            include *
-            autoLayout
-        }
-        
-        container lpp "lppContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext mp "mpContext" {
-            include *
-            autoLayout
-        }
-        
-        container mp "mpContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext mmp "mmpContext" {
-            include *
-            autoLayout
-        }
-        
-        container mmp "mmpContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext psp "pspContext" {
-            include *
-            autoLayout
-        }
-        
-        container psp "pspContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext rmp "rmpContext" {
-            include *
-            autoLayout
-        }
-        
-        container rmp "rmpContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext rsp "rspContext" {
-            include *
-            autoLayout
-        }
-        
-        container rsp "rspContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext spX "spXContext" {
-            include *
-            autoLayout
-        }
-        
-        container spX "spXContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext sbs "sbsContext" {
-            include *
-            autoLayout
-        }
-        
-        container sbs "sbsContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext vsp "vspContext" {
-            include *
-            autoLayout
-        }
-        
-        container vsp "vspContainers" {
-            include *
-            autoLayout
-        }
-        
-        systemContext wsp "wspContext" {
-            include *
-            autoLayout
-        }
-        
-        container wsp "wspContainers" {
-            include *
-            autoLayout
         }
     }
 }

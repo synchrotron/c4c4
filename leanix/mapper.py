@@ -164,6 +164,35 @@ class LeanIXMapper:
         
         return desc
     
+    def _extract_technology_from_components(self, it_components: list) -> str:
+        """
+        Extract technology keywords from IT component names.
+        
+        Looks for: Mule, Automate, SFTP, HTTP in component names.
+        
+        Args:
+            it_components: List of IT component fact sheets
+            
+        Returns:
+            Comma-separated technology string or "Alternative" if none found
+        """
+        keywords = ['Mule', 'Automate', 'SFTP', 'HTTP']
+        found_technologies = []
+        
+        for component in it_components:
+            component_name = component.get('name', '') or component.get('displayName', '')
+            
+            # Check for each keyword in the component name (case-insensitive)
+            for keyword in keywords:
+                if keyword.lower() in component_name.lower():
+                    if keyword not in found_technologies:
+                        found_technologies.append(keyword)
+        
+        if found_technologies:
+            return ', '.join(found_technologies)
+        else:
+            return 'Alternative'
+    
     def map_platform_to_dsl(self, platform_data: dict, all_interfaces: list) -> str:
         """
         Map a LeanIX platform (Application) to Structurizr DSL.
@@ -195,13 +224,18 @@ class LeanIXMapper:
             platform_identifier, used_identifiers, platform_name, 'Platform'
         )
         
-        # Extract child applications (containers)
+        # Extract child applications (containers) with hosting type
         applications = []
+        app_hosting_types = {}  # app_id -> hosting_type
         rel_to_apps = platform_data.get('relTechPlatformToApplication', {}).get('edges', [])
         for edge in rel_to_apps:
             app = edge.get('node', {}).get('factSheet', {})
             if app:
                 applications.append(app)
+                app_id = app.get('id')
+                # NEW: Extract lxHostingType
+                hosting_type = app.get('lxHostingType', '') or ''
+                app_hosting_types[app_id] = hosting_type
         
         # Build application ID to identifier mapping using acronyms
         app_id_map = {}
@@ -233,7 +267,15 @@ class LeanIXMapper:
             app_orgs = app.get('relApplicationToUserGroup', {}).get('edges', [])
             
             for edge in app_orgs:
-                org = edge.get('node', {}).get('factSheet', {})
+                # Get the relationship node which contains both description and factSheet
+                node = edge.get('node', {})
+                
+                # Get relationship description from the node and clean it
+                raw_rel_description = node.get('description', '').strip()
+                rel_description = self._clean_description(raw_rel_description) or 'Uses'
+                
+                # Get the actual UserGroup factSheet
+                org = node.get('factSheet', {})
                 if org:
                     org_id = org.get('id')
                     org_display_name = org.get('displayName')
@@ -245,8 +287,8 @@ class LeanIXMapper:
                     if org_id not in organizations:
                         organizations[org_id] = (org_display_name, org_name, org_desc, org_acronym)
                     
-                    # Store relationship
-                    org_to_app_relationships.append((org_id, app_id, 'Uses'))
+                    # Store relationship with cleaned description from node
+                    org_to_app_relationships.append((org_id, app_id, rel_description))
         
         # Extract application-to-application relationships from interfaces
         app_relationships = []
@@ -256,9 +298,14 @@ class LeanIXMapper:
             interface = interface_edge.get('node', {})
             interface_id = interface.get('id')
             interface_display_name = interface.get('displayName') or interface.get('name', 'Integration')
+            # NEW: Use interface name for description (not the description field)
             interface_name = interface.get('name') or interface_display_name
-            interface_desc = self._clean_description(interface.get('description', ''))
             interface_acronym = interface.get('acronym')
+            
+            # NEW: Get IT components to extract technology
+            it_components_edges = interface.get('relInterfaceToITComponent', {}).get('edges', [])
+            it_components = [edge.get('node', {}).get('factSheet', {}) for edge in it_components_edges]
+            technology = self._extract_technology_from_components(it_components)
             
             # Get base identifier from acronym
             base_interface_identifier = self._get_identifier_from_acronym(
@@ -303,7 +350,7 @@ class LeanIXMapper:
                             provider_id,
                             consumer_id,
                             interface_name,
-                            interface_desc
+                            technology  # NEW: technology instead of interface_desc
                         ))
         
         # Generate DSL
@@ -315,6 +362,7 @@ class LeanIXMapper:
             org_to_app_relationships,
             applications,
             app_id_map,
+            app_hosting_types,  # NEW: Pass hosting types
             app_relationships,
             used_identifiers
         )
@@ -344,7 +392,7 @@ class LeanIXMapper:
         
         # Collect all platforms with their data
         all_platforms = []
-        all_applications = {}  # app_id -> (app_identifier, app_name, platform_identifier, app_desc)
+        all_applications = {}  # app_id -> (app_identifier, app_name, platform_identifier, app_desc, hosting_type)
         all_organizations = {}  # org_id -> (org_display_name, org_name, org_desc, org_acronym)
         all_org_to_app_relationships = []
         
@@ -352,7 +400,6 @@ class LeanIXMapper:
         for platform_data in platforms_data:
             platform_id = platform_data.get('id')
             platform_name = platform_data.get('displayName') or platform_data.get('name')
-            # FIX 1: Clean platform description
             platform_desc = self._clean_description(platform_data.get('description', ''))
             if not platform_desc:
                 platform_desc = 'Platform from LeanIX'
@@ -388,8 +435,9 @@ class LeanIXMapper:
                 app_display_name = app.get('displayName') or app.get('name')
                 app_name = app.get('name') or app_display_name
                 app_acronym = app.get('acronym')
-                # FIX 1: Clean application description
                 app_desc = self._clean_description(app.get('description', ''))
+                # NEW: Extract lxHostingType
+                hosting_type = app.get('lxHostingType', '') or ''
                 
                 # Get identifier from acronym
                 app_identifier = self._get_identifier_from_acronym(
@@ -399,23 +447,31 @@ class LeanIXMapper:
                     app_identifier, used_identifiers, app_display_name, 'Application'
                 )
                 
-                # Store application
-                all_applications[app_id] = (app_identifier, app_name, platform_identifier, app_desc)
+                # Store application with hosting type
+                all_applications[app_id] = (app_identifier, app_name, platform_identifier, app_desc, hosting_type)
                 all_platforms[-1]['applications'].append({
                     'identifier': app_identifier,
                     'name': app_name,
-                    'desc': app_desc
+                    'desc': app_desc,
+                    'hosting_type': hosting_type  # NEW: Add hosting type
                 })
                 
                 # Get organisations from this application
                 app_orgs = app.get('relApplicationToUserGroup', {}).get('edges', [])
                 for edge in app_orgs:
-                    org = edge.get('node', {}).get('factSheet', {})
+                    # Get the relationship node which contains both description and factSheet
+                    node = edge.get('node', {})
+                    
+                    # Get relationship description from the node and clean it
+                    raw_rel_description = node.get('description', '').strip()
+                    rel_description = self._clean_description(raw_rel_description) or 'Uses'
+                    
+                    # Get the actual UserGroup factSheet
+                    org = node.get('factSheet', {})
                     if org:
                         org_id = org.get('id')
                         org_display_name = org.get('displayName')
                         org_name = org.get('name') or org_display_name
-                        # FIX 1: Clean organisation description
                         org_desc = self._clean_description(org.get('description', ''))
                         org_acronym = org.get('acronym')
                         
@@ -423,8 +479,8 @@ class LeanIXMapper:
                         if org_id not in all_organizations:
                             all_organizations[org_id] = (org_display_name, org_name, org_desc, org_acronym)
                         
-                        # Store relationship
-                        all_org_to_app_relationships.append((org_id, app_id, 'Uses'))
+                        # Store relationship with cleaned description from node
+                        all_org_to_app_relationships.append((org_id, app_id, rel_description))
         
         # Build set of all application IDs for interface filtering
         all_app_ids = set(all_applications.keys())
@@ -436,9 +492,14 @@ class LeanIXMapper:
             interface = interface_edge.get('node', {})
             interface_id = interface.get('id')
             interface_display_name = interface.get('displayName') or interface.get('name', 'Integration')
+            # NEW: Use interface name for description (not the description field)
             interface_name = interface.get('name') or interface_display_name
-            interface_desc = self._clean_description(interface.get('description', ''))
             interface_acronym = interface.get('acronym')
+            
+            # NEW: Get IT components to extract technology
+            it_components_edges = interface.get('relInterfaceToITComponent', {}).get('edges', [])
+            it_components = [edge.get('node', {}).get('factSheet', {}) for edge in it_components_edges]
+            technology = self._extract_technology_from_components(it_components)
             
             # Get base identifier from acronym
             base_interface_identifier = self._get_identifier_from_acronym(
@@ -481,7 +542,7 @@ class LeanIXMapper:
                             provider_id,
                             consumer_id,
                             interface_name,
-                            interface_desc
+                            technology  # NEW: technology instead of interface_desc
                         ))
         
         # Generate DSL with all platforms
@@ -540,6 +601,7 @@ class LeanIXMapper:
         org_to_app_relationships: List[Tuple[str, str, str]],
         applications: List[dict],
         app_id_map: Dict[str, Tuple[str, str]],
+        app_hosting_types: Dict[str, str],  # NEW: hosting types parameter
         app_relationships: List[Tuple[str, str, str, str, str]],
         used_identifiers: set
     ) -> str:
@@ -587,13 +649,15 @@ class LeanIXMapper:
             
 '''
         
-        # Add applications as containers
+        # Add applications as containers with hosting type
         for app in applications:
             app_id = app.get('id')
             app_identifier, app_name = app_id_map.get(app_id)
             app_desc = self._clean_description(app.get('description', ''))
+            # NEW: Get hosting type from app_hosting_types
+            hosting_type = app_hosting_types.get(app_id, '')
             
-            dsl += f'            {app_identifier} = container "{app_name}" "{app_desc}" "Application"\n'
+            dsl += f'            {app_identifier} = container "{app_name}" "{app_desc}" "{hosting_type}"\n'
         
         dsl += '''        }
         
@@ -619,14 +683,13 @@ class LeanIXMapper:
         
 '''
         
-        # Add application to application relationships
+        # Add application to application relationships with technology
         seen_relationships = {}  # Track to detect duplicates
-        for interface_identifier, provider_id, consumer_id, interface_name, interface_desc in app_relationships:
+        for interface_identifier, provider_id, consumer_id, interface_name, technology in app_relationships:
             provider_identifier, _ = app_id_map.get(provider_id)
             consumer_identifier, _ = app_id_map.get(consumer_id)
             
             if provider_identifier and consumer_identifier:
-                # Always use interface name for the relationship label
                 relationship_key = f"{interface_identifier}:{provider_identifier}:{consumer_identifier}"
                 
                 # Check for duplicate relationships
@@ -640,7 +703,8 @@ class LeanIXMapper:
                     print()
                 else:
                     seen_relationships[relationship_key] = interface_name
-                    dsl += f'        {interface_identifier} = {provider_identifier} -> {consumer_identifier} "{interface_name}" "TBC" "Integration"\n'
+                    # NEW: Use technology field and Integration tag
+                    dsl += f'        {interface_identifier} = {provider_identifier} -> {consumer_identifier} "{interface_name}" "{technology}" "Integration"\n'
         
         dsl += '''        
     }
@@ -660,16 +724,6 @@ class LeanIXMapper:
         branding {{
             logo {self.logo_url}
             font "{self.font_name}" {self.font_url}
-        }}
-        
-        systemContext {platform_identifier} "{platform_identifier}Context" {{
-            include *
-            autoLayout
-        }}
-        
-        container {platform_identifier} "{platform_identifier}Containers" {{
-            include *
-            autoLayout
         }}
     }}
 }}'''
@@ -716,7 +770,6 @@ class LeanIXMapper:
             )
             
             org_id_map[org_id] = org_identifier
-            # Description is already cleaned in map_multiple_platforms_to_dsl
             desc_str = f' "{org_desc}"' if org_desc else ' ""' 
             dsl += f'        {org_identifier} = person "{org_name}"{desc_str}\n'
         
@@ -731,10 +784,11 @@ class LeanIXMapper:
             
 '''
             
-            # Add applications for this platform
+            # Add applications for this platform with hosting type
             for app in platform['applications']:
-                # Description is already cleaned in map_multiple_platforms_to_dsl
-                dsl += f'            {app["identifier"]} = container "{app["name"]}" "{app["desc"]}" "Application"\n'
+                # NEW: Use hosting_type from application data
+                hosting_type = app.get('hosting_type', '')
+                dsl += f'            {app["identifier"]} = container "{app["name"]}" "{app["desc"]}" "{hosting_type}"\n'
             
             dsl += '        }\n'
         
@@ -745,19 +799,20 @@ class LeanIXMapper:
         
 '''
         
-        # FIX 2: Track relationship identifiers to prevent duplicates
+        # Track relationship identifiers to prevent duplicates
         relationship_identifiers_used = set()
         
         # Add person to application relationships (deduplicated)
         for org_id, app_id, rel_desc in org_to_app_relationships:
             org_identifier = org_id_map.get(org_id)
             if app_id in all_applications:
-                app_identifier, _, _, _ = all_applications.get(app_id)
+                # NEW: all_applications now has 5 elements (including hosting_type)
+                app_identifier, _, _, _, _ = all_applications.get(app_id)
                 
                 if org_identifier and app_identifier:
                     rel_identifier = f"{org_identifier}To{app_identifier[0].upper()}{app_identifier[1:]}"
                     
-                    # FIX 2: Only add if we haven't seen this relationship identifier before
+                    # Only add if we haven't seen this relationship identifier before
                     if rel_identifier not in relationship_identifiers_used:
                         relationship_identifiers_used.add(rel_identifier)
                         dsl += f'        {rel_identifier} = {org_identifier} -> {app_identifier} "{rel_desc}"\n'
@@ -769,19 +824,15 @@ class LeanIXMapper:
         
 '''
         
-        # Add application to application relationships
-        for interface_identifier, provider_id, consumer_id, interface_name, interface_desc in all_app_relationships:
+        # Add application to application relationships with technology
+        for interface_identifier, provider_id, consumer_id, interface_name, technology in all_app_relationships:
             if provider_id in all_applications and consumer_id in all_applications:
-                provider_identifier, _, _, _ = all_applications.get(provider_id)
-                consumer_identifier, _, _, _ = all_applications.get(consumer_id)
+                # NEW: all_applications now has 5 elements (including hosting_type)
+                provider_identifier, _, _, _, _ = all_applications.get(provider_id)
+                consumer_identifier, _, _, _, _ = all_applications.get(consumer_id)
                 
-                # Description is already cleaned in map_multiple_platforms_to_dsl
-                # Use interface_name for label, interface_desc for description if available
-                label = interface_name
-                if interface_desc:
-                    dsl += f'        {interface_identifier} = {provider_identifier} -> {consumer_identifier} "{label}" "{interface_desc}" "Integration"\n'
-                else:
-                    dsl += f'        {interface_identifier} = {provider_identifier} -> {consumer_identifier} "{label}" "TBC" "Integration"\n'
+                # NEW: Use technology field and Integration tag
+                dsl += f'        {interface_identifier} = {provider_identifier} -> {consumer_identifier} "{interface_name}" "{technology}" "Integration"\n'
         
         dsl += '''        
     }
@@ -802,28 +853,8 @@ class LeanIXMapper:
             logo {self.logo_url}
             font "{self.font_name}" {self.font_url}
         }}
-        
-        systemLandscape "SystemLandscape" {{
-            include *
-            autoLayout
-        }}
-'''
-        
-        # Add views for each platform
-        for platform in all_platforms:
-            dsl += f'''        
-        systemContext {platform["identifier"]} "{platform["identifier"]}Context" {{
-            include *
-            autoLayout
-        }}
-        
-        container {platform["identifier"]} "{platform["identifier"]}Containers" {{
-            include *
-            autoLayout
-        }}
-'''
-        
-        dsl += '    }\n}'
+    }}
+}}'''
         
         return dsl
 
@@ -844,21 +875,21 @@ def main():
     client = LeanIXClient()
     platform_data = client.get_platform_by_id(platform_id)
     
-    print(f"âœ“ Fetched: {platform_data.get('displayName')}")
+    print(f"✓ Fetched: {platform_data.get('displayName')}")
     print(f"  Type: {platform_data.get('type')}")
     print(f"  Applications: {len(platform_data.get('relTechPlatformToApplication', {}).get('edges', []))}")
     print()
     
     print("Fetching interfaces...")
     all_interfaces = client.get_all_interfaces()
-    print(f"âœ“ Fetched {len(all_interfaces)} interfaces")
+    print(f"✓ Fetched {len(all_interfaces)} interfaces")
     print()
     
     print("Mapping to Structurizr DSL...")
     mapper = LeanIXMapper()
     dsl = mapper.map_platform_to_dsl(platform_data, all_interfaces)
     
-    print("âœ“ DSL generated")
+    print("✓ DSL generated")
     print()
     print("Preview (first 80 lines):")
     print("-" * 70)

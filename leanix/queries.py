@@ -17,6 +17,7 @@ query GetPlatformById($id: ID!) {
             name
         }
         ... on TechPlatform {
+            acronym
             relTechPlatformToApplication {
                 edges {
                     node {
@@ -26,14 +27,21 @@ query GetPlatformById($id: ID!) {
                             displayName
                             description
                             ... on Application {
+                                acronym
+                                lxHostingType
                                 relApplicationToUserGroup {
                                     edges {
                                         node {
+                                            id
+                                            description
                                             factSheet {
                                                 id
                                                 name
                                                 displayName
                                                 description
+                                                ... on UserGroup {
+                                                    acronym
+                                                }
                                             }
                                         }
                                     }
@@ -201,6 +209,7 @@ query GetInterfaces($limit: Int!) {
                 type
                 description
                 ... on Interface {
+                    acronym
                     relInterfaceToProviderApplication {
                         edges {
                             node {
@@ -213,6 +222,17 @@ query GetInterfaces($limit: Int!) {
                         }
                     }
                     relInterfaceToConsumerApplication {
+                        edges {
+                            node {
+                                factSheet {
+                                    id
+                                    name
+                                    displayName
+                                }
+                            }
+                        }
+                    }
+                    relInterfaceToITComponent {
                         edges {
                             node {
                                 factSheet {
@@ -264,9 +284,12 @@ query GetAllPlatforms($limit: Int!) {
                                     description
                                     ... on Application {
                                         acronym
+                                        lxHostingType
                                         relApplicationToUserGroup {
                                             edges {
                                                 node {
+                                                    id
+                                                    description
                                                     factSheet {
                                                         id
                                                         name
