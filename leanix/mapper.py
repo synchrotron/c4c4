@@ -16,39 +16,43 @@ class LeanIXMapper:
         self.logo_url = "https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/4-logo-black.png"
         self.font_name = "4Text"
         self.font_url = "https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/4Text-Regular.ttf"
-        self.missing_acronyms = []  # Track elements missing acronyms
-        self.duplicate_acronyms = []  # Track duplicate acronym conflicts
+        self.duplicate_acronyms = []  # Track duplicate acronym conflicts only
     
     def _generate_temp_acronym(self, name: str) -> str:
         """
         Generate a temporary acronym from a name.
         
+        Rules:
+        - Multiple words: Use first letter of each word
+        - Single word: Use first 4 characters (or all if less than 4)
+        
         Args:
             name: Display name
             
         Returns:
-            Temporary acronym (uppercase initials or first 3-4 chars)
+            Temporary acronym (uppercase)
         """
         # Remove special characters and split
         clean = re.sub(r'[^a-zA-Z0-9\s-]', '', name)
         words = clean.split()
         
         if not words:
-            return 'TMP'
+            return 'UNKN'
         
-        # If multiple words, use initials
-        if len(words) > 1:
+        if len(words) == 1:
+            # Single word - use first 4 characters
+            word = words[0]
+            return word[:4].upper() if len(word) >= 4 else word.upper()
+        else:
+            # Multiple words - use first letter of each word
             acronym = ''.join(word[0].upper() for word in words if word)
-            return acronym[:4] if len(acronym) > 4 else acronym
-        
-        # Single word - use first 3-4 characters
-        word = words[0]
-        return word[:4].upper() if len(word) >= 4 else word[:3].upper()
+            return acronym
     
     def _get_identifier_from_acronym(self, element_name: str, element_type: str, 
                                      acronym: str = None, element_id: str = None) -> str:
         """
         Get identifier from acronym field, or generate temporary one if missing.
+        No logging for missing acronyms - only duplicates are logged.
         
         Args:
             element_name: Display name of element
@@ -63,21 +67,15 @@ class LeanIXMapper:
             # Use provided acronym (lowercase for identifier)
             return acronym.strip().lower()
         else:
-            # Generate temporary acronym and log
+            # Generate temporary acronym (no logging)
             temp_acronym = self._generate_temp_acronym(element_name)
-            self.missing_acronyms.append({
-                'type': element_type,
-                'name': element_name,
-                'id': element_id,
-                'temp_acronym': temp_acronym
-            })
             return temp_acronym.lower()
     
     def _ensure_unique_identifier(self, identifier: str, used_identifiers: set, 
                                   element_name: str, element_type: str, 
                                   scope: str = 'global') -> str:
         """
-        Ensure identifier is unique within its scope.
+        Ensure identifier is unique within its scope by appending 'X' for duplicates.
         
         With hierarchical identifiers:
         - Platforms, Persons, and Interfaces need global uniqueness
@@ -105,24 +103,14 @@ class LeanIXMapper:
         while identifier in used_identifiers:
             identifier = identifier + 'X'
         
-        # Only log if it's a global-scope duplicate (cross-platform duplicates are now OK for containers)
-        if scope == 'global':
-            self.duplicate_acronyms.append({
-                'type': element_type,
-                'name': element_name,
-                'original': original,
-                'modified': identifier,
-                'reason': 'Global scope conflict'
-            })
-        else:
-            # Platform-scoped duplicate (within same platform - should be rare)
-            self.duplicate_acronyms.append({
-                'type': element_type,
-                'name': element_name,
-                'original': original,
-                'modified': identifier,
-                'reason': f'Duplicate within {scope}'
-            })
+        # Log the duplicate resolution
+        self.duplicate_acronyms.append({
+            'type': element_type,
+            'name': element_name,
+            'original': original,
+            'modified': identifier,
+            'scope': scope
+        })
         
         used_identifiers.add(identifier)
         return identifier
@@ -222,8 +210,7 @@ class LeanIXMapper:
         Returns:
             Complete Structurizr DSL as string
         """
-        # Reset tracking lists for this generation
-        self.missing_acronyms = []
+        # Reset tracking list for this generation
         self.duplicate_acronyms = []
         
         # Track identifiers: global for platforms/persons/interfaces, per-platform for containers
@@ -387,8 +374,8 @@ class LeanIXMapper:
             global_identifiers
         )
         
-        # Print warnings about missing and duplicate acronyms
-        self._print_acronym_warnings()
+        # Print warnings about duplicate acronyms only
+        self._print_duplicate_warnings()
         
         return dsl
     
@@ -406,8 +393,7 @@ class LeanIXMapper:
         Returns:
             Complete Structurizr DSL as string
         """
-        # Reset tracking lists for this generation
-        self.missing_acronyms = []
+        # Reset tracking list for this generation
         self.duplicate_acronyms = []
         
         # Track identifiers: global for platforms/persons/interfaces only
@@ -582,39 +568,25 @@ class LeanIXMapper:
             global_identifiers
         )
         
-        # Print warnings about missing and duplicate acronyms
-        self._print_acronym_warnings()
+        # Print warnings about duplicate acronyms only
+        self._print_duplicate_warnings()
         
         return dsl
 
-    def _print_acronym_warnings(self):
-        """Print warnings about missing and duplicate acronyms."""
-        if self.missing_acronyms:
-            print()
-            print("⚠️  WARNING: Missing Acronyms")
-            print("-" * 70)
-            print("The following elements are missing acronyms in LeanIX.")
-            print("Temporary acronyms have been generated:")
-            print()
-            for item in self.missing_acronyms:
-                print(f"  {item['type']}: {item['name']}")
-                print(f"    → Temporary acronym: {item['temp_acronym']}")
-                print(f"    → LeanIX ID: {item['id']}")
-                print()
-            print("Please add acronyms in LeanIX for these elements.")
-            print("-" * 70)
-        
+    def _print_duplicate_warnings(self):
+        """Print warnings about duplicate acronyms only (no missing acronym warnings)."""
         if self.duplicate_acronyms:
             print()
-            print("⚠️  WARNING: Duplicate Acronyms")
+            print("⚠️  WARNING: Duplicate Acronyms Resolved")
             print("-" * 70)
-            print("The following elements have duplicate acronyms.")
+            print("The following elements had duplicate acronyms.")
             print("'X' has been appended to resolve conflicts:")
             print()
             for item in self.duplicate_acronyms:
                 print(f"  {item['type']}: {item['name']}")
                 print(f"    → Original: {item['original']}")
                 print(f"    → Modified: {item['modified']}")
+                print(f"    → Scope: {item['scope']}")
                 print()
             print("Please ensure acronyms are unique in LeanIX.")
             print("-" * 70)
@@ -655,11 +627,12 @@ class LeanIXMapper:
         org_id_map = {}
         for org_id, (org_display_name, org_name, org_desc, org_acronym) in organizations.items():
             # Get identifier from acronym
+            # Use org_name (not display_name) for acronym generation to avoid prefixes
             org_identifier = self._get_identifier_from_acronym(
-                org_display_name, 'Organisation', org_acronym, org_id
+                org_name, 'Organisation', org_acronym, org_id
             )
             org_identifier = self._ensure_unique_identifier(
-                org_identifier, used_identifiers, org_display_name, 'Organisation', 'global'
+                org_identifier, used_identifiers, org_name, 'Organisation', 'global'
             )
             
             org_id_map[org_id] = org_identifier
@@ -776,11 +749,12 @@ class LeanIXMapper:
         org_id_map = {}
         for org_id, (org_display_name, org_name, org_desc, org_acronym) in organizations.items():
             # Get identifier from acronym
+            # Use org_name (not display_name) for acronym generation to avoid prefixes
             org_identifier = self._get_identifier_from_acronym(
-                org_display_name, 'Organisation', org_acronym, org_id
+                org_name, 'Organisation', org_acronym, org_id
             )
             org_identifier = self._ensure_unique_identifier(
-                org_identifier, used_identifiers, org_display_name, 'Organisation'
+                org_identifier, used_identifiers, org_name, 'Organisation'
             )
             
             org_id_map[org_id] = org_identifier
@@ -870,3 +844,48 @@ class LeanIXMapper:
 }}'''
         
         return dsl
+
+
+def main():
+    """Test the mapper with sample data."""
+    from .client import LeanIXClient
+    
+    print("=" * 70)
+    print("LeanIX to Structurizr Mapper Test")
+    print("=" * 70)
+    print()
+    
+    # Finance Systems Platform ID
+    platform_id = "3f828194-de4a-4dee-9ca6-e071cc2e0eae"
+    
+    print(f"Fetching platform: {platform_id}")
+    client = LeanIXClient()
+    platform_data = client.get_platform_by_id(platform_id)
+    
+    print(f"✓ Fetched: {platform_data.get('displayName')}")
+    print(f"  Type: {platform_data.get('type')}")
+    print(f"  Applications: {len(platform_data.get('relTechPlatformToApplication', {}).get('edges', []))}")
+    print()
+    
+    print("Fetching interfaces...")
+    all_interfaces = client.get_all_interfaces()
+    print(f"✓ Fetched {len(all_interfaces)} interfaces")
+    print()
+    
+    print("Mapping to Structurizr DSL...")
+    mapper = LeanIXMapper()
+    dsl = mapper.map_platform_to_dsl(platform_data, all_interfaces)
+    
+    print("✓ DSL generated")
+    print()
+    print("Preview (first 80 lines):")
+    print("-" * 70)
+    lines = dsl.split('\n')
+    for line in lines[:80]:
+        print(line)
+    print()
+    print("=" * 70)
+
+
+if __name__ == "__main__":
+    main()
