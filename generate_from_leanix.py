@@ -3,7 +3,10 @@
 generate_from_leanix.py - Generate Structurizr DSL from LeanIX
 
 Main generator that fetches architecture data from LeanIX and creates
-the Channel 4 Core workspace DSL.
+the Channel 4 Core workspace DSL with enhanced metadata:
+1. LeanIX URL for each application
+2. Project names as tags (plus 'Impact' tag if projects exist)
+3. SSO perspective for applications with implemented SSO
 """
 
 import os
@@ -33,9 +36,9 @@ def main():
     print("-" * 70)
     try:
         client = LeanIXClient()
-        print("✓ Connected to LeanIX")
+        print("Connected to LeanIX")
     except Exception as e:
-        print(f"✗ Failed to connect: {e}")
+        print(f"Failed to connect: {e}")
         return 1
     print()
     
@@ -46,7 +49,7 @@ def main():
         platforms_edges = client.get_platforms_by_tag(tag_name, limit=100)
         platforms_data = [edge.get('node', {}) for edge in platforms_edges]
         
-        print(f"✓ Fetched {len(platforms_data)} platforms")
+        print(f"Fetched {len(platforms_data)} platforms")
         
         if platforms_data:
             print()
@@ -57,14 +60,14 @@ def main():
                 app_count = len(platform.get('relTechPlatformToApplication', {}).get('edges', []))
                 print(f"  {idx}. {platform_name} ({platform_type}) - {app_count} applications")
         else:
-            print(f"⚠️  No platforms found with tag '{tag_name}'")
+            print(f"No platforms found with tag '{tag_name}'")
             print("Please check:")
             print("  1. Tag name is correct (case-sensitive)")
             print("  2. Platforms in LeanIX have this tag applied")
             return 1
             
     except Exception as e:
-        print(f"✗ Failed to fetch platforms: {e}")
+        print(f"Failed to fetch platforms: {e}")
         import traceback
         traceback.print_exc()
         return 1
@@ -75,9 +78,9 @@ def main():
     print("-" * 70)
     try:
         all_interfaces = client.get_all_interfaces()
-        print(f"✓ Fetched {len(all_interfaces)} interfaces")
+        print(f"Fetched {len(all_interfaces)} interfaces")
     except Exception as e:
-        print(f"✗ Failed to fetch interfaces: {e}")
+        print(f"Failed to fetch interfaces: {e}")
         return 1
     print()
     
@@ -87,19 +90,16 @@ def main():
     try:
         mapper = LeanIXMapper()
         
-        # CHANGED: Use new multi-platform method if multiple platforms
-        if len(platforms_data) == 1:
-            # Single platform - use existing method
-            print(f"Generating DSL for single platform: {platforms_data[0].get('displayName')}")
-            dsl = mapper.map_platform_to_dsl(platforms_data[0], all_interfaces)
-        else:
-            # Multiple platforms - use new method
-            print(f"Generating DSL for {len(platforms_data)} platforms")
-            dsl = mapper.map_multiple_platforms_to_dsl(platforms_data, all_interfaces)
+        # Use multi-platform method for all cases (works for single platform too)
+        print(f"Generating DSL for {len(platforms_data)} platform(s) with enhancements:")
+        print("  - LeanIX URLs for each application")
+        print("  - Project names as tags (+ 'Impact' tag)")
+        print("  - SSO perspectives for implemented SSO")
+        dsl = mapper.map_multiple_platforms_to_dsl(platforms_data, all_interfaces)
         
-        print("✓ DSL generated successfully")
+        print("DSL generated successfully")
     except Exception as e:
-        print(f"✗ Failed to generate DSL: {e}")
+        print(f"Failed to generate DSL: {e}")
         import traceback
         traceback.print_exc()
         return 1
@@ -111,7 +111,7 @@ def main():
     try:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(dsl)
-        print(f"✓ Saved to: {output_file}")
+        print(f"Saved to: {output_file}")
         
         # Show stats
         lines = dsl.split('\n')
@@ -122,23 +122,34 @@ def main():
         software_system_count = dsl.count('softwareSystem "')
         container_count = dsl.count('container "')
         relationship_count = dsl.count(' -> ')
+        url_count = dsl.count('url https://channel4.leanix.net')
+        tag_count = dsl.count('tags "')
+        sso_count = dsl.count('SSO "Authenticated using SSO"')
         
         print(f"  Teams: {person_count}")
         print(f"  Platforms: {software_system_count}")
         print(f"  Applications: {container_count}")
         print(f"  Relationships: {relationship_count}")
+        print(f"  URLs added: {url_count}")
+        print(f"  Applications with project tags: {tag_count}")
+        print(f"  Applications with SSO perspective: {sso_count}")
         
     except Exception as e:
-        print(f"✗ Failed to save file: {e}")
+        print(f"Failed to save file: {e}")
         return 1
     print()
     
     # Summary
     print("=" * 70)
-    print("✓ Generation Complete!")
+    print("Generation Complete!")
     print("=" * 70)
     print()
     print(f"Output: {output_file}")
+    print()
+    print("Enhancements applied:")
+    print("  1. LeanIX URL added to each application")
+    print("  2. Project names added as tags (+ 'Impact' tag)")
+    print("  3. SSO perspective for applications with implemented SSO")
     print()
     print("Next steps:")
     print("  1. Review the generated DSL")

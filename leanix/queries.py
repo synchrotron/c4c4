@@ -29,6 +29,7 @@ query GetPlatformById($id: ID!) {
                             ... on Application {
                                 acronym
                                 lxHostingType
+                                lxStatusSSOSMP
                                 relApplicationToUserGroup {
                                     edges {
                                         node {
@@ -42,6 +43,17 @@ query GetPlatformById($id: ID!) {
                                                 ... on UserGroup {
                                                     acronym
                                                 }
+                                            }
+                                        }
+                                    }
+                                }
+                                relApplicationToProject {
+                                    edges {
+                                        node {
+                                            type
+                                            id
+                                            factSheet {
+                                                name
                                             }
                                         }
                                     }
@@ -250,70 +262,6 @@ query GetInterfaces($limit: Int!) {
 }
 """
 
-# Query to fetch TechPlatforms by tag
-GET_PLATFORMS_BY_TAG = """
-query GetAllPlatforms($limit: Int!) {
-    allFactSheets(
-        filter: {
-            facetFilters: [
-                {facetKey: "FactSheetTypes", keys: ["TechPlatform"]}
-            ]
-        }
-        first: $limit
-    ) {
-        totalCount
-        edges {
-            node {
-                id
-                name
-                displayName
-                type
-                description
-                tags {
-                    name
-                }
-                ... on TechPlatform {
-                    acronym
-                    relTechPlatformToApplication {
-                        edges {
-                            node {
-                                factSheet {
-                                    id
-                                    name
-                                    displayName
-                                    description
-                                    ... on Application {
-                                        acronym
-                                        lxHostingType
-                                        relApplicationToUserGroup {
-                                            edges {
-                                                node {
-                                                    id
-                                                    description
-                                                    factSheet {
-                                                        id
-                                                        name
-                                                        displayName
-                                                        description
-                                                        ... on UserGroup {
-                                                            acronym
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-"""
-
 # Comprehensive query to get applications with all relationships
 GET_APPLICATIONS_WITH_RELATIONS = """
 query GetApplicationsWithRelations($limit: Int!) {
@@ -381,6 +329,82 @@ query GetApplicationsWithRelations($limit: Int!) {
                                     id
                                     name
                                     displayName
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+"""
+
+# Query to fetch TechPlatforms by tag
+GET_PLATFORMS_BY_TAG = """
+query GetAllPlatforms($limit: Int!) {
+    allFactSheets(
+        filter: {
+            facetFilters: [
+                {facetKey: "FactSheetTypes", keys: ["TechPlatform"]}
+            ]
+        }
+        first: $limit
+    ) {
+        totalCount
+        edges {
+            node {
+                id
+                name
+                displayName
+                type
+                description
+                tags {
+                    name
+                }
+                ... on TechPlatform {
+                    acronym
+                    relTechPlatformToApplication {
+                        edges {
+                            node {
+                                factSheet {
+                                    id
+                                    name
+                                    displayName
+                                    description
+                                    ... on Application {
+                                        acronym
+                                        lxHostingType
+                                        lxStatusSSOSMP
+                                        relApplicationToUserGroup {
+                                            edges {
+                                                node {
+                                                    id
+                                                    description
+                                                    factSheet {
+                                                        id
+                                                        name
+                                                        displayName
+                                                        description
+                                                        ... on UserGroup {
+                                                            acronym
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        relApplicationToProject {
+                                            edges {
+                                                node {
+                                                    type
+                                                    id
+                                                    factSheet {
+                                                        name
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

@@ -87,14 +87,35 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         cp = softwareSystem "Commercial Platform" "Platform from LeanIX" {
             
-            ap = container "Agency Portal" "Empowering advertising agencies with their Channel4 campaign data." "paas"
-            cari = container "Caria" "The platform on which UK & Irish airtime is traded, and upon which copy rotation instructions are..." "saas"
-            cc = container "Copy Central" "Service that provides information about copy restrictions and/or certifications. Also known as Cl..." ""
-            fsh = container "Freewheel Streaming Hub" "Freewheel Streaming Hub (aka MRM) is a software application that enables publishers and broadcast..." "saas"
-            inno = container "Innovid" "Innovid is the only independent omni-channel advertising and analytics platform built for televis..." "saas"
-            moat = container "Moat" "Moat enables measuring consumer attention across channels, devices, and platforms" "saas"
-            sc = container "Sales CRM" "" ""
-            stel = container "Stellar" "Channel4's Sales Order Processing System" "onPremise"
+            ap = container "Agency Portal" "Empowering advertising agencies with their Channel4 campaign data." "paas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/eddf6908-0ee4-4f5d-a0f6-b97b487259d0
+            }
+            cari = container "Caria" "The platform on which UK & Irish airtime is traded, and upon which copy rotation instructions are..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/49886d90-5ffc-4f1f-bce7-5b513a389335
+            }
+            cc = container "Copy Central" "Service that provides information about copy restrictions and/or certifications. Also known as Cl..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/a4032df7-cefa-456d-a666-0a3331ef9c50
+            }
+            fsh = container "Freewheel Streaming Hub" "Freewheel Streaming Hub (aka MRM) is a software application that enables publishers and broadcast..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/6dd95ab1-0351-4792-b1b7-71bd1cadbe4b
+                tags "Streaming Transformation Program,Impact"
+            }
+            inno = container "Innovid" "Innovid is the only independent omni-channel advertising and analytics platform built for televis..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/1b3451df-a733-4e19-aff5-55c7edd0af8f
+            }
+            moat = container "Moat" "Moat enables measuring consumer attention across channels, devices, and platforms" "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/7d73d7ee-1ae1-45e8-91ce-60cbcbf84da0
+            }
+            sc = container "Sales CRM" "" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9bb0f6c7-7a03-4b4a-8fa9-9473fe15754f
+            }
+            stel = container "Stellar" "Channel4's Sales Order Processing System" "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/36680d73-914e-4f57-a8f3-bffe87a2d6c1
+                tags "Interstellar,Impact"
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
         }
 
         /* ============================================================
@@ -103,55 +124,168 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         bms = softwareSystem "Content Management Platform" "The applications and components that support the media management and linear scheduling for our l..." {
             
-            asp = container "Access Service Provider" "" ""
-            acf = container "Acquired Cash Forecast" "For the management of cashflow for acquired content, this is all captured on a spreadsheet called..." "desktopOrLaptop"
-            bynd = container "Bynder" "Bynder is an AI-powered, SaaS DAM solution that allows brands to easily create, find and use thei..." "saas"
-            c7t = container "C4 7A Titles" "Home grown system to schedule long form content on YouTube with workflow for Rights and Compliance." "saas"
-            cmt = container "CMT" "Hosted by I2, CMT is a web-based tool with secure log-in credentials . The tool allows Long Term ..." "saas"
-            dasdpwpswra = container "DTT Audio & Signing Date prompts with peak stats (with RB amendments)" "Business Objects report Displays the total volume of transmitted content during a time period, an..." ""
-            et = container "Everyone TV" "Everyone TV is the new name for Digital UK. [JV with UK PSB's] NOTE: This is NOT an Application E..." ""
-            grac = container "Gracenote" "Gracenote is the world’s leading entertainment data and technology company. We power the top musi..." "saas"
-            mod = container "MediaGenix On Demand" "BeBanjo Movida VOD Management system (Comprising of systems which schedule and manage transcode a..." "saas"
-            olss = container "OFCOM Licensing Services-Online Services-MIDCOM" "This is the OFCOM platform used by our Access Services team to upload of our reporting to OFCOM." ""
-            osp = container "OnLine Service Provider" "Provides capabilities for ingest, transformation, transcoding, encryption and delivery of VOD; li..." "saas"
-            ol = container "Order list" "Setting a budget and its' allocations genres & channels. Existing commitments also captured. Targ..." ""
-            pira = container "Pirate" "Pirate is a collection of applications used by various departments. Commercial affairs (business ..." ""
-            p4ws = container "4Producers (Web Site)" "eCommissioning system. Allows C4 to engage with Production companies for Production companies to ..." "saas"
-            pass = container "Advance Scheduling System" "The Advanced Scheduling System (A55) provides a view of a schedule for a specific channel and dat..." "desktopOrLaptop"
-            pbm = container "Brand Management" "An application where can create or update Pirate Brands. This enables the business to group toget..." "desktopOrLaptop"
-            pc = container "Companies" "This application allows users to create companies like production companies, studios etc" "desktopOrLaptop"
-            pcgs = container "Content Generation System" "Generates the required detailed metadata required for each target platform and sends the appropri..." "desktopOrLaptop"
-            pcps = container "Content Planning System" "VOD Scheduling" "desktopOrLaptop"
-            pdaprs = container "Director and Producer Reporting System" "DPRS Transmission/Sales Report This report works in various stages: 1. A list of all contract num..." "desktopOrLaptop"
-            pfas = container "Film Advanced Scheduling" "Manages the film scheduling scenarios based on deals purchased" "desktopOrLaptop"
-            pge = container "General Enquiry" "Contains query functionality and several reports that can be run based on a broad range of topics..." "desktopOrLaptop"
-            pip = container "Interface Payments" "Maintenance tables for 1. Nominal accounts – specifying what codes are valid 2. Specifying which ..." "desktopOrLaptop"
-            pitts = container "Interface To Transmission Systems" "ITS prepares final schedules for Playout systems. It uses Programme schedules generated from PPS ..." "onPremise"
-            pmam = container "Management Account Maintenance" "Maintenance of reference data related to Management Accounts (Programme Finance)  Not used much,..." "desktopOrLaptop"
-            pmm = container "Media Management" "Video browse can also be launched from this application" "desktopOrLaptop"
-            pofg = container "OFCOM File Generator" "Review one or more channels for their compliance with statutory commercial minutage regulations. ..." "desktopOrLaptop"
-            ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop"
-            ppps-p = container "Presentation Planning System - PPS.NET" "This is the .NET version of PPS NOTE: We need to create all VOD processes and link one to this ap..." "desktopOrLaptop"
-            ppp = container "Producers Portal" "An app which allows C4 to engage with Production companies for Production companies to fill in th..." "onPremise"
-            ppc = container "Programme Certification" "Programme Certification gives the users of the system the ability look at the assets when they ar..." "desktopOrLaptop"
-            prta2 = container "Real Time As-Run 2" "Provides real-time playout updates to Pirate systems." "onPremise"
-            pswo = container "Stock Write Off" "Channel 4 commission or purchase programmes (stock) to be consumed by the schedule using annual t..." "desktopOrLaptop"
-            psfv = container "Subtitle File Viewer" "Provides a view over the content of subtitles and the ability to quickly search for bad-language ..." "hybrid"
-            ptis = container "Transcode Initiation Service" "TIS2 is the back-end engine of the VoD system, running background jobs ranging from asset synchro..." "onPremise"
-            pvb = container "Video Browse" "Video Browse is a client-side.NET application that is part of the Pirate domain. It provides user..." "onPremise"
-            pve = container "Viewer Enquiry" "Viewing the logged calls made by viewers regarding transmitted programmes. EXE name: VE" "desktopOrLaptop"
-            pvmsv = container "VOD Management System (VMS)" "" "desktopOrLaptop"
-            pvma = container "VoD Material Allocation" "VoD Material Allocation is small module inside Media Management. This module used by Programme Ma..." "desktopOrLaptop"
-            pvt = container "VOD Tracker" "Support tool for monitoring VOD systems and workflows" "desktopOrLaptop"
-            pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" ""
-            pcX = container "Promo Create" "Hosted by I2, CMT is a web-based tool with secure log-in credentials . The tool allows Long Term ..." "saas"
-            scf = container "Sky Curated Feeds" "Web application designed to create ordered curated lists for presentation on Sky UVP/VRP platforms" ""
-            soun = container "Soundmouse" "Representation of Soundmouse as company. Covers all SaaS products offered by Soundmouse: Soundmou..." "saas"
-            spape = container "Soundmouse Pre-TX and Post-TX Exporter" "Creates both Pre-TX and Post-TX export files to Soundmouse for music reporting and production rep..." ""
-            spri = container "Sprinklr" "Sprinklr is a social media management platform that enables enterprise brands to connect with cus..." "saas"
-            ssfatwswra = container "Subtitling Sep FLS and Teletext with Subtotals (with Ray Amendments)" "Business Objects Report 'Subtitling Sep FLS and Teletext with Subtotals (with Ray Amendments)' - ..." ""
-            tb = container "The Bible" "The bible is a host of information related to the programme idea, such as the programme descripti..." "onPremise"
-            typ = container "Three Year Plan" "" ""
+            asp = container "Access Service Provider" "" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/22db32c5-d118-4633-955e-9fdd07ab0b90
+            }
+            acf = container "Acquired Cash Forecast" "For the management of cashflow for acquired content, this is all captured on a spreadsheet called..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/5b00cefe-c009-4684-a0f7-c699be221bd0
+            }
+            bynd = container "Bynder" "Bynder is an AI-powered, SaaS DAM solution that allows brands to easily create, find and use thei..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3c1fa911-1501-4541-afe7-96465ec458f9
+                tags "Streaming Transformation Program,Impact"
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            c7t = container "C4 7A Titles" "Home grown system to schedule long form content on YouTube with workflow for Rights and Compliance." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/46d06260-aae5-43b8-958b-cc549131676d
+            }
+            cmt = container "CMT" "Hosted by I2, CMT is a web-based tool with secure log-in credentials . The tool allows Long Term ..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/918078d9-bc77-402c-b3f4-e37ba8bfa26e
+            }
+            dasdpwpswra = container "DTT Audio & Signing Date prompts with peak stats (with RB amendments)" "Business Objects report Displays the total volume of transmitted content during a time period, an..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/19af6a2d-fd84-436a-9f4e-c02b15b2c52f
+            }
+            et = container "Everyone TV" "Everyone TV is the new name for Digital UK. [JV with UK PSB's] NOTE: This is NOT an Application E..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/77b7f4a1-79a3-4325-841f-cd9f4385634d
+            }
+            grac = container "Gracenote" "Gracenote is the world’s leading entertainment data and technology company. We power the top musi..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fa77d7f3-dd38-4f23-9404-2c1365fe9270
+            }
+            mod = container "MediaGenix On Demand" "BeBanjo Movida VOD Management system (Comprising of systems which schedule and manage transcode a..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/7bec9ebd-87c8-4ed0-bfe2-1ea5429eeabc
+                tags "New VoD Management System,Flexible Series,Streaming Transformation Program,Impact"
+            }
+            olss = container "OFCOM Licensing Services-Online Services-MIDCOM" "This is the OFCOM platform used by our Access Services team to upload of our reporting to OFCOM." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/01a05cf6-e094-4bf2-bd13-310fc50da22b
+            }
+            osp = container "OnLine Service Provider" "Provides capabilities for ingest, transformation, transcoding, encryption and delivery of VOD; li..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bbaf9554-9a19-44f9-83fb-f6ce638e4210
+                tags "Streaming Transformation Program,Impact"
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            ol = container "Order list" "Setting a budget and its' allocations genres & channels. Existing commitments also captured. Targ..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/378e341d-08ed-428d-a1ef-0a4bf9853e4e
+            }
+            pira = container "Pirate" "Pirate is a collection of applications used by various departments. Commercial affairs (business ..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f694fb3d-6a3b-4776-a5d8-21d9b500714c
+            }
+            p4ws = container "4Producers (Web Site)" "eCommissioning system. Allows C4 to engage with Production companies for Production companies to ..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/8d36fa1b-3ca6-46a5-bb77-a01cbd833667
+            }
+            pass = container "Advance Scheduling System" "The Advanced Scheduling System (A55) provides a view of a schedule for a specific channel and dat..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/af539ba8-e622-46fc-b561-347dad93d8b6
+                tags "UK FAST,Impact"
+            }
+            pbm = container "Brand Management" "An application where can create or update Pirate Brands. This enables the business to group toget..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/40779771-f867-4ae3-b52f-eec13651d19e
+            }
+            pc = container "Companies" "This application allows users to create companies like production companies, studios etc" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/502a22f2-f644-468f-8b86-362e696f2eec
+            }
+            pcgs = container "Content Generation System" "Generates the required detailed metadata required for each target platform and sends the appropri..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/990c1b35-ab93-4eb1-a143-a540b847bdad
+            }
+            pcps = container "Content Planning System" "VOD Scheduling" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/65c29e83-77b9-40a6-848f-2368bb4eee47
+            }
+            pdaprs = container "Director and Producer Reporting System" "DPRS Transmission/Sales Report This report works in various stages: 1. A list of all contract num..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9c4466ce-2729-4694-9c66-6ad6ed4c7eb8
+            }
+            pfas = container "Film Advanced Scheduling" "Manages the film scheduling scenarios based on deals purchased" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/562855b8-5326-43ce-95c1-a5f527042337
+            }
+            pge = container "General Enquiry" "Contains query functionality and several reports that can be run based on a broad range of topics..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c36f9667-6771-471f-ba38-11d4ce9f14ed
+            }
+            pip = container "Interface Payments" "Maintenance tables for 1. Nominal accounts – specifying what codes are valid 2. Specifying which ..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/a6c7f5e7-2586-470c-a643-c25a0fa6a62f
+            }
+            pitts = container "Interface To Transmission Systems" "ITS prepares final schedules for Playout systems. It uses Programme schedules generated from PPS ..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ad4ff429-b9c4-4d11-9b78-e5935f33e664
+            }
+            pmam = container "Management Account Maintenance" "Maintenance of reference data related to Management Accounts (Programme Finance)  Not used much,..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/26c1c9f6-2b27-4dfb-b20b-5d9dc0a4ce30
+            }
+            pmm = container "Media Management" "Video browse can also be launched from this application" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/a1f20124-70fe-49d2-9741-0af94eb527ea
+            }
+            pofg = container "OFCOM File Generator" "Review one or more channels for their compliance with statutory commercial minutage regulations. ..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/076dc45e-176b-440b-9f6c-5df522074ea4
+            }
+            ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b2da1e23-df98-4af4-9c2a-904814ab181c
+                tags "Promo Campaign Management,Impact"
+            }
+            ppps-p = container "Presentation Planning System - PPS.NET" "This is the .NET version of PPS NOTE: We need to create all VOD processes and link one to this ap..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bac64e3f-59aa-433b-b1ba-7f2253bc10df
+                tags "Promo Campaign Management,Impact"
+            }
+            ppp = container "Producers Portal" "An app which allows C4 to engage with Production companies for Production companies to fill in th..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/850505c1-6ba6-459c-b213-14cec449dcc5
+            }
+            ppc = container "Programme Certification" "Programme Certification gives the users of the system the ability look at the assets when they ar..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c26352c7-aac4-46a5-b615-173fde82cf11
+            }
+            prta2 = container "Real Time As-Run 2" "Provides real-time playout updates to Pirate systems." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/788ae1fa-fb93-4b5c-b452-7d3d885c75b3
+            }
+            pswo = container "Stock Write Off" "Channel 4 commission or purchase programmes (stock) to be consumed by the schedule using annual t..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/53f21c7a-4734-4b22-a84a-25379898ef6e
+            }
+            psfv = container "Subtitle File Viewer" "Provides a view over the content of subtitles and the ability to quickly search for bad-language ..." "hybrid" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/0746ec61-b8b1-4ae8-adb1-82ed344f1dee
+            }
+            ptis = container "Transcode Initiation Service" "TIS2 is the back-end engine of the VoD system, running background jobs ranging from asset synchro..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3e83668e-b232-42da-bd9b-1da5b24ab393
+            }
+            pvb = container "Video Browse" "Video Browse is a client-side.NET application that is part of the Pirate domain. It provides user..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c7cff9d8-2ecf-4f17-bf5e-46f10b6cd919
+            }
+            pve = container "Viewer Enquiry" "Viewing the logged calls made by viewers regarding transmitted programmes. EXE name: VE" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/15770840-75f3-4fe0-a8f6-d8fda937fa9e
+            }
+            pvmsv = container "VOD Management System (VMS)" "" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ea67c4f9-186d-4864-8a79-8e3ec19596c6
+            }
+            pvma = container "VoD Material Allocation" "VoD Material Allocation is small module inside Media Management. This module used by Programme Ma..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c34a08a9-94d6-4bbb-b8b8-dcdd6200f41e
+            }
+            pvt = container "VOD Tracker" "Support tool for monitoring VOD systems and workflows" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c4c4d397-c0ed-48d5-a3f6-aee6541d9bef
+            }
+            pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/65a2ae66-2900-4133-acb6-de1758c0e930
+            }
+            pcX = container "Promo Create" "Hosted by I2, CMT is a web-based tool with secure log-in credentials . The tool allows Long Term ..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/75456893-128a-417b-8b29-e6ee262edc32
+            }
+            scf = container "Sky Curated Feeds" "Web application designed to create ordered curated lists for presentation on Sky UVP/VRP platforms" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/e0ba5e4a-1d2b-4122-9aab-abe5d04266d4
+            }
+            soun = container "Soundmouse" "Representation of Soundmouse as company. Covers all SaaS products offered by Soundmouse: Soundmou..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9734e44e-2b83-4f85-ae47-b3f8450c2951
+            }
+            spape = container "Soundmouse Pre-TX and Post-TX Exporter" "Creates both Pre-TX and Post-TX export files to Soundmouse for music reporting and production rep..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/585ae5e1-5e8b-49fd-b034-dbcddd64ca01
+            }
+            spri = container "Sprinklr" "Sprinklr is a social media management platform that enables enterprise brands to connect with cus..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f2b3a2a6-5fdb-49e8-bd41-30969abaaf3c
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            ssfatwswra = container "Subtitling Sep FLS and Teletext with Subtotals (with Ray Amendments)" "Business Objects Report 'Subtitling Sep FLS and Teletext with Subtotals (with Ray Amendments)' - ..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/08a36cbf-3719-4bc7-84f8-73bed68d9619
+            }
+            tb = container "The Bible" "The bible is a host of information related to the programme idea, such as the programme descripti..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4e3a4081-51c7-4ada-a73b-f2dbfc570c99
+            }
+            typ = container "Three Year Plan" "" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/897061d5-4e4e-426a-b273-0ee82e9e1980
+            }
         }
 
         /* ============================================================
@@ -160,14 +294,33 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         csp = softwareSystem "Content Sourcing Platform" "Platform from LeanIX" {
             
-            crmc = container "Customer Relationship Manager  (Content)" "A system used by the commissioning dept to track and manage programme ideas from pitch to greenlight" "paas"
-            dist = container "Distributor" "Supplier of acquired content e.g. a US Studio" ""
-            pasc = container "Acquisition Stock Control" "A Read-only/Live reporting tool, allowing users to track stock usage (available, scheduled, used)..." "desktopOrLaptop"
-            pcf = container "Cashflow Forecasting" "Forecasting tool for managing cash, when are production companies actually going to be paid compa..." "desktopOrLaptop"
-            pcc = container "Commissioning Cycle" "Manages the agreements of commissioned content." "desktopOrLaptop"
-            pp = container "Programmes" "" "desktopOrLaptop"
-            ppX = container "Purchases" "" "desktopOrLaptop"
-            pc = container "Production Company" "Supplier of commissioned content e.g. All 3 Media NOTE: NOT an application" ""
+            crmc = container "Customer Relationship Manager  (Content)" "A system used by the commissioning dept to track and manage programme ideas from pitch to greenlight" "paas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c7839d32-16d4-4a70-9ac4-1a630b764db8
+                tags "Commissioning CRM,Impact"
+            }
+            dist = container "Distributor" "Supplier of acquired content e.g. a US Studio" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/e63beee9-46e6-4f3d-9735-d87f06394469
+            }
+            pasc = container "Acquisition Stock Control" "A Read-only/Live reporting tool, allowing users to track stock usage (available, scheduled, used)..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/0434a8ef-35cd-4d8b-b7ed-45cc43046114
+            }
+            pcf = container "Cashflow Forecasting" "Forecasting tool for managing cash, when are production companies actually going to be paid compa..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/d6470753-cd9a-44ea-98f8-729a47538815
+            }
+            pcc = container "Commissioning Cycle" "Manages the agreements of commissioned content." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/34252dd7-c25b-4ac3-8a2e-6e0742096e0e
+                tags "Commissioning CRM,Impact"
+            }
+            pp = container "Programmes" "" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4adea0a1-d059-4edd-a2c3-90c1d67a10ed
+            }
+            ppX = container "Purchases" "" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4535195e-870f-435c-96a4-fa0851828338
+                tags "Commissioning CRM,Impact"
+            }
+            pc = container "Production Company" "Supplier of commissioned content e.g. All 3 Media NOTE: NOT an application" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/45991022-b69a-4a32-b291-1c2818de03a0
+            }
         }
 
         /* ============================================================
@@ -176,16 +329,50 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         dap = softwareSystem "Data and Analytics Platform" "An extensive Massive Parallel Processing (MPP) platform designed for analytics tasks, which inclu..." {
             
-            as = container "Audience Segmentation" "Enables publishers and broadcasters to grow and retain audiences and increase monetisation for a ..." "saas"
-            barb = container "BARB" "Founded by the major organisations in the UK television and advertising industry, BARB is respons..." "onPremise"
-            bor = container "Business Objects Reporting" "This application represents all Business Object reports generated by BI team and are read by busi..." "hybrid"
-            cedw = container "Enterprise Data Warehouse" "Data Warehouse application used as a host of analytics data in a star schema or a columnar databa..." "hybrid"
-            c4 = container "Core 4" "https://www.core4.channel4.com/hub Core4 is Channel 4's quantitative insight community, made up o..." ""
-            dcri = container "Data Clean Room (InfoSum)" "A data platform with a vision to connect the world’s data without ever sharing it – by developing..." "saas"
-            dcrs = container "Data Clean Room (Snowflake)" "A data platform with a vision to connect the world’s data without ever sharing it – by developing..." "saas"
-            df = container "Data Fabric" "Data Fabric is an innovative approach designed to simplify and streamline data management across ..." "saas"
-            tabl = container "Tableau" "Tableau is a data visualization tool used in the Business Intelligence Industry. It helps in simp..." "saas"
-            wa = container "Web Analytics" "Web Analytics software used by M&VE for All 4 & Online Services Adobe Analytics is the solution f..." "saas"
+            as = container "Audience Segmentation" "Enables publishers and broadcasters to grow and retain audiences and increase monetisation for a ..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/36eea142-a4fc-4ffe-91a4-540ae18fa7a2
+                tags "Data Clean Room,Impact"
+            }
+            barb = container "BARB" "Founded by the major organisations in the UK television and advertising industry, BARB is respons..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b5c70e83-8d2a-495a-b772-c87690818d0e
+            }
+            bor = container "Business Objects Reporting" "This application represents all Business Object reports generated by BI team and are read by busi..." "hybrid" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/2d7b6726-96b6-4e97-819f-a865e8128e02
+            }
+            cedw = container "Enterprise Data Warehouse" "Data Warehouse application used as a host of analytics data in a star schema or a columnar databa..." "hybrid" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/22cf94d3-ac4a-40b9-b29a-09fb2307799e
+                tags "Data Clean Room,Customer Journey Analytics (CJA),Streaming Transformation Program,Impact"
+            }
+            c4 = container "Core 4" "https://www.core4.channel4.com/hub Core4 is Channel 4's quantitative insight community, made up o..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/6cdb9763-d3c4-4fbd-8391-8fa6edb3c69b
+            }
+            dcri = container "Data Clean Room (InfoSum)" "A data platform with a vision to connect the world’s data without ever sharing it – by developing..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ee4c816e-16c8-489a-8844-baa0658a73b5
+                tags "Data Clean Room,Impact"
+            }
+            dcrs = container "Data Clean Room (Snowflake)" "A data platform with a vision to connect the world’s data without ever sharing it – by developing..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/682f5257-1497-4ac7-ad12-34150a67f521
+                tags "Data Clean Room,Impact"
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            df = container "Data Fabric" "Data Fabric is an innovative approach designed to simplify and streamline data management across ..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fd1625b8-a9b8-4df4-a364-d4c0792ca019
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            tabl = container "Tableau" "Tableau is a data visualization tool used in the Business Intelligence Industry. It helps in simp..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bcb4c0dc-cb38-4f70-9451-53443456ed8c
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            wa = container "Web Analytics" "Web Analytics software used by M&VE for All 4 & Online Services Adobe Analytics is the solution f..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f7a463e8-edb4-45d6-ad21-e2922b6305a7
+                tags "Customer Journey Analytics (CJA),Impact"
+            }
         }
 
         /* ============================================================
@@ -194,20 +381,67 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         fsp = softwareSystem "Finance Systems Platform" "Platform from LeanIX" {
             
-            atax = container "Alphatax" "Corporation tax compliance software, providing complete control over the preparation and manageme..." ""
-            bbp = container "Barclays Banking Portal" "Barclays Online platform used to transact FX deals. File Gateway is a host to host connectivity p..." ""
-            bdn = container "Barclays.Net" "Barclays service used to download statements." ""
-            bsw = container "Basware" "Enterprise software for financial processes, purchase to pay and financial management. Manage Inv..." "saas"
-            cmx = container "Cachematrix" "SaaS solution for cash management" ""
-            ebs = container "E-Business Suite" "Channel4 Oracle E-business Suite application used in Finance department for Accounts, Cash and As..." "onPremise"
-            faf = container "Finance Approval Form" "" ""
-            msc = container "Mastercard" "" ""
-            odf = container "Oracle eBS Excel data files" "These are a collection of manually generated .xslx files out of Oracle e-Business that contain va..." ""
-            pjc = container "Project Codes" "App used to generate project codes which are used in Oracle and across Channel 4." ""
-            sov = container "Sovos" "Sovos helps in digital transformation of tax, with complete, connected offerings for tax determin..." "saas"
-            sbi = container "SplashBI" "SplashBI is an all-in-one framework for visualising, reporting and analysing data." "saas"
-            tgn = container "Tungsten Network" "Tungsten provide a multiple distribution channel service to a single stream invoice feed." ""
-            wda = container "Workday Adaptive" "Workday Adaptive is Channel 4 Finance's Planning and Consolidation tool" "saas"
+            atax = container "Alphatax" "Corporation tax compliance software, providing complete control over the preparation and manageme..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/2193988a-9e4b-473c-8ccc-af480c3b0b6f
+            }
+            bbp = container "Barclays Banking Portal" "Barclays Online platform used to transact FX deals. File Gateway is a host to host connectivity p..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/985ef4c4-7c99-4eb1-a932-c373354efa1c
+            }
+            bdn = container "Barclays.Net" "Barclays service used to download statements." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c0756e2e-be6f-4529-8838-1bc4303dcb8e
+            }
+            bsw = container "Basware" "Enterprise software for financial processes, purchase to pay and financial management. Manage Inv..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/61ea2036-2682-4999-8a2b-b56a8ff60aa8
+                tags "Finance & People Transformation,Impact"
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            cmx = container "Cachematrix" "SaaS solution for cash management" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fc6097df-f78d-4d74-b8af-6e668de1f3bb
+            }
+            ebs = container "E-Business Suite" "Channel4 Oracle E-business Suite application used in Finance department for Accounts, Cash and As..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/34852185-2e79-424a-8735-f586ca0bc6eb
+                tags "Corporate Integration,Finance & People Transformation,Impact"
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            faf = container "Finance Approval Form" "" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/331e92eb-60c0-424c-9c5c-8ed4a63e27b9
+                tags "Finance & People Transformation,Impact"
+            }
+            msc = container "Mastercard" "" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/919c5f9f-50b8-4f2a-9b26-9b9a15797da8
+            }
+            odf = container "Oracle eBS Excel data files" "These are a collection of manually generated .xslx files out of Oracle e-Business that contain va..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f0563f84-f115-450b-be67-db6c545c38b5
+            }
+            pjc = container "Project Codes" "App used to generate project codes which are used in Oracle and across Channel 4." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/94d329fc-0d88-431b-b78b-1fe85a9cbd14
+                tags "Finance & People Transformation,Impact"
+            }
+            sov = container "Sovos" "Sovos helps in digital transformation of tax, with complete, connected offerings for tax determin..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c917188e-f35e-4320-a0b8-d387d6863b62
+                tags "Finance & People Transformation,Impact"
+            }
+            sbi = container "SplashBI" "SplashBI is an all-in-one framework for visualising, reporting and analysing data." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/618820c7-1747-4388-a9aa-cfef9e9369c0
+                tags "Finance & People Transformation,Transactional Reporting Solution,Impact"
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            tgn = container "Tungsten Network" "Tungsten provide a multiple distribution channel service to a single stream invoice feed." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/199f7f15-06dd-460e-90c5-7d6231f348f3
+            }
+            wda = container "Workday Adaptive" "Workday Adaptive is Channel 4 Finance's Planning and Consolidation tool" "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4855f235-d3b0-41d0-b983-9265f83b840c
+                tags "Finance & People Transformation,Impact"
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
         }
 
         /* ============================================================
@@ -216,11 +450,23 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         lpp = softwareSystem "Linear Playout Platform" "Platform from LeanIX" {
             
-            ac = container "Amagi Cloudport" "<https://www.amagi.com/products/cloudport-cloud-playout>\ \ Amagi CLOUDPORT supports media ingest..." "saas"
-            lsp = container "Linear Service Provider" "" "saas"
-            ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop"
-            pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" ""
-            sp = container "Stargate Portal" "" "saas"
+            ac = container "Amagi Cloudport" "<https://www.amagi.com/products/cloudport-cloud-playout>\ \ Amagi CLOUDPORT supports media ingest..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fec42b44-df14-4d3d-9b6d-f530a4e41a03
+                tags "UK FAST,Impact"
+            }
+            lsp = container "Linear Service Provider" "" "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/487b00a3-39f7-4095-bdbb-526af136a1a8
+            }
+            ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b2da1e23-df98-4af4-9c2a-904814ab181c
+                tags "Promo Campaign Management,Impact"
+            }
+            pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/65a2ae66-2900-4133-acb6-de1758c0e930
+            }
+            sp = container "Stargate Portal" "" "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b3e222c1-abbe-4a8c-ac5f-ffd927085edd
+            }
         }
 
         /* ============================================================
@@ -229,9 +475,15 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         mp = softwareSystem "Marketing Platform" "Platform from LeanIX" {
             
-            braz = container "Braze" "Braze is a mobile marketing automation platform that provides a CRM and multichannel messaging su..." "saas"
-            mpar = container "mParticle" "mParticle is a Customer Data Platform. It collects customer data once through secure APIs and SDK..." "saas"
-            po = container "Promo Optimizer" "User-friendly TV promo scheduling tool. Leveraging advanced optimization and sequencing algorithm..." ""
+            braz = container "Braze" "Braze is a mobile marketing automation platform that provides a CRM and multichannel messaging su..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f5eb1ded-7018-467d-a159-c9c29507070c
+            }
+            mpar = container "mParticle" "mParticle is a Customer Data Platform. It collects customer data once through secure APIs and SDK..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/1dbd5c77-8a0a-4649-bc7e-362d04fbb228
+            }
+            po = container "Promo Optimizer" "User-friendly TV promo scheduling tool. Leveraging advanced optimization and sequencing algorithm..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ad1499e9-eafa-45b0-be95-6fdafd880967
+            }
         }
 
         /* ============================================================
@@ -240,14 +492,34 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         mmp = softwareSystem "Media Management Platform" "Platform from LeanIX" {
             
-            awar = container "Awards" "Awards is a repository of all awards won by Channel 4 or where Channel 4 has been nominated. Plat..." "saas"
-            msp = container "Media Service Provider" "Service provider for Digital Asset Management System" "saas"
-            pmm = container "Media Management" "Video browse can also be launched from this application" "desktopOrLaptop"
-            pvb = container "Video Browse" "Video Browse is a client-side.NET application that is part of the Pirate domain. It provides user..." "onPremise"
-            pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" ""
-            ppsp = container "Post Production Service Provider" "Post production service is pre-integrated to MSP and has suites available in HFR. This work can b..." ""
-            rta = container "Ready to Air" "Deliver pre-transmission & pre-release video to journalists securely and reliably, wherever they ..." ""
-            uv = container "Underground Vault" "Team that handles live content operations for our linear channels.Controlled and secure location ..." ""
+            awar = container "Awards" "Awards is a repository of all awards won by Channel 4 or where Channel 4 has been nominated. Plat..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/97c919e2-8156-4df7-a5a8-afde3cd0325d
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            msp = container "Media Service Provider" "Service provider for Digital Asset Management System" "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b245220d-2a8d-4630-a3f5-e33f1a3c2354
+                tags "Promo Campaign Management,Streaming Transformation Program,Impact"
+            }
+            pmm = container "Media Management" "Video browse can also be launched from this application" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/a1f20124-70fe-49d2-9741-0af94eb527ea
+            }
+            pvb = container "Video Browse" "Video Browse is a client-side.NET application that is part of the Pirate domain. It provides user..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c7cff9d8-2ecf-4f17-bf5e-46f10b6cd919
+            }
+            pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/65a2ae66-2900-4133-acb6-de1758c0e930
+            }
+            ppsp = container "Post Production Service Provider" "Post production service is pre-integrated to MSP and has suites available in HFR. This work can b..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/8b307930-c941-4758-b3a4-f16293becdb8
+            }
+            rta = container "Ready to Air" "Deliver pre-transmission & pre-release video to journalists securely and reliably, wherever they ..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/0e668044-56f2-465b-b69c-d21a4b575553
+            }
+            uv = container "Underground Vault" "Team that handles live content operations for our linear channels.Controlled and secure location ..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4f26c8ed-def1-4f78-a362-292c3828d9fc
+            }
         }
 
         /* ============================================================
@@ -256,15 +528,52 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         psp = softwareSystem "People Systems Platform" "Platform from LeanIX" {
             
-            4peo = container "4People" "4People is a cloud HR and people system that empowers mid-size organisations to effectively respo..." "saas"
-            acti = container "ActivPay" "Actvipay is Channel 4's 3rd party payroll provider." "saas"
-            ac = container "Alert Cascade" "Crisis event mass communication tool" "desktopOrLaptop"
-            bp = container "Benefits Portal" "" "saas"
-            er = container "Executive Reporting" "Bespoke set of reports created in Power BI and served for the purpose of business reporting for t..." "paas"
-            fes = container "Freelancer Engagement System" "HR system to request freelancers and bring them onboard. Freelancers submit timesheets via FES. O..." "onPremise"
-            ll = container "LinkedIn Learning" "LinkedIn Learning offers video courses taught by industry experts in software, creative, and busi..." "saas"
-            popp = container "Poppulo" "Internal communications Internal Communication, newsletter system. Used by internal comms. Integr..." "saas"
-            tlh = container "The Learning Hive" "Cornerstone is a cloud-based learning and talent management solutions platform." "saas"
+            4peo = container "4People" "4People is a cloud HR and people system that empowers mid-size organisations to effectively respo..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3db00200-a028-4cb8-baeb-a3f88d1dd6e9
+                tags "AI People Team,Impact"
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            acti = container "ActivPay" "Actvipay is Channel 4's 3rd party payroll provider." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/cdaf03e9-7bde-49b0-bfae-ecb69af5dc27
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            ac = container "Alert Cascade" "Crisis event mass communication tool" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b6bf1946-3623-41a6-9a3f-36bc6e1fc4a5
+            }
+            bp = container "Benefits Portal" "" "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ec56cea3-8d33-40bc-a695-805e21c0cbf0
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            er = container "Executive Reporting" "Bespoke set of reports created in Power BI and served for the purpose of business reporting for t..." "paas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3ec6dffe-bb2b-49d6-8631-8b7b5191e4f3
+            }
+            fes = container "Freelancer Engagement System" "HR system to request freelancers and bring them onboard. Freelancers submit timesheets via FES. O..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3debbdaf-b375-475b-a9ad-aaffeff1396a
+            }
+            ll = container "LinkedIn Learning" "LinkedIn Learning offers video courses taught by industry experts in software, creative, and busi..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9cd4b77f-8517-478b-b25b-6592a04d157b
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            popp = container "Poppulo" "Internal communications Internal Communication, newsletter system. Used by internal comms. Integr..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/59812f2b-1d87-466b-816a-8feb530a4de3
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            tlh = container "The Learning Hive" "Cornerstone is a cloud-based learning and talent management solutions platform." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ec47ad40-b9d6-4af1-a100-27beef4495e7
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
         }
 
         /* ============================================================
@@ -273,10 +582,18 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         rmp = softwareSystem "Rights Management Platform" "Platform from LeanIX" {
             
-            prms = container "Rights Management System" "" "desktopOrLaptop"
-            pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" ""
-            rc = container "Repeats Clearances" "This excel spreadsheet is our record of all programmes repeated on C4 with details of any rights/..." ""
-            soun = container "Soundmouse" "Representation of Soundmouse as company. Covers all SaaS products offered by Soundmouse: Soundmou..." "saas"
+            prms = container "Rights Management System" "" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4fd9c7b1-6378-4092-b583-9361df3e70b1
+            }
+            pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/65a2ae66-2900-4133-acb6-de1758c0e930
+            }
+            rc = container "Repeats Clearances" "This excel spreadsheet is our record of all programmes repeated on C4 with details of any rights/..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c1ed6654-10a6-4e28-812d-f86fbd721245
+            }
+            soun = container "Soundmouse" "Representation of Soundmouse as company. Covers all SaaS products offered by Soundmouse: Soundmou..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9734e44e-2b83-4f85-ae47-b3f8450c2951
+            }
         }
 
         /* ============================================================
@@ -285,21 +602,51 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         rsp = softwareSystem "Royalties and Sales Platform" "Platform from LeanIX" {
             
-            come = container "COMET" "Channel 4 International and National Rights Licencing Software used by Channel 4 to manage Films ..." "desktopOrLaptop"
-            eps = container "Exclusivity Payment Schedules" "Contains payment details due to the artist for an exclusivity deal" ""
-            neo = container "Neo" "NEO is a Soundmouse application that 4Studio and Rights Team users use. NEO does a shazam of soci..." ""
-            pap = container "Artist Payments" "Application for reporting artist royalties" "desktopOrLaptop"
-            pris = container "Royalties Income system" "Manages the Statements and chasing of Statements to ensure Royalties owed to Channel 4 are tracke..." "desktopOrLaptop"
-            prrs = container "Royalties Reporting System" "RRS Overview Description: The Royalty Reporting System (RRS) is an application used for the conso..." "onPremise"
-            pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" ""
-            rc = container "Repeats Clearances" "This excel spreadsheet is our record of all programmes repeated on C4 with details of any rights/..." ""
-            sd = container "Sargent Disc" "Sargent-Disc is the U.K.’s foremost entertainment-technology provider, building cloud-based workf..." ""
-            soun = container "Soundmouse" "Representation of Soundmouse as company. Covers all SaaS products offered by Soundmouse: Soundmou..." "saas"
-            ted = container "Ted" "Ted is a (tactical) web application that is used by 4Studio to capture key information concerning..." "iaas"
-            ussw = container "UK Secondary Sales Wishlist" "" ""
-            vr = container "VOD Revenue" "" ""
-            vwgmp = container "VOD Writers Guild & Musician Payments" "" ""
-            wga = container "Writers Guild Advances" "" ""
+            come = container "COMET" "Channel 4 International and National Rights Licencing Software used by Channel 4 to manage Films ..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/438491d8-6ce7-4d3a-b2c4-5aaf31fef29f
+            }
+            eps = container "Exclusivity Payment Schedules" "Contains payment details due to the artist for an exclusivity deal" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/490fbd9b-4ad9-4cd7-9fad-ae62d3dc1e2b
+            }
+            neo = container "Neo" "NEO is a Soundmouse application that 4Studio and Rights Team users use. NEO does a shazam of soci..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/1f627283-07fa-4571-b8d8-148a2ee5848c
+            }
+            pap = container "Artist Payments" "Application for reporting artist royalties" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fde00f48-6c5b-4dce-852a-1e14887fcc78
+            }
+            pris = container "Royalties Income system" "Manages the Statements and chasing of Statements to ensure Royalties owed to Channel 4 are tracke..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9b4214f2-0398-428e-814e-83cd8e3a8be3
+            }
+            prrs = container "Royalties Reporting System" "RRS Overview Description: The Royalty Reporting System (RRS) is an application used for the conso..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/8dfdc0df-f89d-45a3-a740-4d2fdfeda059
+            }
+            pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/65a2ae66-2900-4133-acb6-de1758c0e930
+            }
+            rc = container "Repeats Clearances" "This excel spreadsheet is our record of all programmes repeated on C4 with details of any rights/..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c1ed6654-10a6-4e28-812d-f86fbd721245
+            }
+            sd = container "Sargent Disc" "Sargent-Disc is the U.K.’s foremost entertainment-technology provider, building cloud-based workf..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/d6b73ef4-483d-4f35-9333-74b9163872af
+            }
+            soun = container "Soundmouse" "Representation of Soundmouse as company. Covers all SaaS products offered by Soundmouse: Soundmou..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9734e44e-2b83-4f85-ae47-b3f8450c2951
+            }
+            ted = container "Ted" "Ted is a (tactical) web application that is used by 4Studio to capture key information concerning..." "iaas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/a066a5ff-f7e7-4074-ad63-df05eee82b51
+            }
+            ussw = container "UK Secondary Sales Wishlist" "" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/0da47795-a87a-4d90-ad0f-48d25f311a1b
+            }
+            vr = container "VOD Revenue" "" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/98b4607d-5424-47fb-996f-7d5333e4c962
+            }
+            vwgmp = container "VOD Writers Guild & Musician Payments" "" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/59afe4c2-5910-40b3-8a68-19f282a589ff
+            }
+            wga = container "Writers Guild Advances" "" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ba9387c7-9929-437d-9e4e-d05cd64325bb
+            }
         }
 
         /* ============================================================
@@ -308,12 +655,28 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         sp = softwareSystem "Scheduling Platform" "The Scheduling Platform is a core functional domain that orchestrates the creation and management..." {
             
-            mod = container "MediaGenix On Demand" "BeBanjo Movida VOD Management system (Comprising of systems which schedule and manage transcode a..." "saas"
-            pass = container "Advance Scheduling System" "The Advanced Scheduling System (A55) provides a view of a schedule for a specific channel and dat..." "desktopOrLaptop"
-            pepl = container "Electronic Press Listing" "Sends Electronic Programme Guide to other platforms Carries Rights information such as restart" "desktopOrLaptop"
-            pitts = container "Interface To Transmission Systems" "ITS prepares final schedules for Playout systems. It uses Programme schedules generated from PPS ..." "onPremise"
-            ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop"
-            ppps-p = container "Presentation Planning System - PPS.NET" "This is the .NET version of PPS NOTE: We need to create all VOD processes and link one to this ap..." "desktopOrLaptop"
+            mod = container "MediaGenix On Demand" "BeBanjo Movida VOD Management system (Comprising of systems which schedule and manage transcode a..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/7bec9ebd-87c8-4ed0-bfe2-1ea5429eeabc
+                tags "New VoD Management System,Flexible Series,Streaming Transformation Program,Impact"
+            }
+            pass = container "Advance Scheduling System" "The Advanced Scheduling System (A55) provides a view of a schedule for a specific channel and dat..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/af539ba8-e622-46fc-b561-347dad93d8b6
+                tags "UK FAST,Impact"
+            }
+            pepl = container "Electronic Press Listing" "Sends Electronic Programme Guide to other platforms Carries Rights information such as restart" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/7f92cb3b-40c6-41f8-9bb0-93bb43df94ff
+            }
+            pitts = container "Interface To Transmission Systems" "ITS prepares final schedules for Playout systems. It uses Programme schedules generated from PPS ..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ad4ff429-b9c4-4d11-9b78-e5935f33e664
+            }
+            ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b2da1e23-df98-4af4-9c2a-904814ab181c
+                tags "Promo Campaign Management,Impact"
+            }
+            ppps-p = container "Presentation Planning System - PPS.NET" "This is the .NET version of PPS NOTE: We need to create all VOD processes and link one to this ap..." "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bac64e3f-59aa-433b-b1ba-7f2253bc10df
+                tags "Promo Campaign Management,Impact"
+            }
         }
 
         /* ============================================================
@@ -322,16 +685,36 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         sbs = softwareSystem "Small Business Services" "A set of small applications delivering discreet business processes usually hosted on SQL on prem ..." {
             
-            anda = container "ANDA" "ANDA is a document archive repository. Where physical documents need to be archived (signed contr..." "onPremise"
-            comp = container "Competitions" "It is used by Legal & Compliance to select winners and runner ups for Channel 4 competitions. The..." "onPremise"
-            cms = container "Contract Management System" "Contract Management System, used as a repository for contracts Owned by Procurement storing the m..." "onPremise"
-            dsd = container "Diversity Suppliers DB" "This is a database of supplier information used by the Creative Diversity team based in Glasgow," "onPremise"
-            fa = container "FOIA Application" "Application built on SQL Server for storing Freedom of Information Act requests" ""
-            mc = container "Music Clearance" "It is used by colleagues in CACL - Commercial Affairs every time Channel 4 license a music track ..." "hybrid"
-            pps = container "Post Production Schedule" "This application is used by 4Creative to plan the development of on-air promotional material and ..." ""
-            pr = container "Producer Reporting" "It is used by Finance to format the producer reporting statements. The application takes all the ..." ""
-            sac = container "Stills and Clips" "" ""
-            time = container "Timesheets" "" "onPremise"
+            anda = container "ANDA" "ANDA is a document archive repository. Where physical documents need to be archived (signed contr..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/dc02b3c2-a279-42c9-a468-76b8818c36fe
+            }
+            comp = container "Competitions" "It is used by Legal & Compliance to select winners and runner ups for Channel 4 competitions. The..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/61a5b92c-6427-441a-9feb-3937d2f80591
+            }
+            cms = container "Contract Management System" "Contract Management System, used as a repository for contracts Owned by Procurement storing the m..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/8873272c-e651-4e46-b3f2-efa986155c86
+            }
+            dsd = container "Diversity Suppliers DB" "This is a database of supplier information used by the Creative Diversity team based in Glasgow," "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/2bfd1da5-1a0e-4069-a76e-6b7d70cab25f
+            }
+            fa = container "FOIA Application" "Application built on SQL Server for storing Freedom of Information Act requests" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/317ac554-8f28-4103-9c9f-6380e85394cd
+            }
+            mc = container "Music Clearance" "It is used by colleagues in CACL - Commercial Affairs every time Channel 4 license a music track ..." "hybrid" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/24a58028-9b26-41d8-b3da-c053c69db1bb
+            }
+            pps = container "Post Production Schedule" "This application is used by 4Creative to plan the development of on-air promotional material and ..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/593b2e40-b629-4ce1-a00f-5f1c1941aae7
+            }
+            pr = container "Producer Reporting" "It is used by Finance to format the producer reporting statements. The application takes all the ..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/723ecda3-6a5d-4f7b-a7dc-78044b006db9
+            }
+            sac = container "Stills and Clips" "" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/8a5691b5-5905-443e-bc20-43613fa2ce71
+            }
+            time = container "Timesheets" "" "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/8ae5a3ef-7865-430d-b8b6-6d2a30b30e12
+            }
         }
 
         /* ============================================================
@@ -340,17 +723,45 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         vsp = softwareSystem "Video Streaming Platform" "Includes all items that provide the value chain" {
             
-            c4sl = container "Channel 4 Streaming (Legacy)" "Video on Demand platform across many devices including https://channel4.com" "iaas"
-            cdna = container "Content Distribution Network (Accenture)" "Logical representation of the CDN's used by Channel 4 Streaming, controlled and maintained by Acc..." ""
-            free = container "Freely" "" ""
-            mpar = container "mParticle" "mParticle is a Customer Data Platform. It collects customer data once through secure APIs and SDK..." "saas"
-            ova = container "Online Video Analytics" "Real-Time Streaming Video Intelligence" "saas"
-            pipe = container "PIPE" "The CMS that drivers Channel 4 Streaming UX in the apps" "iaas"
-            sm = container "Subscription Management" "The application that manages our subscription products such as offers and deals." "saas"
-            sl = container "Sumo Logic" "Sumo Logic is a cloud-based log management and analytics service that leverages machine-generated..." "saas"
-            tr = container "Tag Recommender" "A Data Science led application to aid the Channel 4 Streaming editors with tagging for Brands" "iaas"
-            thin = container "ThinkAnalytics" "World leaders in AI personalized content discovery, hyper-targeted advertising and customer insight." "saas"
-            yosp = container "YoSpace" "Dynamic Ad Insertion (replacement of linear ads) on live streams to our owned and operated stream..." "saas"
+            c4sl = container "Channel 4 Streaming (Legacy)" "Video on Demand platform across many devices including https://channel4.com" "iaas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/aa9fdfc2-1884-4181-b102-1579838e10ac
+                tags "Flexible Series,Streaming Transformation Program,UK FAST,Impact"
+            }
+            cdna = container "Content Distribution Network (Accenture)" "Logical representation of the CDN's used by Channel 4 Streaming, controlled and maintained by Acc..." "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/40f4d195-24e9-4e3a-83c9-704bb3cc44ab
+                tags "Streaming Transformation Program,Impact"
+            }
+            free = container "Freely" "" "" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/35279c23-7ea7-45cb-b766-493f9e89b6e8
+                tags "Streaming Transformation Program,Impact"
+            }
+            mpar = container "mParticle" "mParticle is a Customer Data Platform. It collects customer data once through secure APIs and SDK..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/1dbd5c77-8a0a-4649-bc7e-362d04fbb228
+            }
+            ova = container "Online Video Analytics" "Real-Time Streaming Video Intelligence" "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/14297f38-dac8-4b46-a87b-a4fc7e3d1279
+            }
+            pipe = container "PIPE" "The CMS that drivers Channel 4 Streaming UX in the apps" "iaas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/12ff7faf-0750-475f-bf77-a37901ecc5e1
+            }
+            sm = container "Subscription Management" "The application that manages our subscription products such as offers and deals." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/a73cf223-4a69-4bfa-91c2-fbfd4daa57cc
+                tags "Streaming Transformation Program,Impact"
+            }
+            sl = container "Sumo Logic" "Sumo Logic is a cloud-based log management and analytics service that leverages machine-generated..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/6bdd41b7-f5a3-4fdb-9022-4914c9505bff
+            }
+            tr = container "Tag Recommender" "A Data Science led application to aid the Channel 4 Streaming editors with tagging for Brands" "iaas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/cd963fb4-7d3b-4fdf-8d87-92d4fc23551c
+            }
+            thin = container "ThinkAnalytics" "World leaders in AI personalized content discovery, hyper-targeted advertising and customer insight." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f323399a-7830-4ce9-88d0-e3d111f71102
+                tags "Streaming Transformation Program,Impact"
+            }
+            yosp = container "YoSpace" "Dynamic Ad Insertion (replacement of linear ads) on live streams to our owned and operated stream..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/46c41f3f-30df-44f4-851b-33b583f9cf40
+                tags "Streaming Transformation Program,Impact"
+            }
         }
 
         /* ============================================================
@@ -359,11 +770,24 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         wsp = softwareSystem "Workspace Systems Platform" "Platform from LeanIX" {
             
-            ac = container "Alert Cascade" "Crisis event mass communication tool" "desktopOrLaptop"
-            ce = container "Concept Evolution" "FM Job sheets for building maintenance used by Facilities & Workspace" "onPremise"
-            egen = container "Egencia" "Egencia is a SaaS platform developed by Amex GBT that offers corporate travel management solution..." "saas"
-            tb = container "Taxi Booking" "This application describes are taxi booking capability at Channel 4." "saas"
-            tb-n = container "Taxi Booking - non-London" "This application is used for London based Taxi bookings to and from Horseferry Road" "saas"
+            ac = container "Alert Cascade" "Crisis event mass communication tool" "desktopOrLaptop" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b6bf1946-3623-41a6-9a3f-36bc6e1fc4a5
+            }
+            ce = container "Concept Evolution" "FM Job sheets for building maintenance used by Facilities & Workspace" "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/cb1d3418-dabb-4165-9ef2-f1be0f380139
+            }
+            egen = container "Egencia" "Egencia is a SaaS platform developed by Amex GBT that offers corporate travel management solution..." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bc12be35-05c9-4add-9535-ded814046530
+                perspectives {
+                    SSO "Authenticated using SSO"
+                }
+            }
+            tb = container "Taxi Booking" "This application describes are taxi booking capability at Channel 4." "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3b5ca269-2905-4273-8bff-36aa694152cb
+            }
+            tb-n = container "Taxi Booking - non-London" "This application is used for London based Taxi bookings to and from Horseferry Road" "saas" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/59f0b9cc-6b23-4630-a46f-557de8be2079
+            }
         }
         
         /* ============================================================
@@ -1096,5 +1520,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             logo https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/4-logo-black.png
             font "4Text" https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/4Text-Regular.ttf
         }
+
+        systemLandscape c4_landscape "Landscape diagram of all platforms and users" {
+            include *
+            
+        }
+
     }
 }
