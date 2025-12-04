@@ -74,18 +74,24 @@ class LeanIXMapper:
             return temp_acronym.lower()
     
     def _ensure_unique_identifier(self, identifier: str, used_identifiers: set, 
-                                  element_name: str, element_type: str) -> str:
+                                  element_name: str, element_type: str, 
+                                  scope: str = 'global') -> str:
         """
-        Ensure identifier is unique by appending 'X' if duplicate.
+        Ensure identifier is unique within its scope.
+        
+        With hierarchical identifiers:
+        - Platforms, Persons, and Interfaces need global uniqueness
+        - Applications/Containers are scoped within their platform, so duplicates across platforms are OK
         
         Args:
             identifier: Proposed identifier
-            used_identifiers: Set of already used identifiers
+            used_identifiers: Set of already used identifiers (pass platform-scoped set for containers)
             element_name: Display name for logging
             element_type: Type of element for logging
+            scope: 'global' for platforms/persons/interfaces, 'platform' for containers
             
         Returns:
-            Unique identifier
+            Unique identifier (within scope)
         """
         if identifier not in used_identifiers:
             used_identifiers.add(identifier)
@@ -99,12 +105,24 @@ class LeanIXMapper:
         while identifier in used_identifiers:
             identifier = identifier + 'X'
         
-        self.duplicate_acronyms.append({
-            'type': element_type,
-            'name': element_name,
-            'original': original,
-            'modified': identifier
-        })
+        # Only log if it's a global-scope duplicate (cross-platform duplicates are now OK for containers)
+        if scope == 'global':
+            self.duplicate_acronyms.append({
+                'type': element_type,
+                'name': element_name,
+                'original': original,
+                'modified': identifier,
+                'reason': 'Global scope conflict'
+            })
+        else:
+            # Platform-scoped duplicate (within same platform - should be rare)
+            self.duplicate_acronyms.append({
+                'type': element_type,
+                'name': element_name,
+                'original': original,
+                'modified': identifier,
+                'reason': f'Duplicate within {scope}'
+            })
         
         used_identifiers.add(identifier)
         return identifier
@@ -208,20 +226,21 @@ class LeanIXMapper:
         self.missing_acronyms = []
         self.duplicate_acronyms = []
         
-        # Track all used identifiers to prevent duplicates
-        used_identifiers = set()
+        # Track identifiers: global for platforms/persons/interfaces, per-platform for containers
+        global_identifiers = set()
+        platform_container_identifiers = set()  # Scoped to this platform only
         
         platform_id = platform_data.get('id')
         platform_name = platform_data.get('displayName') or platform_data.get('name')
         platform_desc = platform_data.get('description', 'Platform from LeanIX')
         platform_acronym = platform_data.get('acronym')
         
-        # Get platform identifier from acronym
+        # Get platform identifier from acronym (globally unique)
         platform_identifier = self._get_identifier_from_acronym(
             platform_name, 'Platform', platform_acronym, platform_id
         )
         platform_identifier = self._ensure_unique_identifier(
-            platform_identifier, used_identifiers, platform_name, 'Platform'
+            platform_identifier, global_identifiers, platform_name, 'Platform', 'global'
         )
         
         # Extract child applications (containers) with hosting type
@@ -233,11 +252,12 @@ class LeanIXMapper:
             if app:
                 applications.append(app)
                 app_id = app.get('id')
-                # NEW: Extract lxHostingType
+                # Extract lxHostingType
                 hosting_type = app.get('lxHostingType', '') or ''
                 app_hosting_types[app_id] = hosting_type
         
         # Build application ID to identifier mapping using acronyms
+        # Containers only need uniqueness within their platform
         app_id_map = {}
         app_ids = set()
         for app in applications:
@@ -247,12 +267,12 @@ class LeanIXMapper:
             app_name = app.get('name') or app_display_name
             app_acronym = app.get('acronym')
             
-            # Get identifier from acronym
+            # Get identifier from acronym (platform-scoped uniqueness)
             app_identifier = self._get_identifier_from_acronym(
                 app_display_name, 'Application', app_acronym, app_id
             )
             app_identifier = self._ensure_unique_identifier(
-                app_identifier, used_identifiers, app_display_name, 'Application'
+                app_identifier, platform_container_identifiers, app_display_name, 'Application', f'platform:{platform_identifier}'
             )
             
             app_id_map[app_id] = (app_identifier, app_name)
@@ -298,11 +318,11 @@ class LeanIXMapper:
             interface = interface_edge.get('node', {})
             interface_id = interface.get('id')
             interface_display_name = interface.get('displayName') or interface.get('name', 'Integration')
-            # NEW: Use interface name for description (not the description field)
+            # Use interface name for description (not the description field)
             interface_name = interface.get('name') or interface_display_name
             interface_acronym = interface.get('acronym')
             
-            # NEW: Get IT components to extract technology
+            # Get IT components to extract technology
             it_components_edges = interface.get('relInterfaceToITComponent', {}).get('edges', [])
             it_components = [edge.get('node', {}).get('factSheet', {}) for edge in it_components_edges]
             technology = self._extract_technology_from_components(it_components)
@@ -337,10 +357,10 @@ class LeanIXMapper:
                             # Subsequent relationships append counter
                             interface_identifier = f"{base_interface_identifier}{relationship_count + 1}"
                         
-                        # Ensure unique across all identifiers
+                        # Ensure unique globally (interfaces are relationship identifiers)
                         interface_identifier = self._ensure_unique_identifier(
-                            interface_identifier, used_identifiers, 
-                            f"{interface_display_name} (relationship {relationship_count + 1})", 'Interface'
+                            interface_identifier, global_identifiers, 
+                            f"{interface_display_name} (relationship {relationship_count + 1})", 'Interface', 'global'
                         )
                         
                         relationship_count += 1
@@ -350,7 +370,7 @@ class LeanIXMapper:
                             provider_id,
                             consumer_id,
                             interface_name,
-                            technology  # NEW: technology instead of interface_desc
+                            technology
                         ))
         
         # Generate DSL
@@ -362,9 +382,9 @@ class LeanIXMapper:
             org_to_app_relationships,
             applications,
             app_id_map,
-            app_hosting_types,  # NEW: Pass hosting types
+            app_hosting_types,
             app_relationships,
-            used_identifiers
+            global_identifiers
         )
         
         # Print warnings about missing and duplicate acronyms
@@ -375,6 +395,9 @@ class LeanIXMapper:
     def map_multiple_platforms_to_dsl(self, platforms_data: list, all_interfaces: list) -> str:
         """
         Map multiple LeanIX platforms to a single Structurizr DSL workspace.
+        
+        With hierarchical identifiers, containers (applications) are scoped within their
+        platform, so the same acronym can be reused across platforms (e.g., fsp.ebs and hrp.ebs).
         
         Args:
             platforms_data: List of platform fact sheets from LeanIX
@@ -387,8 +410,8 @@ class LeanIXMapper:
         self.missing_acronyms = []
         self.duplicate_acronyms = []
         
-        # Track all used identifiers globally to prevent duplicates across platforms
-        used_identifiers = set()
+        # Track identifiers: global for platforms/persons/interfaces only
+        global_identifiers = set()
         
         # Collect all platforms with their data
         all_platforms = []
@@ -405,12 +428,12 @@ class LeanIXMapper:
                 platform_desc = 'Platform from LeanIX'
             platform_acronym = platform_data.get('acronym')
             
-            # Get platform identifier from acronym
+            # Get platform identifier from acronym (globally unique)
             platform_identifier = self._get_identifier_from_acronym(
                 platform_name, 'Platform', platform_acronym, platform_id
             )
             platform_identifier = self._ensure_unique_identifier(
-                platform_identifier, used_identifiers, platform_name, 'Platform'
+                platform_identifier, global_identifiers, platform_name, 'Platform', 'global'
             )
             
             # Extract child applications
@@ -429,6 +452,9 @@ class LeanIXMapper:
                 'applications': []
             })
             
+            # Platform-scoped container identifiers (can duplicate across platforms!)
+            platform_container_identifiers = set()
+            
             # Process applications for this platform
             for app in applications:
                 app_id = app.get('id')
@@ -436,15 +462,15 @@ class LeanIXMapper:
                 app_name = app.get('name') or app_display_name
                 app_acronym = app.get('acronym')
                 app_desc = self._clean_description(app.get('description', ''))
-                # NEW: Extract lxHostingType
+                # Extract lxHostingType
                 hosting_type = app.get('lxHostingType', '') or ''
                 
-                # Get identifier from acronym
+                # Get identifier from acronym (platform-scoped, NOT globally unique!)
                 app_identifier = self._get_identifier_from_acronym(
                     app_display_name, 'Application', app_acronym, app_id
                 )
                 app_identifier = self._ensure_unique_identifier(
-                    app_identifier, used_identifiers, app_display_name, 'Application'
+                    app_identifier, platform_container_identifiers, app_display_name, 'Application', f'platform:{platform_identifier}'
                 )
                 
                 # Store application with hosting type
@@ -453,7 +479,7 @@ class LeanIXMapper:
                     'identifier': app_identifier,
                     'name': app_name,
                     'desc': app_desc,
-                    'hosting_type': hosting_type  # NEW: Add hosting type
+                    'hosting_type': hosting_type
                 })
                 
                 # Get organisations from this application
@@ -480,7 +506,8 @@ class LeanIXMapper:
                             all_organizations[org_id] = (org_display_name, org_name, org_desc, org_acronym)
                         
                         # Store relationship with cleaned description from node
-                        all_org_to_app_relationships.append((org_id, app_id, rel_description))
+                        # Include platform_identifier for qualified references
+                        all_org_to_app_relationships.append((org_id, app_id, platform_identifier, rel_description))
         
         # Build set of all application IDs for interface filtering
         all_app_ids = set(all_applications.keys())
@@ -492,11 +519,11 @@ class LeanIXMapper:
             interface = interface_edge.get('node', {})
             interface_id = interface.get('id')
             interface_display_name = interface.get('displayName') or interface.get('name', 'Integration')
-            # NEW: Use interface name for description (not the description field)
+            # Use interface name for description (not the description field)
             interface_name = interface.get('name') or interface_display_name
             interface_acronym = interface.get('acronym')
             
-            # NEW: Get IT components to extract technology
+            # Get IT components to extract technology
             it_components_edges = interface.get('relInterfaceToITComponent', {}).get('edges', [])
             it_components = [edge.get('node', {}).get('factSheet', {}) for edge in it_components_edges]
             technology = self._extract_technology_from_components(it_components)
@@ -529,10 +556,10 @@ class LeanIXMapper:
                         else:
                             interface_identifier = f"{base_interface_identifier}{relationship_count + 1}"
                         
-                        # Ensure unique across all identifiers
+                        # Ensure unique globally (interfaces are relationship identifiers)
                         interface_identifier = self._ensure_unique_identifier(
-                            interface_identifier, used_identifiers,
-                            f"{interface_display_name} (relationship {relationship_count + 1})", 'Interface'
+                            interface_identifier, global_identifiers,
+                            f"{interface_display_name} (relationship {relationship_count + 1})", 'Interface', 'global'
                         )
                         
                         relationship_count += 1
@@ -542,7 +569,7 @@ class LeanIXMapper:
                             provider_id,
                             consumer_id,
                             interface_name,
-                            technology  # NEW: technology instead of interface_desc
+                            technology
                         ))
         
         # Generate DSL with all platforms
@@ -552,7 +579,7 @@ class LeanIXMapper:
             all_org_to_app_relationships,
             all_applications,
             all_app_relationships,
-            used_identifiers
+            global_identifiers
         )
         
         # Print warnings about missing and duplicate acronyms
@@ -601,16 +628,16 @@ class LeanIXMapper:
         org_to_app_relationships: List[Tuple[str, str, str]],
         applications: List[dict],
         app_id_map: Dict[str, Tuple[str, str]],
-        app_hosting_types: Dict[str, str],  # NEW: hosting types parameter
+        app_hosting_types: Dict[str, str],
         app_relationships: List[Tuple[str, str, str, str, str]],
         used_identifiers: set
     ) -> str:
-        """Generate the complete DSL string."""
+        """Generate the complete DSL string for single platform."""
         
-        # Start DSL
+        # Start DSL with hierarchical identifiers
         dsl = f'''workspace "Channel 4 Core" "Base Line Model - Generated from LeanIX" {{
 
-    !identifiers flat
+    !identifiers hierarchical
 
     model {{
     
@@ -624,7 +651,7 @@ class LeanIXMapper:
         
 '''
         
-        # Add organisations as persons using acronyms
+        # Add organisations as persons using acronyms (globally unique)
         org_id_map = {}
         for org_id, (org_display_name, org_name, org_desc, org_acronym) in organizations.items():
             # Get identifier from acronym
@@ -632,7 +659,7 @@ class LeanIXMapper:
                 org_display_name, 'Organisation', org_acronym, org_id
             )
             org_identifier = self._ensure_unique_identifier(
-                org_identifier, used_identifiers, org_display_name, 'Organisation'
+                org_identifier, used_identifiers, org_display_name, 'Organisation', 'global'
             )
             
             org_id_map[org_id] = org_identifier
@@ -654,7 +681,7 @@ class LeanIXMapper:
             app_id = app.get('id')
             app_identifier, app_name = app_id_map.get(app_id)
             app_desc = self._clean_description(app.get('description', ''))
-            # NEW: Get hosting type from app_hosting_types
+            # Get hosting type from app_hosting_types
             hosting_type = app_hosting_types.get(app_id, '')
             
             dsl += f'            {app_identifier} = container "{app_name}" "{app_desc}" "{hosting_type}"\n'
@@ -667,14 +694,15 @@ class LeanIXMapper:
         
 '''
         
-        # Add person to application relationships
+        # Add person to application relationships with qualified identifiers
         for org_id, app_id, rel_desc in org_to_app_relationships:
             org_identifier = org_id_map.get(org_id)
             app_identifier, _ = app_id_map.get(app_id)
             
             if org_identifier and app_identifier:
                 rel_identifier = f"{org_identifier}To{app_identifier[0].upper()}{app_identifier[1:]}"
-                dsl += f'        {rel_identifier} = {org_identifier} -> {app_identifier} "{rel_desc}"\n'
+                # Use qualified identifier: person -> platform.container
+                dsl += f'        {rel_identifier} = {org_identifier} -> {platform_identifier}.{app_identifier} "{rel_desc}"\n'
         
         dsl += '''
         /* ============================================================
@@ -683,28 +711,14 @@ class LeanIXMapper:
         
 '''
         
-        # Add application to application relationships with technology
-        seen_relationships = {}  # Track to detect duplicates
+        # Add application to application relationships with qualified identifiers
         for interface_identifier, provider_id, consumer_id, interface_name, technology in app_relationships:
             provider_identifier, _ = app_id_map.get(provider_id)
             consumer_identifier, _ = app_id_map.get(consumer_id)
             
             if provider_identifier and consumer_identifier:
-                relationship_key = f"{interface_identifier}:{provider_identifier}:{consumer_identifier}"
-                
-                # Check for duplicate relationships
-                if relationship_key in seen_relationships:
-                    print(f"⚠️  WARNING: Duplicate relationship detected!")
-                    print(f"    Identifier: {interface_identifier}")
-                    print(f"    Provider: {provider_identifier}")
-                    print(f"    Consumer: {consumer_identifier}")
-                    print(f"    Name: {interface_name}")
-                    print(f"    First seen: {seen_relationships[relationship_key]}")
-                    print()
-                else:
-                    seen_relationships[relationship_key] = interface_name
-                    # NEW: Use technology field and Integration tag
-                    dsl += f'        {interface_identifier} = {provider_identifier} -> {consumer_identifier} "{interface_name}" "{technology}" "Integration"\n'
+                # Use qualified identifiers: platform.container -> platform.container
+                dsl += f'        {interface_identifier} = {platform_identifier}.{provider_identifier} -> {platform_identifier}.{consumer_identifier} "{interface_name}" "{technology}" "Integration"\n'
         
         dsl += '''        
     }
@@ -739,12 +753,12 @@ class LeanIXMapper:
         all_app_relationships: list,
         used_identifiers: set
     ) -> str:
-        """Generate DSL for multiple platforms in a single workspace."""
+        """Generate DSL for multiple platforms in a single workspace with hierarchical identifiers."""
         
-        # Start DSL
+        # Start DSL with hierarchical identifiers
         dsl = f'''workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {{
 
-    !identifiers flat
+    !identifiers hierarchical
 
     model {{
     
@@ -786,7 +800,7 @@ class LeanIXMapper:
             
             # Add applications for this platform with hosting type
             for app in platform['applications']:
-                # NEW: Use hosting_type from application data
+                # Use hosting_type from application data
                 hosting_type = app.get('hosting_type', '')
                 dsl += f'            {app["identifier"]} = container "{app["name"]}" "{app["desc"]}" "{hosting_type}"\n'
             
@@ -802,11 +816,10 @@ class LeanIXMapper:
         # Track relationship identifiers to prevent duplicates
         relationship_identifiers_used = set()
         
-        # Add person to application relationships (deduplicated)
-        for org_id, app_id, rel_desc in org_to_app_relationships:
+        # Add person to application relationships with qualified identifiers (deduplicated)
+        for org_id, app_id, platform_identifier, rel_desc in org_to_app_relationships:
             org_identifier = org_id_map.get(org_id)
             if app_id in all_applications:
-                # NEW: all_applications now has 5 elements (including hosting_type)
                 app_identifier, _, _, _, _ = all_applications.get(app_id)
                 
                 if org_identifier and app_identifier:
@@ -815,7 +828,8 @@ class LeanIXMapper:
                     # Only add if we haven't seen this relationship identifier before
                     if rel_identifier not in relationship_identifiers_used:
                         relationship_identifiers_used.add(rel_identifier)
-                        dsl += f'        {rel_identifier} = {org_identifier} -> {app_identifier} "{rel_desc}"\n'
+                        # Use qualified identifier: person -> platform.container
+                        dsl += f'        {rel_identifier} = {org_identifier} -> {platform_identifier}.{app_identifier} "{rel_desc}"\n'
         
         dsl += '''
         /* ============================================================
@@ -824,15 +838,14 @@ class LeanIXMapper:
         
 '''
         
-        # Add application to application relationships with technology
+        # Add application to application relationships with qualified identifiers
         for interface_identifier, provider_id, consumer_id, interface_name, technology in all_app_relationships:
             if provider_id in all_applications and consumer_id in all_applications:
-                # NEW: all_applications now has 5 elements (including hosting_type)
-                provider_identifier, _, _, _, _ = all_applications.get(provider_id)
-                consumer_identifier, _, _, _, _ = all_applications.get(consumer_id)
+                provider_identifier, _, provider_platform_id, _, _ = all_applications.get(provider_id)
+                consumer_identifier, _, consumer_platform_id, _, _ = all_applications.get(consumer_id)
                 
-                # NEW: Use technology field and Integration tag
-                dsl += f'        {interface_identifier} = {provider_identifier} -> {consumer_identifier} "{interface_name}" "{technology}" "Integration"\n'
+                # Use qualified identifiers: provider_platform.provider_app -> consumer_platform.consumer_app
+                dsl += f'        {interface_identifier} = {provider_platform_id}.{provider_identifier} -> {consumer_platform_id}.{consumer_identifier} "{interface_name}" "{technology}" "Integration"\n'
         
         dsl += '''        
     }
@@ -857,48 +870,3 @@ class LeanIXMapper:
 }}'''
         
         return dsl
-
-
-def main():
-    """Test the mapper with sample data."""
-    from .client import LeanIXClient
-    
-    print("=" * 70)
-    print("LeanIX to Structurizr Mapper Test")
-    print("=" * 70)
-    print()
-    
-    # Finance Systems Platform ID
-    platform_id = "3f828194-de4a-4dee-9ca6-e071cc2e0eae"
-    
-    print(f"Fetching platform: {platform_id}")
-    client = LeanIXClient()
-    platform_data = client.get_platform_by_id(platform_id)
-    
-    print(f"✓ Fetched: {platform_data.get('displayName')}")
-    print(f"  Type: {platform_data.get('type')}")
-    print(f"  Applications: {len(platform_data.get('relTechPlatformToApplication', {}).get('edges', []))}")
-    print()
-    
-    print("Fetching interfaces...")
-    all_interfaces = client.get_all_interfaces()
-    print(f"✓ Fetched {len(all_interfaces)} interfaces")
-    print()
-    
-    print("Mapping to Structurizr DSL...")
-    mapper = LeanIXMapper()
-    dsl = mapper.map_platform_to_dsl(platform_data, all_interfaces)
-    
-    print("✓ DSL generated")
-    print()
-    print("Preview (first 80 lines):")
-    print("-" * 70)
-    lines = dsl.split('\n')
-    for line in lines[:80]:
-        print(line)
-    print()
-    print("=" * 70)
-
-
-if __name__ == "__main__":
-    main()

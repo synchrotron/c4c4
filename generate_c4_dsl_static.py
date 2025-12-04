@@ -24,7 +24,7 @@ class C4DSLGenerator:
         
         dsl = f'''workspace "{self.workspace_name}" "{self.workspace_description}" {{
 
-    !identifiers flat
+    !identifiers hierarchical
 
     model {{
     
@@ -110,57 +110,57 @@ class C4DSLGenerator:
            RELATIONSHIPS - Finance Platform with Users
            ============================================================ */
         
-        taxTeamToExr = taxTeam -> exr "Tax calculation and reporting"
-        taxTeamToSov = taxTeam -> sov "Tax calculation and reporting"
-        taxTeamToApt = taxTeam -> apt "Tax calculation and reporting"
-        taxTeamToBbp = taxTeam -> bbp "Cash Flow management" "" "API"
-        taxTeamToCmx = taxTeam -> cmx "Cash Flow management" "" "API"
+        taxTeamToExr = taxTeam -> fsp.exr "Tax calculation and reporting"
+        taxTeamToSov = taxTeam -> fsp.sov "Tax calculation and reporting"
+        taxTeamToApt = taxTeam -> fsp.apt "Tax calculation and reporting"
+        taxTeamToBbp = taxTeam -> fsp.bbp "Cash Flow management" "" "API"
+        taxTeamToCmx = taxTeam -> fsp.cmx "Cash Flow management" "" "API"
         
-        sharedServicesTeamToMsc = sharedServicesTeam -> msc "Manages all colleagues spend" "" "API"
-        sharedServicesTeamToTgn = sharedServicesTeam -> tgn "Manages Tungsten billing process" "" "API"
-        sharedServicesTeamToBsw = sharedServicesTeam -> bsw "P2P Process Super User"
+        sharedServicesTeamToMsc = sharedServicesTeam -> fsp.msc "Manages all colleagues spend" "" "API"
+        sharedServicesTeamToTgn = sharedServicesTeam -> fsp.tgn "Manages Tungsten billing process" "" "API"
+        sharedServicesTeamToBsw = sharedServicesTeam -> fsp.bsw "P2P Process Super User"
         
-        allC4ToPjc = allC4 -> pjc "Creates new codes for C4 shows"
-        allC4ToFaf = allC4 -> faf "Submits request for sign-off limit changes"
-        allC4ToBsw = allC4 -> bsw "Create/Approve PO"
-        allC4ToEbs = allC4 -> ebs "Create/Approve Expenses"
+        allC4ToPjc = allC4 -> fsp.pjc "Creates new codes for C4 shows"
+        allC4ToFaf = allC4 -> fsp.faf "Submits request for sign-off limit changes"
+        allC4ToBsw = allC4 -> fsp.bsw "Create/Approve PO"
+        allC4ToEbs = allC4 -> fsp.ebs "Create/Approve Expenses"
         
-        finDeptToSbi = finDept -> sbi "Create and distribute insights"
-        finDeptToEbs = finDept -> ebs "AP/AR/GL operation activities"
+        finDeptToSbi = finDept -> fsp.sbi "Create and distribute insights"
+        finDeptToEbs = finDept -> fsp.ebs "AP/AR/GL operation activities"
         
-        cfTeamToWorkday = comFinTeam -> wda "Produce plans and Budgets"
+        cfTeamToWorkday = comFinTeam -> fsp.wda "Produce plans and Budgets"
         
         /* ============================================================
            RELATIONSHIPS - Finance Platform Applications
            ============================================================ */
         
-        ebsToExr = ebs -> exr "Financial Data" "File" "Integration"
-        ebsToWda = ebs -> wda "Master and Transactional Data" "ERROR: Bi directional!" "Integration"
-        splashToEBS = sbi -> ebs "Database reads" "VPN" "Integration"
-        bswToEbs = bsw -> ebs "Invoicing and Purchasing Master" "Mule" "Integration"
-        fafToEbs = faf -> ebs "Delegated authority submissions" "Hosted" "Integration"
-        pjcToEbs = pjc -> ebs "Project Master Data" "Automate" "Integration"
-        tgnToEbs = tgn -> ebs "Customer Billing Invoice" "Mule" "Integration"
-        ebsToCmx = ebs -> cmx "Financial Transactional Data" "File" "Integration"
-        bbpToEbs = bbp -> ebs "Bank Statements and Payment files" "Automate" "Integration"
-        ebsToApt = ebs -> apt "Financial Transactional Data" "File" "Integration"
-        ebsToSov = ebs -> sov "Financial Transactional Data" "File" "Integration"
+        ebsToExr = fsp.ebs -> fsp.exr "Financial Data" "File" "Integration"
+        ebsToWda = fsp.ebs -> fsp.wda "Master and Transactional Data" "ERROR: Bi directional!" "Integration"
+        splashToEBS = fsp.sbi -> fsp.ebs "Database reads" "VPN" "Integration"
+        bswToEbs = fsp.bsw -> fsp.ebs "Invoicing and Purchasing Master" "Mule" "Integration"
+        fafToEbs = fsp.faf -> fsp.ebs "Delegated authority submissions" "Hosted" "Integration"
+        pjcToEbs = fsp.pjc -> fsp.ebs "Project Master Data" "Automate" "Integration"
+        tgnToEbs = fsp.tgn -> fsp.ebs "Customer Billing Invoice" "Mule" "Integration"
+        ebsToCmx = fsp.ebs -> fsp.cmx "Financial Transactional Data" "File" "Integration"
+        bbpToEbs = fsp.bbp -> fsp.ebs "Bank Statements and Payment files" "Automate" "Integration"
+        ebsToApt = fsp.ebs -> fsp.apt "Financial Transactional Data" "File" "Integration"
+        ebsToSov = fsp.ebs -> fsp.sov "Financial Transactional Data" "File" "Integration"
         
         /* ============================================================
            RELATIONSHIPS - HR Platform with Users
            ============================================================ */
         
-        allC4ToFes = allC4 -> fes "Freelancer requestors"
-        peopleOpsToFes = peopleOps -> fes "Management of freelancer process"
+        allC4ToFes = allC4 -> hrp.fes "Freelancer requestors"
+        peopleOpsToFes = peopleOps -> hrp.fes "Management of freelancer process"
         
         /* ============================================================
            RELATIONSHIPS - HR Platform Applications
            ============================================================ */
         
-        fourPoToWda = fourPo -> wda "Colleague Master Data" "CSV File" "Integration"
-        fesToHnd = fes -> hnd "Freelancer contract data" "Email" "Integration"
-        fesToEbs = fes -> ebs "Project codes" "SFTP" "Integration"
-        hndToEbs = hnd -> ebs "Freelancer Invoice Data" "Email" "Integration"
+        fourPoToWda = hrp.fourPo -> fsp.wda "Colleague Master Data" "CSV File" "Integration"
+        fesToHnd = hrp.fes -> hrp.hnd "Freelancer contract data" "Email" "Integration"
+        fesToEbs = hrp.fes -> fsp.ebs "Project codes" "SFTP" "Integration"
+        hndToEbs = hrp.hnd -> fsp.ebs "Freelancer Invoice Data" "Email" "Integration"
     }}
     
     views {{
@@ -219,7 +219,7 @@ class C4DSLGenerator:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(dsl_content)
         
-        print(f"✓ Generated DSL: {output_file}")
+        print(f"âœ“ Generated DSL: {output_file}")
         return output_file
 
 
@@ -237,17 +237,17 @@ def main():
     
     print()
     print("=" * 70)
-    print("✓ DSL Generation Complete!")
+    print("âœ“ DSL Generation Complete!")
     print("=" * 70)
     print()
     print(f"Output: {output_file}")
     print()
     print("Features:")
-    print("  ✓ Clean identifiers (ebs, wda, fsp, etc.)")
-    print("  ✓ Display names with spaces")
-    print("  ✓ Relationship identifiers for cross-workspace references")
-    print("  ✓ Channel 4 branding (theme, logo, font)")
-    print("  ✓ Custom terminology")
+    print("  âœ“ Clean identifiers (ebs, wda, fsp, etc.)")
+    print("  âœ“ Display names with spaces")
+    print("  âœ“ Relationship identifiers for cross-workspace references")
+    print("  âœ“ Channel 4 branding (theme, logo, font)")
+    print("  âœ“ Custom terminology")
     print()
     print("Next steps:")
     print("  1. Review: cat dsl/c4-core-workspace.dsl")
