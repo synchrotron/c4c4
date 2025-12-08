@@ -7,9 +7,12 @@ the Channel 4 Core workspace DSL with enhanced metadata:
 1. LeanIX URL for each application
 2. Project names as tags (plus 'Impact' tag if projects exist)
 3. SSO perspective for applications with implemented SSO
+4. Category and project tags for persons (teams/organisations)
+5. Project tags for relationships (integrations)
 """
 
 import os
+import re
 from pathlib import Path
 from leanix.client import LeanIXClient
 from leanix.mapper import LeanIXMapper
@@ -93,8 +96,10 @@ def main():
         # Use multi-platform method for all cases (works for single platform too)
         print(f"Generating DSL for {len(platforms_data)} platform(s) with enhancements:")
         print("  - LeanIX URLs for each application")
-        print("  - Project names as tags (+ 'Impact' tag)")
+        print("  - Project names as tags (+ 'Impact' tag) for applications")
         print("  - SSO perspectives for implemented SSO")
+        print("  - Category and project tags for persons")
+        print("  - Project tags for relationships (integrations)")
         dsl = mapper.map_multiple_platforms_to_dsl(platforms_data, all_interfaces)
         
         print("DSL generated successfully")
@@ -123,16 +128,29 @@ def main():
         container_count = dsl.count('container "')
         relationship_count = dsl.count(' -> ')
         url_count = dsl.count('url https://channel4.leanix.net')
-        tag_count = dsl.count('tags "')
+        
+        # Count tags on different element types
+        # Application tags (inside container blocks)
+        app_tag_count = len(re.findall(r'container.*?\{[^}]*tags "[^"]+', dsl, re.DOTALL))
+        
+        # Person tags (inside person blocks)
+        person_tag_count = len(re.findall(r'person.*?\{[^}]*tags "[^"]+', dsl, re.DOTALL))
+        
+        # SSO perspectives
         sso_count = dsl.count('SSO "Authenticated using SSO"')
+        
+        # Relationship tags with Impact (indicating project tags)
+        rel_with_project_count = len(re.findall(r' -> [^"]*"[^"]*"[^"]*"[^"]*Impact', dsl))
         
         print(f"  Teams: {person_count}")
         print(f"  Platforms: {software_system_count}")
         print(f"  Applications: {container_count}")
         print(f"  Relationships: {relationship_count}")
         print(f"  URLs added: {url_count}")
-        print(f"  Applications with project tags: {tag_count}")
+        print(f"  Applications with project tags: {app_tag_count}")
+        print(f"  Persons with tags (category/projects): {person_tag_count}")
         print(f"  Applications with SSO perspective: {sso_count}")
+        print(f"  Relationships with project tags: {rel_with_project_count}")
         
     except Exception as e:
         print(f"Failed to save file: {e}")
@@ -148,8 +166,10 @@ def main():
     print()
     print("Enhancements applied:")
     print("  1. LeanIX URL added to each application")
-    print("  2. Project names added as tags (+ 'Impact' tag)")
+    print("  2. Project names added as tags (+ 'Impact' tag) for applications")
     print("  3. SSO perspective for applications with implemented SSO")
+    print("  4. Category and project tags for persons (excluding 'Team')")
+    print("  5. Project tags for relationships/integrations (+ 'Impact' tag)")
     print()
     print("Next steps:")
     print("  1. Review the generated DSL")

@@ -42,6 +42,16 @@ query GetPlatformById($id: ID!) {
                                                 description
                                                 ... on UserGroup {
                                                     acronym
+                                                    lxCategory
+                                                    relUserGroupToProject {
+                                                        edges {
+                                                            node {
+                                                                factSheet {
+                                                                    name
+                                                                }
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -208,7 +218,7 @@ query GetITComponents($limit: Int!) {
 }
 """
 
-# Query to fetch Interfaces (Data Flows)
+# Query to fetch Interfaces (Data Flows) with projects
 GET_INTERFACES = """
 query GetInterfaces($limit: Int!) {
     allFactSheets(factSheetType: Interface, first: $limit) {
@@ -251,6 +261,15 @@ query GetInterfaces($limit: Int!) {
                                     id
                                     name
                                     displayName
+                                }
+                            }
+                        }
+                    }
+                    relInterfaceToProject {
+                        edges {
+                            node {
+                                factSheet {
+                                    name
                                 }
                             }
                         }
@@ -340,7 +359,7 @@ query GetApplicationsWithRelations($limit: Int!) {
 }
 """
 
-# Query to fetch TechPlatforms by tag
+# Query to fetch TechPlatforms by tag with category and projects for UserGroups
 GET_PLATFORMS_BY_TAG = """
 query GetAllPlatforms($limit: Int!) {
     allFactSheets(
@@ -386,8 +405,18 @@ query GetAllPlatforms($limit: Int!) {
                                                         name
                                                         displayName
                                                         description
+                                                        category
                                                         ... on UserGroup {
-                                                            acronym
+                                                            acronym   
+                                                            relUserGroupToProject {
+                                                                edges {
+                                                                    node {
+                                                                        factSheet {
+                                                                            name
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }

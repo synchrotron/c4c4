@@ -5,6 +5,8 @@ Maps LeanIX fact sheets to Structurizr DSL format with enhancements:
 1. URL property for each container pointing to LeanIX
 2. Project names as tags (plus 'Impact' tag if projects exist)
 3. SSO perspective for containers with implemented SSO
+4. Category and project tags for persons
+5. Project tags for relationships (integrations)
 """
 
 import re
@@ -231,6 +233,83 @@ class LeanIXMapper:
         
         return metadata
     
+    def _extract_organisation_metadata(self, org: dict) -> dict:
+        """
+        Extract metadata from organisation (UserGroup) for DSL enhancements.
+        
+        Returns dict with:
+        - category: Organisation category (excluding 'Team')
+        - tags: List of tag names (category + project names + 'Impact' if projects exist)
+        
+        Args:
+            org: UserGroup fact sheet from LeanIX
+            
+        Returns:
+            Dictionary with extracted metadata
+        """
+        metadata = {
+            'category': '',
+            'tags': []
+        }
+        
+        tags_list = []
+        
+        # 1. Extract category (excluding 'Team')
+        category = org.get('category', '')
+        if category and category.strip():
+            clean_category = category.strip()
+            # Exclude 'Team' as a category tag
+            if clean_category.lower() != 'team':
+                metadata['category'] = clean_category
+                tags_list.append(clean_category)
+        
+        # 2. Extract project names as tags
+        projects_edges = org.get('relUserGroupToProject', {}).get('edges', [])
+        project_names = []
+        for edge in projects_edges:
+            project_fact_sheet = edge.get('node', {}).get('factSheet', {})
+            project_name = project_fact_sheet.get('name')
+            if project_name:
+                project_names.append(project_name)
+        
+        # Add project names
+        tags_list.extend(project_names)
+        
+        # Add 'Impact' tag if projects exist
+        if project_names:
+            tags_list.append('Impact')
+        
+        metadata['tags'] = tags_list
+        
+        return metadata
+    
+    def _extract_interface_project_tags(self, interface: dict) -> list:
+        """
+        Extract project names from interface for relationship tags.
+        
+        Args:
+            interface: Interface fact sheet from LeanIX
+            
+        Returns:
+            List of project names + 'Impact' if projects exist
+        """
+        tags = []
+        
+        # Extract project names
+        projects_edges = interface.get('relInterfaceToProject', {}).get('edges', [])
+        project_names = []
+        for edge in projects_edges:
+            project_fact_sheet = edge.get('node', {}).get('factSheet', {})
+            project_name = project_fact_sheet.get('name')
+            if project_name:
+                project_names.append(project_name)
+        
+        # Add project names and 'Impact' tag if projects exist
+        if project_names:
+            tags = project_names + ['Impact']
+        
+        return tags
+    
     def _format_container_line(self, identifier: str, name: str, desc: str, 
                                hosting_type: str, metadata: dict) -> str:
         """
@@ -281,6 +360,52 @@ class LeanIXMapper:
         
         return line
     
+    def _format_person_line(self, identifier: str, name: str, desc: str, 
+                            metadata: dict) -> str:
+        """
+        Format a person line with optional tags block.
+        
+        Args:
+            identifier: Person identifier
+            name: Person name
+            desc: Person description
+            metadata: Dictionary with category and tags
+            
+        Returns:
+            Formatted DSL line for the person
+        """
+        # Base person definition
+        desc_str = f' "{desc}"' if desc else ' ""'
+        
+        tags = metadata.get('tags', [])
+        
+        if not tags:
+            # Simple person with no tags
+            return f'{identifier} = person "{name}"{desc_str}'
+        
+        # Person with tags block
+        tags_str = ','.join(tags)
+        line = f'{identifier} = person "{name}"{desc_str} {{\n'
+        line += f'            tags "{tags_str}"\n'
+        line += '        }'
+        
+        return line
+    
+    def _format_relationship_tags(self, base_tags: list, project_tags: list) -> str:
+        """
+        Format relationship tags string combining base tags with project tags.
+        
+        Args:
+            base_tags: Base tags (e.g., ['Integration'])
+            project_tags: Project tags from interface
+            
+        Returns:
+            Comma-separated tags string
+        """
+        all_tags = list(base_tags)  # Copy base tags
+        all_tags.extend(project_tags)
+        return ','.join(all_tags)
+    
     def _print_duplicate_warnings(self):
         """Print warnings about duplicate acronyms only (no missing acronym warnings)."""
         if self.duplicate_acronyms:
@@ -322,7 +447,7 @@ class LeanIXMapper:
         # Collect all platforms with their data
         all_platforms = []
         all_applications = {}  # app_id -> (app_identifier, app_name, platform_identifier, app_desc, hosting_type, metadata)
-        all_organizations = {}  # org_id -> (org_display_name, org_name, org_desc, org_acronym)
+        all_organizations = {}  # org_id -> (org_display_name, org_name, org_desc, org_acronym, org_metadata)
         all_org_to_app_relationships = []
         
         # Process each platform
@@ -411,9 +536,12 @@ class LeanIXMapper:
                         org_desc = self._clean_description(org.get('description', ''))
                         org_acronym = org.get('acronym')
                         
+                        # Extract organisation metadata (category and projects)
+                        org_metadata = self._extract_organisation_metadata(org)
+                        
                         # Store organisation (only if new)
                         if org_id not in all_organizations:
-                            all_organizations[org_id] = (org_display_name, org_name, org_desc, org_acronym)
+                            all_organizations[org_id] = (org_display_name, org_name, org_desc, org_acronym, org_metadata)
                         
                         # Store relationship with cleaned description from node
                         # Include platform_identifier for qualified references
@@ -437,6 +565,9 @@ class LeanIXMapper:
             it_components_edges = interface.get('relInterfaceToITComponent', {}).get('edges', [])
             it_components = [edge.get('node', {}).get('factSheet', {}) for edge in it_components_edges]
             technology = self._extract_technology_from_components(it_components)
+            
+            # Extract project tags for the interface
+            interface_project_tags = self._extract_interface_project_tags(interface)
             
             # Get base identifier from acronym
             base_interface_identifier = self._get_identifier_from_acronym(
@@ -479,7 +610,8 @@ class LeanIXMapper:
                             provider_id,
                             consumer_id,
                             interface_name,
-                            technology
+                            technology,
+                            interface_project_tags
                         ))
         
         # Generate DSL with all platforms
@@ -525,9 +657,9 @@ class LeanIXMapper:
         
 '''
         
-        # Add organisations as persons using acronyms
+        # Add organisations as persons using acronyms with metadata (category and project tags)
         org_id_map = {}
-        for org_id, (org_display_name, org_name, org_desc, org_acronym) in organizations.items():
+        for org_id, (org_display_name, org_name, org_desc, org_acronym, org_metadata) in organizations.items():
             # Get identifier from acronym
             # Use org_name (not display_name) for acronym generation to avoid prefixes
             org_identifier = self._get_identifier_from_acronym(
@@ -538,8 +670,10 @@ class LeanIXMapper:
             )
             
             org_id_map[org_id] = org_identifier
-            desc_str = f' "{org_desc}"' if org_desc else ' ""' 
-            dsl += f'        {org_identifier} = person "{org_name}"{desc_str}\n'
+            
+            # Format person line with tags
+            person_line = self._format_person_line(org_identifier, org_name, org_desc, org_metadata)
+            dsl += f'        {person_line}\n'
         
         # Add each platform as a software system
         for platform in all_platforms:
@@ -597,14 +731,17 @@ class LeanIXMapper:
         
 '''
         
-        # Add application to application relationships with qualified identifiers
-        for interface_identifier, provider_id, consumer_id, interface_name, technology in all_app_relationships:
+        # Add application to application relationships with qualified identifiers and project tags
+        for interface_identifier, provider_id, consumer_id, interface_name, technology, project_tags in all_app_relationships:
             if provider_id in all_applications and consumer_id in all_applications:
                 provider_identifier, _, provider_platform_id, _, _, _ = all_applications.get(provider_id)
                 consumer_identifier, _, consumer_platform_id, _, _, _ = all_applications.get(consumer_id)
                 
+                # Build relationship tags: Integration + project tags
+                relationship_tags = self._format_relationship_tags(['Integration'], project_tags)
+                
                 # Use qualified identifiers: provider_platform.provider_app -> consumer_platform.consumer_app
-                dsl += f'        {interface_identifier} = {provider_platform_id}.{provider_identifier} -> {consumer_platform_id}.{consumer_identifier} "{interface_name}" "{technology}" "Integration"\n'
+                dsl += f'        {interface_identifier} = {provider_platform_id}.{provider_identifier} -> {consumer_platform_id}.{consumer_identifier} "{interface_name}" "{technology}" "{relationship_tags}"\n'
         
         dsl += '''        
     }
@@ -625,6 +762,12 @@ class LeanIXMapper:
             logo {self.logo_url}
             font "{self.font_name}" {self.font_url}
         }}
+
+        systemLandscape c4_landscape "Landscape diagram of all platforms and users" {{
+            include *
+            
+        }}
+
     }}
 }}'''
         

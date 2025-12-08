@@ -14,10 +14,16 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         cse = person "Client Sales & Engagement" ""
         part = person "Partnerships" ""
-        so = person "Sales Operations" "Sales Operations handle the content supply chain for commercial content and plan placements withi..."
-        agen = person "Agency" ""
+        so = person "Sales Operations" "Sales Operations handle the content supply chain for commercial content and plan placements withi..." {
+            tags "businessUnit,Data Clean Room,Impact"
+        }
+        agen = person "Agency" "" {
+            tags "customer"
+        }
         bt = person "Broadcast Technology" ""
-        av = person "AV" ""
+        av = person "AV" "" {
+            tags "businessUnit"
+        }
         at = person "Ad Tech" ""
         camp = person "Campaign" ""
         traf = person "Traffic" ""
@@ -28,57 +34,97 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         aiX = person "Audience Integration" ""
         clac = person "Corporate Legal and Compliance" "Sub-team of Commercial Affairs that handle legal and compliance for all our content. Assigning ce..."
         cd = person "Content Delivery" ""
-        4stu = person "4Studio" ""
-        prod = person "Product" ""
+        4stu = person "4Studio" "" {
+            tags "businessUnit"
+        }
+        prod = person "Product" "" {
+            tags "businessUnit"
+        }
         pp = person "Partner Platform" "User group to describe partner platforms such as DUK, Youview or Sky"
         pi = person "Programme Information" "Programme Information provide distinctive, top quality, informative copy with the relevant tone o..."
         co = person "Commissioning Office" ""
         prodX = person "Producer" ""
-        ca = person "Commercial Affairs" "The commercial affairs teams handle entitlements and agreements, including rights) with out conte..."
+        ca = person "Commercial Affairs" "The commercial affairs teams handle entitlements and agreements, including rights) with out conte..." {
+            tags "businessUnit"
+        }
         cspX = person "Content Strategy & Planning" "The Content Strategy team plans exhibition windows for our content on linear and non-linear using..."
         yad = person "Youth and Digital" ""
-        cm = person "Content Management" "Technical and business team that handle content media supply chain."
-        ccf = person "Finance" ""
-        sci = person "Strategy & Consumer Insight" ""
+        cm = person "Content Management" "Technical and business team that handle content media supply chain." {
+            tags "businessUnit"
+        }
+        ccf = person "Finance" "" {
+            tags "businessUnit,Corporate Integration,Finance & People Transformation,Transactional Reporting Solution,Impact"
+        }
+        sci = person "Strategy & Consumer Insight" "" {
+            tags "businessUnit"
+        }
         mark = person "Marketing" ""
-        inno = person "Innovation" ""
+        inno = person "Innovation" "" {
+            tags "businessUnit"
+        }
         daf = person "Daytime and Features" ""
         dram = person "Drama" ""
         fact = person "Factual" ""
         fe = person "Factual Entertainment" ""
         ncas = person "News, Current Affairs & Sport" ""
-        f4 = person "Film 4" ""
+        f4 = person "Film 4" "" {
+            tags "businessUnit"
+        }
         ba = person "Business Affairs" ""
         come = person "Comedy" ""
         coX = person "Commissioning Operations" ""
         ente = person "Entertainment" ""
         dd = person "Duty Desk" "Team that handles live content operations for our linear channels."
-        peop = person "People" ""
-        mve = person "MVE" ""
-        4cre = person "4Creative" "Creative Team that creates new content for Channel 4."
-        commX = person "Commercial" ""
+        peop = person "People" "" {
+            tags "businessUnit"
+        }
+        mve = person "MVE" "" {
+            tags "businessUnit"
+        }
+        4cre = person "4Creative" "Creative Team that creates new content for Channel 4." {
+            tags "businessUnit"
+        }
+        commX = person "Commercial" "" {
+            tags "businessUnit"
+        }
         pf = person "Production Finance" ""
         paa = person "Programmatic and Audience" ""
         ds = person "Data Science" ""
         ar = person "Audience Research" ""
-        tech = person "Technology" ""
+        tech = person "Technology" "" {
+            tags "businessUnit"
+        }
         digi = person "Digital" ""
         dm = person "Digital Marketing" ""
-        insi = person "Insights" ""
-        c4 = person "Channel 4" ""
-        ccfrss = person "Shared Services" "Team responsible for any financial transactional incoming and outgoing payment processing. Typica..."
+        insi = person "Insights" "" {
+            tags "Customer Journey Analytics (CJA),Impact"
+        }
+        c4 = person "Channel 4" "" {
+            tags "legalEntity,Finance & People Transformation,Impact"
+        }
+        ccfrss = person "Shared Services" "Team responsible for any financial transactional incoming and outgoing payment processing. Typica..." {
+            tags "Finance & People Transformation,Impact"
+        }
         cpX = person "Consumer Product" ""
         dmp = person "Digital Marketing (Product)" ""
-        cc = person "Content & Commissioning" ""
-        corp = person "Corporate" ""
+        cc = person "Content & Commissioning" "" {
+            tags "businessUnit"
+        }
+        corp = person "Corporate" "" {
+            tags "businessUnit"
+        }
         er = person "Employee Relations" ""
         ct = person "Corporate Technology" ""
         lad = person "Learning and Development" ""
         proc = person "Procurement" ""
         clg = person "Corporate Legal & Governance" ""
-        view = person "Viewer" ""
+        view = person "Viewer" "" {
+            tags "customer"
+        }
         a4e = person "All 4 Editorial" ""
-        gs = person "Growth (Subscriptions)" ""
+        gs = person "Growth (Subscriptions)" "" {
+            tags "Customer Journey Analytics (CJA),Impact"
+        }
         fm = person "Facilities Management" ""
 
         /* ============================================================
@@ -111,7 +157,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             stel = container "Stellar" "Channel4's Sales Order Processing System" "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/36680d73-914e-4f57-a8f3-bffe87a2d6c1
-                tags "Interstellar,Impact"
+                tags "Corporate Integration,Interstellar,Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
                 }
@@ -171,6 +217,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             pira = container "Pirate" "Pirate is a collection of applications used by various departments. Commercial affairs (business ..." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f694fb3d-6a3b-4776-a5d8-21d9b500714c
+                tags "Corporate Integration,Impact"
             }
             p4ws = container "4Producers (Web Site)" "eCommissioning system. Allows C4 to engage with Production companies for Production companies to ..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/8d36fa1b-3ca6-46a5-bb77-a01cbd833667
@@ -389,10 +436,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             bdn = container "Barclays.Net" "Barclays service used to download statements." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c0756e2e-be6f-4529-8838-1bc4303dcb8e
+                tags "Corporate Integration,Impact"
             }
             bsw = container "Basware" "Enterprise software for financial processes, purchase to pay and financial management. Manage Inv..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/61ea2036-2682-4999-8a2b-b56a8ff60aa8
-                tags "Finance & People Transformation,Impact"
+                tags "Corporate Integration,Finance & People Transformation,Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
                 }
@@ -413,6 +461,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             msc = container "Mastercard" "" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/919c5f9f-50b8-4f2a-9b26-9b9a15797da8
+                tags "Corporate Integration,Impact"
             }
             odf = container "Oracle eBS Excel data files" "These are a collection of manually generated .xslx files out of Oracle e-Business that contain va..." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f0563f84-f115-450b-be67-db6c545c38b5
@@ -604,6 +653,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             
             come = container "COMET" "Channel 4 International and National Rights Licencing Software used by Channel 4 to manage Films ..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/438491d8-6ce7-4d3a-b2c4-5aaf31fef29f
+                tags "Corporate Integration,Impact"
             }
             eps = container "Exclusivity Payment Schedules" "Contains payment details due to the artist for an exclusivity deal" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/490fbd9b-4ad9-4cd7-9fad-ae62d3dc1e2b
@@ -613,6 +663,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             pap = container "Artist Payments" "Application for reporting artist royalties" "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fde00f48-6c5b-4dce-852a-1e14887fcc78
+                tags "Corporate Integration,Impact"
             }
             pris = container "Royalties Income system" "Manages the Statements and chasing of Statements to ensure Royalties owed to Channel 4 are tracke..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9b4214f2-0398-428e-814e-83cd8e3a8be3
@@ -1205,13 +1256,13 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         atsfasdf = sp.pass -> cp.stel "A55 to Stellar for Advanced Schedule data flow" "SFTP" "Integration"
         aptf = psp.acti -> fsp.wda "Active Pay to Financial Planning" "Mule" "Integration"
         atoe = psp.acti -> fsp.ebs "ActivPay to Oracle EBS" "Mule" "Integration"
-        asstc = vsp.yosp -> vsp.c4sl "Ad Serving System to C4S" "Alternative" "Integration"
+        asstc = vsp.yosp -> vsp.c4sl "Ad Serving System to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
         aate = dap.wa -> dap.cedw "Adobe Analytics to EDW" "Alternative" "Integration"
         apffpfb = cp.ap -> bms.pbm "Agency Portal fetch from Pirate for Brand" "Mule" "Integration"
         apffsfp = cp.ap -> cp.stel "Agency Portal fetch from Stellar for Programme" "Mule" "Integration"
         apfsfpyot = cp.ap -> cp.stel "Agency Portal from Stellar for Pick Your Own transmission" "Mule" "Integration"
         ai = csp.pcc -> rsp.prrs "Agreement Information" "Alternative" "Integration"
-        ap = rsp.sd -> rsp.pap "Artist payments" "Automate" "Integration"
+        ap = rsp.sd -> rsp.pap "Artist payments" "Automate" "Integration,Corporate Integration,Impact"
         adaa = bms.asp -> mmp.msp "ASP Delivery Acknowledgment API" "Alternative" "Integration"
         alsstl = lpp.lsp -> bms.asp "ASP live subtitle streams to LSP" "Alternative" "Integration"
         allsfl = bms.asp -> lpp.lsp "ASP low latency stream from LSP" "Alternative" "Integration"
@@ -1220,54 +1271,54 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         asfp = bms.asp -> bms.pira "ASP Schedule from Pirate" "Alternative" "Integration"
         assmfd = bms.asp -> mmp.msp "ASP Signer Source Media File Delivery" "Alternative" "Integration"
         avcmfd = bms.asp -> mmp.msp "ASP Viewing Copy Media File Delivery" "Alternative" "Integration"
-        asaltf = cp.fsh -> dap.as "Audience Segments and Lookalikes to Freewheel" "Alternative" "Integration"
+        asaltf = cp.fsh -> dap.as "Audience Segments and Lookalikes to Freewheel" "Alternative" "Integration,Streaming Transformation Program,Impact"
         bwpfo = fsp.ebs -> fsp.bbp "BACS & Wire Payments File Out" "Automate" "Integration"
         brdte = dap.barb -> dap.cedw "BARB ratings data to EDW" "SFTP" "Integration"
         btsfau = dap.barb -> cp.stel "BARB to Stellar for Audience Universe" "SFTP" "Integration"
         btsfi = dap.barb -> cp.stel "BARB to Stellar for Impacts" "SFTP" "Integration"
-        bpsri = fsp.bbp -> fsp.ebs "Barclay Payment Statement Receipt In" "Automate" "Integration"
-        bsi = fsp.bbp -> fsp.ebs "Barclay Statement In" "Automate" "Integration"
-        bbdc = fsp.ebs -> fsp.bsw "Basware Business Department Codes" "Alternative" "Integration"
-        bcer = fsp.ebs -> fsp.bsw "Basware Currency Exchange Rates" "Alternative" "Integration"
-        bglcvr = fsp.ebs -> fsp.bsw "Basware GL Cross Validation Rules" "Alternative" "Integration"
-        bglnc = fsp.ebs -> fsp.bsw "Basware GL Nominal Codes" "Alternative" "Integration"
-        bic = fsp.ebs -> fsp.bsw "Basware Individual Codes" "Alternative" "Integration"
-        bis = fsp.bsw -> fsp.ebs "Basware Invoice Statuses" "Alternative" "Integration"
-        bpvpci = fsp.ebs -> fsp.bsw "Basware Payments/Void Payments/Cancelled Invoices" "Alternative" "Integration"
-        bpcc = fsp.ebs -> fsp.bsw "Basware Pirate Code Combinations" "Alternative" "Integration"
-        bprodc = fsp.ebs -> fsp.bsw "Basware Product Codes" "Alternative" "Integration"
-        bprojc = fsp.ebs -> fsp.bsw "Basware Project Codes" "Alternative" "Integration"
-        bws = fsp.ebs -> fsp.bsw "Basware Suppliers" "Alternative" "Integration"
-        b2ebs = fsp.bsw -> fsp.ebs "Basware to EBS for Approved Invoices" "Automate" "Integration"
-        b2sbi = fsp.bsw -> fsp.ebs "Basware to SplashBI (Oracle eBS Schema)" "Alternative" "Integration"
-        b2sbi2 = fsp.bsw -> fsp.sbi "Basware to SplashBI (Oracle eBS Schema)" "Alternative" "Integration"
-        bur = fsp.ebs -> fsp.bsw "Basware User Rights" "Alternative" "Integration"
-        buriu = fsp.ebs -> fsp.bsw "Basware User Rights (Inactive users)" "Alternative" "Integration"
-        bta = psp.acti -> psp.bp "Benefits to Actvipay" "Alternative" "Integration"
+        bpsri = fsp.bbp -> fsp.ebs "Barclay Payment Statement Receipt In" "Automate" "Integration,Corporate Integration,Impact"
+        bsi = fsp.bbp -> fsp.ebs "Barclay Statement In" "Automate" "Integration,Corporate Integration,Impact"
+        bbdc = fsp.ebs -> fsp.bsw "Basware Business Department Codes" "Alternative" "Integration,Corporate Integration,Impact"
+        bcer = fsp.ebs -> fsp.bsw "Basware Currency Exchange Rates" "Alternative" "Integration,Corporate Integration,Impact"
+        bglcvr = fsp.ebs -> fsp.bsw "Basware GL Cross Validation Rules" "Alternative" "Integration,Corporate Integration,Impact"
+        bglnc = fsp.ebs -> fsp.bsw "Basware GL Nominal Codes" "Alternative" "Integration,Corporate Integration,Impact"
+        bic = fsp.ebs -> fsp.bsw "Basware Individual Codes" "Alternative" "Integration,Corporate Integration,Impact"
+        bis = fsp.bsw -> fsp.ebs "Basware Invoice Statuses" "Alternative" "Integration,Corporate Integration,Impact"
+        bpvpci = fsp.ebs -> fsp.bsw "Basware Payments/Void Payments/Cancelled Invoices" "Alternative" "Integration,Corporate Integration,Impact"
+        bpcc = fsp.ebs -> fsp.bsw "Basware Pirate Code Combinations" "Alternative" "Integration,Corporate Integration,Impact"
+        bprodc = fsp.ebs -> fsp.bsw "Basware Product Codes" "Alternative" "Integration,Corporate Integration,Impact"
+        bprojc = fsp.ebs -> fsp.bsw "Basware Project Codes" "Alternative" "Integration,Corporate Integration,Impact"
+        bws = fsp.ebs -> fsp.bsw "Basware Suppliers" "Alternative" "Integration,Corporate Integration,Impact"
+        b2ebs = fsp.bsw -> fsp.ebs "Basware to EBS for Approved Invoices" "Automate" "Integration,Corporate Integration,Impact"
+        b2sbi = fsp.bsw -> fsp.ebs "Basware to SplashBI (Oracle eBS Schema)" "Alternative" "Integration,Corporate Integration,Impact"
+        b2sbi2 = fsp.bsw -> fsp.sbi "Basware to SplashBI (Oracle eBS Schema)" "Alternative" "Integration,Corporate Integration,Impact"
+        bur = fsp.ebs -> fsp.bsw "Basware User Rights" "Alternative" "Integration,Corporate Integration,Impact"
+        buriu = fsp.ebs -> fsp.bsw "Basware User Rights (Inactive users)" "Alternative" "Integration,Corporate Integration,Impact"
+        bta = psp.acti -> psp.bp "Benefits to Actvipay" "Alternative" "Integration,Review Benefits Portal,Impact"
         bdte = cp.stel -> dap.cedw "Budget data to EDW" "Alternative" "Integration"
-        btmii = sp.mod -> bms.bynd "Bynder to MediaGenix Image Integration" "Alternative" "Integration"
-        btmitc = sp.mod -> bms.bynd "Bynder to MediaGenix Image Tagging Changes" "Alternative" "Integration"
+        btmii = sp.mod -> bms.bynd "Bynder to MediaGenix Image Integration" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        btmitc = sp.mod -> bms.bynd "Bynder to MediaGenix Image Tagging Changes" "Alternative" "Integration,Streaming Transformation Program,Impact"
         chptpr = psp.er -> dap.bor "C4 HR & Payroll to PowerBI Reporting" "Mule" "Integration"
-        4io = fsp.ebs -> rsp.come "C4 intl overages" "SFTP" "Integration"
+        4io = fsp.ebs -> rsp.come "C4 intl overages" "SFTP" "Integration,Corporate Integration,Impact"
         cptyfa = vsp.yosp -> cp.stel "C4 Promo to YoSpace for Advertisements" "Mule" "Integration"
         4vatr = fsp.sov -> fsp.ebs "C4 VAT Returns" "Alternative" "Integration"
-        cbsdte = vsp.sm -> dap.cedw "C4S Braintree Subscriber data to EDW" "Alternative" "Integration"
-        cetf = vsp.free -> sp.pepl "C4S EPG to Freely" "Alternative" "Integration"
-        cete = vsp.mpar -> dap.cedw "C4S Events to EDW" "Alternative" "Integration"
-        cfvetba = vsp.ova -> vsp.free "C4S Freely Video Events to BitMovin Analytics" "Alternative" "Integration"
-        cfvsfc = vsp.cdna -> vsp.free "C4S Freely Video Stream from CDN" "Alternative" "Integration"
-        cmifc = vsp.cdna -> sp.mod "C4S MoD Images from CDN" "Alternative" "Integration"
-        cqte = vsp.ova -> dap.cedw "C4S QoS to EDW" "Alternative" "Integration"
-        csty = vsp.yosp -> bms.osp "C4S Streams to YoSpace" "Alternative" "Integration"
-        ctaa = dap.wa -> vsp.c4sl "C4S to Adobe Analytics" "Alternative" "Integration"
-        ctb = dap.barb -> vsp.c4sl "C4S to BARB" "Alternative" "Integration"
-        ctc7t = vsp.c4sl -> bms.c7t "C4S to C4 7A Titles" "Alternative" "Integration"
-        ctlvs = lpp.lsp -> vsp.c4sl "C4S to Licence Validation Service" "Alternative" "Integration"
-        ctsma = vsp.sm -> vsp.c4sl "C4S to Subscription Management (Aptitude)" "Alternative" "Integration"
-        ctt-ue = vsp.thin -> vsp.c4sl "C4S to ThinkAnalytics - User Events" "Alternative" "Integration"
+        cbsdte = vsp.sm -> dap.cedw "C4S Braintree Subscriber data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        cetf = vsp.free -> sp.pepl "C4S EPG to Freely" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        cete = vsp.mpar -> dap.cedw "C4S Events to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        cfvetba = vsp.ova -> vsp.free "C4S Freely Video Events to BitMovin Analytics" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        cfvsfc = vsp.cdna -> vsp.free "C4S Freely Video Stream from CDN" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        cmifc = vsp.cdna -> sp.mod "C4S MoD Images from CDN" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        cqte = vsp.ova -> dap.cedw "C4S QoS to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        csty = vsp.yosp -> bms.osp "C4S Streams to YoSpace" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ctaa = dap.wa -> vsp.c4sl "C4S to Adobe Analytics" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ctb = dap.barb -> vsp.c4sl "C4S to BARB" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ctc7t = vsp.c4sl -> bms.c7t "C4S to C4 7A Titles" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ctlvs = lpp.lsp -> vsp.c4sl "C4S to Licence Validation Service" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ctsma = vsp.sm -> vsp.c4sl "C4S to Subscription Management (Aptitude)" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ctt-ue = vsp.thin -> vsp.c4sl "C4S to ThinkAnalytics - User Events" "Alternative" "Integration,Streaming Transformation Program,Impact"
         ctetaa = dap.wa -> vsp.mpar "C4S Tracking Events to Adobe Analytics" "Alternative" "Integration"
-        ctetm = vsp.mpar -> vsp.c4sl "C4S Tracking Events to mParticle" "Alternative" "Integration"
-        cvmtf = vsp.free -> sp.mod "C4S VoD Metadata to Freely" "Alternative" "Integration"
+        ctetm = vsp.mpar -> vsp.c4sl "C4S Tracking Events to mParticle" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        cvmtf = vsp.free -> sp.mod "C4S VoD Metadata to Freely" "Alternative" "Integration,Streaming Transformation Program,Impact"
         c4st = mp.po -> mp.po "C4STELLARPROMO" "Alternative" "Integration"
         c4st2 = mp.po -> cp.stel "C4STELLARPROMO" "Alternative" "Integration"
         caapfsfd = cp.ap -> cp.stel "CARIA and Agency Portal from Stellar for Deals" "Mule" "Integration"
@@ -1277,10 +1328,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         cro2c = fsp.ebs -> rsp.come "Cash Receipts from Oracle to Comet" "Alternative" "Integration"
         ctt = bms.pcgs -> bms.ptis "CGS to TIS2" "Alternative" "Integration"
         c4itr = mmp.msp -> mmp.pmm "Channel 4 Interstitals to RedBee" "Mule" "Integration"
-        c4srtb = mp.braz -> vsp.c4sl "Channel 4 Streaming Recommendations to Braze" "Alternative" "Integration"
+        c4srtb = mp.braz -> vsp.c4sl "Channel 4 Streaming Recommendations to Braze" "Alternative" "Integration,Streaming Transformation Program,Impact"
         c4tpt = mmp.msp -> bms.asp "Channel 4 to PFT token" "Mule" "Integration"
-        crbtas = dap.as -> dap.dcri "Clean Room (Brandm4tch) to Audience Segmentation" "Alternative" "Integration"
-        crbtas2 = dap.as -> dap.dcrs "Clean Room (Brandm4tch) to Audience Segmentation" "Alternative" "Integration"
+        crbtas = dap.as -> dap.dcri "Clean Room (Brandm4tch) to Audience Segmentation" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        crbtas2 = dap.as -> dap.dcrs "Clean Room (Brandm4tch) to Audience Segmentation" "Alternative" "Integration,Streaming Transformation Program,Impact"
         ctsfcci = cp.fsh -> cp.stel "Clearcast to Stellar for Copy Clearance Information" "Mule" "Integration"
         ctf = cp.fsh -> bms.cmt "CMT to Freewheel" "Alternative" "Integration"
         ctp = bms.pira -> bms.cmt "CMT to Pirate" "Mule" "Integration"
@@ -1296,9 +1347,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ctll = psp.tlh -> psp.ll "Cornerstone to LinkedIn Learning" "Alternative" "Integration"
         epct = psp.fes -> fsp.ebs "EBS project codes to FES" "Alternative" "Integration"
         et4f = psp.4peo -> fsp.ebs "EBS to 4People for Employees" "Alternative" "Integration"
-        ebstrd = fsp.ebs -> fsp.bsw "EBS to Basware for Reference & Transactional data" "Alternative" "Integration"
+        ebstrd = fsp.ebs -> fsp.bsw "EBS to Basware for Reference & Transactional data" "Alternative" "Integration,Corporate Integration,Impact"
         etcf = rsp.come -> fsp.ebs "EBS to Comet for Cash Receipts" "SFTP" "Integration"
-        ebsmc = fsp.msc -> fsp.ebs "EBS to Mastercard for Employee credit card transactions" "Alternative" "Integration"
+        ebsmc = fsp.msc -> fsp.ebs "EBS to Mastercard for Employee credit card transactions" "Alternative" "Integration,Corporate Integration,Impact"
         ebspir = fsp.ebs -> rsp.come "EBS to Pirate (Comet Flim4)" "Automate, SFTP" "Integration"
         ebsstr = fsp.ebs -> cp.stel "EBS to Stellar Daily exchange rate (in) Invoices (out)" "Alternative" "Integration"
         ebscex = fsp.ebs -> cp.stel "EBS to Stellar for Currency Exchange" "SFTP" "Integration"
@@ -1306,13 +1357,13 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         e4ti = dap.dcri -> dap.cedw "EDW 4 to Infosum" "Alternative" "Integration"
         emcstmdf = dap.df -> dap.cedw "EDW Marketing Campaign Snapshots to Microsoft Data Fabric" "Alternative" "Integration"
         emctmdf = dap.df -> dap.cedw "EDW Marketing Campaign to Microsoft Data Fabric" "Alternative" "Integration"
-        esitb = mp.braz -> dap.cedw "EDW Streaming Identity to Braze" "Alternative" "Integration"
+        esitb = mp.braz -> dap.cedw "EDW Streaming Identity to Braze" "Alternative" "Integration,Streaming Transformation Program,Impact"
         etdf-sd = dap.df -> dap.cedw "EDW to  Data Fabric - Spots data" "Alternative" "Integration"
         etapsp = dap.cedw -> rsp.pap "EDW to Artist Payment Systems (Pirate)" "Alternative" "Integration"
         etb = mp.braz -> dap.cedw "EDW to Braze" "Alternative" "Integration"
         etm-ipcau = dap.cedw -> dap.as "EDW to Mediarithmics - Instream Promo Control Audience Upload" "Alternative" "Integration"
-        etm-sud = dap.as -> dap.cedw "EDW to Mediarithmics - Streaming User Data" "Alternative" "Integration"
-        ett-v = vsp.thin -> dap.cedw "EDW to ThinkAnalytics - Viewers" "Alternative" "Integration"
+        etm-sud = dap.as -> dap.cedw "EDW to Mediarithmics - Streaming User Data" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ett-v = vsp.thin -> dap.cedw "EDW to ThinkAnalytics - Viewers" "Alternative" "Integration,Streaming Transformation Program,Impact"
         etdftp = dap.cedw -> bms.pira "EDW TX data feed to Pirate" "Alternative" "Integration"
         fgl = bms.pira -> fsp.ebs "Failed GL lines" "Alternative" "Integration"
         fvte = cp.fsh -> dap.cedw "Feewheel v4logs to EDW" "Alternative" "Integration"
@@ -1325,31 +1376,31 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ftsvvfcsap = cp.fsh -> cp.stel "Freewheel to Stellar VoD Views for Commercial, Sponsorship and Promotions" "SFTP" "Integration"
         frtpa = mmp.msp -> bms.prta2 "From RedBee to Pirate ASRUN" "Mule" "Integration"
         fstpfcr = cp.stel -> bms.pira "From Stellar to Pirate for Commercial Registrations" "Alternative" "Integration"
-        idtc = bms.bynd -> vsp.c4sl "Image DAM to C4S" "Alternative" "Integration"
+        idtc = bms.bynd -> vsp.c4sl "Image DAM to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
         imcfstp = rsp.soun -> bms.pira "Interstial music cuesheets from Soundmouse to Pirate" "Automate, SFTP" "Integration"
-        icnf = rsp.pris -> fsp.ebs "Invoice/credit note for Royalties" "Automate" "Integration"
-        lspp = bms.pira -> vsp.c4sl "Logging Sheets & Programme Parts" "Alternative" "Integration"
+        icnf = rsp.pris -> fsp.ebs "Invoice/credit note for Royalties" "Automate" "Integration,Corporate Integration,Impact"
+        lspp = bms.pira -> vsp.c4sl "Logging Sheets & Programme Parts" "Alternative" "Integration,Streaming Transformation Program,Impact"
         lcflr = lpp.lsp -> mmp.ppsp "LSP Contribution Feed ( Line Record)" "Alternative" "Integration"
         lmfd = lpp.lsp -> mmp.msp "LSP Media File Delivery" "Alternative" "Integration"
         lm = lpp.lsp -> bms.osp "LSP Multicast" "Alternative" "Integration"
-        lsto = bms.osp -> lpp.lsp "LSP Simulcast to OSLP" "Alternative" "Integration"
+        lsto = bms.osp -> lpp.lsp "LSP Simulcast to OSLP" "Alternative" "Integration,Streaming Transformation Program,Impact"
         ltpa = bms.pira -> lpp.lsp "LSP to Pirate Asruns" "Alternative" "Integration"
         mtbb = bms.bynd -> sp.mod "MediaGenix to Bynder Brand" "Alternative" "Integration"
         mtfpi = cp.fsh -> sp.mod "MediaGenix to FreeWheel Programme Info" "Alternative" "Integration"
         mtgc4vc = bms.grac -> sp.mod "MediaGenix to Gracenote Channel 4 VoD Catalogue" "Mule" "Integration"
         mtmbvsi = sp.mod -> sp.mod "MediaGenix to MediaGenix BARB VOD Schedule Integration" "Alternative" "Integration"
         mtpecw = bms.pira -> sp.mod "MediaGenix to Pirate EPG Content Warnings" "Mule" "Integration"
-        mttc4vc = vsp.thin -> sp.mod "MediaGenix to ThinkAnalytics Channel 4 VoD Catalogue" "Mule" "Integration"
-        mtbfms = mp.braz -> dap.as "Mediarithmics to Braze for Marketing Segments" "Alternative" "Integration"
+        mttc4vc = vsp.thin -> sp.mod "MediaGenix to ThinkAnalytics Channel 4 VoD Catalogue" "Mule" "Integration,Streaming Transformation Program,Impact"
+        mtbfms = mp.braz -> dap.as "Mediarithmics to Braze for Marketing Segments" "Alternative" "Integration,Streaming Transformation Program,Impact"
         mtffas = cp.fsh -> dap.as "Mediarithmics to Freewheel for ALA segments" "Alternative" "Integration"
         mticga = dap.dcri -> dap.as "Mediarithmics to Infosum (Control Group attribution)" "Alternative" "Integration"
-        mvrtp = mmp.msp -> sp.mod "MoD  VoD Request to PFT" "Alternative" "Integration"
-        msdte = vsp.sm -> dap.cedw "MPP Subscriber data to EDW" "Alternative" "Integration"
+        mvrtp = mmp.msp -> sp.mod "MoD  VoD Request to PFT" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        msdte = vsp.sm -> dap.cedw "MPP Subscriber data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
         mcra = mmp.msp -> bms.asp "MSP Content Request API" "Alternative" "Integration"
         mcra2 = mmp.msp -> lpp.lsp "MSP Content Request API" "Alternative" "Integration"
         mcra3 = mmp.msp -> bms.osp "MSP Content Request API" "Alternative" "Integration"
         mcra4 = mmp.msp -> mmp.ppsp "MSP Content Request API" "Alternative" "Integration"
-        mmvfto = mmp.msp -> bms.osp "MSP Master Video Files to OLSP" "Alternative" "Integration"
+        mmvfto = mmp.msp -> bms.osp "MSP Master Video Files to OLSP" "Alternative" "Integration,Streaming Transformation Program,Impact"
         mmfd-abs = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired BBC Studios" "Alternative" "Integration"
         mmfd-af = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired Fox/Disney" "Alternative" "Integration"
         mmfd-ag = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired Generic" "Alternative" "Integration"
@@ -1377,7 +1428,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         mtc4df = mmp.msp -> bms.pira "MSPs to Channel 4 DFS folders" "Mule" "Integration"
         nos = bms.pc -> rsp.prrs "Name of Supplier" "Alternative" "Integration"
         ntn = rsp.pris -> bms.pira "New transmitted notifications" "Alternative" "Integration"
-        oscn = fsp.ebs -> rsp.prrs "Oracle suppliers contact names" "Alternative" "Integration"
+        oscn = fsp.ebs -> rsp.prrs "Oracle suppliers contact names" "Alternative" "Integration,Corporate Integration,Impact"
         oatax = fsp.ebs -> fsp.atax "Oracle to AlphaTax" "Alternative" "Integration"
         otunx = fsp.ebs -> fsp.tgn "Oracle to Tungsten XML Invoice feed" "Mule" "Integration"
         pfpfstp = rsp.soun -> bms.pira "PAC form PDFs from Soundmouse to Pirate" "Automate, SFTP" "Integration"
@@ -1386,8 +1437,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         patveo = bms.pira -> sp.pass "Pirate A55 to VMS (ex Optimum)" "Mule" "Integration"
         patveo2 = bms.pira -> sp.pepl "Pirate A55 to VMS (ex Optimum)" "Mule" "Integration"
         patveo3 = bms.pira -> bms.pvmsv "Pirate A55 to VMS (ex Optimum)" "Mule" "Integration"
-        passtc = bms.pira -> vsp.c4sl "Pirate Advance Scheduling System to C4S" "Alternative" "Integration"
-        pctc = bms.pira -> vsp.c4sl "Pirate Certification to C4S" "Alternative" "Integration"
+        passtc = bms.pira -> vsp.c4sl "Pirate Advance Scheduling System to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        pctc = bms.pira -> vsp.c4sl "Pirate Certification to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
         pctb = bms.bynd -> bms.pcgs "Pirate CGS to Bynder" "Mule" "Integration"
         pctf = cp.fsh -> bms.pcgs "Pirate CGS to Freewheel" "Mule" "Integration"
         pctmfvo = mmp.msp -> bms.pcgs "Pirate CGS to MSP for VPS origin" "Mule" "Integration"
@@ -1396,8 +1447,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         pffrfs = bms.pira -> bms.asp "Pirate fetch from RedBee for Subtitles" "Mule" "Integration"
         pirgl = fsp.ebs -> rsp.come "Pirate GL posted Transactions" "Alternative" "Integration"
         pptasb = mmp.msp -> sp.ppps "Pirate PPS to AWS S3 Bucket" "Mule" "Integration"
-        ppitf = cp.fsh -> bms.pcgs "Pirate Programme Info to FreeWheel" "Mule" "Integration"
-        prmstc = bms.pira -> vsp.c4sl "Pirate Rights Management System to C4S" "Alternative" "Integration"
+        ppitf = cp.fsh -> bms.pcgs "Pirate Programme Info to FreeWheel" "Mule" "Integration,Streaming Transformation Program,Impact"
+        prmstc = bms.pira -> vsp.c4sl "Pirate Rights Management System to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
         prdtoe = rmp.prms -> dap.cedw "PIRATE RMS data to  Oracle EDW" "Alternative" "Integration"
         pta = lpp.ac -> sp.mod "Pirate To Amagi" "Alternative" "Integration"
         ptbfca = sp.mod -> bms.pira "Pirate to BeBanjo for Catalogue Assets" "Mule" "Integration"
@@ -1406,7 +1457,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ptbfls2 = sp.mod -> sp.pass "Pirate to BeBanjo for Linear Scheduling" "Mule" "Integration"
         ptbfma = sp.mod -> bms.pira "Pirate to BeBanjo for Media Assets" "Mule" "Integration"
         ptbfma2 = sp.mod -> mmp.pmm "Pirate to BeBanjo for Media Assets" "Mule" "Integration"
-        ptbfr = sp.mod -> rmp.prms "Pirate to BeBanjo for Rights" "Mule" "Integration"
+        ptbfr = sp.mod -> rmp.prms "Pirate to BeBanjo for Rights" "Mule" "Integration,Streaming Transformation Program,Impact"
         ptbfs = sp.mod -> bms.pira "Pirate to BeBanjo for Segment" "Mule" "Integration"
         ptbdf = mmp.pmm -> bms.bynd "Pirate to Bynder data flow" "Alternative" "Integration"
         ptcpft = mmp.msp -> mmp.pvb "Pirate to Clear (Prime Focus Technology)" "Mule" "Integration"
@@ -1439,15 +1490,15 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         pmfd = mmp.ppsp -> mmp.msp "PPSP Media File Delivery" "Alternative" "Integration"
         pdfptsX = rsp.soun -> bms.pira "Pre-TX data from Pirate to Soundmouse" "Automate, SFTP" "Integration"
         plcdiabas = cp.stel -> dap.cedw "Processes linear campaign data, including agreements, breaks and spots" "Alternative" "Integration"
-        prte = rsp.come -> fsp.ebs "Producer Reporting to EBS" "Automate" "Integration"
-        proebs = fsp.ebs -> rsp.come "Producer Reporting to Oracle eBusiness Suite " "Alternative" "Integration"
+        prte = rsp.come -> fsp.ebs "Producer Reporting to EBS" "Automate" "Integration,Corporate Integration,Impact"
+        proebs = fsp.ebs -> rsp.come "Producer Reporting to Oracle eBusiness Suite " "Alternative" "Integration,Corporate Integration,Impact"
         pptpfesdi = bms.ppp -> csp.pcc "Producers Portal to Pirate for Ed Spec Diversity info" "Mule" "Integration"
         pasmcmcfstp = rsp.soun -> bms.pira "Programme and social media clip music cuesheets from Soundmouse to Pirate" "Automate, SFTP" "Integration"
         ppi = fsp.ebs -> bms.pira "programme Payments Interface" "Alternative" "Integration"
         pctm = sp.mod -> bms.pcX "Promo Create To Movida" "Mule" "Integration"
         pctp = bms.pira -> bms.pcX "Promo Create To Pirate" "Mule" "Integration"
         potp = bms.pira -> mp.po "Promo Optimiser to Pirate" "Mule" "Integration"
-        rtata4 = lpp.lsp -> vsp.c4sl "Real Time As-Run to ALL 4" "Alternative" "Integration"
+        rtata4 = lpp.lsp -> vsp.c4sl "Real Time As-Run to ALL 4" "Alternative" "Integration,Streaming Transformation Program,Impact"
         rdfpfcf = bms.pira -> rsp.pris "Recoupment/Advances data from Programme Finance Committee form" "Alternative" "Integration"
         rad = csp.pcc -> rsp.pap "Repeat agreement data" "Alternative" "Integration"
         rtc7t = rmp.prms -> bms.c7t "Rights to C4 7A Titles" "Alternative" "Integration"
@@ -1486,23 +1537,23 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         stpftp = cp.stel -> sp.ppps "Stellar to Pirate for Trail patterns" "Alternative" "Integration"
         stufac = mmp.msp -> cp.stel "Stellar to UKTV for Ad Certification" "SFTP" "Integration"
         stufccr = mmp.msp -> cp.stel "Stellar to UKTV for Commercial Copy Registrations" "SFTP" "Integration"
-        scte = vsp.c4sl -> dap.cedw "Streaming Consent to EDW" "Alternative" "Integration"
-        sbde = fsp.ebs -> rsp.pap "Supplier Bank Details Exist" "Automate" "Integration"
+        scte = vsp.c4sl -> dap.cedw "Streaming Consent to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        sbde = fsp.ebs -> rsp.pap "Supplier Bank Details Exist" "Automate" "Integration,Corporate Integration,Impact"
         sffptee = rsp.prrs -> dap.cedw "Supplier fields from PIRATE to EDW(Redshift) EDW(Oracle)" "Alternative" "Integration"
-        supinf = fsp.ebs -> rsp.pris "Supplier Information" "Alternative" "Integration"
-        suprec = fsp.ebs -> rsp.pap "Supplier Records" "Alternative" "Integration"
+        supinf = fsp.ebs -> rsp.pris "Supplier Information" "Alternative" "Integration,Corporate Integration,Impact"
+        suprec = fsp.ebs -> rsp.pap "Supplier Records" "Alternative" "Integration,Corporate Integration,Impact"
         ttbstcr = rsp.ted -> dap.cedw "Ted tables batch synchronisation to Coeus Redshift" "Alternative" "Integration"
         ttn = rsp.soun -> bms.pira "Ted to Neo" "Automate, SFTP" "Integration"
         tts = rsp.soun -> bms.pira "Ted to Silvermouse" "Automate, SFTP" "Integration"
-        ttc-r = vsp.thin -> vsp.c4sl "ThinkAnalytics to C4S - Recommendation" "Alternative" "Integration"
+        ttc-r = vsp.thin -> vsp.c4sl "ThinkAnalytics to C4S - Recommendation" "Alternative" "Integration,Streaming Transformation Program,Impact"
         tsfptb = dap.barb -> sp.pass "TX Schedule from PIRATE to BARB" "Alternative" "Integration"
-        vptc = bms.osp -> vsp.c4sl "Video Pipeline to C4S" "Alternative" "Integration"
+        vptc = bms.osp -> vsp.c4sl "Video Pipeline to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
         vtcs = mmp.msp -> bms.ppc "VisionCloud to Compliance Service" "Mule" "Integration"
         vvd = dap.cedw -> rsp.prrs "VOD Views Data" "Alternative" "Integration"
-        waadte = dap.wa -> dap.cedw "Web Analytics (AA) data to EDW" "Alternative" "Integration"
+        waadte = dap.wa -> dap.cedw "Web Analytics (AA) data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
         wdsbi = fsp.wda -> fsp.ebs "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Mule" "Integration"
         wdsbi2 = fsp.wda -> fsp.sbi "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Mule" "Integration"
-        ytf = vsp.yosp -> cp.fsh "YoSpace to Freewheel" "Alternative" "Integration"
+        ytf = vsp.yosp -> cp.fsh "YoSpace to Freewheel" "Alternative" "Integration,Streaming Transformation Program,Impact"
         
     }
     
