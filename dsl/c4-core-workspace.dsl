@@ -15,7 +15,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         cse = person "Client Sales & Engagement" ""
         part = person "Partnerships" ""
         so = person "Sales Operations" "Sales Operations handle the content supply chain for commercial content and plan placements withi..." {
-            tags "businessUnit,Data Clean Room,Impact"
+            tags "businessUnit,Impact"
+            perspectives {
+                Data Clean Room "Data Clean Room"
+            }
         }
         agen = person "Agency" "" {
             tags "customer"
@@ -53,7 +56,12 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             tags "businessUnit"
         }
         ccf = person "Finance" "" {
-            tags "businessUnit,Corporate Integration,Finance & People Transformation,Transactional Reporting Solution,Impact"
+            tags "businessUnit,Impact"
+            perspectives {
+                Corporate Integration "Corporate Integration"
+                Finance & People Transformation "Finance & People Transformation"
+                Transactional Reporting Solution "Transactional Reporting Solution"
+            }
         }
         sci = person "Strategy & Consumer Insight" "" {
             tags "businessUnit"
@@ -97,13 +105,22 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         digi = person "Digital" ""
         dm = person "Digital Marketing" ""
         insi = person "Insights" "" {
-            tags "Customer Journey Analytics (CJA),Impact"
+            tags "Impact"
+            perspectives {
+                Customer Journey Analytics (CJA) "Customer Journey Analytics (CJA)"
+            }
         }
         c4 = person "Channel 4" "" {
-            tags "legalEntity,Finance & People Transformation,Impact"
+            tags "legalEntity,Impact"
+            perspectives {
+                Finance & People Transformation "Finance & People Transformation"
+            }
         }
         ccfrss = person "Shared Services" "Team responsible for any financial transactional incoming and outgoing payment processing. Typica..." {
-            tags "Finance & People Transformation,Impact"
+            tags "Impact"
+            perspectives {
+                Finance & People Transformation "Finance & People Transformation"
+            }
         }
         cpX = person "Consumer Product" ""
         dmp = person "Digital Marketing (Product)" ""
@@ -123,7 +140,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         }
         a4e = person "All 4 Editorial" ""
         gs = person "Growth (Subscriptions)" "" {
-            tags "Customer Journey Analytics (CJA),Impact"
+            tags "Impact"
+            perspectives {
+                Customer Journey Analytics (CJA) "Customer Journey Analytics (CJA)"
+            }
         }
         fm = person "Facilities Management" ""
 
@@ -144,7 +164,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             fsh = container "Freewheel Streaming Hub" "Freewheel Streaming Hub (aka MRM) is a software application that enables publishers and broadcast..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/6dd95ab1-0351-4792-b1b7-71bd1cadbe4b
-                tags "Streaming Transformation Program,Impact"
+                tags "Impact"
+                perspectives {
+                    Streaming Transformation Program "Streaming Transformation Program"
+                }
             }
             inno = container "Innovid" "Innovid is the only independent omni-channel advertising and analytics platform built for televis..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/1b3451df-a733-4e19-aff5-55c7edd0af8f
@@ -157,9 +180,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             stel = container "Stellar" "Channel4's Sales Order Processing System" "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/36680d73-914e-4f57-a8f3-bffe87a2d6c1
-                tags "Corporate Integration,Interstellar,Impact"
+                tags "Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
+                    Corporate Integration "Corporate Integration"
+                    Interstellar "Interstellar"
                 }
             }
         }
@@ -178,9 +203,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             bynd = container "Bynder" "Bynder is an AI-powered, SaaS DAM solution that allows brands to easily create, find and use thei..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3c1fa911-1501-4541-afe7-96465ec458f9
-                tags "Streaming Transformation Program,Impact"
+                tags "Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
+                    Streaming Transformation Program "Streaming Transformation Program"
                 }
             }
             c7t = container "C4 7A Titles" "Home grown system to schedule long form content on YouTube with workflow for Rights and Compliance." "saas" {
@@ -200,16 +226,22 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             mod = container "MediaGenix On Demand" "BeBanjo Movida VOD Management system (Comprising of systems which schedule and manage transcode a..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/7bec9ebd-87c8-4ed0-bfe2-1ea5429eeabc
-                tags "New VoD Management System,Flexible Series,Streaming Transformation Program,Impact"
+                tags "Impact"
+                perspectives {
+                    New VoD Management System "New VoD Management System"
+                    Flexible Series "Flexible Series"
+                    Streaming Transformation Program "Streaming Transformation Program"
+                }
             }
             olss = container "OFCOM Licensing Services-Online Services-MIDCOM" "This is the OFCOM platform used by our Access Services team to upload of our reporting to OFCOM." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/01a05cf6-e094-4bf2-bd13-310fc50da22b
             }
             osp = container "OnLine Service Provider" "Provides capabilities for ingest, transformation, transcoding, encryption and delivery of VOD; li..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bbaf9554-9a19-44f9-83fb-f6ce638e4210
-                tags "Streaming Transformation Program,Impact"
+                tags "Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
+                    Streaming Transformation Program "Streaming Transformation Program"
                 }
             }
             ol = container "Order list" "Setting a budget and its' allocations genres & channels. Existing commitments also captured. Targ..." "" {
@@ -217,14 +249,20 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             pira = container "Pirate" "Pirate is a collection of applications used by various departments. Commercial affairs (business ..." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f694fb3d-6a3b-4776-a5d8-21d9b500714c
-                tags "Corporate Integration,Impact"
+                tags "Impact"
+                perspectives {
+                    Corporate Integration "Corporate Integration"
+                }
             }
             p4ws = container "4Producers (Web Site)" "eCommissioning system. Allows C4 to engage with Production companies for Production companies to ..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/8d36fa1b-3ca6-46a5-bb77-a01cbd833667
             }
             pass = container "Advance Scheduling System" "The Advanced Scheduling System (A55) provides a view of a schedule for a specific channel and dat..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/af539ba8-e622-46fc-b561-347dad93d8b6
-                tags "UK FAST,Impact"
+                tags "Impact"
+                perspectives {
+                    UK FAST "UK FAST"
+                }
             }
             pbm = container "Brand Management" "An application where can create or update Pirate Brands. This enables the business to group toget..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/40779771-f867-4ae3-b52f-eec13651d19e
@@ -264,11 +302,17 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b2da1e23-df98-4af4-9c2a-904814ab181c
-                tags "Promo Campaign Management,Impact"
+                tags "Impact"
+                perspectives {
+                    Promo Campaign Management "Promo Campaign Management"
+                }
             }
             ppps-p = container "Presentation Planning System - PPS.NET" "This is the .NET version of PPS NOTE: We need to create all VOD processes and link one to this ap..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bac64e3f-59aa-433b-b1ba-7f2253bc10df
-                tags "Promo Campaign Management,Impact"
+                tags "Impact"
+                perspectives {
+                    Promo Campaign Management "Promo Campaign Management"
+                }
             }
             ppp = container "Producers Portal" "An app which allows C4 to engage with Production companies for Production companies to fill in th..." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/850505c1-6ba6-459c-b213-14cec449dcc5
@@ -343,7 +387,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             
             crmc = container "Customer Relationship Manager  (Content)" "A system used by the commissioning dept to track and manage programme ideas from pitch to greenlight" "paas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c7839d32-16d4-4a70-9ac4-1a630b764db8
-                tags "Commissioning CRM,Impact"
+                tags "Impact"
+                perspectives {
+                    Commissioning CRM "Commissioning CRM"
+                }
             }
             dist = container "Distributor" "Supplier of acquired content e.g. a US Studio" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/e63beee9-46e6-4f3d-9735-d87f06394469
@@ -356,14 +403,20 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             pcc = container "Commissioning Cycle" "Manages the agreements of commissioned content." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/34252dd7-c25b-4ac3-8a2e-6e0742096e0e
-                tags "Commissioning CRM,Impact"
+                tags "Impact"
+                perspectives {
+                    Commissioning CRM "Commissioning CRM"
+                }
             }
             pp = container "Programmes" "" "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4adea0a1-d059-4edd-a2c3-90c1d67a10ed
             }
             ppX = container "Purchases" "" "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4535195e-870f-435c-96a4-fa0851828338
-                tags "Commissioning CRM,Impact"
+                tags "Impact"
+                perspectives {
+                    Commissioning CRM "Commissioning CRM"
+                }
             }
             pc = container "Production Company" "Supplier of commissioned content e.g. All 3 Media NOTE: NOT an application" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/45991022-b69a-4a32-b291-1c2818de03a0
@@ -378,7 +431,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             
             as = container "Audience Segmentation" "Enables publishers and broadcasters to grow and retain audiences and increase monetisation for a ..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/36eea142-a4fc-4ffe-91a4-540ae18fa7a2
-                tags "Data Clean Room,Impact"
+                tags "Impact"
+                perspectives {
+                    Data Clean Room "Data Clean Room"
+                }
             }
             barb = container "BARB" "Founded by the major organisations in the UK television and advertising industry, BARB is respons..." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b5c70e83-8d2a-495a-b772-c87690818d0e
@@ -386,22 +442,31 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             bor = container "Business Objects Reporting" "This application represents all Business Object reports generated by BI team and are read by busi..." "hybrid" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/2d7b6726-96b6-4e97-819f-a865e8128e02
             }
-            cedw = container "Enterprise Data Warehouse" "Data Warehouse application used as a host of analytics data in a star schema or a columnar databa..." "hybrid" {
+            edw = container "Enterprise Data Warehouse" "Data Warehouse application used as a host of analytics data in a star schema or a columnar databa..." "hybrid" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/22cf94d3-ac4a-40b9-b29a-09fb2307799e
-                tags "Data Clean Room,Customer Journey Analytics (CJA),Streaming Transformation Program,Impact"
+                tags "Impact"
+                perspectives {
+                    Data Clean Room "Data Clean Room"
+                    Customer Journey Analytics (CJA) "Customer Journey Analytics (CJA)"
+                    Streaming Transformation Program "Streaming Transformation Program"
+                }
             }
             c4 = container "Core 4" "https://www.core4.channel4.com/hub Core4 is Channel 4's quantitative insight community, made up o..." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/6cdb9763-d3c4-4fbd-8391-8fa6edb3c69b
             }
             dcri = container "Data Clean Room (InfoSum)" "A data platform with a vision to connect the world’s data without ever sharing it – by developing..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ee4c816e-16c8-489a-8844-baa0658a73b5
-                tags "Data Clean Room,Impact"
+                tags "Impact"
+                perspectives {
+                    Data Clean Room "Data Clean Room"
+                }
             }
             dcrs = container "Data Clean Room (Snowflake)" "A data platform with a vision to connect the world’s data without ever sharing it – by developing..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/682f5257-1497-4ac7-ad12-34150a67f521
-                tags "Data Clean Room,Impact"
+                tags "Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
+                    Data Clean Room "Data Clean Room"
                 }
             }
             df = container "Data Fabric" "Data Fabric is an innovative approach designed to simplify and streamline data management across ..." "saas" {
@@ -418,7 +483,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             wa = container "Web Analytics" "Web Analytics software used by M&VE for All 4 & Online Services Adobe Analytics is the solution f..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f7a463e8-edb4-45d6-ad21-e2922b6305a7
-                tags "Customer Journey Analytics (CJA),Impact"
+                tags "Impact"
+                perspectives {
+                    Customer Journey Analytics (CJA) "Customer Journey Analytics (CJA)"
+                }
             }
         }
 
@@ -436,13 +504,18 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             bdn = container "Barclays.Net" "Barclays service used to download statements." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c0756e2e-be6f-4529-8838-1bc4303dcb8e
-                tags "Corporate Integration,Impact"
+                tags "Impact"
+                perspectives {
+                    Corporate Integration "Corporate Integration"
+                }
             }
             bsw = container "Basware" "Enterprise software for financial processes, purchase to pay and financial management. Manage Inv..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/61ea2036-2682-4999-8a2b-b56a8ff60aa8
-                tags "Corporate Integration,Finance & People Transformation,Impact"
+                tags "Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
+                    Corporate Integration "Corporate Integration"
+                    Finance & People Transformation "Finance & People Transformation"
                 }
             }
             cmx = container "Cachematrix" "SaaS solution for cash management" "" {
@@ -450,35 +523,52 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             ebs = container "E-Business Suite" "Channel4 Oracle E-business Suite application used in Finance department for Accounts, Cash and As..." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/34852185-2e79-424a-8735-f586ca0bc6eb
-                tags "Corporate Integration,Finance & People Transformation,Impact"
+                tags "Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
+                    Benefex Replacement "Benefex Replacement"
+                    Corporate Integration "Corporate Integration"
+                    Finance & People Transformation "Finance & People Transformation"
                 }
             }
             faf = container "Finance Approval Form" "" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/331e92eb-60c0-424c-9c5c-8ed4a63e27b9
-                tags "Finance & People Transformation,Impact"
+                tags "Impact"
+                perspectives {
+                    Finance & People Transformation "Finance & People Transformation"
+                }
             }
             msc = container "Mastercard" "" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/919c5f9f-50b8-4f2a-9b26-9b9a15797da8
-                tags "Corporate Integration,Impact"
+                tags "Impact"
+                perspectives {
+                    Corporate Integration "Corporate Integration"
+                }
             }
             odf = container "Oracle eBS Excel data files" "These are a collection of manually generated .xslx files out of Oracle e-Business that contain va..." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f0563f84-f115-450b-be67-db6c545c38b5
             }
             pjc = container "Project Codes" "App used to generate project codes which are used in Oracle and across Channel 4." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/94d329fc-0d88-431b-b78b-1fe85a9cbd14
-                tags "Finance & People Transformation,Impact"
+                tags "Impact"
+                perspectives {
+                    Finance & People Transformation "Finance & People Transformation"
+                }
             }
             sov = container "Sovos" "Sovos helps in digital transformation of tax, with complete, connected offerings for tax determin..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c917188e-f35e-4320-a0b8-d387d6863b62
-                tags "Finance & People Transformation,Impact"
+                tags "Impact"
+                perspectives {
+                    Finance & People Transformation "Finance & People Transformation"
+                }
             }
             sbi = container "SplashBI" "SplashBI is an all-in-one framework for visualising, reporting and analysing data." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/618820c7-1747-4388-a9aa-cfef9e9369c0
-                tags "Finance & People Transformation,Transactional Reporting Solution,Impact"
+                tags "Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
+                    Finance & People Transformation "Finance & People Transformation"
+                    Transactional Reporting Solution "Transactional Reporting Solution"
                 }
             }
             tgn = container "Tungsten Network" "Tungsten provide a multiple distribution channel service to a single stream invoice feed." "" {
@@ -486,9 +576,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             wda = container "Workday Adaptive" "Workday Adaptive is Channel 4 Finance's Planning and Consolidation tool" "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4855f235-d3b0-41d0-b983-9265f83b840c
-                tags "Finance & People Transformation,Impact"
+                tags "Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
+                    Finance & People Transformation "Finance & People Transformation"
                 }
             }
         }
@@ -501,14 +592,20 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             
             ac = container "Amagi Cloudport" "<https://www.amagi.com/products/cloudport-cloud-playout>\ \ Amagi CLOUDPORT supports media ingest..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fec42b44-df14-4d3d-9b6d-f530a4e41a03
-                tags "UK FAST,Impact"
+                tags "Impact"
+                perspectives {
+                    UK FAST "UK FAST"
+                }
             }
             lsp = container "Linear Service Provider" "" "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/487b00a3-39f7-4095-bdbb-526af136a1a8
             }
             ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b2da1e23-df98-4af4-9c2a-904814ab181c
-                tags "Promo Campaign Management,Impact"
+                tags "Impact"
+                perspectives {
+                    Promo Campaign Management "Promo Campaign Management"
+                }
             }
             pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/65a2ae66-2900-4133-acb6-de1758c0e930
@@ -549,7 +646,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             msp = container "Media Service Provider" "Service provider for Digital Asset Management System" "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b245220d-2a8d-4630-a3f5-e33f1a3c2354
-                tags "Promo Campaign Management,Streaming Transformation Program,Impact"
+                tags "Impact"
+                perspectives {
+                    Promo Campaign Management "Promo Campaign Management"
+                    Streaming Transformation Program "Streaming Transformation Program"
+                }
             }
             pmm = container "Media Management" "Video browse can also be launched from this application" "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/a1f20124-70fe-49d2-9741-0af94eb527ea
@@ -579,9 +680,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             
             4peo = container "4People" "4People is a cloud HR and people system that empowers mid-size organisations to effectively respo..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3db00200-a028-4cb8-baeb-a3f88d1dd6e9
-                tags "AI People Team,Impact"
+                tags "Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
+                    AI People Team "AI People Team"
+                    Benefex Replacement "Benefex Replacement"
                 }
             }
             acti = container "ActivPay" "Actvipay is Channel 4's 3rd party payroll provider." "saas" {
@@ -595,8 +698,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             bp = container "Benefits Portal" "" "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ec56cea3-8d33-40bc-a695-805e21c0cbf0
+                tags "Impact"
                 perspectives {
                     SSO "Authenticated using SSO"
+                    Benefex Replacement "Benefex Replacement"
                 }
             }
             er = container "Executive Reporting" "Bespoke set of reports created in Power BI and served for the purpose of business reporting for t..." "paas" {
@@ -604,6 +709,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             fes = container "Freelancer Engagement System" "HR system to request freelancers and bring them onboard. Freelancers submit timesheets via FES. O..." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3debbdaf-b375-475b-a9ad-aaffeff1396a
+                tags "Impact"
+                perspectives {
+                    FES Replacement "FES Replacement"
+                }
             }
             ll = container "LinkedIn Learning" "LinkedIn Learning offers video courses taught by industry experts in software, creative, and busi..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9cd4b77f-8517-478b-b25b-6592a04d157b
@@ -653,7 +762,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             
             come = container "COMET" "Channel 4 International and National Rights Licencing Software used by Channel 4 to manage Films ..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/438491d8-6ce7-4d3a-b2c4-5aaf31fef29f
-                tags "Corporate Integration,Impact"
+                tags "Impact"
+                perspectives {
+                    Corporate Integration "Corporate Integration"
+                }
             }
             eps = container "Exclusivity Payment Schedules" "Contains payment details due to the artist for an exclusivity deal" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/490fbd9b-4ad9-4cd7-9fad-ae62d3dc1e2b
@@ -663,7 +775,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             pap = container "Artist Payments" "Application for reporting artist royalties" "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fde00f48-6c5b-4dce-852a-1e14887fcc78
-                tags "Corporate Integration,Impact"
+                tags "Impact"
+                perspectives {
+                    Corporate Integration "Corporate Integration"
+                }
             }
             pris = container "Royalties Income system" "Manages the Statements and chasing of Statements to ensure Royalties owed to Channel 4 are tracke..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9b4214f2-0398-428e-814e-83cd8e3a8be3
@@ -708,11 +823,19 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             
             mod = container "MediaGenix On Demand" "BeBanjo Movida VOD Management system (Comprising of systems which schedule and manage transcode a..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/7bec9ebd-87c8-4ed0-bfe2-1ea5429eeabc
-                tags "New VoD Management System,Flexible Series,Streaming Transformation Program,Impact"
+                tags "Impact"
+                perspectives {
+                    New VoD Management System "New VoD Management System"
+                    Flexible Series "Flexible Series"
+                    Streaming Transformation Program "Streaming Transformation Program"
+                }
             }
             pass = container "Advance Scheduling System" "The Advanced Scheduling System (A55) provides a view of a schedule for a specific channel and dat..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/af539ba8-e622-46fc-b561-347dad93d8b6
-                tags "UK FAST,Impact"
+                tags "Impact"
+                perspectives {
+                    UK FAST "UK FAST"
+                }
             }
             pepl = container "Electronic Press Listing" "Sends Electronic Programme Guide to other platforms Carries Rights information such as restart" "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/7f92cb3b-40c6-41f8-9bb0-93bb43df94ff
@@ -722,11 +845,17 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b2da1e23-df98-4af4-9c2a-904814ab181c
-                tags "Promo Campaign Management,Impact"
+                tags "Impact"
+                perspectives {
+                    Promo Campaign Management "Promo Campaign Management"
+                }
             }
             ppps-p = container "Presentation Planning System - PPS.NET" "This is the .NET version of PPS NOTE: We need to create all VOD processes and link one to this ap..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bac64e3f-59aa-433b-b1ba-7f2253bc10df
-                tags "Promo Campaign Management,Impact"
+                tags "Impact"
+                perspectives {
+                    Promo Campaign Management "Promo Campaign Management"
+                }
             }
         }
 
@@ -776,15 +905,26 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             
             c4sl = container "Channel 4 Streaming (Legacy)" "Video on Demand platform across many devices including https://channel4.com" "iaas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/aa9fdfc2-1884-4181-b102-1579838e10ac
-                tags "Flexible Series,Streaming Transformation Program,UK FAST,Impact"
+                tags "Impact"
+                perspectives {
+                    Flexible Series "Flexible Series"
+                    Streaming Transformation Program "Streaming Transformation Program"
+                    UK FAST "UK FAST"
+                }
             }
             cdna = container "Content Distribution Network (Accenture)" "Logical representation of the CDN's used by Channel 4 Streaming, controlled and maintained by Acc..." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/40f4d195-24e9-4e3a-83c9-704bb3cc44ab
-                tags "Streaming Transformation Program,Impact"
+                tags "Impact"
+                perspectives {
+                    Streaming Transformation Program "Streaming Transformation Program"
+                }
             }
             free = container "Freely" "" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/35279c23-7ea7-45cb-b766-493f9e89b6e8
-                tags "Streaming Transformation Program,Impact"
+                tags "Impact"
+                perspectives {
+                    Streaming Transformation Program "Streaming Transformation Program"
+                }
             }
             mpar = container "mParticle" "mParticle is a Customer Data Platform. It collects customer data once through secure APIs and SDK..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/1dbd5c77-8a0a-4649-bc7e-362d04fbb228
@@ -797,7 +937,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             sm = container "Subscription Management" "The application that manages our subscription products such as offers and deals." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/a73cf223-4a69-4bfa-91c2-fbfd4daa57cc
-                tags "Streaming Transformation Program,Impact"
+                tags "Impact"
+                perspectives {
+                    Streaming Transformation Program "Streaming Transformation Program"
+                }
             }
             sl = container "Sumo Logic" "Sumo Logic is a cloud-based log management and analytics service that leverages machine-generated..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/6bdd41b7-f5a3-4fdb-9022-4914c9505bff
@@ -807,11 +950,17 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             thin = container "ThinkAnalytics" "World leaders in AI personalized content discovery, hyper-targeted advertising and customer insight." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f323399a-7830-4ce9-88d0-e3d111f71102
-                tags "Streaming Transformation Program,Impact"
+                tags "Impact"
+                perspectives {
+                    Streaming Transformation Program "Streaming Transformation Program"
+                }
             }
             yosp = container "YoSpace" "Dynamic Ad Insertion (replacement of linear ads) on live streams to our owned and operated stream..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/46c41f3f-30df-44f4-851b-33b583f9cf40
-                tags "Streaming Transformation Program,Impact"
+                tags "Impact"
+                perspectives {
+                    Streaming Transformation Program "Streaming Transformation Program"
+                }
             }
         }
 
@@ -1133,9 +1282,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         partToBor = part -> dap.bor "Uses"
         soToBor = so -> dap.bor "Uses"
         tradToBor = trad -> dap.bor "Uses"
-        arToCedw = ar -> dap.cedw "Uses"
-        dsToCedw = ds -> dap.cedw "Uses"
-        techToCedw = tech -> dap.cedw "Uses"
+        arToEdw = ar -> dap.edw "Uses"
+        dsToEdw = ds -> dap.edw "Uses"
+        techToEdw = tech -> dap.edw "Uses"
         arToC4 = ar -> dap.c4 "Uses"
         soToDcri = so -> dap.dcri "Uses"
         digiToDcrs = digi -> dap.dcrs "Uses"
@@ -1245,7 +1394,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         4ta = psp.4peo -> psp.acti "4People to ActivePay" "Mule" "Integration"
         4tac = psp.4peo -> wsp.ac "4People to Alert cascade" "Mule" "Integration"
-        4tb = psp.4peo -> wsp.ac "4People to Benefits" "Mule" "Integration"
+        4tb = psp.4peo -> wsp.ac "4People to Benefits" "Mule" "Integration,Benefex Replacement,Impact"
         4tce = psp.4peo -> wsp.ce "4People to Concept Evolution" "Mule" "Integration"
         4tcms = psp.4peo -> sbs.cms "4People to Contract Management System(CMS)" "Mule" "Integration"
         4tc = psp.4peo -> psp.tlh "4People to Cornerstone" "Mule" "Integration"
@@ -1257,7 +1406,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         aptf = psp.acti -> fsp.wda "Active Pay to Financial Planning" "Mule" "Integration"
         atoe = psp.acti -> fsp.ebs "ActivPay to Oracle EBS" "Mule" "Integration"
         asstc = vsp.yosp -> vsp.c4sl "Ad Serving System to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        aate = dap.wa -> dap.cedw "Adobe Analytics to EDW" "Alternative" "Integration"
+        aate = dap.wa -> dap.edw "Adobe Analytics to EDW" "Alternative" "Integration"
         apffpfb = cp.ap -> bms.pbm "Agency Portal fetch from Pirate for Brand" "Mule" "Integration"
         apffsfp = cp.ap -> cp.stel "Agency Portal fetch from Stellar for Programme" "Mule" "Integration"
         apfsfpyot = cp.ap -> cp.stel "Agency Portal from Stellar for Pick Your Own transmission" "Mule" "Integration"
@@ -1273,7 +1422,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         avcmfd = bms.asp -> mmp.msp "ASP Viewing Copy Media File Delivery" "Alternative" "Integration"
         asaltf = cp.fsh -> dap.as "Audience Segments and Lookalikes to Freewheel" "Alternative" "Integration,Streaming Transformation Program,Impact"
         bwpfo = fsp.ebs -> fsp.bbp "BACS & Wire Payments File Out" "Automate" "Integration"
-        brdte = dap.barb -> dap.cedw "BARB ratings data to EDW" "SFTP" "Integration"
+        brdte = dap.barb -> dap.edw "BARB ratings data to EDW" "SFTP" "Integration"
         btsfau = dap.barb -> cp.stel "BARB to Stellar for Audience Universe" "SFTP" "Integration"
         btsfi = dap.barb -> cp.stel "BARB to Stellar for Impacts" "SFTP" "Integration"
         bpsri = fsp.bbp -> fsp.ebs "Barclay Payment Statement Receipt In" "Automate" "Integration,Corporate Integration,Impact"
@@ -1294,21 +1443,21 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         b2sbi2 = fsp.bsw -> fsp.sbi "Basware to SplashBI (Oracle eBS Schema)" "Alternative" "Integration,Corporate Integration,Impact"
         bur = fsp.ebs -> fsp.bsw "Basware User Rights" "Alternative" "Integration,Corporate Integration,Impact"
         buriu = fsp.ebs -> fsp.bsw "Basware User Rights (Inactive users)" "Alternative" "Integration,Corporate Integration,Impact"
-        bta = psp.acti -> psp.bp "Benefits to Actvipay" "Alternative" "Integration,Review Benefits Portal,Impact"
-        bdte = cp.stel -> dap.cedw "Budget data to EDW" "Alternative" "Integration"
+        bta = psp.acti -> psp.bp "Benefits to Actvipay" "Alternative" "Integration,Benefex Replacement,Review Benefits Portal,Impact"
+        bdte = cp.stel -> dap.edw "Budget data to EDW" "Alternative" "Integration"
         btmii = sp.mod -> bms.bynd "Bynder to MediaGenix Image Integration" "Alternative" "Integration,Streaming Transformation Program,Impact"
         btmitc = sp.mod -> bms.bynd "Bynder to MediaGenix Image Tagging Changes" "Alternative" "Integration,Streaming Transformation Program,Impact"
         chptpr = psp.er -> dap.bor "C4 HR & Payroll to PowerBI Reporting" "Mule" "Integration"
         4io = fsp.ebs -> rsp.come "C4 intl overages" "SFTP" "Integration,Corporate Integration,Impact"
         cptyfa = vsp.yosp -> cp.stel "C4 Promo to YoSpace for Advertisements" "Mule" "Integration"
         4vatr = fsp.sov -> fsp.ebs "C4 VAT Returns" "Alternative" "Integration"
-        cbsdte = vsp.sm -> dap.cedw "C4S Braintree Subscriber data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        cbsdte = vsp.sm -> dap.edw "C4S Braintree Subscriber data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
         cetf = vsp.free -> sp.pepl "C4S EPG to Freely" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        cete = vsp.mpar -> dap.cedw "C4S Events to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        cete = vsp.mpar -> dap.edw "C4S Events to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
         cfvetba = vsp.ova -> vsp.free "C4S Freely Video Events to BitMovin Analytics" "Alternative" "Integration,Streaming Transformation Program,Impact"
         cfvsfc = vsp.cdna -> vsp.free "C4S Freely Video Stream from CDN" "Alternative" "Integration,Streaming Transformation Program,Impact"
         cmifc = vsp.cdna -> sp.mod "C4S MoD Images from CDN" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        cqte = vsp.ova -> dap.cedw "C4S QoS to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        cqte = vsp.ova -> dap.edw "C4S QoS to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
         csty = vsp.yosp -> bms.osp "C4S Streams to YoSpace" "Alternative" "Integration,Streaming Transformation Program,Impact"
         ctaa = dap.wa -> vsp.c4sl "C4S to Adobe Analytics" "Alternative" "Integration,Streaming Transformation Program,Impact"
         ctb = dap.barb -> vsp.c4sl "C4S to BARB" "Alternative" "Integration,Streaming Transformation Program,Impact"
@@ -1354,21 +1503,21 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ebsstr = fsp.ebs -> cp.stel "EBS to Stellar Daily exchange rate (in) Invoices (out)" "Alternative" "Integration"
         ebscex = fsp.ebs -> cp.stel "EBS to Stellar for Currency Exchange" "SFTP" "Integration"
         ebplan = fsp.ebs -> fsp.wda "eBusiness to Planning" "Alternative" "Integration"
-        e4ti = dap.dcri -> dap.cedw "EDW 4 to Infosum" "Alternative" "Integration"
-        emcstmdf = dap.df -> dap.cedw "EDW Marketing Campaign Snapshots to Microsoft Data Fabric" "Alternative" "Integration"
-        emctmdf = dap.df -> dap.cedw "EDW Marketing Campaign to Microsoft Data Fabric" "Alternative" "Integration"
-        esitb = mp.braz -> dap.cedw "EDW Streaming Identity to Braze" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        etdf-sd = dap.df -> dap.cedw "EDW to  Data Fabric - Spots data" "Alternative" "Integration"
-        etapsp = dap.cedw -> rsp.pap "EDW to Artist Payment Systems (Pirate)" "Alternative" "Integration"
-        etb = mp.braz -> dap.cedw "EDW to Braze" "Alternative" "Integration"
-        etm-ipcau = dap.cedw -> dap.as "EDW to Mediarithmics - Instream Promo Control Audience Upload" "Alternative" "Integration"
-        etm-sud = dap.as -> dap.cedw "EDW to Mediarithmics - Streaming User Data" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        ett-v = vsp.thin -> dap.cedw "EDW to ThinkAnalytics - Viewers" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        etdftp = dap.cedw -> bms.pira "EDW TX data feed to Pirate" "Alternative" "Integration"
+        e4ti = dap.dcri -> dap.edw "EDW 4 to Infosum" "Alternative" "Integration"
+        emcstmdf = dap.df -> dap.edw "EDW Marketing Campaign Snapshots to Microsoft Data Fabric" "Alternative" "Integration"
+        emctmdf = dap.df -> dap.edw "EDW Marketing Campaign to Microsoft Data Fabric" "Alternative" "Integration"
+        esitb = mp.braz -> dap.edw "EDW Streaming Identity to Braze" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        etdf-sd = dap.df -> dap.edw "EDW to  Data Fabric - Spots data" "Alternative" "Integration"
+        etapsp = dap.edw -> rsp.pap "EDW to Artist Payment Systems (Pirate)" "Alternative" "Integration"
+        etb = mp.braz -> dap.edw "EDW to Braze" "Alternative" "Integration"
+        etm-ipcau = dap.edw -> dap.as "EDW to Mediarithmics - Instream Promo Control Audience Upload" "Alternative" "Integration"
+        etm-sud = dap.as -> dap.edw "EDW to Mediarithmics - Streaming User Data" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ett-v = vsp.thin -> dap.edw "EDW to ThinkAnalytics - Viewers" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        etdftp = dap.edw -> bms.pira "EDW TX data feed to Pirate" "Alternative" "Integration"
         fgl = bms.pira -> fsp.ebs "Failed GL lines" "Alternative" "Integration"
-        fvte = cp.fsh -> dap.cedw "Feewheel v4logs to EDW" "Alternative" "Integration"
+        fvte = cp.fsh -> dap.edw "Feewheel v4logs to EDW" "Alternative" "Integration"
         faebs = fsp.ebs -> fsp.faf "Finance Approval to E-Business Suite" "Alternative" "Integration"
-        ffsffdovc = cp.fsh -> dap.cedw "Freewheel from Stellar for Forecast data of VOD Campaign" "Mule" "Integration"
+        ffsffdovc = cp.fsh -> dap.edw "Freewheel from Stellar for Forecast data of VOD Campaign" "Mule" "Integration"
         ffsffdovc2 = cp.fsh -> cp.stel "Freewheel from Stellar for Forecast data of VOD Campaign" "Mule" "Integration"
         fltmdf = cp.fsh -> dap.df "Freewheel logs to Microsoft Data Fabric" "Alternative" "Integration"
         ftiecua = dap.dcri -> cp.fsh "Freewheel to Infosum (Exposed Campaign Users Attribution)" "Alternative" "Integration"
@@ -1395,7 +1544,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         mtffas = cp.fsh -> dap.as "Mediarithmics to Freewheel for ALA segments" "Alternative" "Integration"
         mticga = dap.dcri -> dap.as "Mediarithmics to Infosum (Control Group attribution)" "Alternative" "Integration"
         mvrtp = mmp.msp -> sp.mod "MoD  VoD Request to PFT" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        msdte = vsp.sm -> dap.cedw "MPP Subscriber data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        msdte = vsp.sm -> dap.edw "MPP Subscriber data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
         mcra = mmp.msp -> bms.asp "MSP Content Request API" "Alternative" "Integration"
         mcra2 = mmp.msp -> lpp.lsp "MSP Content Request API" "Alternative" "Integration"
         mcra3 = mmp.msp -> bms.osp "MSP Content Request API" "Alternative" "Integration"
@@ -1449,7 +1598,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         pptasb = mmp.msp -> sp.ppps "Pirate PPS to AWS S3 Bucket" "Mule" "Integration"
         ppitf = cp.fsh -> bms.pcgs "Pirate Programme Info to FreeWheel" "Mule" "Integration,Streaming Transformation Program,Impact"
         prmstc = bms.pira -> vsp.c4sl "Pirate Rights Management System to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        prdtoe = rmp.prms -> dap.cedw "PIRATE RMS data to  Oracle EDW" "Alternative" "Integration"
+        prdtoe = rmp.prms -> dap.edw "PIRATE RMS data to  Oracle EDW" "Alternative" "Integration"
         pta = lpp.ac -> sp.mod "Pirate To Amagi" "Alternative" "Integration"
         ptbfca = sp.mod -> bms.pira "Pirate to BeBanjo for Catalogue Assets" "Mule" "Integration"
         ptbfca2 = sp.mod -> csp.pp "Pirate to BeBanjo for Catalogue Assets" "Mule" "Integration"
@@ -1489,7 +1638,6 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         pcf = mmp.ppsp -> lpp.lsp "PPSP Contribution Feed" "Alternative" "Integration"
         pmfd = mmp.ppsp -> mmp.msp "PPSP Media File Delivery" "Alternative" "Integration"
         pdfptsX = rsp.soun -> bms.pira "Pre-TX data from Pirate to Soundmouse" "Automate, SFTP" "Integration"
-        plcdiabas = cp.stel -> dap.cedw "Processes linear campaign data, including agreements, breaks and spots" "Alternative" "Integration"
         prte = rsp.come -> fsp.ebs "Producer Reporting to EBS" "Automate" "Integration,Corporate Integration,Impact"
         proebs = fsp.ebs -> rsp.come "Producer Reporting to Oracle eBusiness Suite " "Alternative" "Integration,Corporate Integration,Impact"
         pptpfesdi = bms.ppp -> csp.pcc "Producers Portal to Pirate for Ed Spec Diversity info" "Mule" "Integration"
@@ -1508,16 +1656,27 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         se = rsp.come -> rsp.pap "Sales Entry" "Alternative" "Integration"
         str = lpp.lsp -> bms.pira "SSAPI to RTAR" "Mule" "Integration"
         sdfp = rsp.prrs -> fsp.bsw "Statement data (for pre-approved PO's)" "Alternative" "Integration"
-        scdta = cp.ap -> cp.stel "Stellar commercial data to Agencies" "Mule" "Integration"
+        sbttefud = cp.stel -> dap.edw "Stellar BARB & TAM to EDW for universe data" "Alternative" "Integration"
+        scpddtefcm = cp.stel -> dap.edw "Stellar CB & PIB delivery data to EDW for Campaign Month" "Alternative" "Integration"
+        scdta = cp.ap -> dap.edw "Stellar commercial data to Agencies" "Mule" "Integration"
+        scdta2 = cp.ap -> cp.stel "Stellar commercial data to Agencies" "Mule" "Integration"
+        sstefsed = cp.stel -> dap.edw "Stellar Snapshots to EDW for Scheduled Episode data" "Alternative" "Integration"
         stapkfpd = cp.ap -> cp.stel "Stellar to Agency Portal &  K2 for programme data" "Mule" "Integration"
         stapfcap = cp.ap -> cp.stel "Stellar to Agency Portal for CB and PIB" "Alternative" "Integration"
         strebs = fsp.ebs -> cp.stel "Stellar to EBS for Sales Orders & New Customers" "Alternative" "Integration"
-        ste-cpadpagl = cp.stel -> dap.cedw "STELLAR to EDW - Campaign Position and Deal Position at Group Level" "Alternative" "Integration"
-        ste-dtbuipcr = cp.stel -> dap.cedw "STELLAR to EDW - Data to be used in PIB & CB reporting" "Alternative" "Integration"
-        ste-pbpgd = cp.stel -> dap.cedw "STELLAR to EDW - Processes Base Price Group data" "Alternative" "Integration"
-        ste-rsrvpt = cp.stel -> dap.cedw "STELLAR to EDW - ROI Sponsorship Revenue values per transmission" "Alternative" "Integration"
-        ste-scd = cp.stel -> dap.cedw "STELLAR to EDW - Sponsorship campaign data" "Alternative" "Integration"
-        stefrcocs = cp.stel -> dap.cedw "Stellar to EDW for ROI calculation on Channel sets" "Alternative" "Integration"
+        ste-cpadpagl = cp.stel -> dap.edw "Stellar to EDW - Campaign Position and Deal Position at Group Level" "Alternative" "Integration"
+        ste-dtbuipcr = cp.stel -> dap.edw "Stellar to EDW - Data to be used in PIB & CB reporting" "Alternative" "Integration"
+        ste-pbpgd = cp.stel -> dap.edw "Stellar to EDW - Processes Base Price Group data" "Alternative" "Integration"
+        ste-rsrvpt = cp.stel -> dap.edw "Stellar to EDW - ROI Sponsorship Revenue values per transmission" "Alternative" "Integration"
+        ste-scd = cp.stel -> dap.edw "Stellar to EDW - Sponsorship campaign data" "Alternative" "Integration"
+        stefahil = cp.stel -> dap.edw "Stellar to EDW for Ad Hoc Inventory Loads" "Alternative" "Integration"
+        stefcm = cp.stel -> dap.edw "Stellar to EDW for Campaign Month" "Alternative" "Integration"
+        steficd = cp.stel -> dap.edw "Stellar to EDW for Industry Channel data" "Alternative" "Integration"
+        steflcdiabas = cp.stel -> dap.edw "Stellar to EDW for Linear Campaign Data, including Agreements, Breaks and Spots" "Alternative" "Integration"
+        stefocd = cp.stel -> dap.edw "Stellar to EDW for Online Campaign Data" "Alternative" "Integration"
+        stefpcd = cp.stel -> dap.edw "Stellar to EDW for Promo Campaign data" "Alternative" "Integration"
+        stefrsd = cp.stel -> dap.edw "Stellar to EDW for Revenue Set data" "Alternative" "Integration"
+        stefrcocs = cp.stel -> dap.edw "Stellar to EDW for ROI calculation on Channel sets" "Alternative" "Integration"
         stffabdac = cp.fsh -> cp.stel "Stellar to Freewheel for Agencies, Brand, Deals and Campaigns" "Mule" "Integration"
         stnabfptsl = dap.barb -> cp.stel "Stellar to NIELSEN and BARB for post transmission Spot Log" "SFTP" "Integration"
         stof2 = cp.stel -> fsp.ebs "Stellar to Oracle Financials about Agency financial exposure" "Alternative" "Integration"
@@ -1537,20 +1696,20 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         stpftp = cp.stel -> sp.ppps "Stellar to Pirate for Trail patterns" "Alternative" "Integration"
         stufac = mmp.msp -> cp.stel "Stellar to UKTV for Ad Certification" "SFTP" "Integration"
         stufccr = mmp.msp -> cp.stel "Stellar to UKTV for Commercial Copy Registrations" "SFTP" "Integration"
-        scte = vsp.c4sl -> dap.cedw "Streaming Consent to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        scte = vsp.c4sl -> dap.edw "Streaming Consent to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
         sbde = fsp.ebs -> rsp.pap "Supplier Bank Details Exist" "Automate" "Integration,Corporate Integration,Impact"
-        sffptee = rsp.prrs -> dap.cedw "Supplier fields from PIRATE to EDW(Redshift) EDW(Oracle)" "Alternative" "Integration"
+        sffpte = rsp.prrs -> dap.edw "Supplier fields from Pirate to EDW" "Alternative" "Integration"
         supinf = fsp.ebs -> rsp.pris "Supplier Information" "Alternative" "Integration,Corporate Integration,Impact"
         suprec = fsp.ebs -> rsp.pap "Supplier Records" "Alternative" "Integration,Corporate Integration,Impact"
-        ttbstcr = rsp.ted -> dap.cedw "Ted tables batch synchronisation to Coeus Redshift" "Alternative" "Integration"
+        ttbster = rsp.ted -> dap.edw "Ted tables batch synchronisation to EDW Redshift" "Alternative" "Integration"
         ttn = rsp.soun -> bms.pira "Ted to Neo" "Automate, SFTP" "Integration"
         tts = rsp.soun -> bms.pira "Ted to Silvermouse" "Automate, SFTP" "Integration"
         ttc-r = vsp.thin -> vsp.c4sl "ThinkAnalytics to C4S - Recommendation" "Alternative" "Integration,Streaming Transformation Program,Impact"
         tsfptb = dap.barb -> sp.pass "TX Schedule from PIRATE to BARB" "Alternative" "Integration"
         vptc = bms.osp -> vsp.c4sl "Video Pipeline to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
         vtcs = mmp.msp -> bms.ppc "VisionCloud to Compliance Service" "Mule" "Integration"
-        vvd = dap.cedw -> rsp.prrs "VOD Views Data" "Alternative" "Integration"
-        waadte = dap.wa -> dap.cedw "Web Analytics (AA) data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        vvd = dap.edw -> rsp.prrs "VOD Views Data" "Alternative" "Integration"
+        waadte = dap.wa -> dap.edw "Web Analytics (AA) data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
         wdsbi = fsp.wda -> fsp.ebs "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Mule" "Integration"
         wdsbi2 = fsp.wda -> fsp.sbi "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Mule" "Integration"
         ytf = vsp.yosp -> cp.fsh "YoSpace to Freewheel" "Alternative" "Integration,Streaming Transformation Program,Impact"
