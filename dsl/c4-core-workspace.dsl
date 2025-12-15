@@ -12,8 +12,12 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ORGANISATIONS / TEAMS (from LeanIX UserGroups)
            ============================================================ */
         
-        cse = person "Client Sales & Engagement" ""
-        part = person "Partnerships" ""
+        cse = person "Client Sales & Engagement" "" {
+            tags "team"
+        }
+        part = person "Partnerships" "" {
+            tags "team"
+        }
         so = person "Sales Operations" "Sales Operations handle the content supply chain for commercial content and plan placements withi..." {
             tags "businessUnit,Impact"
             perspectives {
@@ -23,20 +27,42 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         agen = person "Agency" "" {
             tags "customer"
         }
-        bt = person "Broadcast Technology" ""
+        bt = person "Broadcast Technology" "" {
+            tags "team"
+        }
         av = person "AV" "" {
             tags "businessUnit"
         }
-        at = person "Ad Tech" ""
-        camp = person "Campaign" ""
-        traf = person "Traffic" ""
-        trad = person "Trading" ""
-        paas = person "Presentation and Access Services" ""
-        cf = person "Content Finance" ""
-        comm = person "Communications" ""
-        aiX = person "Audience Integration" ""
-        clac = person "Corporate Legal and Compliance" "Sub-team of Commercial Affairs that handle legal and compliance for all our content. Assigning ce..."
-        cd = person "Content Delivery" ""
+        at = person "Ad Tech" "" {
+            tags "team"
+        }
+        camp = person "Campaign" "" {
+            tags "team"
+        }
+        traf = person "Traffic" "" {
+            tags "team"
+        }
+        trad = person "Trading" "" {
+            tags "team"
+        }
+        paas = person "Presentation and Access Services" "" {
+            tags "team"
+        }
+        cf = person "Content Finance" "" {
+            tags "team"
+        }
+        comm = person "Communications" "" {
+            tags "team"
+        }
+        aiX = person "Audience Integration" "" {
+            tags "team"
+        }
+        clac = person "Corporate Legal and Compliance" "Sub-team of Commercial Affairs that handle legal and compliance for all our content. Assigning ce..." {
+            tags "team"
+        }
+        cd = person "Content Delivery" "" {
+            tags "team"
+        }
         4stu = person "4Studio" "" {
             tags "businessUnit"
         }
@@ -44,14 +70,22 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             tags "businessUnit"
         }
         pp = person "Partner Platform" "User group to describe partner platforms such as DUK, Youview or Sky"
-        pi = person "Programme Information" "Programme Information provide distinctive, top quality, informative copy with the relevant tone o..."
-        co = person "Commissioning Office" ""
+        pi = person "Programme Information" "Programme Information provide distinctive, top quality, informative copy with the relevant tone o..." {
+            tags "team"
+        }
+        co = person "Commissioning Office" "" {
+            tags "team"
+        }
         prodX = person "Producer" ""
         ca = person "Commercial Affairs" "The commercial affairs teams handle entitlements and agreements, including rights) with out conte..." {
             tags "businessUnit"
         }
-        cspX = person "Content Strategy & Planning" "The Content Strategy team plans exhibition windows for our content on linear and non-linear using..."
-        yad = person "Youth and Digital" ""
+        cspX = person "Content Strategy & Planning" "The Content Strategy team plans exhibition windows for our content on linear and non-linear using..." {
+            tags "team"
+        }
+        yad = person "Youth and Digital" "" {
+            tags "team"
+        }
         cm = person "Content Management" "Technical and business team that handle content media supply chain." {
             tags "businessUnit"
         }
@@ -66,23 +100,45 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         sci = person "Strategy & Consumer Insight" "" {
             tags "businessUnit"
         }
-        mark = person "Marketing" ""
+        mark = person "Marketing" "" {
+            tags "team"
+        }
         inno = person "Innovation" "" {
             tags "businessUnit"
         }
-        daf = person "Daytime and Features" ""
-        dram = person "Drama" ""
-        fact = person "Factual" ""
-        fe = person "Factual Entertainment" ""
-        ncas = person "News, Current Affairs & Sport" ""
+        daf = person "Daytime and Features" "" {
+            tags "team"
+        }
+        dram = person "Drama" "" {
+            tags "team"
+        }
+        fact = person "Factual" "" {
+            tags "team"
+        }
+        fe = person "Factual Entertainment" "" {
+            tags "team"
+        }
+        ncas = person "News, Current Affairs & Sport" "" {
+            tags "team"
+        }
         f4 = person "Film 4" "" {
             tags "businessUnit"
         }
-        ba = person "Business Affairs" ""
-        come = person "Comedy" ""
-        coX = person "Commissioning Operations" ""
-        ente = person "Entertainment" ""
-        dd = person "Duty Desk" "Team that handles live content operations for our linear channels."
+        ba = person "Business Affairs" "" {
+            tags "team"
+        }
+        come = person "Comedy" "" {
+            tags "team"
+        }
+        coX = person "Commissioning Operations" "" {
+            tags "team"
+        }
+        ente = person "Entertainment" "" {
+            tags "team"
+        }
+        dd = person "Duty Desk" "Team that handles live content operations for our linear channels." {
+            tags "team"
+        }
         peop = person "People" "" {
             tags "businessUnit"
         }
@@ -95,19 +151,32 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         commX = person "Commercial" "" {
             tags "businessUnit"
         }
-        pf = person "Production Finance" ""
-        paa = person "Programmatic and Audience" ""
-        ds = person "Data Science" ""
-        ar = person "Audience Research" ""
+        pf = person "Production Finance" "" {
+            tags "team"
+        }
+        paa = person "Programmatic and Audience" "" {
+            tags "team"
+        }
+        ds = person "Data Science" "" {
+            tags "team"
+        }
+        ar = person "Audience Research" "" {
+            tags "team"
+        }
         tech = person "Technology" "" {
             tags "businessUnit"
         }
-        digi = person "Digital" ""
-        dm = person "Digital Marketing" ""
+        digi = person "Digital" "" {
+            tags "team"
+        }
+        dm = person "Digital Marketing" "" {
+            tags "team"
+        }
         insi = person "Insights" "" {
-            tags "Impact"
+            tags "team,Impact"
             perspectives {
                 Customer Journey Analytics (CJA) "Customer Journey Analytics (CJA)"
+                Data Experiments "Data Experiments"
             }
         }
         c4 = person "Channel 4" "" {
@@ -117,35 +186,54 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
         }
         ccfrss = person "Shared Services" "Team responsible for any financial transactional incoming and outgoing payment processing. Typica..." {
-            tags "Impact"
+            tags "team,Impact"
             perspectives {
                 Finance & People Transformation "Finance & People Transformation"
             }
         }
-        cpX = person "Consumer Product" ""
-        dmp = person "Digital Marketing (Product)" ""
+        cpX = person "Consumer Product" "" {
+            tags "team"
+        }
+        dmp = person "Digital Marketing (Product)" "" {
+            tags "team"
+        }
         cc = person "Content & Commissioning" "" {
             tags "businessUnit"
         }
         corp = person "Corporate" "" {
             tags "businessUnit"
         }
-        er = person "Employee Relations" ""
-        ct = person "Corporate Technology" ""
-        lad = person "Learning and Development" ""
-        proc = person "Procurement" ""
-        clg = person "Corporate Legal & Governance" ""
+        er = person "Employee Relations" "" {
+            tags "team"
+        }
+        ct = person "Corporate Technology" "" {
+            tags "team"
+        }
+        lad = person "Learning and Development" "" {
+            tags "team"
+        }
+        proc = person "Procurement" "" {
+            tags "team"
+        }
+        clg = person "Corporate Legal & Governance" "" {
+            tags "team"
+        }
         view = person "Viewer" "" {
             tags "customer"
         }
-        a4e = person "All 4 Editorial" ""
+        a4e = person "All 4 Editorial" "" {
+            tags "team"
+        }
         gs = person "Growth (Subscriptions)" "" {
-            tags "Impact"
+            tags "team,Impact"
             perspectives {
                 Customer Journey Analytics (CJA) "Customer Journey Analytics (CJA)"
+                Data Experiments "Data Experiments"
             }
         }
-        fm = person "Facilities Management" ""
+        fm = person "Facilities Management" "" {
+            tags "team"
+        }
 
         /* ============================================================
            COMMERCIAL PLATFORM
@@ -180,9 +268,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             stel = container "Stellar" "Channel4's Sales Order Processing System" "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/36680d73-914e-4f57-a8f3-bffe87a2d6c1
-                tags "Impact"
+                tags "SSO,Impact"
                 perspectives {
-                    SSO "Authenticated using SSO"
                     Corporate Integration "Corporate Integration"
                     Interstellar "Interstellar"
                 }
@@ -203,9 +290,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             bynd = container "Bynder" "Bynder is an AI-powered, SaaS DAM solution that allows brands to easily create, find and use thei..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3c1fa911-1501-4541-afe7-96465ec458f9
-                tags "Impact"
+                tags "SSO,Impact"
                 perspectives {
-                    SSO "Authenticated using SSO"
                     Streaming Transformation Program "Streaming Transformation Program"
                 }
             }
@@ -230,6 +316,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 perspectives {
                     New VoD Management System "New VoD Management System"
                     Flexible Series "Flexible Series"
+                    Post VMS Business Initiatives "Post VMS Business Initiatives"
                     Streaming Transformation Program "Streaming Transformation Program"
                 }
             }
@@ -238,9 +325,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             osp = container "OnLine Service Provider" "Provides capabilities for ingest, transformation, transcoding, encryption and delivery of VOD; li..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bbaf9554-9a19-44f9-83fb-f6ce638e4210
-                tags "Impact"
+                tags "SSO,Impact"
                 perspectives {
-                    SSO "Authenticated using SSO"
                     Streaming Transformation Program "Streaming Transformation Program"
                 }
             }
@@ -364,9 +450,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             spri = container "Sprinklr" "Sprinklr is a social media management platform that enables enterprise brands to connect with cus..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f2b3a2a6-5fdb-49e8-bd41-30969abaaf3c
-                perspectives {
-                    SSO "Authenticated using SSO"
-                }
+                tags "SSO"
             }
             ssfatwswra = container "Subtitling Sep FLS and Teletext with Subtotals (with Ray Amendments)" "Business Objects Report 'Subtitling Sep FLS and Teletext with Subtotals (with Ray Amendments)' - ..." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/08a36cbf-3719-4bc7-84f8-73bed68d9619
@@ -448,6 +532,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 perspectives {
                     Data Clean Room "Data Clean Room"
                     Customer Journey Analytics (CJA) "Customer Journey Analytics (CJA)"
+                    Data Experiments "Data Experiments"
                     Streaming Transformation Program "Streaming Transformation Program"
                 }
             }
@@ -463,29 +548,25 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             dcrs = container "Data Clean Room (Snowflake)" "A data platform with a vision to connect the world’s data without ever sharing it – by developing..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/682f5257-1497-4ac7-ad12-34150a67f521
-                tags "Impact"
+                tags "SSO,Impact"
                 perspectives {
-                    SSO "Authenticated using SSO"
                     Data Clean Room "Data Clean Room"
                 }
             }
             df = container "Data Fabric" "Data Fabric is an innovative approach designed to simplify and streamline data management across ..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fd1625b8-a9b8-4df4-a364-d4c0792ca019
-                perspectives {
-                    SSO "Authenticated using SSO"
-                }
+                tags "SSO"
             }
             tabl = container "Tableau" "Tableau is a data visualization tool used in the Business Intelligence Industry. It helps in simp..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bcb4c0dc-cb38-4f70-9451-53443456ed8c
-                perspectives {
-                    SSO "Authenticated using SSO"
-                }
+                tags "SSO"
             }
             wa = container "Web Analytics" "Web Analytics software used by M&VE for All 4 & Online Services Adobe Analytics is the solution f..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f7a463e8-edb4-45d6-ad21-e2922b6305a7
                 tags "Impact"
                 perspectives {
                     Customer Journey Analytics (CJA) "Customer Journey Analytics (CJA)"
+                    Data Experiments "Data Experiments"
                 }
             }
         }
@@ -511,9 +592,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             bsw = container "Basware" "Enterprise software for financial processes, purchase to pay and financial management. Manage Inv..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/61ea2036-2682-4999-8a2b-b56a8ff60aa8
-                tags "Impact"
+                tags "SSO,Impact"
                 perspectives {
-                    SSO "Authenticated using SSO"
                     Corporate Integration "Corporate Integration"
                     Finance & People Transformation "Finance & People Transformation"
                 }
@@ -523,9 +603,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             ebs = container "E-Business Suite" "Channel4 Oracle E-business Suite application used in Finance department for Accounts, Cash and As..." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/34852185-2e79-424a-8735-f586ca0bc6eb
-                tags "Impact"
+                tags "SSO,Impact"
                 perspectives {
-                    SSO "Authenticated using SSO"
                     Benefex Replacement "Benefex Replacement"
                     Corporate Integration "Corporate Integration"
                     Finance & People Transformation "Finance & People Transformation"
@@ -564,9 +643,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             sbi = container "SplashBI" "SplashBI is an all-in-one framework for visualising, reporting and analysing data." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/618820c7-1747-4388-a9aa-cfef9e9369c0
-                tags "Impact"
+                tags "SSO,Impact"
                 perspectives {
-                    SSO "Authenticated using SSO"
                     Finance & People Transformation "Finance & People Transformation"
                     Transactional Reporting Solution "Transactional Reporting Solution"
                 }
@@ -576,9 +654,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             wda = container "Workday Adaptive" "Workday Adaptive is Channel 4 Finance's Planning and Consolidation tool" "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4855f235-d3b0-41d0-b983-9265f83b840c
-                tags "Impact"
+                tags "SSO,Impact"
                 perspectives {
-                    SSO "Authenticated using SSO"
                     Finance & People Transformation "Finance & People Transformation"
                 }
             }
@@ -640,9 +717,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             
             awar = container "Awards" "Awards is a repository of all awards won by Channel 4 or where Channel 4 has been nominated. Plat..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/97c919e2-8156-4df7-a5a8-afde3cd0325d
-                perspectives {
-                    SSO "Authenticated using SSO"
-                }
+                tags "SSO"
             }
             msp = container "Media Service Provider" "Service provider for Digital Asset Management System" "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b245220d-2a8d-4630-a3f5-e33f1a3c2354
@@ -680,27 +755,23 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             
             4peo = container "4People" "4People is a cloud HR and people system that empowers mid-size organisations to effectively respo..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3db00200-a028-4cb8-baeb-a3f88d1dd6e9
-                tags "Impact"
+                tags "SSO,Impact"
                 perspectives {
-                    SSO "Authenticated using SSO"
                     AI People Team "AI People Team"
                     Benefex Replacement "Benefex Replacement"
                 }
             }
             acti = container "ActivPay" "Actvipay is Channel 4's 3rd party payroll provider." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/cdaf03e9-7bde-49b0-bfae-ecb69af5dc27
-                perspectives {
-                    SSO "Authenticated using SSO"
-                }
+                tags "SSO"
             }
             ac = container "Alert Cascade" "Crisis event mass communication tool" "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b6bf1946-3623-41a6-9a3f-36bc6e1fc4a5
             }
             bp = container "Benefits Portal" "" "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ec56cea3-8d33-40bc-a695-805e21c0cbf0
-                tags "Impact"
+                tags "SSO,Impact"
                 perspectives {
-                    SSO "Authenticated using SSO"
                     Benefex Replacement "Benefex Replacement"
                 }
             }
@@ -716,21 +787,15 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             ll = container "LinkedIn Learning" "LinkedIn Learning offers video courses taught by industry experts in software, creative, and busi..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9cd4b77f-8517-478b-b25b-6592a04d157b
-                perspectives {
-                    SSO "Authenticated using SSO"
-                }
+                tags "SSO"
             }
             popp = container "Poppulo" "Internal communications Internal Communication, newsletter system. Used by internal comms. Integr..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/59812f2b-1d87-466b-816a-8feb530a4de3
-                perspectives {
-                    SSO "Authenticated using SSO"
-                }
+                tags "SSO"
             }
             tlh = container "The Learning Hive" "Cornerstone is a cloud-based learning and talent management solutions platform." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ec47ad40-b9d6-4af1-a100-27beef4495e7
-                perspectives {
-                    SSO "Authenticated using SSO"
-                }
+                tags "SSO"
             }
         }
 
@@ -827,6 +892,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 perspectives {
                     New VoD Management System "New VoD Management System"
                     Flexible Series "Flexible Series"
+                    Post VMS Business Initiatives "Post VMS Business Initiatives"
                     Streaming Transformation Program "Streaming Transformation Program"
                 }
             }
@@ -908,6 +974,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 tags "Impact"
                 perspectives {
                     Flexible Series "Flexible Series"
+                    Post VMS Business Initiatives "Post VMS Business Initiatives"
                     Streaming Transformation Program "Streaming Transformation Program"
                     UK FAST "UK FAST"
                 }
@@ -978,9 +1045,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             egen = container "Egencia" "Egencia is a SaaS platform developed by Amex GBT that offers corporate travel management solution..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bc12be35-05c9-4add-9535-ded814046530
-                perspectives {
-                    SSO "Authenticated using SSO"
-                }
+                tags "SSO"
             }
             tb = container "Taxi Booking" "This application describes are taxi booking capability at Channel 4." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3b5ca269-2905-4273-8bff-36aa694152cb
@@ -989,33 +1054,33 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/59f0b9cc-6b23-4630-a46f-557de8be2079
             }
         }
-        
+
         /* ============================================================
            PERSON -> APPLICATION RELATIONSHIPS
            ============================================================ */
-        
+
         cseToAp = cse -> cp.ap "Uses"
         partToAp = part -> cp.ap "Uses"
-        soToAp = so -> cp.ap "Uses"
+        soToAp = so -> cp.ap "Uses" "Impact"
         agenToAp = agen -> cp.ap "Uses"
         btToCari = bt -> cp.cari "Uses"
         agenToCari = agen -> cp.cari "Uses"
-        soToCc = so -> cp.cc "Uses"
-        soToFsh = so -> cp.fsh "Uses"
-        soToInno = so -> cp.inno "Uses"
+        soToCc = so -> cp.cc "Uses" "Impact"
+        soToFsh = so -> cp.fsh "Uses" "Impact"
+        soToInno = so -> cp.inno "Uses" "Impact"
         avToSc = av -> cp.sc "AV = Audio Visual"
-        soToSc = so -> cp.sc "Uses"
+        soToSc = so -> cp.sc "Uses" "Impact"
         atToSc = at -> cp.sc "Uses"
-        cseToStel = cse -> cp.stel "Uses"
-        partToStel = part -> cp.stel "Uses"
-        soToStel = so -> cp.stel "Uses"
-        campToStel = camp -> cp.stel "Uses"
-        trafToStel = traf -> cp.stel "Uses"
-        tradToStel = trad -> cp.stel "Uses"
+        cseToStel = cse -> cp.stel "Uses" "Impact"
+        partToStel = part -> cp.stel "Uses" "Impact"
+        soToStel = so -> cp.stel "Uses" "Impact"
+        campToStel = camp -> cp.stel "Uses" "Impact"
+        trafToStel = traf -> cp.stel "Uses" "Impact"
+        tradToStel = trad -> cp.stel "Uses" "Impact"
         paasToAsp = paas -> bms.asp "Uses"
         cfToAcf = cf -> bms.acf "Uses"
-        commToBynd = comm -> bms.bynd "Uses"
-        aiXToBynd = aiX -> bms.bynd "Uses"
+        commToBynd = comm -> bms.bynd "Uses" "Impact"
+        aiXToBynd = aiX -> bms.bynd "Uses" "Impact"
         partToC7t = part -> bms.c7t "Uses"
         clacToC7t = clac -> bms.c7t "Uses"
         cdToC7t = cd -> bms.c7t "Uses"
@@ -1024,25 +1089,25 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         paasToDasdpwpswra = paas -> bms.dasdpwpswra "Uses"
         ppToEt = pp -> bms.et "Uses"
         ppToGrac = pp -> bms.grac "Uses"
-        piToMod = pi -> bms.mod "Uses"
+        piToMod = pi -> bms.mod "Uses" "Impact"
         paasToOlss = paas -> bms.olss "Uses"
-        piToOsp = pi -> bms.osp "Uses"
-        btToOsp = bt -> bms.osp "Uses"
+        piToOsp = pi -> bms.osp "Uses" "Impact"
+        btToOsp = bt -> bms.osp "Uses" "Impact"
         cfToOl = cf -> bms.ol "Uses"
         coToP4ws = co -> bms.p4ws "Uses"
         prodXToP4ws = prodX -> bms.p4ws "Uses"
-        soToPass = so -> bms.pass "Uses"
-        tradToPass = trad -> bms.pass "Uses"
-        caToPass = ca -> bms.pass "Uses"
-        cspXToPass = cspX -> bms.pass "Uses"
-        yadToPass = yad -> bms.pass "Uses"
-        cmToPass = cm -> bms.pass "Uses"
-        ccfToPass = ccf -> bms.pass "Uses"
-        sciToPass = sci -> bms.pass "Uses"
-        markToPass = mark -> bms.pass "Uses"
-        prodToPass = prod -> bms.pass "Uses"
+        soToPass = so -> bms.pass "Uses" "Impact"
+        tradToPass = trad -> bms.pass "Uses" "Impact"
+        caToPass = ca -> bms.pass "Uses" "Impact"
+        cspXToPass = cspX -> bms.pass "Uses" "Impact"
+        yadToPass = yad -> bms.pass "Uses" "Impact"
+        cmToPass = cm -> bms.pass "Uses" "Impact"
+        ccfToPass = ccf -> bms.pass "Uses" "Impact"
+        sciToPass = sci -> bms.pass "Uses" "Impact"
+        markToPass = mark -> bms.pass "Uses" "Impact"
+        prodToPass = prod -> bms.pass "Uses" "Impact"
         caToPbm = ca -> bms.pbm "Uses"
-        ccfToPbm = ccf -> bms.pbm "Uses"
+        ccfToPbm = ccf -> bms.pbm "Uses" "Impact"
         cfToPbm = cf -> bms.pbm "Uses"
         innoToPc = inno -> bms.pc "Uses"
         caToPc = ca -> bms.pc "Uses"
@@ -1054,7 +1119,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ncasToPc = ncas -> bms.pc "Uses"
         yadToPc = yad -> bms.pc "Uses"
         cmToPc = cm -> bms.pc "Uses"
-        ccfToPc = ccf -> bms.pc "Uses"
+        ccfToPc = ccf -> bms.pc "Uses" "Impact"
         cfToPc = cf -> bms.pc "Uses"
         sciToPc = sci -> bms.pc "Uses"
         f4ToPc = f4 -> bms.pc "Uses"
@@ -1062,7 +1127,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         markToPc = mark -> bms.pc "Uses"
         prodToPc = prod -> bms.pc "Uses"
         innoToPcgs = inno -> bms.pcgs "Uses"
-        soToPcgs = so -> bms.pcgs "Uses"
+        soToPcgs = so -> bms.pcgs "Uses" "Impact"
         caToPcgs = ca -> bms.pcgs "Uses"
         dramToPcgs = dram -> bms.pcgs "Uses"
         ncasToPcgs = ncas -> bms.pcgs "Uses"
@@ -1074,7 +1139,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         markToPcgs = mark -> bms.pcgs "Uses"
         prodToPcgs = prod -> bms.pcgs "Uses"
         innoToPcps = inno -> bms.pcps "Uses"
-        soToPcps = so -> bms.pcps "Uses"
+        soToPcps = so -> bms.pcps "Uses" "Impact"
         caToPcps = ca -> bms.pcps "Uses"
         cspXToPcps = cspX -> bms.pcps "Uses"
         dramToPcps = dram -> bms.pcps "Uses"
@@ -1082,13 +1147,13 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         piToPcps = pi -> bms.pcps "Uses"
         prodToPcps = prod -> bms.pcps "Uses"
         baToPdaprs = ba -> bms.pdaprs "Uses"
-        soToPfas = so -> bms.pfas "Uses"
+        soToPfas = so -> bms.pfas "Uses" "Impact"
         caToPfas = ca -> bms.pfas "Uses"
         cspXToPfas = cspX -> bms.pfas "Uses"
-        ccfToPfas = ccf -> bms.pfas "Uses"
+        ccfToPfas = ccf -> bms.pfas "Uses" "Impact"
         sciToPfas = sci -> bms.pfas "Uses"
         innoToPge = inno -> bms.pge "Uses"
-        soToPge = so -> bms.pge "Uses"
+        soToPge = so -> bms.pge "Uses" "Impact"
         tradToPge = trad -> bms.pge "Uses"
         caToPge = ca -> bms.pge "Uses"
         comeToPge = come -> bms.pge "Uses"
@@ -1107,7 +1172,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ddToPge = dd -> bms.pge "Uses"
         paasToPge = paas -> bms.pge "Uses"
         piToPge = pi -> bms.pge "Not all information is available and needs to be obtained from other sources. Clunky"
-        ccfToPge = ccf -> bms.pge "Uses"
+        ccfToPge = ccf -> bms.pge "Uses" "Impact"
         peopToPge = peop -> bms.pge "Uses"
         sciToPge = sci -> bms.pge "Uses"
         f4ToPge = f4 -> bms.pge "Uses"
@@ -1119,16 +1184,16 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         prodToPge = prod -> bms.pge "Uses"
         yadToPip = yad -> bms.pip "Uses"
         cmToPip = cm -> bms.pip "Uses"
-        ccfToPip = ccf -> bms.pip "Uses"
+        ccfToPip = ccf -> bms.pip "Uses" "Impact"
         cfToPip = cf -> bms.pip "Uses"
         markToPip = mark -> bms.pip "Uses"
         prodToPip = prod -> bms.pip "Uses"
         piToPitts = pi -> bms.pitts "Uses"
-        soToPmam = so -> bms.pmam "Uses"
+        soToPmam = so -> bms.pmam "Uses" "Impact"
         cmToPmam = cm -> bms.pmam "Uses"
-        ccfToPmam = ccf -> bms.pmam "Uses"
+        ccfToPmam = ccf -> bms.pmam "Uses" "Impact"
         cfToPmam = cf -> bms.pmam "Uses"
-        soToPmm = so -> bms.pmm "Uses"
+        soToPmm = so -> bms.pmm "Uses" "Impact"
         caToPmm = ca -> bms.pmm "Uses"
         cspXToPmm = cspX -> bms.pmm "Uses"
         factToPmm = fact -> bms.pmm "Uses"
@@ -1138,31 +1203,31 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         cdToPmm = cd -> bms.pmm "Uses"
         4creToPmm = 4cre -> bms.pmm "Uses"
         markToPmm = mark -> bms.pmm "Uses"
-        soToPofg = so -> bms.pofg "Uses"
+        soToPofg = so -> bms.pofg "Uses" "Impact"
         cmToPofg = cm -> bms.pofg "Uses"
-        ccfToPofg = ccf -> bms.pofg "Uses"
+        ccfToPofg = ccf -> bms.pofg "Uses" "Impact"
         cfToPofg = cf -> bms.pofg "Uses"
-        soToPpps = so -> bms.ppps "Uses"
-        caToPpps = ca -> bms.ppps "Uses"
-        cspXToPpps = cspX -> bms.ppps "Uses"
-        feToPpps = fe -> bms.ppps "Uses"
-        cmToPpps = cm -> bms.ppps "Uses"
-        paasToPpps = paas -> bms.ppps "Uses"
-        sciToPpps = sci -> bms.ppps "Uses"
-        4creToPpps = 4cre -> bms.ppps "Uses"
-        4stuToPpps = 4stu -> bms.ppps "Uses"
-        markToPpps = mark -> bms.ppps "Uses"
-        prodToPpps = prod -> bms.ppps "Uses"
-        innoToPpps-p = inno -> bms.ppps-p "Uses"
-        soToPpps-p = so -> bms.ppps-p "Uses"
-        caToPpps-p = ca -> bms.ppps-p "Uses"
-        cspXToPpps-p = cspX -> bms.ppps-p "Uses"
-        factToPpps-p = fact -> bms.ppps-p "Uses"
-        feToPpps-p = fe -> bms.ppps-p "Uses"
-        cmToPpps-p = cm -> bms.ppps-p "Uses"
-        ccfToPpps-p = ccf -> bms.ppps-p "Uses"
-        4creToPpps-p = 4cre -> bms.ppps-p "Uses"
-        markToPpps-p = mark -> bms.ppps-p "Uses"
+        soToPpps = so -> bms.ppps "Uses" "Impact"
+        caToPpps = ca -> bms.ppps "Uses" "Impact"
+        cspXToPpps = cspX -> bms.ppps "Uses" "Impact"
+        feToPpps = fe -> bms.ppps "Uses" "Impact"
+        cmToPpps = cm -> bms.ppps "Uses" "Impact"
+        paasToPpps = paas -> bms.ppps "Uses" "Impact"
+        sciToPpps = sci -> bms.ppps "Uses" "Impact"
+        4creToPpps = 4cre -> bms.ppps "Uses" "Impact"
+        4stuToPpps = 4stu -> bms.ppps "Uses" "Impact"
+        markToPpps = mark -> bms.ppps "Uses" "Impact"
+        prodToPpps = prod -> bms.ppps "Uses" "Impact"
+        innoToPpps-p = inno -> bms.ppps-p "Uses" "Impact"
+        soToPpps-p = so -> bms.ppps-p "Uses" "Impact"
+        caToPpps-p = ca -> bms.ppps-p "Uses" "Impact"
+        cspXToPpps-p = cspX -> bms.ppps-p "Uses" "Impact"
+        factToPpps-p = fact -> bms.ppps-p "Uses" "Impact"
+        feToPpps-p = fe -> bms.ppps-p "Uses" "Impact"
+        cmToPpps-p = cm -> bms.ppps-p "Uses" "Impact"
+        ccfToPpps-p = ccf -> bms.ppps-p "Uses" "Impact"
+        4creToPpps-p = 4cre -> bms.ppps-p "Uses" "Impact"
+        markToPpps-p = mark -> bms.ppps-p "Uses" "Impact"
         caToPpp = ca -> bms.ppp "Uses"
         comeToPpp = come -> bms.ppp "Uses"
         cspXToPpp = cspX -> bms.ppp "Uses"
@@ -1174,13 +1239,13 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ncasToPpp = ncas -> bms.ppp "Uses"
         yadToPpp = yad -> bms.ppp "Uses"
         cmToPpp = cm -> bms.ppp "Uses"
-        ccfToPpp = ccf -> bms.ppp "Uses"
+        ccfToPpp = ccf -> bms.ppp "Uses" "Impact"
         sciToPpp = sci -> bms.ppp "Uses"
         f4ToPpp = f4 -> bms.ppp "Uses"
         4creToPpp = 4cre -> bms.ppp "Uses"
         markToPpp = mark -> bms.ppp "Uses"
         prodXToPpp = prodX -> bms.ppp "Uses"
-        soToPpc = so -> bms.ppc "Uses"
+        soToPpc = so -> bms.ppc "Uses" "Impact"
         caToPpc = ca -> bms.ppc "Uses"
         clacToPpc = clac -> bms.ppc "Uses"
         cspXToPpc = cspX -> bms.ppc "Uses"
@@ -1195,7 +1260,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         4creToPpc = 4cre -> bms.ppc "Uses"
         markToPpc = mark -> bms.ppc "Uses"
         piToPrta2 = pi -> bms.prta2 "Uses"
-        ccfToPswo = ccf -> bms.pswo "Uses"
+        ccfToPswo = ccf -> bms.pswo "Uses" "Impact"
         cfToPswo = cf -> bms.pswo "Uses"
         cmToPsfv = cm -> bms.psfv "Uses"
         piToPsfv = pi -> bms.psfv "Uses"
@@ -1207,7 +1272,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ddToPvb = dd -> bms.pvb "Uses"
         piToPvb = pi -> bms.pvb "Uses"
         innoToPve = inno -> bms.pve "Uses"
-        soToPve = so -> bms.pve "Uses"
+        soToPve = so -> bms.pve "Uses" "Impact"
         caToPve = ca -> bms.pve "Uses"
         cspXToPve = cspX -> bms.pve "Uses"
         feToPve = fe -> bms.pve "Uses"
@@ -1228,35 +1293,35 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         caToPasc = ca -> csp.pasc "Uses"
         pfToPasc = pf -> csp.pasc "Uses"
         cspXToPasc = cspX -> csp.pasc "Uses"
-        ccfToPasc = ccf -> csp.pasc "Uses"
-        soToPcf = so -> csp.pcf "Uses"
+        ccfToPasc = ccf -> csp.pasc "Uses" "Impact"
+        soToPcf = so -> csp.pcf "Uses" "Impact"
         caToPcf = ca -> csp.pcf "Uses"
         yadToPcf = yad -> csp.pcf "Uses"
         cmToPcf = cm -> csp.pcf "Uses"
-        ccfToPcf = ccf -> csp.pcf "Uses"
+        ccfToPcf = ccf -> csp.pcf "Uses" "Impact"
         cfToPcf = cf -> csp.pcf "Uses"
-        innoToPcc = inno -> csp.pcc "Uses"
-        soToPcc = so -> csp.pcc "Uses"
-        caToPcc = ca -> csp.pcc "Uses"
-        comeToPcc = come -> csp.pcc "Uses"
-        coToPcc = co -> csp.pcc "Uses"
-        cspXToPcc = cspX -> csp.pcc "Uses"
-        dafToPcc = daf -> csp.pcc "Uses"
-        dramToPcc = dram -> csp.pcc "Uses"
-        enteToPcc = ente -> csp.pcc "Uses"
-        factToPcc = fact -> csp.pcc "Uses"
-        feToPcc = fe -> csp.pcc "Uses"
-        ncasToPcc = ncas -> csp.pcc "Uses"
-        yadToPcc = yad -> csp.pcc "Uses"
-        cmToPcc = cm -> csp.pcc "Uses"
-        ccfToPcc = ccf -> csp.pcc "Uses"
-        sciToPcc = sci -> csp.pcc "Uses"
-        f4ToPcc = f4 -> csp.pcc "Uses"
-        4creToPcc = 4cre -> csp.pcc "Uses"
-        markToPcc = mark -> csp.pcc "Uses"
-        prodXToPcc = prodX -> csp.pcc "Uses"
+        innoToPcc = inno -> csp.pcc "Uses" "Impact"
+        soToPcc = so -> csp.pcc "Uses" "Impact"
+        caToPcc = ca -> csp.pcc "Uses" "Impact"
+        comeToPcc = come -> csp.pcc "Uses" "Impact"
+        coToPcc = co -> csp.pcc "Uses" "Impact"
+        cspXToPcc = cspX -> csp.pcc "Uses" "Impact"
+        dafToPcc = daf -> csp.pcc "Uses" "Impact"
+        dramToPcc = dram -> csp.pcc "Uses" "Impact"
+        enteToPcc = ente -> csp.pcc "Uses" "Impact"
+        factToPcc = fact -> csp.pcc "Uses" "Impact"
+        feToPcc = fe -> csp.pcc "Uses" "Impact"
+        ncasToPcc = ncas -> csp.pcc "Uses" "Impact"
+        yadToPcc = yad -> csp.pcc "Uses" "Impact"
+        cmToPcc = cm -> csp.pcc "Uses" "Impact"
+        ccfToPcc = ccf -> csp.pcc "Uses" "Impact"
+        sciToPcc = sci -> csp.pcc "Uses" "Impact"
+        f4ToPcc = f4 -> csp.pcc "Uses" "Impact"
+        4creToPcc = 4cre -> csp.pcc "Uses" "Impact"
+        markToPcc = mark -> csp.pcc "Uses" "Impact"
+        prodXToPcc = prodX -> csp.pcc "Uses" "Impact"
         innoToPp = inno -> csp.pp "Uses"
-        soToPp = so -> csp.pp "Uses"
+        soToPp = so -> csp.pp "Uses" "Impact"
         caToPp = ca -> csp.pp "Uses"
         cspXToPp = cspX -> csp.pp "Uses"
         dafToPp = daf -> csp.pp "Uses"
@@ -1267,47 +1332,103 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         yadToPp = yad -> csp.pp "Uses"
         cmToPp = cm -> csp.pp "Uses"
         piToPp = pi -> csp.pp "Uses"
-        ccfToPp = ccf -> csp.pp "Uses"
+        ccfToPp = ccf -> csp.pp "Uses" "Impact"
         f4ToPp = f4 -> csp.pp "Uses"
         commToPp = comm -> csp.pp "Uses"
-        caToPpX = ca -> csp.ppX "Uses"
-        cspXToPpX = cspX -> csp.ppX "Uses"
-        dafToPpX = daf -> csp.ppX "Uses"
-        piToPpX = pi -> csp.ppX "Uses"
-        ccfToPpX = ccf -> csp.ppX "Uses"
-        paaToAs = paa -> dap.as "Uses"
-        soToBarb = so -> dap.barb "Uses"
+        caToPpX = ca -> csp.ppX "Uses" "Impact"
+        cspXToPpX = cspX -> csp.ppX "Uses" "Impact"
+        dafToPpX = daf -> csp.ppX "Uses" "Impact"
+        piToPpX = pi -> csp.ppX "Uses" "Impact"
+        ccfToPpX = ccf -> csp.ppX "Uses" "Impact"
+        paaToAs = paa -> dap.as "Uses" "Impact"
+        soToBarb = so -> dap.barb "Uses" "Impact"
         dsToBarb = ds -> dap.barb "Uses"
         cseToBor = cse -> dap.bor "Uses"
         partToBor = part -> dap.bor "Uses"
-        soToBor = so -> dap.bor "Uses"
+        soToBor = so -> dap.bor "Uses" "Impact"
         tradToBor = trad -> dap.bor "Uses"
-        arToEdw = ar -> dap.edw "Uses"
-        dsToEdw = ds -> dap.edw "Uses"
-        techToEdw = tech -> dap.edw "Uses"
+        arToEdw = ar -> dap.edw "Uses" "Impact"
+        dsToEdw = ds -> dap.edw "Uses" "Impact"
+        techToEdw = tech -> dap.edw "Uses" "Impact"
         arToC4 = ar -> dap.c4 "Uses"
-        soToDcri = so -> dap.dcri "Uses"
-        digiToDcrs = digi -> dap.dcrs "Uses"
-        aiXToDcrs = aiX -> dap.dcrs "C4 Audience Team and Marketing team use the Data Clean Room solution for creating overlapping aud..."
-        dmToDcrs = dm -> dap.dcrs "Uses"
-        soToDf = so -> dap.df "Uses"
+        soToDcri = so -> dap.dcri "Uses" "Impact" {
+            perspectives {
+                Data Clean Room "Data Clean Room"
+            }
+        }
+        digiToDcrs = digi -> dap.dcrs "Uses" "Impact"
+        aiXToDcrs = aiX -> dap.dcrs "C4 Audience Team and Marketing team use the Data Clean Room solution for creating overlapping aud..." "Impact"
+        dmToDcrs = dm -> dap.dcrs "Uses" "Impact"
+        soToDf = so -> dap.df "Uses" "Impact"
         atToDf = at -> dap.df "Uses"
-        insiToTabl = insi -> dap.tabl "Uses"
-        insiToWa = insi -> dap.wa "Uses"
-        ccfToAtax = ccf -> fsp.atax "Uses"
-        ccfToBbp = ccf -> fsp.bbp "Uses"
-        c4ToBsw = c4 -> fsp.bsw "Raise and approve POs"
-        ccfToBsw = ccf -> fsp.bsw "Uses"
-        ccfrssToBsw = ccfrss -> fsp.bsw "Uses"
-        ccfToEbs = ccf -> fsp.ebs "Uses"
-        ccfrssToEbs = ccfrss -> fsp.ebs "Uses"
-        c4ToFaf = c4 -> fsp.faf "Uses"
-        ccfToMsc = ccf -> fsp.msc "Uses"
-        ccfToSov = ccf -> fsp.sov "Uses"
-        ccfToSbi = ccf -> fsp.sbi "Uses"
-        ccfrssToSbi = ccfrss -> fsp.sbi "Uses"
-        ccfrssToTgn = ccfrss -> fsp.tgn "Uses"
-        ccfToWda = ccf -> fsp.wda "Uses"
+        insiToTabl = insi -> dap.tabl "Uses" "Impact"
+        insiToWa = insi -> dap.wa "Uses" "Impact" {
+            perspectives {
+                Customer Journey Analytics (CJA) "Customer Journey Analytics (CJA)"
+                Data Experiments "Data Experiments"
+            }
+        }
+        ccfToAtax = ccf -> fsp.atax "Uses" "Impact"
+        ccfToBbp = ccf -> fsp.bbp "Uses" "Impact"
+        c4ToBsw = c4 -> fsp.bsw "Raise and approve POs" "Impact" {
+            perspectives {
+                Finance & People Transformation "Finance & People Transformation"
+            }
+        }
+        ccfToBsw = ccf -> fsp.bsw "Uses" "Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+                Finance & People Transformation "Finance & People Transformation"
+            }
+        }
+        ccfrssToBsw = ccfrss -> fsp.bsw "Uses" "Impact" {
+            perspectives {
+                Finance & People Transformation "Finance & People Transformation"
+            }
+        }
+        ccfToEbs = ccf -> fsp.ebs "Uses" "Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+                Finance & People Transformation "Finance & People Transformation"
+            }
+        }
+        ccfrssToEbs = ccfrss -> fsp.ebs "Uses" "Impact" {
+            perspectives {
+                Finance & People Transformation "Finance & People Transformation"
+            }
+        }
+        c4ToFaf = c4 -> fsp.faf "Uses" "Impact" {
+            perspectives {
+                Finance & People Transformation "Finance & People Transformation"
+            }
+        }
+        ccfToMsc = ccf -> fsp.msc "Uses" "Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        ccfToSov = ccf -> fsp.sov "Uses" "Impact" {
+            perspectives {
+                Finance & People Transformation "Finance & People Transformation"
+            }
+        }
+        ccfToSbi = ccf -> fsp.sbi "Uses" "Impact" {
+            perspectives {
+                Finance & People Transformation "Finance & People Transformation"
+                Transactional Reporting Solution "Transactional Reporting Solution"
+            }
+        }
+        ccfrssToSbi = ccfrss -> fsp.sbi "Uses" "Impact" {
+            perspectives {
+                Finance & People Transformation "Finance & People Transformation"
+            }
+        }
+        ccfrssToTgn = ccfrss -> fsp.tgn "Uses" "Impact"
+        ccfToWda = ccf -> fsp.wda "Uses" "Impact" {
+            perspectives {
+                Finance & People Transformation "Finance & People Transformation"
+            }
+        }
         ddToLsp = dd -> lpp.lsp "Uses"
         piToLsp = pi -> lpp.lsp "Uses"
         btToLsp = bt -> lpp.lsp "Uses"
@@ -1316,56 +1437,60 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         cpXToMpar = cpX -> mp.mpar "Uses"
         dmpToMpar = dmp -> mp.mpar "Uses"
         cspXToAwar = cspX -> mmp.awar "Uses"
-        trafToMsp = traf -> mmp.msp "Uses"
-        ccToMsp = cc -> mmp.msp "Uses"
-        cmToMsp = cm -> mmp.msp "Uses"
-        paasToMsp = paas -> mmp.msp "Uses"
-        btToMsp = bt -> mmp.msp "Uses"
-        4creToMsp = 4cre -> mmp.msp "Uses"
-        prodXToMsp = prodX -> mmp.msp "Uses"
+        trafToMsp = traf -> mmp.msp "Uses" "Impact"
+        ccToMsp = cc -> mmp.msp "Uses" "Impact"
+        cmToMsp = cm -> mmp.msp "Uses" "Impact"
+        paasToMsp = paas -> mmp.msp "Uses" "Impact"
+        btToMsp = bt -> mmp.msp "Uses" "Impact"
+        4creToMsp = 4cre -> mmp.msp "Uses" "Impact"
+        prodXToMsp = prodX -> mmp.msp "Uses" "Impact"
         clacToPpsp = clac -> mmp.ppsp "Uses"
         btToPpsp = bt -> mmp.ppsp "Uses"
         4creToPpsp = 4cre -> mmp.ppsp "Uses"
-        c4To4peo = c4 -> psp.4peo "Uses"
-        peopTo4peo = peop -> psp.4peo "Uses"
-        c4ToActi = c4 -> psp.acti "Uses"
+        c4To4peo = c4 -> psp.4peo "Uses" "Impact"
+        peopTo4peo = peop -> psp.4peo "Uses" "Impact"
+        c4ToActi = c4 -> psp.acti "Uses" "Impact"
         peopToActi = peop -> psp.acti "Uses"
         corpToAc = corp -> psp.ac "Uses"
-        c4ToBp = c4 -> psp.bp "Uses"
-        erToBp = er -> psp.bp "Uses"
+        c4ToBp = c4 -> psp.bp "Uses" "Impact"
+        erToBp = er -> psp.bp "Uses" "Impact"
         ctToEr = ct -> psp.er "Uses"
-        c4ToFes = c4 -> psp.fes "Uses"
-        peopToFes = peop -> psp.fes "Uses"
-        c4ToLl = c4 -> psp.ll "Uses"
+        c4ToFes = c4 -> psp.fes "Uses" "Impact"
+        peopToFes = peop -> psp.fes "Uses" "Impact"
+        c4ToLl = c4 -> psp.ll "Uses" "Impact"
         ladToLl = lad -> psp.ll "Uses"
         peopToPopp = peop -> psp.popp "Uses"
-        c4ToTlh = c4 -> psp.tlh "Uses"
-        soToPrms = so -> rmp.prms "Uses"
+        c4ToTlh = c4 -> psp.tlh "Uses" "Impact"
+        soToPrms = so -> rmp.prms "Uses" "Impact"
         caToPrms = ca -> rmp.prms "Uses"
         cspXToPrms = cspX -> rmp.prms "Uses"
         dramToPrms = dram -> rmp.prms "Uses"
         cmToPrms = cm -> rmp.prms "Uses"
         piToPrms = pi -> rmp.prms "Uses"
-        ccfToPrms = ccf -> rmp.prms "Uses"
+        ccfToPrms = ccf -> rmp.prms "Uses" "Impact"
         4stuToPrms = 4stu -> rmp.prms "Uses"
         markToPrms = mark -> rmp.prms "Uses"
         caToRc = ca -> rmp.rc "Uses"
-        partToCome = part -> rsp.come "Uses"
-        caToCome = ca -> rsp.come "Uses"
-        piToCome = pi -> rsp.come "Uses"
-        ccfrssToCome = ccfrss -> rsp.come "Uses"
+        partToCome = part -> rsp.come "Uses" "Impact"
+        caToCome = ca -> rsp.come "Uses" "Impact"
+        piToCome = pi -> rsp.come "Uses" "Impact"
+        ccfrssToCome = ccfrss -> rsp.come "Uses" "Impact"
         caToEps = ca -> rsp.eps "Uses"
         caToNeo = ca -> rsp.neo "Uses"
-        soToPap = so -> rsp.pap "Uses"
-        caToPap = ca -> rsp.pap "Uses"
-        ccfToPap = ccf -> rsp.pap "Uses"
-        sciToPap = sci -> rsp.pap "Uses"
+        soToPap = so -> rsp.pap "Uses" "Impact"
+        caToPap = ca -> rsp.pap "Uses" "Impact"
+        ccfToPap = ccf -> rsp.pap "Uses" "Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        sciToPap = sci -> rsp.pap "Uses" "Impact"
         caToPris = ca -> rsp.pris "Uses"
         piToPris = pi -> rsp.pris "Uses"
-        ccfToPris = ccf -> rsp.pris "Uses"
+        ccfToPris = ccf -> rsp.pris "Uses" "Impact"
         4stuToPris = 4stu -> rsp.pris "Uses"
         caToPrrs = ca -> rsp.prrs "Uses"
-        ccfToPrrs = ccf -> rsp.prrs "Uses"
+        ccfToPrrs = ccf -> rsp.prrs "Uses" "Impact"
         caToSd = ca -> rsp.sd "Uses"
         4stuToTed = 4stu -> rsp.ted "Uses"
         cspXToPepl = cspX -> sp.pepl "Uses"
@@ -1378,15 +1503,15 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         procToCms = proc -> sbs.cms "Uses"
         clgToFa = clg -> sbs.fa "Uses"
         techToTime = tech -> sbs.time "Uses"
-        viewToC4sl = view -> vsp.c4sl "Uses"
+        viewToC4sl = view -> vsp.c4sl "Uses" "Impact"
         a4eToPipe = a4e -> vsp.pipe "Uses"
-        gsToSm = gs -> vsp.sm "Uses"
+        gsToSm = gs -> vsp.sm "Uses" "Impact"
         techToSl = tech -> vsp.sl "Uses"
         piToTr = pi -> vsp.tr "Uses"
-        cpXToThin = cpX -> vsp.thin "Uses"
+        cpXToThin = cpX -> vsp.thin "Uses" "Impact"
         fmToCe = fm -> wsp.ce "Uses"
-        c4ToEgen = c4 -> wsp.egen "Uses"
-        ccfToEgen = ccf -> wsp.egen "Uses"
+        c4ToEgen = c4 -> wsp.egen "Uses" "Impact"
+        ccfToEgen = ccf -> wsp.egen "Uses" "Impact"
 
         /* ============================================================
            APPLICATION -> APPLICATION RELATIONSHIPS (from LeanIX Interfaces)
@@ -1394,7 +1519,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         
         4ta = psp.4peo -> psp.acti "4People to ActivePay" "Mule" "Integration"
         4tac = psp.4peo -> wsp.ac "4People to Alert cascade" "Mule" "Integration"
-        4tb = psp.4peo -> wsp.ac "4People to Benefits" "Mule" "Integration,Benefex Replacement,Impact"
+        4tb = psp.4peo -> wsp.ac "4People to Benefits" "Mule" "Integration,Impact" {
+            perspectives {
+                Benefex Replacement "Benefex Replacement"
+            }
+        }
         4tce = psp.4peo -> wsp.ce "4People to Concept Evolution" "Mule" "Integration"
         4tcms = psp.4peo -> sbs.cms "4People to Contract Management System(CMS)" "Mule" "Integration"
         4tc = psp.4peo -> psp.tlh "4People to Cornerstone" "Mule" "Integration"
@@ -1405,13 +1534,21 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         atsfasdf = sp.pass -> cp.stel "A55 to Stellar for Advanced Schedule data flow" "SFTP" "Integration"
         aptf = psp.acti -> fsp.wda "Active Pay to Financial Planning" "Mule" "Integration"
         atoe = psp.acti -> fsp.ebs "ActivPay to Oracle EBS" "Mule" "Integration"
-        asstc = vsp.yosp -> vsp.c4sl "Ad Serving System to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        asstc = vsp.yosp -> vsp.c4sl "Ad Serving System to C4S" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         aate = dap.wa -> dap.edw "Adobe Analytics to EDW" "Alternative" "Integration"
         apffpfb = cp.ap -> bms.pbm "Agency Portal fetch from Pirate for Brand" "Mule" "Integration"
         apffsfp = cp.ap -> cp.stel "Agency Portal fetch from Stellar for Programme" "Mule" "Integration"
         apfsfpyot = cp.ap -> cp.stel "Agency Portal from Stellar for Pick Your Own transmission" "Mule" "Integration"
         ai = csp.pcc -> rsp.prrs "Agreement Information" "Alternative" "Integration"
-        ap = rsp.sd -> rsp.pap "Artist payments" "Automate" "Integration,Corporate Integration,Impact"
+        ap = rsp.sd -> rsp.pap "Artist payments" "Automate" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
         adaa = bms.asp -> mmp.msp "ASP Delivery Acknowledgment API" "Alternative" "Integration"
         alsstl = lpp.lsp -> bms.asp "ASP live subtitle streams to LSP" "Alternative" "Integration"
         allsfl = bms.asp -> lpp.lsp "ASP low latency stream from LSP" "Alternative" "Integration"
@@ -1420,54 +1557,211 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         asfp = bms.asp -> bms.pira "ASP Schedule from Pirate" "Alternative" "Integration"
         assmfd = bms.asp -> mmp.msp "ASP Signer Source Media File Delivery" "Alternative" "Integration"
         avcmfd = bms.asp -> mmp.msp "ASP Viewing Copy Media File Delivery" "Alternative" "Integration"
-        asaltf = cp.fsh -> dap.as "Audience Segments and Lookalikes to Freewheel" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        asaltf = cp.fsh -> dap.as "Audience Segments and Lookalikes to Freewheel" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         bwpfo = fsp.ebs -> fsp.bbp "BACS & Wire Payments File Out" "Automate" "Integration"
         brdte = dap.barb -> dap.edw "BARB ratings data to EDW" "SFTP" "Integration"
         btsfau = dap.barb -> cp.stel "BARB to Stellar for Audience Universe" "SFTP" "Integration"
         btsfi = dap.barb -> cp.stel "BARB to Stellar for Impacts" "SFTP" "Integration"
-        bpsri = fsp.bbp -> fsp.ebs "Barclay Payment Statement Receipt In" "Automate" "Integration,Corporate Integration,Impact"
-        bsi = fsp.bbp -> fsp.ebs "Barclay Statement In" "Automate" "Integration,Corporate Integration,Impact"
-        bbdc = fsp.ebs -> fsp.bsw "Basware Business Department Codes" "Alternative" "Integration,Corporate Integration,Impact"
-        bcer = fsp.ebs -> fsp.bsw "Basware Currency Exchange Rates" "Alternative" "Integration,Corporate Integration,Impact"
-        bglcvr = fsp.ebs -> fsp.bsw "Basware GL Cross Validation Rules" "Alternative" "Integration,Corporate Integration,Impact"
-        bglnc = fsp.ebs -> fsp.bsw "Basware GL Nominal Codes" "Alternative" "Integration,Corporate Integration,Impact"
-        bic = fsp.ebs -> fsp.bsw "Basware Individual Codes" "Alternative" "Integration,Corporate Integration,Impact"
-        bis = fsp.bsw -> fsp.ebs "Basware Invoice Statuses" "Alternative" "Integration,Corporate Integration,Impact"
-        bpvpci = fsp.ebs -> fsp.bsw "Basware Payments/Void Payments/Cancelled Invoices" "Alternative" "Integration,Corporate Integration,Impact"
-        bpcc = fsp.ebs -> fsp.bsw "Basware Pirate Code Combinations" "Alternative" "Integration,Corporate Integration,Impact"
-        bprodc = fsp.ebs -> fsp.bsw "Basware Product Codes" "Alternative" "Integration,Corporate Integration,Impact"
-        bprojc = fsp.ebs -> fsp.bsw "Basware Project Codes" "Alternative" "Integration,Corporate Integration,Impact"
-        bws = fsp.ebs -> fsp.bsw "Basware Suppliers" "Alternative" "Integration,Corporate Integration,Impact"
-        b2ebs = fsp.bsw -> fsp.ebs "Basware to EBS for Approved Invoices" "Automate" "Integration,Corporate Integration,Impact"
-        b2sbi = fsp.bsw -> fsp.ebs "Basware to SplashBI (Oracle eBS Schema)" "Alternative" "Integration,Corporate Integration,Impact"
-        b2sbi2 = fsp.bsw -> fsp.sbi "Basware to SplashBI (Oracle eBS Schema)" "Alternative" "Integration,Corporate Integration,Impact"
-        bur = fsp.ebs -> fsp.bsw "Basware User Rights" "Alternative" "Integration,Corporate Integration,Impact"
-        buriu = fsp.ebs -> fsp.bsw "Basware User Rights (Inactive users)" "Alternative" "Integration,Corporate Integration,Impact"
-        bta = psp.acti -> psp.bp "Benefits to Actvipay" "Alternative" "Integration,Benefex Replacement,Review Benefits Portal,Impact"
+        bpsri = fsp.bbp -> fsp.ebs "Barclay Payment Statement Receipt In" "Automate" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bsi = fsp.bbp -> fsp.ebs "Barclay Statement In" "Automate" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bbdc = fsp.ebs -> fsp.bsw "Basware Business Department Codes" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bcer = fsp.ebs -> fsp.bsw "Basware Currency Exchange Rates" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bglcvr = fsp.ebs -> fsp.bsw "Basware GL Cross Validation Rules" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bglnc = fsp.ebs -> fsp.bsw "Basware GL Nominal Codes" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bic = fsp.ebs -> fsp.bsw "Basware Individual Codes" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bis = fsp.bsw -> fsp.ebs "Basware Invoice Statuses" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bpvpci = fsp.ebs -> fsp.bsw "Basware Payments/Void Payments/Cancelled Invoices" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bpcc = fsp.ebs -> fsp.bsw "Basware Pirate Code Combinations" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bprodc = fsp.ebs -> fsp.bsw "Basware Product Codes" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bprojc = fsp.ebs -> fsp.bsw "Basware Project Codes" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bws = fsp.ebs -> fsp.bsw "Basware Suppliers" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        b2ebs = fsp.bsw -> fsp.ebs "Basware to EBS for Approved Invoices" "Automate" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        b2sbi = fsp.bsw -> fsp.ebs "Basware to SplashBI (Oracle eBS Schema)" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        b2sbi2 = fsp.bsw -> fsp.sbi "Basware to SplashBI (Oracle eBS Schema)" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bur = fsp.ebs -> fsp.bsw "Basware User Rights" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        buriu = fsp.ebs -> fsp.bsw "Basware User Rights (Inactive users)" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        bta = psp.acti -> psp.bp "Benefits to Actvipay" "Alternative" "Integration,Impact" {
+            perspectives {
+                Benefex Replacement "Benefex Replacement"
+                Review Benefits Portal "Review Benefits Portal"
+            }
+        }
         bdte = cp.stel -> dap.edw "Budget data to EDW" "Alternative" "Integration"
-        btmii = sp.mod -> bms.bynd "Bynder to MediaGenix Image Integration" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        btmitc = sp.mod -> bms.bynd "Bynder to MediaGenix Image Tagging Changes" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        btmii = sp.mod -> bms.bynd "Bynder to MediaGenix Image Integration" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        btmitc = sp.mod -> bms.bynd "Bynder to MediaGenix Image Tagging Changes" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         chptpr = psp.er -> dap.bor "C4 HR & Payroll to PowerBI Reporting" "Mule" "Integration"
-        4io = fsp.ebs -> rsp.come "C4 intl overages" "SFTP" "Integration,Corporate Integration,Impact"
+        4io = fsp.ebs -> rsp.come "C4 intl overages" "SFTP" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
         cptyfa = vsp.yosp -> cp.stel "C4 Promo to YoSpace for Advertisements" "Mule" "Integration"
         4vatr = fsp.sov -> fsp.ebs "C4 VAT Returns" "Alternative" "Integration"
-        cbsdte = vsp.sm -> dap.edw "C4S Braintree Subscriber data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        cetf = vsp.free -> sp.pepl "C4S EPG to Freely" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        cete = vsp.mpar -> dap.edw "C4S Events to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        cfvetba = vsp.ova -> vsp.free "C4S Freely Video Events to BitMovin Analytics" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        cfvsfc = vsp.cdna -> vsp.free "C4S Freely Video Stream from CDN" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        cmifc = vsp.cdna -> sp.mod "C4S MoD Images from CDN" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        cqte = vsp.ova -> dap.edw "C4S QoS to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        csty = vsp.yosp -> bms.osp "C4S Streams to YoSpace" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        ctaa = dap.wa -> vsp.c4sl "C4S to Adobe Analytics" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        ctb = dap.barb -> vsp.c4sl "C4S to BARB" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        ctc7t = vsp.c4sl -> bms.c7t "C4S to C4 7A Titles" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        ctlvs = lpp.lsp -> vsp.c4sl "C4S to Licence Validation Service" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        ctsma = vsp.sm -> vsp.c4sl "C4S to Subscription Management (Aptitude)" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        ctt-ue = vsp.thin -> vsp.c4sl "C4S to ThinkAnalytics - User Events" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        cbsdte = vsp.sm -> dap.edw "C4S Braintree Subscriber data to EDW" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        cetf = vsp.free -> sp.pepl "C4S EPG to Freely" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        cete = vsp.mpar -> dap.edw "C4S Events to EDW" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        cfvetba = vsp.ova -> vsp.free "C4S Freely Video Events to BitMovin Analytics" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        cfvsfc = vsp.cdna -> vsp.free "C4S Freely Video Stream from CDN" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        cmifc = vsp.cdna -> sp.mod "C4S MoD Images from CDN" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        cqte = vsp.ova -> dap.edw "C4S QoS to EDW" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        csty = vsp.yosp -> bms.osp "C4S Streams to YoSpace" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        ctaa = dap.wa -> vsp.c4sl "C4S to Adobe Analytics" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        ctb = dap.barb -> vsp.c4sl "C4S to BARB" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        ctc7t = vsp.c4sl -> bms.c7t "C4S to C4 7A Titles" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        ctlvs = lpp.lsp -> vsp.c4sl "C4S to Licence Validation Service" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        ctsma = vsp.sm -> vsp.c4sl "C4S to Subscription Management (Aptitude)" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        ctt-ue = vsp.thin -> vsp.c4sl "C4S to ThinkAnalytics - User Events" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         ctetaa = dap.wa -> vsp.mpar "C4S Tracking Events to Adobe Analytics" "Alternative" "Integration"
-        ctetm = vsp.mpar -> vsp.c4sl "C4S Tracking Events to mParticle" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        cvmtf = vsp.free -> sp.mod "C4S VoD Metadata to Freely" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ctetm = vsp.mpar -> vsp.c4sl "C4S Tracking Events to mParticle" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        cvmtf = vsp.free -> sp.mod "C4S VoD Metadata to Freely" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         c4st = mp.po -> mp.po "C4STELLARPROMO" "Alternative" "Integration"
         c4st2 = mp.po -> cp.stel "C4STELLARPROMO" "Alternative" "Integration"
         caapfsfd = cp.ap -> cp.stel "CARIA and Agency Portal from Stellar for Deals" "Mule" "Integration"
@@ -1477,10 +1771,22 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         cro2c = fsp.ebs -> rsp.come "Cash Receipts from Oracle to Comet" "Alternative" "Integration"
         ctt = bms.pcgs -> bms.ptis "CGS to TIS2" "Alternative" "Integration"
         c4itr = mmp.msp -> mmp.pmm "Channel 4 Interstitals to RedBee" "Mule" "Integration"
-        c4srtb = mp.braz -> vsp.c4sl "Channel 4 Streaming Recommendations to Braze" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        c4srtb = mp.braz -> vsp.c4sl "Channel 4 Streaming Recommendations to Braze" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         c4tpt = mmp.msp -> bms.asp "Channel 4 to PFT token" "Mule" "Integration"
-        crbtas = dap.as -> dap.dcri "Clean Room (Brandm4tch) to Audience Segmentation" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        crbtas2 = dap.as -> dap.dcrs "Clean Room (Brandm4tch) to Audience Segmentation" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        crbtas = dap.as -> dap.dcri "Clean Room (Brandm4tch) to Audience Segmentation" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        crbtas2 = dap.as -> dap.dcrs "Clean Room (Brandm4tch) to Audience Segmentation" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         ctsfcci = cp.fsh -> cp.stel "Clearcast to Stellar for Copy Clearance Information" "Mule" "Integration"
         ctf = cp.fsh -> bms.cmt "CMT to Freewheel" "Alternative" "Integration"
         ctp = bms.pira -> bms.cmt "CMT to Pirate" "Mule" "Integration"
@@ -1496,9 +1802,17 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ctll = psp.tlh -> psp.ll "Cornerstone to LinkedIn Learning" "Alternative" "Integration"
         epct = psp.fes -> fsp.ebs "EBS project codes to FES" "Alternative" "Integration"
         et4f = psp.4peo -> fsp.ebs "EBS to 4People for Employees" "Alternative" "Integration"
-        ebstrd = fsp.ebs -> fsp.bsw "EBS to Basware for Reference & Transactional data" "Alternative" "Integration,Corporate Integration,Impact"
+        ebstrd = fsp.ebs -> fsp.bsw "EBS to Basware for Reference & Transactional data" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
         etcf = rsp.come -> fsp.ebs "EBS to Comet for Cash Receipts" "SFTP" "Integration"
-        ebsmc = fsp.msc -> fsp.ebs "EBS to Mastercard for Employee credit card transactions" "Alternative" "Integration,Corporate Integration,Impact"
+        ebsmc = fsp.msc -> fsp.ebs "EBS to Mastercard for Employee credit card transactions" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
         ebspir = fsp.ebs -> rsp.come "EBS to Pirate (Comet Flim4)" "Automate, SFTP" "Integration"
         ebsstr = fsp.ebs -> cp.stel "EBS to Stellar Daily exchange rate (in) Invoices (out)" "Alternative" "Integration"
         ebscex = fsp.ebs -> cp.stel "EBS to Stellar for Currency Exchange" "SFTP" "Integration"
@@ -1506,13 +1820,25 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         e4ti = dap.dcri -> dap.edw "EDW 4 to Infosum" "Alternative" "Integration"
         emcstmdf = dap.df -> dap.edw "EDW Marketing Campaign Snapshots to Microsoft Data Fabric" "Alternative" "Integration"
         emctmdf = dap.df -> dap.edw "EDW Marketing Campaign to Microsoft Data Fabric" "Alternative" "Integration"
-        esitb = mp.braz -> dap.edw "EDW Streaming Identity to Braze" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        esitb = mp.braz -> dap.edw "EDW Streaming Identity to Braze" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         etdf-sd = dap.df -> dap.edw "EDW to  Data Fabric - Spots data" "Alternative" "Integration"
         etapsp = dap.edw -> rsp.pap "EDW to Artist Payment Systems (Pirate)" "Alternative" "Integration"
         etb = mp.braz -> dap.edw "EDW to Braze" "Alternative" "Integration"
         etm-ipcau = dap.edw -> dap.as "EDW to Mediarithmics - Instream Promo Control Audience Upload" "Alternative" "Integration"
-        etm-sud = dap.as -> dap.edw "EDW to Mediarithmics - Streaming User Data" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        ett-v = vsp.thin -> dap.edw "EDW to ThinkAnalytics - Viewers" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        etm-sud = dap.as -> dap.edw "EDW to Mediarithmics - Streaming User Data" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        ett-v = vsp.thin -> dap.edw "EDW to ThinkAnalytics - Viewers" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         etdftp = dap.edw -> bms.pira "EDW TX data feed to Pirate" "Alternative" "Integration"
         fgl = bms.pira -> fsp.ebs "Failed GL lines" "Alternative" "Integration"
         fvte = cp.fsh -> dap.edw "Feewheel v4logs to EDW" "Alternative" "Integration"
@@ -1525,31 +1851,67 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ftsvvfcsap = cp.fsh -> cp.stel "Freewheel to Stellar VoD Views for Commercial, Sponsorship and Promotions" "SFTP" "Integration"
         frtpa = mmp.msp -> bms.prta2 "From RedBee to Pirate ASRUN" "Mule" "Integration"
         fstpfcr = cp.stel -> bms.pira "From Stellar to Pirate for Commercial Registrations" "Alternative" "Integration"
-        idtc = bms.bynd -> vsp.c4sl "Image DAM to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        idtc = bms.bynd -> vsp.c4sl "Image DAM to C4S" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         imcfstp = rsp.soun -> bms.pira "Interstial music cuesheets from Soundmouse to Pirate" "Automate, SFTP" "Integration"
-        icnf = rsp.pris -> fsp.ebs "Invoice/credit note for Royalties" "Automate" "Integration,Corporate Integration,Impact"
-        lspp = bms.pira -> vsp.c4sl "Logging Sheets & Programme Parts" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        icnf = rsp.pris -> fsp.ebs "Invoice/credit note for Royalties" "Automate" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        lspp = bms.pira -> vsp.c4sl "Logging Sheets & Programme Parts" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         lcflr = lpp.lsp -> mmp.ppsp "LSP Contribution Feed ( Line Record)" "Alternative" "Integration"
         lmfd = lpp.lsp -> mmp.msp "LSP Media File Delivery" "Alternative" "Integration"
         lm = lpp.lsp -> bms.osp "LSP Multicast" "Alternative" "Integration"
-        lsto = bms.osp -> lpp.lsp "LSP Simulcast to OSLP" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        lsto = bms.osp -> lpp.lsp "LSP Simulcast to OSLP" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         ltpa = bms.pira -> lpp.lsp "LSP to Pirate Asruns" "Alternative" "Integration"
         mtbb = bms.bynd -> sp.mod "MediaGenix to Bynder Brand" "Alternative" "Integration"
         mtfpi = cp.fsh -> sp.mod "MediaGenix to FreeWheel Programme Info" "Alternative" "Integration"
         mtgc4vc = bms.grac -> sp.mod "MediaGenix to Gracenote Channel 4 VoD Catalogue" "Mule" "Integration"
         mtmbvsi = sp.mod -> sp.mod "MediaGenix to MediaGenix BARB VOD Schedule Integration" "Alternative" "Integration"
         mtpecw = bms.pira -> sp.mod "MediaGenix to Pirate EPG Content Warnings" "Mule" "Integration"
-        mttc4vc = vsp.thin -> sp.mod "MediaGenix to ThinkAnalytics Channel 4 VoD Catalogue" "Mule" "Integration,Streaming Transformation Program,Impact"
-        mtbfms = mp.braz -> dap.as "Mediarithmics to Braze for Marketing Segments" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        mttc4vc = vsp.thin -> sp.mod "MediaGenix to ThinkAnalytics Channel 4 VoD Catalogue" "Mule" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        mtbfms = mp.braz -> dap.as "Mediarithmics to Braze for Marketing Segments" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         mtffas = cp.fsh -> dap.as "Mediarithmics to Freewheel for ALA segments" "Alternative" "Integration"
         mticga = dap.dcri -> dap.as "Mediarithmics to Infosum (Control Group attribution)" "Alternative" "Integration"
-        mvrtp = mmp.msp -> sp.mod "MoD  VoD Request to PFT" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        msdte = vsp.sm -> dap.edw "MPP Subscriber data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        mvrtp = mmp.msp -> sp.mod "MoD  VoD Request to PFT" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        msdte = vsp.sm -> dap.edw "MPP Subscriber data to EDW" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         mcra = mmp.msp -> bms.asp "MSP Content Request API" "Alternative" "Integration"
         mcra2 = mmp.msp -> lpp.lsp "MSP Content Request API" "Alternative" "Integration"
         mcra3 = mmp.msp -> bms.osp "MSP Content Request API" "Alternative" "Integration"
         mcra4 = mmp.msp -> mmp.ppsp "MSP Content Request API" "Alternative" "Integration"
-        mmvfto = mmp.msp -> bms.osp "MSP Master Video Files to OLSP" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        mmvfto = mmp.msp -> bms.osp "MSP Master Video Files to OLSP" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         mmfd-abs = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired BBC Studios" "Alternative" "Integration"
         mmfd-af = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired Fox/Disney" "Alternative" "Integration"
         mmfd-ag = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired Generic" "Alternative" "Integration"
@@ -1577,7 +1939,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         mtc4df = mmp.msp -> bms.pira "MSPs to Channel 4 DFS folders" "Mule" "Integration"
         nos = bms.pc -> rsp.prrs "Name of Supplier" "Alternative" "Integration"
         ntn = rsp.pris -> bms.pira "New transmitted notifications" "Alternative" "Integration"
-        oscn = fsp.ebs -> rsp.prrs "Oracle suppliers contact names" "Alternative" "Integration,Corporate Integration,Impact"
+        oscn = fsp.ebs -> rsp.prrs "Oracle suppliers contact names" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
         oatax = fsp.ebs -> fsp.atax "Oracle to AlphaTax" "Alternative" "Integration"
         otunx = fsp.ebs -> fsp.tgn "Oracle to Tungsten XML Invoice feed" "Mule" "Integration"
         pfpfstp = rsp.soun -> bms.pira "PAC form PDFs from Soundmouse to Pirate" "Automate, SFTP" "Integration"
@@ -1586,8 +1952,16 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         patveo = bms.pira -> sp.pass "Pirate A55 to VMS (ex Optimum)" "Mule" "Integration"
         patveo2 = bms.pira -> sp.pepl "Pirate A55 to VMS (ex Optimum)" "Mule" "Integration"
         patveo3 = bms.pira -> bms.pvmsv "Pirate A55 to VMS (ex Optimum)" "Mule" "Integration"
-        passtc = bms.pira -> vsp.c4sl "Pirate Advance Scheduling System to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        pctc = bms.pira -> vsp.c4sl "Pirate Certification to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        passtc = bms.pira -> vsp.c4sl "Pirate Advance Scheduling System to C4S" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        pctc = bms.pira -> vsp.c4sl "Pirate Certification to C4S" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         pctb = bms.bynd -> bms.pcgs "Pirate CGS to Bynder" "Mule" "Integration"
         pctf = cp.fsh -> bms.pcgs "Pirate CGS to Freewheel" "Mule" "Integration"
         pctmfvo = mmp.msp -> bms.pcgs "Pirate CGS to MSP for VPS origin" "Mule" "Integration"
@@ -1596,8 +1970,16 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         pffrfs = bms.pira -> bms.asp "Pirate fetch from RedBee for Subtitles" "Mule" "Integration"
         pirgl = fsp.ebs -> rsp.come "Pirate GL posted Transactions" "Alternative" "Integration"
         pptasb = mmp.msp -> sp.ppps "Pirate PPS to AWS S3 Bucket" "Mule" "Integration"
-        ppitf = cp.fsh -> bms.pcgs "Pirate Programme Info to FreeWheel" "Mule" "Integration,Streaming Transformation Program,Impact"
-        prmstc = bms.pira -> vsp.c4sl "Pirate Rights Management System to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ppitf = cp.fsh -> bms.pcgs "Pirate Programme Info to FreeWheel" "Mule" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        prmstc = bms.pira -> vsp.c4sl "Pirate Rights Management System to C4S" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         prdtoe = rmp.prms -> dap.edw "PIRATE RMS data to  Oracle EDW" "Alternative" "Integration"
         pta = lpp.ac -> sp.mod "Pirate To Amagi" "Alternative" "Integration"
         ptbfca = sp.mod -> bms.pira "Pirate to BeBanjo for Catalogue Assets" "Mule" "Integration"
@@ -1606,7 +1988,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ptbfls2 = sp.mod -> sp.pass "Pirate to BeBanjo for Linear Scheduling" "Mule" "Integration"
         ptbfma = sp.mod -> bms.pira "Pirate to BeBanjo for Media Assets" "Mule" "Integration"
         ptbfma2 = sp.mod -> mmp.pmm "Pirate to BeBanjo for Media Assets" "Mule" "Integration"
-        ptbfr = sp.mod -> rmp.prms "Pirate to BeBanjo for Rights" "Mule" "Integration,Streaming Transformation Program,Impact"
+        ptbfr = sp.mod -> rmp.prms "Pirate to BeBanjo for Rights" "Mule" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         ptbfs = sp.mod -> bms.pira "Pirate to BeBanjo for Segment" "Mule" "Integration"
         ptbdf = mmp.pmm -> bms.bynd "Pirate to Bynder data flow" "Alternative" "Integration"
         ptcpft = mmp.msp -> mmp.pvb "Pirate to Clear (Prime Focus Technology)" "Mule" "Integration"
@@ -1638,15 +2024,27 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         pcf = mmp.ppsp -> lpp.lsp "PPSP Contribution Feed" "Alternative" "Integration"
         pmfd = mmp.ppsp -> mmp.msp "PPSP Media File Delivery" "Alternative" "Integration"
         pdfptsX = rsp.soun -> bms.pira "Pre-TX data from Pirate to Soundmouse" "Automate, SFTP" "Integration"
-        prte = rsp.come -> fsp.ebs "Producer Reporting to EBS" "Automate" "Integration,Corporate Integration,Impact"
-        proebs = fsp.ebs -> rsp.come "Producer Reporting to Oracle eBusiness Suite " "Alternative" "Integration,Corporate Integration,Impact"
+        prte = rsp.come -> fsp.ebs "Producer Reporting to EBS" "Automate" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        proebs = fsp.ebs -> rsp.come "Producer Reporting to Oracle eBusiness Suite " "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
         pptpfesdi = bms.ppp -> csp.pcc "Producers Portal to Pirate for Ed Spec Diversity info" "Mule" "Integration"
         pasmcmcfstp = rsp.soun -> bms.pira "Programme and social media clip music cuesheets from Soundmouse to Pirate" "Automate, SFTP" "Integration"
         ppi = fsp.ebs -> bms.pira "programme Payments Interface" "Alternative" "Integration"
         pctm = sp.mod -> bms.pcX "Promo Create To Movida" "Mule" "Integration"
         pctp = bms.pira -> bms.pcX "Promo Create To Pirate" "Mule" "Integration"
         potp = bms.pira -> mp.po "Promo Optimiser to Pirate" "Mule" "Integration"
-        rtata4 = lpp.lsp -> vsp.c4sl "Real Time As-Run to ALL 4" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        rtata4 = lpp.lsp -> vsp.c4sl "Real Time As-Run to ALL 4" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         rdfpfcf = bms.pira -> rsp.pris "Recoupment/Advances data from Programme Finance Committee form" "Alternative" "Integration"
         rad = csp.pcc -> rsp.pap "Repeat agreement data" "Alternative" "Integration"
         rtc7t = rmp.prms -> bms.c7t "Rights to C4 7A Titles" "Alternative" "Integration"
@@ -1696,23 +2094,55 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         stpftp = cp.stel -> sp.ppps "Stellar to Pirate for Trail patterns" "Alternative" "Integration"
         stufac = mmp.msp -> cp.stel "Stellar to UKTV for Ad Certification" "SFTP" "Integration"
         stufccr = mmp.msp -> cp.stel "Stellar to UKTV for Commercial Copy Registrations" "SFTP" "Integration"
-        scte = vsp.c4sl -> dap.edw "Streaming Consent to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
-        sbde = fsp.ebs -> rsp.pap "Supplier Bank Details Exist" "Automate" "Integration,Corporate Integration,Impact"
+        scte = vsp.c4sl -> dap.edw "Streaming Consent to EDW" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
+        sbde = fsp.ebs -> rsp.pap "Supplier Bank Details Exist" "Automate" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
         sffpte = rsp.prrs -> dap.edw "Supplier fields from Pirate to EDW" "Alternative" "Integration"
-        supinf = fsp.ebs -> rsp.pris "Supplier Information" "Alternative" "Integration,Corporate Integration,Impact"
-        suprec = fsp.ebs -> rsp.pap "Supplier Records" "Alternative" "Integration,Corporate Integration,Impact"
+        supinf = fsp.ebs -> rsp.pris "Supplier Information" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
+        suprec = fsp.ebs -> rsp.pap "Supplier Records" "Alternative" "Integration,Impact" {
+            perspectives {
+                Corporate Integration "Corporate Integration"
+            }
+        }
         ttbster = rsp.ted -> dap.edw "Ted tables batch synchronisation to EDW Redshift" "Alternative" "Integration"
         ttn = rsp.soun -> bms.pira "Ted to Neo" "Automate, SFTP" "Integration"
         tts = rsp.soun -> bms.pira "Ted to Silvermouse" "Automate, SFTP" "Integration"
-        ttc-r = vsp.thin -> vsp.c4sl "ThinkAnalytics to C4S - Recommendation" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ttc-r = vsp.thin -> vsp.c4sl "ThinkAnalytics to C4S - Recommendation" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         tsfptb = dap.barb -> sp.pass "TX Schedule from PIRATE to BARB" "Alternative" "Integration"
-        vptc = bms.osp -> vsp.c4sl "Video Pipeline to C4S" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        vptc = bms.osp -> vsp.c4sl "Video Pipeline to C4S" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         vtcs = mmp.msp -> bms.ppc "VisionCloud to Compliance Service" "Mule" "Integration"
         vvd = dap.edw -> rsp.prrs "VOD Views Data" "Alternative" "Integration"
-        waadte = dap.wa -> dap.edw "Web Analytics (AA) data to EDW" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        waadte = dap.wa -> dap.edw "Web Analytics (AA) data to EDW" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         wdsbi = fsp.wda -> fsp.ebs "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Mule" "Integration"
         wdsbi2 = fsp.wda -> fsp.sbi "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Mule" "Integration"
-        ytf = vsp.yosp -> cp.fsh "YoSpace to Freewheel" "Alternative" "Integration,Streaming Transformation Program,Impact"
+        ytf = vsp.yosp -> cp.fsh "YoSpace to Freewheel" "Alternative" "Integration,Impact" {
+            perspectives {
+                Streaming Transformation Program "Streaming Transformation Program"
+            }
+        }
         
     }
     
