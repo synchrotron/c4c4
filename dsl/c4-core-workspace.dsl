@@ -1367,8 +1367,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         insiToTabl = insi -> dap.tabl "Uses" ""
         insiToWa = insi -> dap.wa "Uses" "" "Impact" {
             perspectives {
-                "Data Experiments" "Data Experiments"
                 "Customer Journey Analytics (CJA)" "Customer Journey Analytics (CJA)"
+                "Data Experiments" "Data Experiments"
             }
         }
         ccfToAtax = ccf -> fsp.atax "Uses" ""
@@ -1382,8 +1382,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         }
         ccfToBsw = ccf -> fsp.bsw "Uses" "" "Impact" {
             perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
                 "Corporate Integration" "Corporate Integration"
+                "Finance & People Transformation" "Finance & People Transformation"
             }
         }
         ccfrssToBsw = ccfrss -> fsp.bsw "Uses" "" {
@@ -1394,8 +1394,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         tatToCmx = tat -> fsp.cmx "Uses" ""
         ccfToEbs = ccf -> fsp.ebs "Uses" "" "Impact" {
             perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
                 "Corporate Integration" "Corporate Integration"
+                "Finance & People Transformation" "Finance & People Transformation"
             }
         }
         ccfrssToEbs = ccfrss -> fsp.ebs "Uses" "" {
@@ -1419,11 +1419,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Finance & People Transformation" "Finance & People Transformation"
             }
         }
-        tatToSov = tat -> fsp.sov "Uses" ""
+        tatToSov = tat -> fsp.sov "Submit digital tax" ""
         ccfToSbi = ccf -> fsp.sbi "Uses" "" "Impact" {
             perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
                 "Transactional Reporting Solution" "Transactional Reporting Solution"
+                "Finance & People Transformation" "Finance & People Transformation"
             }
         }
         ccfrssToSbi = ccfrss -> fsp.sbi "Uses" "" {
