@@ -179,6 +179,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Data Experiments" "Data Experiments"
             }
         }
+        tat = person "Tax and Treasury" "" {
+            tags "team"
+        }
         c4 = person "Channel 4" "" {
             tags "legalEntity,Impact"
             perspectives {
@@ -575,7 +578,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            FINANCE SYSTEMS PLATFORM
            ============================================================ */
         
-        fsp = softwareSystem "Finance Systems Platform" "Platform from LeanIX" {
+        fsp = softwareSystem "Finance Systems Platform" "The finance platform comprises a suite of integrated systems and applications designed to support..." {
             
             atax = container "Alphatax" "Corporation tax compliance software, providing complete control over the preparation and manageme..." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/2193988a-9e4b-473c-8ccc-af480c3b0b6f
@@ -751,7 +754,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            PEOPLE SYSTEMS PLATFORM
            ============================================================ */
         
-        psp = softwareSystem "People Systems Platform" "Platform from LeanIX" {
+        psp = softwareSystem "People Systems Platform" "The people system platform integrates a range of applications and services to manage the full emp..." {
             
             4peo = container "4People" "4People is a cloud HR and people system that empowers mid-size organisations to effectively respo..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3db00200-a028-4cb8-baeb-a3f88d1dd6e9
@@ -1035,7 +1038,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            WORKSPACE SYSTEMS PLATFORM
            ============================================================ */
         
-        wsp = softwareSystem "Workspace Systems Platform" "Platform from LeanIX" {
+        wsp = softwareSystem "Workspace Systems Platform" "The facilities management platform provides integrated solutions for managing physical workspaces..." {
             
             ac = container "Alert Cascade" "Crisis event mass communication tool" "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b6bf1946-3623-41a6-9a3f-36bc6e1fc4a5
@@ -1364,12 +1367,14 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         insiToTabl = insi -> dap.tabl "Uses" ""
         insiToWa = insi -> dap.wa "Uses" "" "Impact" {
             perspectives {
-                "Customer Journey Analytics (CJA)" "Customer Journey Analytics (CJA)"
                 "Data Experiments" "Data Experiments"
+                "Customer Journey Analytics (CJA)" "Customer Journey Analytics (CJA)"
             }
         }
         ccfToAtax = ccf -> fsp.atax "Uses" ""
+        tatToAtax = tat -> fsp.atax "Uses" ""
         ccfToBbp = ccf -> fsp.bbp "Uses" ""
+        tatToBbp = tat -> fsp.bbp "Uses" ""
         c4ToBsw = c4 -> fsp.bsw "Raise and approve POs" "" {
             perspectives {
                 "Finance & People Transformation" "Finance & People Transformation"
@@ -1386,6 +1391,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Finance & People Transformation" "Finance & People Transformation"
             }
         }
+        tatToCmx = tat -> fsp.cmx "Uses" ""
         ccfToEbs = ccf -> fsp.ebs "Uses" "" "Impact" {
             perspectives {
                 "Finance & People Transformation" "Finance & People Transformation"
@@ -1397,6 +1403,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Finance & People Transformation" "Finance & People Transformation"
             }
         }
+        tatToEbs = tat -> fsp.ebs "Uses" ""
         c4ToFaf = c4 -> fsp.faf "Uses" "" {
             perspectives {
                 "Finance & People Transformation" "Finance & People Transformation"
@@ -1412,6 +1419,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Finance & People Transformation" "Finance & People Transformation"
             }
         }
+        tatToSov = tat -> fsp.sov "Uses" ""
         ccfToSbi = ccf -> fsp.sbi "Uses" "" "Impact" {
             perspectives {
                 "Finance & People Transformation" "Finance & People Transformation"
@@ -1456,6 +1464,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         erToBp = er -> psp.bp "Uses" ""
         ctToEr = ct -> psp.er "Uses" ""
         c4ToFes = c4 -> psp.fes "Uses" ""
+        tatToFes = tat -> psp.fes "Uses" ""
         peopToFes = peop -> psp.fes "Uses" ""
         c4ToLl = c4 -> psp.ll "Uses" ""
         ladToLl = lad -> psp.ll "Uses" ""
