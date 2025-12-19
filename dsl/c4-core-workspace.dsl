@@ -243,7 +243,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             stel = container "Stellar" "Channel4's Sales Order Processing System" "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/36680d73-914e-4f57-a8f3-bffe87a2d6c1
-                tags "SSO,Impact,Corporate Integration,Interstellar"
+                tags "SSO,Impact,Corporate Integration,Finance & People Transformation,Interstellar"
             }
         }
 
@@ -633,7 +633,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             
             4peo = container "4People" "4People is a cloud HR and people system that empowers mid-size organisations to effectively respo..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3db00200-a028-4cb8-baeb-a3f88d1dd6e9
-                tags "SSO,Impact,AI People Team,Benefex Replacement"
+                tags "SSO,Impact,AI People Team,Benefex Replacement,Finance & People Transformation"
             }
             acti = container "ActivPay" "Actvipay is Channel 4's 3rd party payroll provider." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/cdaf03e9-7bde-49b0-bfae-ecb69af5dc27
@@ -651,7 +651,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             fes = container "Freelancer Engagement System" "HR system to request freelancers and bring them onboard. Freelancers submit timesheets via FES. O..." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3debbdaf-b375-475b-a9ad-aaffeff1396a
-                tags "Impact,FES Replacement"
+                tags "Impact,FES Replacement,Finance & People Transformation"
             }
             ll = container "LinkedIn Learning" "LinkedIn Learning offers video courses taught by industry experts in software, creative, and busi..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/9cd4b77f-8517-478b-b25b-6592a04d157b
