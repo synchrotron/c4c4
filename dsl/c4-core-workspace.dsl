@@ -219,9 +219,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            COMMERCIAL PLATFORM
            ============================================================ */
-        
+
         cp = softwareSystem "Commercial Platform" "Platform from LeanIX" {
-            
+            tags "Impact,Finance & People Transformation,Interstellar"
+
             ap = container "Agency Portal" "Empowering advertising agencies with their Channel4 campaign data." "paas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/eddf6908-0ee4-4f5d-a0f6-b97b487259d0
             }
@@ -250,9 +251,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            CONTENT MANAGEMENT PLATFORM
            ============================================================ */
-        
+
         bms = softwareSystem "Content Management Platform" "The applications and components that support the media management and linear scheduling for our l..." {
-            
             asp = container "Access Service Provider" "" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/22db32c5-d118-4633-955e-9fdd07ab0b90
             }
@@ -413,9 +413,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            CONTENT SOURCING PLATFORM
            ============================================================ */
-        
+
         csp = softwareSystem "Content Sourcing Platform" "Platform from LeanIX" {
-            
+            tags "Impact,Commissioning CRM,Zeus - 2025"
+
             crmc = container "Customer Relationship Manager  (Content)" "A system used by the commissioning dept to track and manage programme ideas from pitch to greenlight" "paas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c7839d32-16d4-4a70-9ac4-1a630b764db8
                 tags "Impact,Commissioning CRM"
@@ -448,9 +449,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            DATA AND ANALYTICS PLATFORM
            ============================================================ */
-        
+
         dap = softwareSystem "Data and Analytics Platform" "An extensive Massive Parallel Processing (MPP) platform designed for analytics tasks, which inclu..." {
-            
+            tags "Impact,Commercial Reporting Transformation,Customer Journey Analytics (CJA),Data Experiments"
+
             as = container "Audience Segmentation" "Enables publishers and broadcasters to grow and retain audiences and increase monetisation for a ..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/36eea142-a4fc-4ffe-91a4-540ae18fa7a2
                 tags "Impact,Data Clean Room"
@@ -493,9 +495,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            FINANCE SYSTEMS PLATFORM
            ============================================================ */
-        
+
         fsp = softwareSystem "Finance Systems Platform" "The finance platform comprises a suite of integrated systems and applications designed to support..." {
-            
+            tags "Impact,Corporate Integration,FES Replacement,Finance & People Transformation,Transactional Reporting Solution"
+
             atax = container "Alphatax" "Corporation tax compliance software, providing complete control over the preparation and manageme..." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/2193988a-9e4b-473c-8ccc-af480c3b0b6f
             }
@@ -552,9 +555,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            LINEAR PLAYOUT PLATFORM
            ============================================================ */
-        
+
         lpp = softwareSystem "Linear Playout Platform" "Platform from LeanIX" {
-            
             ac = container "Amagi Cloudport" "<https://www.amagi.com/products/cloudport-cloud-playout>\ \ Amagi CLOUDPORT supports media ingest..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fec42b44-df14-4d3d-9b6d-f530a4e41a03
                 tags "Impact,UK FAST"
@@ -577,9 +579,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            MARKETING PLATFORM
            ============================================================ */
-        
+
         mp = softwareSystem "Marketing Platform" "Platform from LeanIX" {
-            
+            tags "Impact,Promo Campaign Management"
+
             braz = container "Braze" "Braze is a mobile marketing automation platform that provides a CRM and multichannel messaging su..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f5eb1ded-7018-467d-a159-c9c29507070c
             }
@@ -594,9 +597,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            MEDIA MANAGEMENT PLATFORM
            ============================================================ */
-        
+
         mmp = softwareSystem "Media Management Platform" "Platform from LeanIX" {
-            
             awar = container "Awards" "Awards is a repository of all awards won by Channel 4 or where Channel 4 has been nominated. Plat..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/97c919e2-8156-4df7-a5a8-afde3cd0325d
                 tags "SSO"
@@ -628,9 +630,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            PEOPLE SYSTEMS PLATFORM
            ============================================================ */
-        
+
         psp = softwareSystem "People Systems Platform" "The people system platform integrates a range of applications and services to manage the full emp..." {
-            
+            tags "Impact,AI People Team,Benefex Replacement,FES Replacement,Finance & People Transformation"
+
             4peo = container "4People" "4People is a cloud HR and people system that empowers mid-size organisations to effectively respo..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3db00200-a028-4cb8-baeb-a3f88d1dd6e9
                 tags "SSO,Impact,AI People Team,Benefex Replacement,Finance & People Transformation"
@@ -670,9 +673,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            RIGHTS MANAGEMENT PLATFORM
            ============================================================ */
-        
+
         rmp = softwareSystem "Rights Management Platform" "Platform from LeanIX" {
-            
             prms = container "Rights Management System" "" "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4fd9c7b1-6378-4092-b583-9361df3e70b1
             }
@@ -690,9 +692,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            ROYALTIES AND SALES PLATFORM
            ============================================================ */
-        
+
         rsp = softwareSystem "Royalties and Sales Platform" "Platform from LeanIX" {
-            
+            tags "Impact,Finance & People Transformation"
+
             come = container "COMET" "Channel 4 International and National Rights Licencing Software used by Channel 4 to manage Films ..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/438491d8-6ce7-4d3a-b2c4-5aaf31fef29f
                 tags "Impact,Corporate Integration"
@@ -745,9 +748,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            SCHEDULING PLATFORM
            ============================================================ */
-        
+
         sp = softwareSystem "Scheduling Platform" "The Scheduling Platform is a core functional domain that orchestrates the creation and management..." {
-            
+            tags "Impact,New VoD Management System,Flexible Series,Post VMS Business Initiatives,UK FAST"
+
             mod = container "MediaGenix On Demand" "BeBanjo Movida VOD Management system (Comprising of systems which schedule and manage transcode a..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/7bec9ebd-87c8-4ed0-bfe2-1ea5429eeabc
                 tags "Impact,New VoD Management System,Flexible Series,Post VMS Business Initiatives,Streaming Transformation Program"
@@ -775,9 +779,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            SMALL BUSINESS SERVICES
            ============================================================ */
-        
+
         sbs = softwareSystem "Small Business Services" "A set of small applications delivering discreet business processes usually hosted on SQL on prem ..." {
-            
+            tags "Impact,Finance & People Transformation"
+
             anda = container "ANDA" "ANDA is a document archive repository. Where physical documents need to be archived (signed contr..." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/dc02b3c2-a279-42c9-a468-76b8818c36fe
             }
@@ -813,9 +818,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            VIDEO STREAMING PLATFORM
            ============================================================ */
-        
+
         vsp = softwareSystem "Video Streaming Platform" "Includes all items that provide the value chain" {
-            
+            tags "Impact,Finance & People Transformation,Flexible Series,Post VMS Business Initiatives,Streaming Transformation Program,UK FAST"
+
             c4sl = container "Channel 4 Streaming (Legacy)" "Video on Demand platform across many devices including https://channel4.com" "iaas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/aa9fdfc2-1884-4181-b102-1579838e10ac
                 tags "Impact,Flexible Series,Post VMS Business Initiatives,Streaming Transformation Program,UK FAST"
@@ -860,9 +866,8 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         /* ============================================================
            WORKSPACE SYSTEMS PLATFORM
            ============================================================ */
-        
+
         wsp = softwareSystem "Workspace Systems Platform" "The facilities management platform provides integrated solutions for managing physical workspaces..." {
-            
             ac = container "Alert Cascade" "Crisis event mass communication tool" "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b6bf1946-3623-41a6-9a3f-36bc6e1fc4a5
             }
@@ -1190,7 +1195,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ccfToBbp = ccf -> fsp.bbp "Uses" ""
         tatToBbp = tat -> fsp.bbp "Uses" ""
         c4ToBsw = c4 -> fsp.bsw "Raise and approve POs" "" "Impact,Finance & People Transformation"
-        ccfToBsw = ccf -> fsp.bsw "Uses" "" "Impact,Finance & People Transformation,Corporate Integration"
+        ccfToBsw = ccf -> fsp.bsw "Uses" "" "Impact,Corporate Integration,Finance & People Transformation"
         ccfrssToBsw = ccfrss -> fsp.bsw "Uses" "" "Impact,Finance & People Transformation"
         tatToCmx = tat -> fsp.cmx "Uses" ""
         ccfToEbs = ccf -> fsp.ebs "Uses" "" "Impact,Finance & People Transformation,Corporate Integration"
