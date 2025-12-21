@@ -1,27 +1,34 @@
 {
   "name" : "Channel 4 Architectral Style",
-  "description" : "This theme defines the default styles for various architectural elements with the Enterprise Architecture Model.",
+  "description" : "This theme defines the default styles for various architectural elements with the Channel 4 Enterprise Architecture Model.",
   "elements" : 
   [
     {
       "tag" : "Container",
-	  "background" : "#37C400",
+	    "background" : "#37C400",
       "stroke" : "#808080",
-	  "shape" : "RoundedBox"
-    }, 
+	    "shape" : "RoundedBox",
+      "description" : "Default style for Applications (Containers)"
+    },{
+      "tag" : "Component",
+      "shape" : "Component",
+      "background" : "Component",
+      "description" : "Default style for Components"
+  }, 
 	{
-    "tag" : "Person",
-	  "background" : "#596DFF",
-	  "shape" : "Person", 
-    "stroke" : "#808080"
+      "tag" : "Person",
+	    "background" : "#596DFF",
+	    "shape" : "Person", 
+      "stroke" : "#808080",
+      "description" : "Default style for Organisation (Person)"
   }, 
   {
-    "tag" : "legalEntity",
-    "background" : "#BFC6FF"
+      "tag" : "legalEntity",
+      "background" : "#BFC6FF"
   }, 
   {
-    "tag" : "businessUnit",
-    "background" : "#8995FF"
+      "tag" : "businessUnit",
+      "background" : "#8995FF"
   }, 
   {
     "tag" : "customer",
@@ -29,19 +36,27 @@
   },
   {	  
 	"tag" : "Software System",
-    "background" : "#dfe3e8"
+    "background" : "#dfe3e8",
+    "description" : "Default style for Platform (Software System"
   },
   {         
     "tag" : "Focus",
     "background" : "#595959",
     "color" : "#FFFFFF",
-	"description" : "Which Platform is the focus of the diagram"
+	  "description" : "Used to hightlight element that is the the focus of a diagram"
   },
   {
     "tag" : "Boundary",
     "stroke" : "#808080",
     "color" : "#808080",
     "border" : "Dotted"
+  }, 
+  {
+    "tag" : "Change",
+    "stroke" : "#B85EFF",
+    "strokeWidth" : "8",
+    "description" : "Default style to highlight change"
+
   }
   ],
   "relationships" : 
@@ -49,9 +64,22 @@
     "tag" : "Relationship",
     "thickness" : 4,
     "color" : "#808080",
-    "routing" : "Curved"
+    "routing" : "Curved",
+    "description" : "Default style for relationships"
   }, {
     "tag" : "Integration",
-    "style" : "Solid"
-  } ]
+    "style" : "Solid",
+    "description" : "Default style for relationships tagged Integrations - App to App relationships are solid lines"
+  }, {
+    "tag" : "Integration",
+    "style" : "Solid",
+    "description" : "Default style for relationships tagged Integrations - App to App relationships are solid lines"
+  }, 
+  {
+    "tag" : "Change",
+    "colour" : "#B85EFF",
+    "width" : "8",
+    "description" : "Default style to highlight change"
+  }
+ ]
 }
