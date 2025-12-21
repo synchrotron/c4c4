@@ -3,6 +3,7 @@
   "description" : "This theme defines the default styles for various architectural elements with the Channel 4 Enterprise Architecture Model.",
   "elements" : 
   [
+
     {
       "tag" : "Container",
 	    "background" : "#37C400",
@@ -12,7 +13,7 @@
     },{
       "tag" : "Component",
       "shape" : "Component",
-      "background" : "Component",
+      "background" : "#c39900",
       "description" : "Default style for Components"
   }, 
 	{
