@@ -270,6 +270,17 @@ query GetInterfaces($limit: Int!) {
                             node {
                                 factSheet {
                                     name
+                                    ... on Project {
+                                        relToParent {
+                                            edges {
+                                                node {
+                                                    factSheet {
+                                                        name
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -407,12 +418,23 @@ query GetAllPlatforms($limit: Int!) {
                                                         description
                                                         category
                                                         ... on UserGroup {
-                                                            acronym   
+                                                            acronym
                                                             relUserGroupToProject {
                                                                 edges {
                                                                     node {
                                                                         factSheet {
                                                                             name
+                                                                            ... on Project {
+                                                                                relToParent {
+                                                                                    edges {
+                                                                                        node {
+                                                                                            factSheet {
+                                                                                                name
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
@@ -429,6 +451,17 @@ query GetAllPlatforms($limit: Int!) {
                                                     id
                                                     factSheet {
                                                         name
+                                                        ... on Project {
+                                                            relToParent {
+                                                                edges {
+                                                                    node {
+                                                                        factSheet {
+                                                                            name
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }

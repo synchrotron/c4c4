@@ -3,16 +3,20 @@
 generate_from_leanix.py - Generate Structurizr DSL from LeanIX
 
 Main generator that fetches architecture data from LeanIX and creates
-the Channel 4 Core workspace DSL with enhanced metadata:
+the Channel 4 Core workspace DSL with configurable metadata:
 1. LeanIX URL for each application
-2. Project names as tags (plus 'Impact' tag if projects exist)
-3. SSO perspective for applications with implemented SSO
-4. Category and project tags for persons (teams/organisations)
-5. Project tags for relationships (integrations)
+2. Projects (including parent projects) as tags and/or perspectives (configurable via CLI flag)
+3. SSO tags for applications with implemented SSO
+4. Category tags for persons (teams/organisations)
+5. Integration tags for relationships
+6. 'Impact' tag when projects are associated with elements
+
+Use --help to see configuration options for rendering projects.
 """
 
 import os
 import re
+import argparse
 from pathlib import Path
 from leanix.client import LeanIXClient
 from leanix.mapper import LeanIXMapper
@@ -20,19 +24,56 @@ from leanix.mapper import LeanIXMapper
 
 def main():
     """Generate DSL from LeanIX data."""
-    
-    # Configuration - CHANGED: Use tag instead of hardcoded ID
+
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(
+        description='Generate Structurizr DSL from LeanIX',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Note: Projects (including parent projects/initiatives) are always rendered as both tags and perspectives.
+      Platform perspectives are derived from child application projects.
+
+Examples:
+  # Generate to default location (local testing)
+  python generate_from_leanix.py
+
+  # Generate directly to c4-lite project
+  python generate_from_leanix.py --output ../c4-lite/core/c4-core-workspace.dsl
+
+  # Generate to absolute path
+  python generate_from_leanix.py -o /path/to/workspace.dsl
+        """
+    )
+
+    parser.add_argument(
+        '-o', '--output',
+        type=str,
+        help='Output file path (default: dsl/c4-core-workspace.dsl)',
+        default='dsl/c4-core-workspace.dsl'
+    )
+
+    args = parser.parse_args()
+
+    # Configuration
     tag_name = "Enterprise System"  # Tag to filter platforms
-    output_dir = Path("dsl")
-    output_file = output_dir / "c4-core-workspace.dsl"
-    
+    output_file = Path(args.output)
+    output_dir = output_file.parent
+
     print("=" * 70)
     print("Channel 4 Core - LeanIX to Structurizr DSL Generator")
     print("=" * 70)
+    print(f"Configuration:")
+    print(f"  - Output file: {output_file}")
+    print(f"  - Projects rendered as both tags and perspectives")
+    print(f"  - Platform perspectives derived from child applications")
     print()
-    
+
     # Create output directory
-    output_dir.mkdir(exist_ok=True)
+    try:
+        output_dir.mkdir(parents=True, exist_ok=True)
+    except Exception as e:
+        print(f"Error: Cannot create output directory {output_dir}: {e}")
+        return 1
     
     # Step 1: Connect to LeanIX
     print("Step 1: Connecting to LeanIX...")
@@ -92,14 +133,16 @@ def main():
     print("-" * 70)
     try:
         mapper = LeanIXMapper()
-        
+
         # Use multi-platform method for all cases (works for single platform too)
         print(f"Generating DSL for {len(platforms_data)} platform(s) with enhancements:")
         print("  - LeanIX URLs for each application")
-        print("  - Project names as tags (+ 'Impact' tag) for applications")
-        print("  - SSO perspectives for implemented SSO")
-        print("  - Category and project tags for persons")
-        print("  - Project tags for relationships (integrations)")
+        print("  - Projects (including parent projects) as both tags and perspectives")
+        print("  - Platform perspectives derived from child application projects")
+        print("  - 'Impact' tag when projects are present")
+        print("  - SSO tags for implemented SSO")
+        print("  - Category tags for persons")
+        print("  - Integration tags for relationships")
         dsl = mapper.map_multiple_platforms_to_dsl(platforms_data, all_interfaces)
         
         print("DSL generated successfully")
@@ -166,10 +209,12 @@ def main():
     print()
     print("Enhancements applied:")
     print("  1. LeanIX URL added to each application")
-    print("  2. Project names added as tags (+ 'Impact' tag) for applications")
-    print("  3. SSO perspective for applications with implemented SSO")
-    print("  4. Category and project tags for persons (excluding 'Team')")
-    print("  5. Project tags for relationships/integrations (+ 'Impact' tag)")
+    print("  2. Projects (including parent projects) rendered as both tags and perspectives")
+    print("  3. Platform perspectives derived from child application projects")
+    print("  4. 'Impact' tag when projects are present")
+    print("  5. SSO tags for applications with implemented SSO")
+    print("  6. Category tags for persons (including 'Team')")
+    print("  7. Integration tags for relationships")
     print()
     print("Next steps:")
     print("  1. Review the generated DSL")
