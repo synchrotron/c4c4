@@ -824,6 +824,9 @@ class LeanIXMapper:
             it_components = [edge.get('node', {}).get('factSheet', {}) for edge in it_components_edges]
             technology = self._extract_technology_from_components(it_components)
 
+            # Get dataFlowDirection from interface
+            data_flow_direction = interface.get('dataFlowDirection')
+
             # Extract metadata (tags and perspectives) for the interface
             interface_metadata = self._extract_interface_metadata(interface)
 
@@ -870,7 +873,8 @@ class LeanIXMapper:
                             interface_name,
                             technology,
                             interface_metadata['tags'],
-                            interface_metadata['perspectives']
+                            interface_metadata['perspectives'],
+                            data_flow_direction
                         ))
         
         # Generate DSL with all platforms
@@ -1049,20 +1053,61 @@ class LeanIXMapper:
 '''
         
         # Add application to application relationships with qualified identifiers, tags, and perspectives
-        for interface_identifier, provider_id, consumer_id, interface_name, technology, project_tags, initiative_perspectives in all_app_relationships:
+        for interface_identifier, provider_id, consumer_id, interface_name, technology, project_tags, initiative_perspectives, data_flow_direction in all_app_relationships:
             if provider_id in all_applications and consumer_id in all_applications:
                 provider_identifier, _, provider_platform_id, _, _, _ = all_applications.get(provider_id)
                 consumer_identifier, _, consumer_platform_id, _, _, _ = all_applications.get(consumer_id)
 
-                # Build relationship tags: Integration + project tags (Impact if projects exist)
-                relationship_tags = self._format_relationship_tags(['Integration'], project_tags)
+                # Determine source and target based on dataFlowDirection
+                # Default (not set/null/empty) or 'outgoing': provider -> consumer
+                # 'incoming': consumer -> provider (reversed)
+                # 'bidirectional': provider -> consumer (same as default)
+                if data_flow_direction == 'incoming':
+                    # Reverse the direction
+                    source_identifier = consumer_identifier
+                    source_platform_id = consumer_platform_id
+                    target_identifier = provider_identifier
+                    target_platform_id = provider_platform_id
+                else:
+                    # Default: provider -> consumer (for null, empty, 'outgoing', 'bidirectional')
+                    source_identifier = provider_identifier
+                    source_platform_id = provider_platform_id
+                    target_identifier = consumer_identifier
+                    target_platform_id = consumer_platform_id
 
-                # Use qualified identifiers: provider_platform.provider_app -> consumer_platform.consumer_app
-                qualified_source = f'{provider_platform_id}.{provider_identifier}'
-                qualified_target = f'{consumer_platform_id}.{consumer_identifier}'
+                # Prepend technology based on dataFlowDirection
+                if not data_flow_direction or data_flow_direction == '':
+                    technology_prefix = 'XXXX'
+                elif data_flow_direction == 'outgoing':
+                    technology_prefix = 'Outgoing'
+                elif data_flow_direction == 'incoming':
+                    technology_prefix = 'Incoming'
+                elif data_flow_direction == 'bidirectional':
+                    technology_prefix = 'Bidirectional'
+                else:
+                    technology_prefix = 'XXXX'
+
+                # Prepend technology with the prefix
+                modified_technology = f'{technology_prefix} - {technology}'
+
+                # Prepend interface name and add tag for 'not set' case
+                if not data_flow_direction or data_flow_direction == '':
+                    modified_interface_name = f'DIRECTION NOT SET - {interface_name}'
+                    # Add 'Direction not set' tag to project tags
+                    modified_project_tags = project_tags + ['Direction not set']
+                else:
+                    modified_interface_name = interface_name
+                    modified_project_tags = project_tags
+
+                # Build relationship tags: Integration + project tags (Impact if projects exist)
+                relationship_tags = self._format_relationship_tags(['Integration'], modified_project_tags)
+
+                # Use qualified identifiers: source_platform.source_app -> target_platform.target_app
+                qualified_source = f'{source_platform_id}.{source_identifier}'
+                qualified_target = f'{target_platform_id}.{target_identifier}'
                 rel_line = self._format_relationship_with_tags_and_perspectives(
                     interface_identifier, qualified_source, qualified_target,
-                    interface_name, technology, relationship_tags, initiative_perspectives
+                    modified_interface_name, modified_technology, relationship_tags, initiative_perspectives
                 )
                 dsl += f'        {rel_line}\n'
         

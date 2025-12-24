@@ -232,6 +232,7 @@ query GetInterfaces($limit: Int!) {
                 description
                 ... on Interface {
                     acronym
+                    dataFlowDirection
                     relInterfaceToProviderApplication {
                         edges {
                             node {
