@@ -179,7 +179,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Data Experiments" "Data Experiments"
             }
         }
-        tat = person "Tax and Treasury" "" {
+        tat = person "Tax and Treasury" "Manages tax compliance and planning while also overseeing cash flow, funding, liquidity, and fina..." {
             tags "team"
         }
         c4 = person "Channel 4" "" {
@@ -572,11 +572,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                     "Data Clean Room" "Data Clean Room"
                 }
             }
-            df = container "Data Fabric" "Data Fabric is an innovative approach designed to simplify and streamline data management across ..." "saas" {
+            dla = container "Data Lakehouse Azure" "For our Data Lakehouse implementation we use Data Fabric as an innovative approach designed to si..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fd1625b8-a9b8-4df4-a364-d4c0792ca019
                 tags "SSO"
             }
-            edw = container "Enterprise Data Warehouse" "Data Warehouse application used as a host of analytics data in a star schema or a columnar databa..." "hybrid" {
+            dwa = container "Data Warehouse AWS" "Data Warehouse application used as a host of analytics data in a star schema or a columnar databa..." "hybrid" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/22cf94d3-ac4a-40b9-b29a-09fb2307799e
                 tags "Impact,Data Clean Room,Customer Journey Analytics (CJA),Data Experiments,Streaming Transformation Program"
                 perspectives {
@@ -1427,22 +1427,22 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         digiToDcrs = digi -> dap.dcrs "Uses" ""
         aiXToDcrs = aiX -> dap.dcrs "C4 Audience Team and Marketing team use the Data Clean Room solution for creating overlapping aud..." ""
         dmToDcrs = dm -> dap.dcrs "Uses" ""
-        soToDf = so -> dap.df "Uses" ""
-        atToDf = at -> dap.df "Uses" ""
-        arToEdw = ar -> dap.edw "Uses" ""
-        dsToEdw = ds -> dap.edw "Uses" ""
-        techToEdw = tech -> dap.edw "Uses" ""
+        soToDla = so -> dap.dla "Uses" ""
+        atToDla = at -> dap.dla "Uses" ""
+        arToDwa = ar -> dap.dwa "Uses" ""
+        dsToDwa = ds -> dap.dwa "Uses" ""
+        techToDwa = tech -> dap.dwa "Uses" ""
         insiToTabl = insi -> dap.tabl "Uses" ""
-        insiToWa = insi -> dap.wa "Uses" "" "Impact,Customer Journey Analytics (CJA),Data Experiments" {
+        insiToWa = insi -> dap.wa "Uses" "" "Impact,Data Experiments,Customer Journey Analytics (CJA)" {
             perspectives {
-                "Customer Journey Analytics (CJA)" "Customer Journey Analytics (CJA)"
                 "Data Experiments" "Data Experiments"
+                "Customer Journey Analytics (CJA)" "Customer Journey Analytics (CJA)"
             }
         }
         ccfToAtax = ccf -> fsp.atax "Uses" ""
-        tatToAtax = tat -> fsp.atax "Uses" ""
+        tatToAtax = tat -> fsp.atax "Manage corporation tax" ""
         ccfToBbp = ccf -> fsp.bbp "Uses" ""
-        tatToBbp = tat -> fsp.bbp "Uses" ""
+        tatToBbp = tat -> fsp.bbp "Corporate banking" ""
         c4ToBsw = c4 -> fsp.bsw "Raise and approve POs" "" "Impact,Finance & People Transformation" {
             perspectives {
                 "Finance & People Transformation" "Finance & People Transformation"
@@ -1459,7 +1459,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Finance & People Transformation" "Finance & People Transformation"
             }
         }
-        tatToCmx = tat -> fsp.cmx "Uses" ""
+        tatToCmx = tat -> fsp.cmx "Cashflow management" ""
         ccfToEbs = ccf -> fsp.ebs "Uses" "" "Impact,Corporate Integration,Finance & People Transformation" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
@@ -1471,7 +1471,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Finance & People Transformation" "Finance & People Transformation"
             }
         }
-        tatToEbs = tat -> fsp.ebs "Uses" ""
+        tatToEbs = tat -> fsp.ebs "Tax data downloads and reporting" ""
         c4ToFaf = c4 -> fsp.faf "Uses" "" "Impact,Finance & People Transformation" {
             perspectives {
                 "Finance & People Transformation" "Finance & People Transformation"
@@ -1499,6 +1499,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Finance & People Transformation" "Finance & People Transformation"
             }
         }
+        tatToSbi = tat -> fsp.sbi "Tax reporting" ""
         ccfrssToTgn = ccfrss -> fsp.tgn "Managed agency invoicing." ""
         ccfToWda = ccf -> fsp.wda "Uses" "" "Impact,Finance & People Transformation" {
             perspectives {
@@ -1540,7 +1541,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Finance & People Transformation" "Finance & People Transformation"
             }
         }
-        tatToFes = tat -> psp.fes "Uses" ""
+        tatToFes = tat -> psp.fes "Manage tax responsibilities for Freelancers." ""
         peopToFes = peop -> psp.fes "Uses" ""
         c4ToLl = c4 -> psp.ll "Uses" ""
         ladToLl = lad -> psp.ll "Uses" ""
@@ -1602,628 +1603,628 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            APPLICATION -> APPLICATION RELATIONSHIPS (from LeanIX Interfaces)
            ============================================================ */
         
-        4ta = psp.4peo -> psp.acti "4People to ActivePay" "Mule" "Integration"
-        4tac = psp.4peo -> wsp.ac "4People to Alert cascade" "Mule" "Integration"
-        4tb = psp.4peo -> wsp.ac "4People to Benefits" "Mule" "Integration,Impact,Benefex Replacement" {
+        4ta = psp.acti -> psp.4peo "4People to ActivePay" "Incoming - Mule" "Integration"
+        4tac = psp.4peo -> wsp.ac "4People to Alert cascade" "Outgoing - Mule" "Integration"
+        4tb = wsp.ac -> psp.4peo "4People to Benefits" "Incoming - Mule" "Integration,Impact,Benefex Replacement" {
             perspectives {
                 "Benefex Replacement" "Benefex Replacement"
             }
         }
-        4tce = psp.4peo -> wsp.ce "4People to Concept Evolution" "Mule" "Integration"
-        4tcms = psp.4peo -> sbs.cms "4People to Contract Management System(CMS)" "Mule" "Integration"
-        4tc = psp.4peo -> psp.tlh "4People to Cornerstone" "Mule" "Integration"
-        4te = psp.4peo -> wsp.egen "4People to Egencia" "Mule" "Integration"
-        4toe = psp.4peo -> fsp.ebs "4People to Oracle EBS" "Mule" "Integration"
-        4tp = psp.4peo -> fsp.wda "4People to Planning" "Mule" "Integration"
-        4tpX = psp.4peo -> psp.popp "4People to Poppulo" "Mule" "Integration"
-        atsfasdf = sp.pass -> cp.stel "A55 to Stellar for Advanced Schedule data flow" "SFTP" "Integration"
-        aptf = psp.acti -> fsp.wda "Active Pay to Financial Planning" "Mule" "Integration"
-        atoe = psp.acti -> fsp.ebs "ActivPay to Oracle EBS" "Mule" "Integration"
-        asstc = vsp.yosp -> vsp.c4sl "Ad Serving System to C4S" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        4tce = psp.4peo -> wsp.ce "4People to Concept Evolution" "Outgoing - Mule" "Integration"
+        4tcms = psp.4peo -> sbs.cms "4People to Contract Management System(CMS)" "Outgoing - Mule" "Integration"
+        4tc = psp.4peo -> psp.tlh "4People to Cornerstone" "Outgoing - Mule" "Integration"
+        4te = psp.4peo -> wsp.egen "4People to Egencia" "Outgoing - Mule" "Integration"
+        4toe = psp.4peo -> fsp.ebs "4People to Oracle EBS" "Outgoing - Mule" "Integration"
+        4tp = psp.4peo -> fsp.wda "DIRECTION NOT SET - 4People to Planning" "XXXX - Mule" "Integration,Direction not set"
+        4tpX = psp.4peo -> psp.popp "4People to Poppulo" "Outgoing - Mule" "Integration"
+        atsfasdf = sp.pass -> cp.stel "A55 to Stellar for Advanced Schedule data flow" "Outgoing - SFTP" "Integration"
+        aptf = psp.acti -> fsp.wda "Active Pay to Financial Planning" "Outgoing - Mule" "Integration"
+        atoe = psp.acti -> fsp.ebs "ActivPay to Oracle EBS" "Outgoing - Mule" "Integration"
+        asstc = vsp.yosp -> vsp.c4sl "DIRECTION NOT SET - Ad Serving System to C4S" "XXXX - Alternative" "Integration,Impact,Streaming Transformation Program,Direction not set" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        aate = dap.wa -> dap.edw "Adobe Analytics to EDW" "Alternative" "Integration"
-        apffpfb = cp.ap -> bms.pbm "Agency Portal fetch from Pirate for Brand" "Mule" "Integration"
-        apffsfp = cp.ap -> cp.stel "Agency Portal fetch from Stellar for Programme" "Mule" "Integration"
-        apfsfpyot = cp.ap -> cp.stel "Agency Portal from Stellar for Pick Your Own transmission" "Mule" "Integration"
-        ai = csp.pcc -> rsp.prrs "Agreement Information" "Alternative" "Integration"
-        ap = rsp.sd -> rsp.pap "Artist payments" "Automate" "Integration,Impact,Corporate Integration" {
+        aate = dap.wa -> dap.dwa "Adobe Analytics to EDW" "Outgoing - Alternative" "Integration"
+        apffpfb = bms.pbm -> cp.ap "Agency Portal fetch from Pirate for Brand" "Incoming - Mule" "Integration"
+        apffsfp = cp.ap -> cp.stel "Agency Portal fetch from Stellar for Programme" "Outgoing - Mule" "Integration"
+        apfsfpyot = cp.stel -> cp.ap "Agency Portal from Stellar for Pick Your Own transmission" "Incoming - Mule" "Integration"
+        ai = rsp.prrs -> csp.pcc "Agreement Information" "Incoming - Alternative" "Integration"
+        ap = rsp.sd -> rsp.pap "Artist payments" "Outgoing - Automate" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        adaa = bms.asp -> mmp.msp "ASP Delivery Acknowledgment API" "Alternative" "Integration"
-        alsstl = lpp.lsp -> bms.asp "ASP live subtitle streams to LSP" "Alternative" "Integration"
-        allsfl = bms.asp -> lpp.lsp "ASP low latency stream from LSP" "Alternative" "Integration"
-        apja = bms.asp -> mmp.msp "ASP Production Job API" "Alternative" "Integration"
-        apjsa = mmp.msp -> bms.asp "ASP Production Job Status API" "Alternative" "Integration"
-        asfp = bms.asp -> bms.pira "ASP Schedule from Pirate" "Alternative" "Integration"
-        assmfd = bms.asp -> mmp.msp "ASP Signer Source Media File Delivery" "Alternative" "Integration"
-        avcmfd = bms.asp -> mmp.msp "ASP Viewing Copy Media File Delivery" "Alternative" "Integration"
-        asaltf = cp.fsh -> dap.as "Audience Segments and Lookalikes to Freewheel" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        adaa = bms.asp -> mmp.msp "DIRECTION NOT SET - ASP Delivery Acknowledgment API" "XXXX - Alternative" "Integration,Direction not set"
+        alsstl = lpp.lsp -> bms.asp "DIRECTION NOT SET - ASP live subtitle streams to LSP" "XXXX - Alternative" "Integration,Direction not set"
+        allsfl = bms.asp -> lpp.lsp "DIRECTION NOT SET - ASP low latency stream from LSP" "XXXX - Alternative" "Integration,Direction not set"
+        apja = bms.asp -> mmp.msp "DIRECTION NOT SET - ASP Production Job API" "XXXX - Alternative" "Integration,Direction not set"
+        apjsa = mmp.msp -> bms.asp "DIRECTION NOT SET - ASP Production Job Status API" "XXXX - Alternative" "Integration,Direction not set"
+        asfp = bms.asp -> bms.pira "DIRECTION NOT SET - ASP Schedule from Pirate" "XXXX - Alternative" "Integration,Direction not set"
+        assmfd = bms.asp -> mmp.msp "DIRECTION NOT SET - ASP Signer Source Media File Delivery" "XXXX - Alternative" "Integration,Direction not set"
+        avcmfd = bms.asp -> mmp.msp "DIRECTION NOT SET - ASP Viewing Copy Media File Delivery" "XXXX - Alternative" "Integration,Direction not set"
+        asaltf = dap.as -> cp.fsh "Audience Segments and Lookalikes to Freewheel" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        bwpfo = fsp.ebs -> fsp.bbp "BACS & Wire Payments File Out" "Automate" "Integration"
-        brdte = dap.barb -> dap.edw "BARB ratings data to EDW" "SFTP" "Integration"
-        btsfau = dap.barb -> cp.stel "BARB to Stellar for Audience Universe" "SFTP" "Integration"
-        btsfi = dap.barb -> cp.stel "BARB to Stellar for Impacts" "SFTP" "Integration"
-        bpsri = fsp.bbp -> fsp.ebs "Barclay Payment Statement Receipt In" "Automate" "Integration,Impact,Corporate Integration" {
+        bwpfo = fsp.ebs -> fsp.bbp "BACS & Wire Payments File Out" "Outgoing - Automate" "Integration"
+        brdte = dap.barb -> dap.dwa "BARB ratings data to EDW" "Outgoing - SFTP" "Integration"
+        btsfau = dap.barb -> cp.stel "BARB to Stellar for Audience Universe" "Outgoing - SFTP" "Integration"
+        btsfi = dap.barb -> cp.stel "BARB to Stellar for Impacts" "Outgoing - SFTP" "Integration"
+        bpsri = fsp.bbp -> fsp.ebs "DIRECTION NOT SET - Barclay Payment Statement Receipt In" "XXXX - Automate" "Integration,Impact,Corporate Integration,Direction not set" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bsi = fsp.bbp -> fsp.ebs "Barclay Statement In" "Automate" "Integration,Impact,Corporate Integration" {
+        bsi = fsp.bbp -> fsp.ebs "DIRECTION NOT SET - Barclay Statement In" "XXXX - Automate" "Integration,Impact,Corporate Integration,Direction not set" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bbdc = fsp.ebs -> fsp.bsw "Basware Business Department Codes" "Alternative" "Integration,Impact,Corporate Integration" {
+        bbdc = fsp.bsw -> fsp.ebs "Basware Business Department Codes" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bcer = fsp.ebs -> fsp.bsw "Basware Currency Exchange Rates" "Alternative" "Integration,Impact,Corporate Integration" {
+        bcer = fsp.bsw -> fsp.ebs "Basware Currency Exchange Rates" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bglcvr = fsp.ebs -> fsp.bsw "Basware GL Cross Validation Rules" "Alternative" "Integration,Impact,Corporate Integration" {
+        bglcvr = fsp.bsw -> fsp.ebs "Basware GL Cross Validation Rules" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bglnc = fsp.ebs -> fsp.bsw "Basware GL Nominal Codes" "Alternative" "Integration,Impact,Corporate Integration" {
+        bglnc = fsp.bsw -> fsp.ebs "Basware GL Nominal Codes" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bic = fsp.ebs -> fsp.bsw "Basware Individual Codes" "Alternative" "Integration,Impact,Corporate Integration" {
+        bic = fsp.bsw -> fsp.ebs "Basware Individual Codes" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bis = fsp.bsw -> fsp.ebs "Basware Invoice Statuses" "Alternative" "Integration,Impact,Corporate Integration" {
+        bis = fsp.ebs -> fsp.bsw "Basware Invoice Statuses" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bpvpci = fsp.ebs -> fsp.bsw "Basware Payments/Void Payments/Cancelled Invoices" "Alternative" "Integration,Impact,Corporate Integration" {
+        bpvpci = fsp.bsw -> fsp.ebs "Basware Payments/Void Payments/Cancelled Invoices" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bpcc = fsp.ebs -> fsp.bsw "Basware Pirate Code Combinations" "Alternative" "Integration,Impact,Corporate Integration" {
+        bpcc = fsp.bsw -> fsp.ebs "Basware Pirate Code Combinations" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bprodc = fsp.ebs -> fsp.bsw "Basware Product Codes" "Alternative" "Integration,Impact,Corporate Integration" {
+        bprodc = fsp.bsw -> fsp.ebs "Basware Product Codes" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bprojc = fsp.ebs -> fsp.bsw "Basware Project Codes" "Alternative" "Integration,Impact,Corporate Integration" {
+        bprojc = fsp.bsw -> fsp.ebs "Basware Project Codes" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bws = fsp.ebs -> fsp.bsw "Basware Suppliers" "Alternative" "Integration,Impact,Corporate Integration" {
+        bws = fsp.bsw -> fsp.ebs "Basware Suppliers" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        b2ebs = fsp.bsw -> fsp.ebs "Basware to EBS for Approved Invoices" "Automate" "Integration,Impact,Corporate Integration" {
+        b2ebs = fsp.bsw -> fsp.ebs "Basware to EBS for Approved Invoices" "Outgoing - Automate" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        b2sbi = fsp.bsw -> fsp.ebs "Basware to SplashBI (Oracle eBS Schema)" "Alternative" "Integration,Impact,Corporate Integration" {
+        b2sbi = fsp.bsw -> fsp.ebs "Basware to SplashBI (Oracle eBS Schema)" "Outgoing - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        b2sbi2 = fsp.bsw -> fsp.sbi "Basware to SplashBI (Oracle eBS Schema)" "Alternative" "Integration,Impact,Corporate Integration" {
+        b2sbi2 = fsp.bsw -> fsp.sbi "Basware to SplashBI (Oracle eBS Schema)" "Outgoing - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bur = fsp.ebs -> fsp.bsw "Basware User Rights" "Alternative" "Integration,Impact,Corporate Integration" {
+        bur = fsp.bsw -> fsp.ebs "Basware User Rights" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        buriu = fsp.ebs -> fsp.bsw "Basware User Rights (Inactive users)" "Alternative" "Integration,Impact,Corporate Integration" {
+        buriu = fsp.bsw -> fsp.ebs "Basware User Rights (Inactive users)" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bta = psp.acti -> psp.bp "Benefits to Actvipay" "Alternative" "Integration,Impact,Benefex Replacement,Review Benefits Portal" {
+        bta = psp.bp -> psp.acti "Benefits to Actvipay" "Incoming - Alternative" "Integration,Impact,Benefex Replacement,Review Benefits Portal" {
             perspectives {
                 "Benefex Replacement" "Benefex Replacement"
                 "Review Benefits Portal" "Review Benefits Portal"
             }
         }
-        bdte = cp.stel -> dap.edw "Budget data to EDW" "Alternative" "Integration"
-        btmii = sp.mod -> bms.bynd "Bynder to MediaGenix Image Integration" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        bdte = cp.stel -> dap.dwa "Budget data to EDW" "Outgoing - Alternative" "Integration"
+        btmii = sp.mod -> bms.bynd "DIRECTION NOT SET - Bynder to MediaGenix Image Integration" "XXXX - Alternative" "Integration,Impact,Streaming Transformation Program,Direction not set" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        btmitc = sp.mod -> bms.bynd "Bynder to MediaGenix Image Tagging Changes" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        btmitc = sp.mod -> bms.bynd "DIRECTION NOT SET - Bynder to MediaGenix Image Tagging Changes" "XXXX - Alternative" "Integration,Impact,Streaming Transformation Program,Direction not set" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        chptpr = psp.er -> dap.df "C4 HR & Payroll to PowerBI Reporting" "Mule" "Integration"
-        4io = fsp.ebs -> rsp.come "C4 intl overages" "SFTP" "Integration,Impact,Corporate Integration" {
+        chptpr = dap.dla -> psp.er "C4 HR & Payroll to PowerBI Reporting" "Incoming - Mule" "Integration"
+        4io = fsp.ebs -> rsp.come "C4 intl overages" "XXXX - SFTP" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        cptyfa = vsp.yosp -> cp.stel "C4 Promo to YoSpace for Advertisements" "Mule" "Integration"
-        4vatr = fsp.sov -> fsp.ebs "C4 VAT Returns" "Alternative" "Integration"
-        cbsdte = vsp.sm -> dap.edw "C4S Braintree Subscriber data to EDW" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        cptyfa = cp.stel -> vsp.yosp "C4 Promo to YoSpace for Advertisements" "Incoming - Mule" "Integration"
+        4vatr = fsp.sov -> fsp.ebs "C4 VAT Returns" "Outgoing - Alternative" "Integration"
+        cbsdte = vsp.sm -> dap.dwa "C4S Braintree Subscriber data to EDW" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        cetf = vsp.free -> sp.pepl "C4S EPG to Freely" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        cetf = sp.pepl -> vsp.free "C4S EPG to Freely" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        cete = vsp.mpar -> dap.edw "C4S Events to EDW" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        cete = vsp.mpar -> dap.dwa "C4S Events to EDW" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        cfvetba = vsp.ova -> vsp.free "C4S Freely Video Events to BitMovin Analytics" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        cfvetba = vsp.free -> vsp.ova "C4S Freely Video Events to BitMovin Analytics" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        cfvsfc = vsp.cdna -> vsp.free "C4S Freely Video Stream from CDN" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        cfvsfc = vsp.cdna -> vsp.free "C4S Freely Video Stream from CDN" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        cmifc = vsp.cdna -> sp.mod "C4S MoD Images from CDN" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        cmifc = vsp.cdna -> sp.mod "C4S MoD Images from CDN" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        cqte = vsp.ova -> dap.edw "C4S QoS to EDW" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        cqte = vsp.ova -> dap.dwa "C4S QoS to EDW" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        csty = vsp.yosp -> bms.osp "C4S Streams to YoSpace" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        csty = vsp.yosp -> bms.osp "DIRECTION NOT SET - C4S Streams to YoSpace" "XXXX - Alternative" "Integration,Impact,Streaming Transformation Program,Direction not set" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ctaa = dap.wa -> vsp.c4sl "C4S to Adobe Analytics" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        ctaa = vsp.c4sl -> dap.wa "C4S to Adobe Analytics" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ctb = dap.barb -> vsp.c4sl "C4S to BARB" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        ctb = dap.barb -> vsp.c4sl "DIRECTION NOT SET - C4S to BARB" "XXXX - Alternative" "Integration,Impact,Streaming Transformation Program,Direction not set" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ctc7t = vsp.c4sl -> bms.c7t "C4S to C4 7A Titles" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        ctc7t = vsp.c4sl -> bms.c7t "C4S to C4 7A Titles" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ctlvs = lpp.lsp -> vsp.c4sl "C4S to Licence Validation Service" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        ctlvs = lpp.lsp -> vsp.c4sl "DIRECTION NOT SET - C4S to Licence Validation Service" "XXXX - Alternative" "Integration,Impact,Streaming Transformation Program,Direction not set" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ctsma = vsp.sm -> vsp.c4sl "C4S to Subscription Management (Aptitude)" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        ctsma = vsp.c4sl -> vsp.sm "C4S to Subscription Management (Aptitude)" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ctt-ue = vsp.thin -> vsp.c4sl "C4S to ThinkAnalytics - User Events" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        ctt-ue = vsp.c4sl -> vsp.thin "C4S to ThinkAnalytics - User Events" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ctetaa = dap.wa -> vsp.mpar "C4S Tracking Events to Adobe Analytics" "Alternative" "Integration"
-        ctetm = vsp.mpar -> vsp.c4sl "C4S Tracking Events to mParticle" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        ctetaa = vsp.mpar -> dap.wa "C4S Tracking Events to Adobe Analytics" "Incoming - Alternative" "Integration"
+        ctetm = vsp.c4sl -> vsp.mpar "C4S Tracking Events to mParticle" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        cvmtf = vsp.free -> sp.mod "C4S VoD Metadata to Freely" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        cvmtf = sp.mod -> vsp.free "C4S VoD Metadata to Freely" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        c4st = mp.po -> mp.po "C4STELLARPROMO" "Alternative" "Integration"
-        c4st2 = mp.po -> cp.stel "C4STELLARPROMO" "Alternative" "Integration"
-        caapfsfd = cp.ap -> cp.stel "CARIA and Agency Portal from Stellar for Deals" "Mule" "Integration"
-        cfsfcri = cp.cari -> cp.stel "CARIA from Stellar for Copy Rotation Instruction" "Mule" "Integration"
-        ctsfcri = cp.cari -> cp.stel "CARIA to Stellar for Copy Rotation Instructions" "SFTP" "Integration"
-        ctsfdacc = cp.cari -> cp.stel "CARIA to STELLAR for Deals and Campaign creation" "SFTP" "Integration"
-        cro2c = fsp.ebs -> rsp.come "Cash Receipts from Oracle to Comet" "Alternative" "Integration"
-        ctt = bms.pcgs -> bms.ptis "CGS to TIS2" "Alternative" "Integration"
-        c4itr = mmp.msp -> mmp.pmm "Channel 4 Interstitals to RedBee" "Mule" "Integration"
-        c4srtb = mp.braz -> vsp.c4sl "Channel 4 Streaming Recommendations to Braze" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        c4st = mp.po -> mp.po "DIRECTION NOT SET - C4STELLARPROMO" "XXXX - Alternative" "Integration,Direction not set"
+        c4st2 = mp.po -> cp.stel "DIRECTION NOT SET - C4STELLARPROMO" "XXXX - Alternative" "Integration,Direction not set"
+        caapfsfd = cp.stel -> cp.ap "CARIA and Agency Portal from Stellar for Deals" "Incoming - Mule" "Integration"
+        cfsfcri = cp.cari -> cp.stel "CARIA from Stellar for Copy Rotation Instruction" "Outgoing - Mule" "Integration"
+        ctsfcri = cp.cari -> cp.stel "CARIA to Stellar for Copy Rotation Instructions" "Outgoing - SFTP" "Integration"
+        ctsfdacc = cp.cari -> cp.stel "CARIA to STELLAR for Deals and Campaign creation" "Outgoing - SFTP" "Integration"
+        cro2c = rsp.come -> fsp.ebs "Cash Receipts from Oracle to Comet" "Incoming - Alternative" "Integration"
+        ctt = bms.pcgs -> bms.ptis "DIRECTION NOT SET - CGS to TIS2" "XXXX - Alternative" "Integration,Direction not set"
+        c4itr = mmp.msp -> mmp.pmm "DIRECTION NOT SET - Channel 4 Interstitals to RedBee" "XXXX - Mule" "Integration,Direction not set"
+        c4srtb = mp.braz -> vsp.c4sl "Channel 4 Streaming Recommendations to Braze" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        c4tpt = mmp.msp -> bms.asp "Channel 4 to PFT token" "Mule" "Integration"
-        crbtas = dap.as -> dap.dcri "Clean Room (Brandm4tch) to Audience Segmentation" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        c4tpt = bms.asp -> mmp.msp "Channel 4 to PFT token" "Incoming - Mule" "Integration"
+        crbtas = dap.dcri -> dap.as "Clean Room (Brandm4tch) to Audience Segmentation" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        crbtas2 = dap.as -> dap.dcrs "Clean Room (Brandm4tch) to Audience Segmentation" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        crbtas2 = dap.dcrs -> dap.as "Clean Room (Brandm4tch) to Audience Segmentation" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ctsfcci = cp.fsh -> cp.stel "Clearcast to Stellar for Copy Clearance Information" "Mule" "Integration"
-        ctf = cp.fsh -> bms.cmt "CMT to Freewheel" "Alternative" "Integration"
-        ctp = bms.pira -> bms.cmt "CMT to Pirate" "Mule" "Integration"
-        ctpc = bms.cmt -> bms.pcX "CMT to Promo Create" "Alternative" "Integration"
-        ctpo = mp.po -> bms.cmt "CMT to Promo Optimiser" "Alternative" "Integration"
-        ccii = rsp.come -> fsp.ebs "Comet C4I Invoice Interface" "Alternative" "Integration"
-        cffli = fsp.ebs -> rsp.come "Comet FFL Invoice Interface" "Automate" "Integration"
-        cai = bms.pira -> rsp.pris "Contract & Agreement info" "Mule" "Integration"
-        caiX = csp.pcc -> rsp.pap "Contract/Prog & Agreement info" "Alternative" "Integration"
-        cpdta = bms.pira -> sbs.anda "Contracts PAC data to Anda" "Alternative" "Integration"
-        cctf = cp.cc -> cp.fsh "Copy Central to Freewheel" "Alternative" "Integration"
-        ccts = cp.cc -> cp.stel "Copy Central to Stellar" "Alternative" "Integration"
-        ctll = psp.tlh -> psp.ll "Cornerstone to LinkedIn Learning" "Alternative" "Integration"
-        epct = psp.fes -> fsp.ebs "EBS project codes to FES" "Alternative" "Integration"
-        et4f = psp.4peo -> fsp.ebs "EBS to 4People for Employees" "Alternative" "Integration"
-        ebstrd = fsp.ebs -> fsp.bsw "EBS to Basware for Reference & Transactional data" "Alternative" "Integration,Impact,Corporate Integration" {
+        ctsfcci = cp.stel -> cp.fsh "Clearcast to Stellar for Copy Clearance Information" "Incoming - Mule" "Integration"
+        ctf = cp.fsh -> bms.cmt "DIRECTION NOT SET - CMT to Freewheel" "XXXX - Alternative" "Integration,Direction not set"
+        ctp = bms.pira -> bms.cmt "DIRECTION NOT SET - CMT to Pirate" "XXXX - Mule" "Integration,Direction not set"
+        ctpc = bms.cmt -> bms.pcX "DIRECTION NOT SET - CMT to Promo Create" "XXXX - Alternative" "Integration,Direction not set"
+        ctpo = mp.po -> bms.cmt "DIRECTION NOT SET - CMT to Promo Optimiser" "XXXX - Alternative" "Integration,Direction not set"
+        ccii = rsp.come -> fsp.ebs "Comet C4I Invoice Interface" "Outgoing - Alternative" "Integration"
+        cffli = fsp.ebs -> rsp.come "Comet FFL Invoice Interface" "Outgoing - Automate" "Integration"
+        cai = rsp.pris -> bms.pira "Contract & Agreement info" "Incoming - Mule" "Integration"
+        caiX = rsp.pap -> csp.pcc "Contract/Prog & Agreement info" "Incoming - Alternative" "Integration"
+        cpdta = bms.pira -> sbs.anda "Contracts PAC data to Anda" "Outgoing - Alternative" "Integration"
+        cctf = cp.cc -> cp.fsh "DIRECTION NOT SET - Copy Central to Freewheel" "XXXX - Alternative" "Integration,Direction not set"
+        ccts = cp.cc -> cp.stel "DIRECTION NOT SET - Copy Central to Stellar" "XXXX - Alternative" "Integration,Direction not set"
+        ctll = psp.tlh -> psp.ll "Cornerstone to LinkedIn Learning" "XXXX - Alternative" "Integration"
+        epct = psp.fes -> fsp.ebs "EBS project codes to FES" "Outgoing - Alternative" "Integration"
+        et4f = psp.4peo -> fsp.ebs "EBS to 4People for Employees" "Outgoing - Alternative" "Integration"
+        ebstrd = fsp.ebs -> fsp.bsw "EBS to Basware for Reference & Transactional data" "Outgoing - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        etcf = rsp.come -> fsp.ebs "EBS to Comet for Cash Receipts" "SFTP" "Integration"
-        ebsmc = fsp.msc -> fsp.ebs "EBS to Mastercard for Employee credit card transactions" "Alternative" "Integration,Impact,Corporate Integration" {
+        etcf = rsp.come -> fsp.ebs "EBS to Comet for Cash Receipts" "Outgoing - SFTP" "Integration"
+        ebsmc = fsp.msc -> fsp.ebs "EBS to Mastercard for Employee credit card transactions" "Outgoing - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        ebspir = fsp.ebs -> rsp.come "EBS to Pirate (Comet Flim4)" "Automate, SFTP" "Integration"
-        ebsstr = fsp.ebs -> cp.stel "EBS to Stellar Daily exchange rate (in) Invoices (out)" "Alternative" "Integration"
-        ebscex = fsp.ebs -> cp.stel "EBS to Stellar for Currency Exchange" "SFTP" "Integration"
-        ebplan = fsp.ebs -> fsp.wda "eBusiness to Planning" "Alternative" "Integration"
-        e4ti = dap.dcri -> dap.edw "EDW 4 to Infosum" "Alternative" "Integration"
-        emcstmdf = dap.df -> dap.edw "EDW Marketing Campaign Snapshots to Microsoft Data Fabric" "Alternative" "Integration"
-        emctmdf = dap.df -> dap.edw "EDW Marketing Campaign to Microsoft Data Fabric" "Alternative" "Integration"
-        esitb = mp.braz -> dap.edw "EDW Streaming Identity to Braze" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        ebspir = fsp.ebs -> rsp.come "EBS to Pirate (Comet Flim4)" "XXXX - Automate, SFTP" "Integration"
+        ebsstr = fsp.ebs -> cp.stel "EBS to Stellar Daily exchange rate (in) Invoices (out)" "XXXX - Alternative" "Integration"
+        ebscex = fsp.ebs -> cp.stel "EBS to Stellar for Currency Exchange" "Outgoing - SFTP" "Integration"
+        ebplan = fsp.ebs -> fsp.wda "DIRECTION NOT SET - eBusiness to Planning" "XXXX - Alternative" "Integration,Direction not set"
+        e4ti = dap.dwa -> dap.dcri "EDW 4 to Infosum" "Incoming - Alternative" "Integration"
+        emcstmdf = dap.dwa -> dap.dla "EDW Marketing Campaign Snapshots to Microsoft Data Fabric" "Incoming - Alternative" "Integration"
+        emctmdf = dap.dwa -> dap.dla "EDW Marketing Campaign to Microsoft Data Fabric" "Incoming - Alternative" "Integration"
+        esitb = dap.dwa -> mp.braz "EDW Streaming Identity to Braze" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        etdf-sd = dap.df -> dap.edw "EDW to  Data Fabric - Spots data" "Alternative" "Integration"
-        etapsp = dap.edw -> rsp.pap "EDW to Artist Payment Systems (Pirate)" "Alternative" "Integration"
-        etb = mp.braz -> dap.edw "EDW to Braze" "Alternative" "Integration"
-        etm-ipcau = dap.edw -> dap.as "EDW to Mediarithmics - Instream Promo Control Audience Upload" "Alternative" "Integration"
-        etm-sud = dap.as -> dap.edw "EDW to Mediarithmics - Streaming User Data" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        etdf-sd = dap.dla -> dap.dwa "EDW to  Data Fabric - Spots data" "Outgoing - Alternative" "Integration"
+        etapsp = dap.dwa -> rsp.pap "EDW to Artist Payment Systems (Pirate)" "Outgoing - Alternative" "Integration"
+        etb = mp.braz -> dap.dwa "EDW to Braze" "Outgoing - Alternative" "Integration"
+        etm-ipcau = dap.dwa -> dap.as "EDW to Mediarithmics - Instream Promo Control Audience Upload" "Outgoing - Alternative" "Integration"
+        etm-sud = dap.dwa -> dap.as "EDW to Mediarithmics - Streaming User Data" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ett-v = vsp.thin -> dap.edw "EDW to ThinkAnalytics - Viewers" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        ett-v = dap.dwa -> vsp.thin "EDW to ThinkAnalytics - Viewers" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        etdftp = dap.edw -> bms.pira "EDW TX data feed to Pirate" "Alternative" "Integration"
-        fgl = bms.pira -> fsp.ebs "Failed GL lines" "Alternative" "Integration"
-        fvte = cp.fsh -> dap.edw "Feewheel v4logs to EDW" "Alternative" "Integration"
-        faebs = fsp.ebs -> fsp.faf "Finance Approval to E-Business Suite" "Alternative" "Integration"
-        ffsffdovc = cp.fsh -> dap.edw "Freewheel from Stellar for Forecast data of VOD Campaign" "Mule" "Integration"
-        ffsffdovc2 = cp.fsh -> cp.stel "Freewheel from Stellar for Forecast data of VOD Campaign" "Mule" "Integration"
-        fltmdf = cp.fsh -> dap.df "Freewheel logs to Microsoft Data Fabric" "Alternative" "Integration"
-        ftiecua = dap.dcri -> cp.fsh "Freewheel to Infosum (Exposed Campaign Users Attribution)" "Alternative" "Integration"
-        ftsffrdca = cp.fsh -> cp.stel "Freewheel to Stellar for Freewheel reference data changes API" "Alternative" "Integration"
-        ftsvvfcsap = cp.fsh -> cp.stel "Freewheel to Stellar VoD Views for Commercial, Sponsorship and Promotions" "SFTP" "Integration"
-        frtpa = mmp.msp -> bms.prta2 "From RedBee to Pirate ASRUN" "Mule" "Integration"
-        fstpfcr = cp.stel -> bms.pira "From Stellar to Pirate for Commercial Registrations" "Alternative" "Integration"
-        idtc = bms.bynd -> vsp.c4sl "Image DAM to C4S" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        etdftp = dap.dwa -> bms.pira "EDW TX data feed to Pirate" "Outgoing - Alternative" "Integration"
+        fgl = bms.pira -> fsp.ebs "Failed GL lines" "Outgoing - Alternative" "Integration"
+        fvte = dap.dwa -> cp.fsh "Feewheel v4logs to EDW" "Incoming - Alternative" "Integration"
+        faebs = fsp.ebs -> fsp.faf "DIRECTION NOT SET - Finance Approval to E-Business Suite" "XXXX - Alternative" "Integration,Direction not set"
+        ffsffdovc = cp.fsh -> dap.dwa "Freewheel from Stellar for Forecast data of VOD Campaign" "Outgoing - Mule" "Integration"
+        ffsffdovc2 = cp.fsh -> cp.stel "Freewheel from Stellar for Forecast data of VOD Campaign" "Outgoing - Mule" "Integration"
+        fltmdf = cp.fsh -> dap.dla "Freewheel logs to Microsoft Data Fabric" "Outgoing - Alternative" "Integration"
+        ftiecua = cp.fsh -> dap.dcri "Freewheel to Infosum (Exposed Campaign Users Attribution)" "Incoming - Alternative" "Integration"
+        ftsffrdca = cp.fsh -> cp.stel "Freewheel to Stellar for Freewheel reference data changes API" "Outgoing - Alternative" "Integration"
+        ftsvvfcsap = cp.fsh -> cp.stel "Freewheel to Stellar VoD Views for Commercial, Sponsorship and Promotions" "Outgoing - SFTP" "Integration"
+        frtpa = bms.prta2 -> mmp.msp "From RedBee to Pirate ASRUN" "Incoming - Mule" "Integration"
+        fstpfcr = cp.stel -> bms.pira "From Stellar to Pirate for Commercial Registrations" "Outgoing - Alternative" "Integration"
+        idtc = bms.bynd -> vsp.c4sl "Image DAM to C4S" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        imcfstp = rsp.soun -> bms.pira "Interstial music cuesheets from Soundmouse to Pirate" "Automate, SFTP" "Integration"
-        icnf = rsp.pris -> fsp.ebs "Invoice/credit note for Royalties" "Automate" "Integration,Impact,Corporate Integration" {
+        imcfstp = rsp.soun -> bms.pira "Interstial music cuesheets from Soundmouse to Pirate" "XXXX - Automate, SFTP" "Integration"
+        icnf = rsp.pris -> fsp.ebs "Invoice/credit note for Royalties" "Outgoing - Automate" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        lspp = bms.pira -> vsp.c4sl "Logging Sheets & Programme Parts" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        lspp = bms.pira -> vsp.c4sl "Logging Sheets & Programme Parts" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        lcflr = lpp.lsp -> mmp.ppsp "LSP Contribution Feed ( Line Record)" "Alternative" "Integration"
-        lmfd = lpp.lsp -> mmp.msp "LSP Media File Delivery" "Alternative" "Integration"
-        lm = lpp.lsp -> bms.osp "LSP Multicast" "Alternative" "Integration"
-        lsto = bms.osp -> lpp.lsp "LSP Simulcast to OSLP" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        lcflr = lpp.lsp -> mmp.ppsp "DIRECTION NOT SET - LSP Contribution Feed ( Line Record)" "XXXX - Alternative" "Integration,Direction not set"
+        lmfd = lpp.lsp -> mmp.msp "DIRECTION NOT SET - LSP Media File Delivery" "XXXX - Alternative" "Integration,Direction not set"
+        lm = lpp.lsp -> bms.osp "DIRECTION NOT SET - LSP Multicast" "XXXX - Alternative" "Integration,Direction not set"
+        lsto = bms.osp -> lpp.lsp "LSP Simulcast to OSLP" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ltpa = bms.pira -> lpp.lsp "LSP to Pirate Asruns" "Alternative" "Integration"
-        mtbb = bms.bynd -> sp.mod "MediaGenix to Bynder Brand" "Alternative" "Integration"
-        mtfpi = cp.fsh -> sp.mod "MediaGenix to FreeWheel Programme Info" "Alternative" "Integration"
-        mtgc4vc = bms.grac -> sp.mod "MediaGenix to Gracenote Channel 4 VoD Catalogue" "Mule" "Integration"
-        mtmbvsi = sp.mod -> sp.mod "MediaGenix to MediaGenix BARB VOD Schedule Integration" "Alternative" "Integration"
-        mtpecw = bms.pira -> sp.mod "MediaGenix to Pirate EPG Content Warnings" "Mule" "Integration"
-        mttc4vc = vsp.thin -> sp.mod "MediaGenix to ThinkAnalytics Channel 4 VoD Catalogue" "Mule" "Integration,Impact,Streaming Transformation Program" {
+        ltpa = bms.pira -> lpp.lsp "DIRECTION NOT SET - LSP to Pirate Asruns" "XXXX - Alternative" "Integration,Direction not set"
+        mtbb = bms.bynd -> sp.mod "DIRECTION NOT SET - MediaGenix to Bynder Brand" "XXXX - Alternative" "Integration,Direction not set"
+        mtfpi = sp.mod -> cp.fsh "MediaGenix to FreeWheel Programme Info" "Incoming - Alternative" "Integration"
+        mtgc4vc = bms.grac -> sp.mod "DIRECTION NOT SET - MediaGenix to Gracenote Channel 4 VoD Catalogue" "XXXX - Mule" "Integration,Direction not set"
+        mtmbvsi = sp.mod -> sp.mod "DIRECTION NOT SET - MediaGenix to MediaGenix BARB VOD Schedule Integration" "XXXX - Alternative" "Integration,Direction not set"
+        mtpecw = bms.pira -> sp.mod "DIRECTION NOT SET - MediaGenix to Pirate EPG Content Warnings" "XXXX - Mule" "Integration,Direction not set"
+        mttc4vc = sp.mod -> vsp.thin "MediaGenix to ThinkAnalytics Channel 4 VoD Catalogue" "Incoming - Mule" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        mtbfms = mp.braz -> dap.as "Mediarithmics to Braze for Marketing Segments" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        mtbfms = dap.as -> mp.braz "Mediarithmics to Braze for Marketing Segments" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        mtffas = cp.fsh -> dap.as "Mediarithmics to Freewheel for ALA segments" "Alternative" "Integration"
-        mticga = dap.dcri -> dap.as "Mediarithmics to Infosum (Control Group attribution)" "Alternative" "Integration"
-        mvrtp = mmp.msp -> sp.mod "MoD  VoD Request to PFT" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        mtffas = dap.as -> cp.fsh "Mediarithmics to Freewheel for ALA segments" "Incoming - Alternative" "Integration"
+        mticga = dap.as -> dap.dcri "Mediarithmics to Infosum (Control Group attribution)" "Incoming - Alternative" "Integration"
+        mvrtp = sp.mod -> mmp.msp "MoD  VoD Request to PFT" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        msdte = vsp.sm -> dap.edw "MPP Subscriber data to EDW" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        msdte = vsp.sm -> dap.dwa "MPP Subscriber data to EDW" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        mcra = mmp.msp -> bms.asp "MSP Content Request API" "Alternative" "Integration"
-        mcra2 = mmp.msp -> lpp.lsp "MSP Content Request API" "Alternative" "Integration"
-        mcra3 = mmp.msp -> bms.osp "MSP Content Request API" "Alternative" "Integration"
-        mcra4 = mmp.msp -> mmp.ppsp "MSP Content Request API" "Alternative" "Integration"
-        mmvfto = mmp.msp -> bms.osp "MSP Master Video Files to OLSP" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        mcra = mmp.msp -> bms.asp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Direction not set"
+        mcra2 = mmp.msp -> lpp.lsp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Direction not set"
+        mcra3 = mmp.msp -> bms.osp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Direction not set"
+        mcra4 = mmp.msp -> mmp.ppsp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Direction not set"
+        mmvfto = bms.osp -> mmp.msp "MSP Master Video Files to OLSP" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        mmfd-abs = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired BBC Studios" "Alternative" "Integration"
-        mmfd-af = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired Fox/Disney" "Alternative" "Integration"
-        mmfd-ag = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired Generic" "Alternative" "Integration"
-        mmfd-as = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired Sony" "Alternative" "Integration"
-        mmfd-at = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired Turner" "Alternative" "Integration"
-        mmfd-aw = mmp.msp -> csp.dist "MSP Media File Delivery - Acquired Warner" "Alternative" "Integration"
-        mmfd-c = mmp.msp -> cp.cari "MSP Media File Delivery - Commercials" "Alternative" "Integration"
-        mmfd-c2 = mmp.msp -> cp.cc "MSP Media File Delivery - Commercials" "Alternative" "Integration"
-        mmfd-cp = mmp.msp -> csp.pc "MSP Media File Delivery - Commissioned Programmes" "Alternative" "Integration"
-        mmfd-i = mmp.msp -> csp.pc "MSP Media File Delivery - Interstitials" "Alternative" "Integration"
-        mmfd-lvr = mmp.msp -> lpp.lsp "MSP Media File Delivery - LSP Video Recordings" "Alternative" "Integration"
-        mmfd-lvrX = mmp.msp -> lpp.lsp "MSP Media File Delivery - LSP Voiceover Recordings" "Alternative" "Integration"
-        mmfd-mmtsflft = mmp.msp -> cp.stel "MSP Media File Delivery - MB Media to Stellar for Long Form teleshopping" "SFTP" "Integration"
-        mmfd-mv = mmp.msp -> cp.cari "MSP Media File Delivery - Music Videos" "Alternative" "Integration"
-        mmfd-sad = mmp.msp -> bms.asp "MSP Media File Delivery - Subtitles & Audio Description" "Alternative" "Integration"
-        mmfd-s = mmp.msp -> bms.asp "MSP Media File Delivery - Supertrusted" "Alternative" "Integration"
-        mmfd-s2 = mmp.msp -> mmp.ppsp "MSP Media File Delivery - Supertrusted" "Alternative" "Integration"
-        mpvba = mmp.msp -> mmp.pvb "MSP Pirate Video Browse API" "Alternative" "Integration"
-        mpvbfh = mmp.msp -> mmp.pvb "MSP Pirate Video Browse File Hosting" "Alternative" "Integration"
-        msfr = mmp.msp -> bms.pira "MSP Schedule File Receipt" "Alternative" "Integration"
-        mti = mmp.msp -> mmp.uv "MSP Tape Ingest" "Alternative" "Integration"
-        mtp = mmp.pmm -> mmp.msp "MSP to Pirate" "Mule" "Integration"
-        mtrta = mmp.rta -> mmp.msp "MSP to Ready to Air" "Alternative" "Integration"
-        mts = rsp.soun -> mmp.msp "MSP to Soundmouse" "Alternative" "Integration"
-        mtc4df = mmp.msp -> bms.pira "MSPs to Channel 4 DFS folders" "Mule" "Integration"
-        nos = bms.pc -> rsp.prrs "Name of Supplier" "Alternative" "Integration"
-        ntn = rsp.pris -> bms.pira "New transmitted notifications" "Alternative" "Integration"
-        oscn = fsp.ebs -> rsp.prrs "Oracle suppliers contact names" "Alternative" "Integration,Impact,Corporate Integration" {
+        mmfd-abs = mmp.msp -> csp.dist "DIRECTION NOT SET - MSP Media File Delivery - Acquired BBC Studios" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-af = mmp.msp -> csp.dist "DIRECTION NOT SET - MSP Media File Delivery - Acquired Fox/Disney" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-ag = mmp.msp -> csp.dist "DIRECTION NOT SET - MSP Media File Delivery - Acquired Generic" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-as = mmp.msp -> csp.dist "DIRECTION NOT SET - MSP Media File Delivery - Acquired Sony" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-at = mmp.msp -> csp.dist "DIRECTION NOT SET - MSP Media File Delivery - Acquired Turner" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-aw = mmp.msp -> csp.dist "DIRECTION NOT SET - MSP Media File Delivery - Acquired Warner" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-c = cp.cari -> mmp.msp "MSP Media File Delivery - Commercials" "Incoming - Alternative" "Integration"
+        mmfd-c2 = cp.cc -> mmp.msp "MSP Media File Delivery - Commercials" "Incoming - Alternative" "Integration"
+        mmfd-cp = mmp.msp -> csp.pc "DIRECTION NOT SET - MSP Media File Delivery - Commissioned Programmes" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-i = mmp.msp -> csp.pc "DIRECTION NOT SET - MSP Media File Delivery - Interstitials" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-lvr = mmp.msp -> lpp.lsp "DIRECTION NOT SET - MSP Media File Delivery - LSP Video Recordings" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-lvrX = mmp.msp -> lpp.lsp "DIRECTION NOT SET - MSP Media File Delivery - LSP Voiceover Recordings" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-mmtsflft = mmp.msp -> cp.stel "MSP Media File Delivery - MB Media to Stellar for Long Form teleshopping" "Outgoing - SFTP" "Integration"
+        mmfd-mv = mmp.msp -> cp.cari "DIRECTION NOT SET - MSP Media File Delivery - Music Videos" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-sad = mmp.msp -> bms.asp "DIRECTION NOT SET - MSP Media File Delivery - Subtitles & Audio Description" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-s = mmp.msp -> bms.asp "DIRECTION NOT SET - MSP Media File Delivery - Supertrusted" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-s2 = mmp.msp -> mmp.ppsp "DIRECTION NOT SET - MSP Media File Delivery - Supertrusted" "XXXX - Alternative" "Integration,Direction not set"
+        mpvba = mmp.msp -> mmp.pvb "DIRECTION NOT SET - MSP Pirate Video Browse API" "XXXX - Alternative" "Integration,Direction not set"
+        mpvbfh = mmp.msp -> mmp.pvb "DIRECTION NOT SET - MSP Pirate Video Browse File Hosting" "XXXX - Alternative" "Integration,Direction not set"
+        msfr = mmp.msp -> bms.pira "DIRECTION NOT SET - MSP Schedule File Receipt" "XXXX - Alternative" "Integration,Direction not set"
+        mti = mmp.msp -> mmp.uv "DIRECTION NOT SET - MSP Tape Ingest" "XXXX - Alternative" "Integration,Direction not set"
+        mtp = mmp.pmm -> mmp.msp "MSP to Pirate" "Outgoing - Mule" "Integration"
+        mtrta = mmp.rta -> mmp.msp "DIRECTION NOT SET - MSP to Ready to Air" "XXXX - Alternative" "Integration,Direction not set"
+        mts = rsp.soun -> mmp.msp "DIRECTION NOT SET - MSP to Soundmouse" "XXXX - Alternative" "Integration,Direction not set"
+        mtc4df = mmp.msp -> bms.pira "MSPs to Channel 4 DFS folders" "Outgoing - Mule" "Integration"
+        nos = rsp.prrs -> bms.pc "Name of Supplier" "Incoming - Alternative" "Integration"
+        ntn = bms.pira -> rsp.pris "New transmitted notifications" "Incoming - Alternative" "Integration"
+        oscn = rsp.prrs -> fsp.ebs "Oracle suppliers contact names" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        oatax = fsp.ebs -> fsp.atax "Oracle to AlphaTax" "Alternative" "Integration"
-        otunx = fsp.ebs -> fsp.tgn "Oracle to Tungsten XML Invoice feed" "Mule" "Integration"
-        pfpfstp = rsp.soun -> bms.pira "PAC form PDFs from Soundmouse to Pirate" "Automate, SFTP" "Integration"
-        pfxfstp = rsp.soun -> bms.pira "PAC form XMLs from Soundmouse to Pirate" "Automate, SFTP" "Integration"
-        pmfsfaf = mmp.msp -> cp.stel "Peach Media from Stellar for Attribution files" "Mule" "Integration"
-        patveo = bms.pira -> sp.pass "Pirate A55 to VMS (ex Optimum)" "Mule" "Integration"
-        patveo2 = bms.pira -> sp.pepl "Pirate A55 to VMS (ex Optimum)" "Mule" "Integration"
-        patveo3 = bms.pira -> bms.pvmsv "Pirate A55 to VMS (ex Optimum)" "Mule" "Integration"
-        passtc = bms.pira -> vsp.c4sl "Pirate Advance Scheduling System to C4S" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        oatax = fsp.ebs -> fsp.atax "Oracle to AlphaTax" "Outgoing - Alternative" "Integration"
+        otunx = fsp.ebs -> fsp.tgn "DIRECTION NOT SET - Oracle to Tungsten XML Invoice feed" "XXXX - Mule" "Integration,Direction not set"
+        pfpfstp = rsp.soun -> bms.pira "PAC form PDFs from Soundmouse to Pirate" "XXXX - Automate, SFTP" "Integration"
+        pfxfstp = rsp.soun -> bms.pira "PAC form XMLs from Soundmouse to Pirate" "Outgoing - Automate, SFTP" "Integration"
+        pmfsfaf = cp.stel -> mmp.msp "Peach Media from Stellar for Attribution files" "Incoming - Mule" "Integration"
+        patveo = bms.pira -> sp.pass "Pirate A55 to VMS (ex Optimum)" "XXXX - Mule" "Integration"
+        patveo2 = bms.pira -> sp.pepl "Pirate A55 to VMS (ex Optimum)" "XXXX - Mule" "Integration"
+        patveo3 = bms.pira -> bms.pvmsv "Pirate A55 to VMS (ex Optimum)" "XXXX - Mule" "Integration"
+        passtc = bms.pira -> vsp.c4sl "Pirate Advance Scheduling System to C4S" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        pctc = bms.pira -> vsp.c4sl "Pirate Certification to C4S" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        pctc = bms.pira -> vsp.c4sl "Pirate Certification to C4S" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        pctb = bms.bynd -> bms.pcgs "Pirate CGS to Bynder" "Mule" "Integration"
-        pctf = cp.fsh -> bms.pcgs "Pirate CGS to Freewheel" "Mule" "Integration"
-        pctmfvo = mmp.msp -> bms.pcgs "Pirate CGS to MSP for VPS origin" "Mule" "Integration"
-        pctsfpapi = bms.pcgs -> cp.stel "Pirate CGS to Stellar for Programme and Platform information" "Alternative" "Integration"
-        pctfX = cp.fsh -> bms.pcgs "Pirate Creatives to Freewheel" "Mule" "Integration"
-        pffrfs = bms.pira -> bms.asp "Pirate fetch from RedBee for Subtitles" "Mule" "Integration"
-        pirgl = fsp.ebs -> rsp.come "Pirate GL posted Transactions" "Alternative" "Integration"
-        pptasb = mmp.msp -> sp.ppps "Pirate PPS to AWS S3 Bucket" "Mule" "Integration"
-        ppitf = cp.fsh -> bms.pcgs "Pirate Programme Info to FreeWheel" "Mule" "Integration,Impact,Streaming Transformation Program" {
+        pctb = bms.bynd -> bms.pcgs "DIRECTION NOT SET - Pirate CGS to Bynder" "XXXX - Mule" "Integration,Direction not set"
+        pctf = cp.fsh -> bms.pcgs "Pirate CGS to Freewheel" "XXXX - Mule" "Integration"
+        pctmfvo = bms.pcgs -> mmp.msp "Pirate CGS to MSP for VPS origin" "Incoming - Mule" "Integration"
+        pctsfpapi = bms.pcgs -> cp.stel "Pirate CGS to Stellar for Programme and Platform information" "Outgoing - Alternative" "Integration"
+        pctfX = cp.fsh -> bms.pcgs "Pirate Creatives to Freewheel" "Outgoing - Mule" "Integration"
+        pffrfs = bms.pira -> bms.asp "DIRECTION NOT SET - Pirate fetch from RedBee for Subtitles" "XXXX - Mule" "Integration,Direction not set"
+        pirgl = fsp.ebs -> rsp.come "Pirate GL posted Transactions" "Outgoing - Alternative" "Integration"
+        pptasb = sp.ppps -> mmp.msp "Pirate PPS to AWS S3 Bucket" "Incoming - Mule" "Integration"
+        ppitf = bms.pcgs -> cp.fsh "Pirate Programme Info to FreeWheel" "Incoming - Mule" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        prmstc = bms.pira -> vsp.c4sl "Pirate Rights Management System to C4S" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        prmstc = bms.pira -> vsp.c4sl "Pirate Rights Management System to C4S" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        prdtoe = rmp.prms -> dap.edw "PIRATE RMS data to  Oracle EDW" "Alternative" "Integration"
-        pta = lpp.ac -> sp.mod "Pirate To Amagi" "Alternative" "Integration"
-        ptbfca = sp.mod -> bms.pira "Pirate to BeBanjo for Catalogue Assets" "Mule" "Integration"
-        ptbfca2 = sp.mod -> csp.pp "Pirate to BeBanjo for Catalogue Assets" "Mule" "Integration"
-        ptbfls = sp.mod -> bms.pira "Pirate to BeBanjo for Linear Scheduling" "Mule" "Integration"
-        ptbfls2 = sp.mod -> sp.pass "Pirate to BeBanjo for Linear Scheduling" "Mule" "Integration"
-        ptbfma = sp.mod -> bms.pira "Pirate to BeBanjo for Media Assets" "Mule" "Integration"
-        ptbfma2 = sp.mod -> mmp.pmm "Pirate to BeBanjo for Media Assets" "Mule" "Integration"
-        ptbfr = sp.mod -> rmp.prms "Pirate to BeBanjo for Rights" "Mule" "Integration,Impact,Streaming Transformation Program" {
+        prdtoe = rmp.prms -> dap.dwa "PIRATE RMS data to  Oracle EDW" "Outgoing - Alternative" "Integration"
+        pta = lpp.ac -> sp.mod "DIRECTION NOT SET - Pirate To Amagi" "XXXX - Alternative" "Integration,Direction not set"
+        ptbfca = bms.pira -> sp.mod "Pirate to BeBanjo for Catalogue Assets" "Incoming - Mule" "Integration"
+        ptbfca2 = csp.pp -> sp.mod "Pirate to BeBanjo for Catalogue Assets" "Incoming - Mule" "Integration"
+        ptbfls = bms.pira -> sp.mod "Pirate to BeBanjo for Linear Scheduling" "Incoming - Mule" "Integration"
+        ptbfls2 = sp.pass -> sp.mod "Pirate to BeBanjo for Linear Scheduling" "Incoming - Mule" "Integration"
+        ptbfma = bms.pira -> sp.mod "Pirate to BeBanjo for Media Assets" "Incoming - Mule" "Integration"
+        ptbfma2 = mmp.pmm -> sp.mod "Pirate to BeBanjo for Media Assets" "Incoming - Mule" "Integration"
+        ptbfr = rmp.prms -> sp.mod "Pirate to BeBanjo for Rights" "Incoming - Mule" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ptbfs = sp.mod -> bms.pira "Pirate to BeBanjo for Segment" "Mule" "Integration"
-        ptbdf = mmp.pmm -> bms.bynd "Pirate to Bynder data flow" "Alternative" "Integration"
-        ptcpft = mmp.msp -> mmp.pvb "Pirate to Clear (Prime Focus Technology)" "Mule" "Integration"
-        ptcs = bms.pira -> mmp.msp "Pirate to Compliance Service" "Alternative" "Integration"
-        ptdfvp = bms.et -> bms.pira "Pirate to DUK Freesat VOD publication" "Alternative" "Integration"
-        ptdfvpX = bms.et -> bms.pira "Pirate to DUK Freeview VOD publication" "Alternative" "Integration"
-        pte = bms.pira -> fsp.ebs "Pirate to EBS" "Alternative" "Integration"
-        ptes = bms.pira -> mmp.msp "Pirate to Editorial Service" "Alternative" "Integration"
-        ptgc4ce = bms.pira -> bms.grac "Pirate to Gracenote Channel 4 channel EPGs" "Mule" "Integration"
-        ptgmce = bms.pira -> bms.grac "Pirate to Gracenote music channel EPGs" "Alternative" "Integration"
-        ptk = sp.ppps -> dap.barb "Pirate to Kantar" "Mule" "Integration"
-        ptkfa = dap.barb -> mmp.pmm "Pirate to Kantar for Assets" "Mule" "Integration"
-        ptl = lpp.lsp -> bms.pira "Pirate To LSP" "Alternative" "Integration"
-        ptl2 = lpp.lsp -> cp.stel "Pirate To LSP" "Alternative" "Integration"
-        ptmocm = sp.mod -> bms.pira "Pirate to MediaGenix On-Demand Content Metadata" "Mule" "Integration"
-        ptmocm2 = sp.mod -> sp.pepl "Pirate to MediaGenix On-Demand Content Metadata" "Mule" "Integration"
-        ptpo = sp.ppps -> mp.po "Pirate To Promo Optimser" "Mule" "Integration"
-        ptss = lpp.lsp -> sp.ppps "Pirate to Schedule Service" "Alternative" "Integration"
-        pts = bms.pira -> cp.stel "Pirate to Stellar" "Alternative" "Integration"
-        ptsfac = sp.pitts -> cp.stel "Pirate to Stellar for ASRUN commercial" "Automate, SFTP" "Integration"
-        ptsfan = sp.ppps -> cp.stel "Pirate to Stellar for ASRUN Non-commercial" "Alternative" "Integration"
-        ptsfset = sp.ppps -> cp.stel "Pirate to Stellar for Schedule & Event timings" "Alternative" "Integration"
-        ptsufb = cp.stel -> cp.ap "Pirate to Stellar update for Brand" "Mule" "Integration"
-        pvtrmpn = mmp.msp -> bms.ptis "Pirate VPS to (RedBee, M2A, PFT, NLDR)" "Mule" "Integration"
-        pvts = mmp.msp -> mmp.pmm "Pirate VPS to S3" "Mule" "Integration"
-        pwfts = bms.pira -> cp.stel "Pirate Weekly Forecast to Stellar" "Automate" "Integration"
-        pvtcrps = rsp.prrs -> rmp.prms "Portal view to capture Royalty Producer shares" "Alternative" "Integration"
-        pdfpts = rsp.soun -> bms.pira "Post-TX data from Pirate to Soundmouse" "Automate, SFTP" "Integration"
-        pcf = mmp.ppsp -> lpp.lsp "PPSP Contribution Feed" "Alternative" "Integration"
-        pmfd = mmp.ppsp -> mmp.msp "PPSP Media File Delivery" "Alternative" "Integration"
-        pdfptsX = rsp.soun -> bms.pira "Pre-TX data from Pirate to Soundmouse" "Automate, SFTP" "Integration"
-        prte = rsp.come -> fsp.ebs "Producer Reporting to EBS" "Automate" "Integration,Impact,Corporate Integration" {
+        ptbfs = bms.pira -> sp.mod "Pirate to BeBanjo for Segment" "Incoming - Mule" "Integration"
+        ptbdf = mmp.pmm -> bms.bynd "Pirate to Bynder data flow" "Outgoing - Alternative" "Integration"
+        ptcpft = mmp.msp -> mmp.pvb "Pirate to Clear (Prime Focus Technology)" "Outgoing - Mule" "Integration"
+        ptcs = bms.pira -> mmp.msp "Pirate to Compliance Service" "Outgoing - Alternative" "Integration"
+        ptdfvp = bms.et -> bms.pira "DIRECTION NOT SET - Pirate to DUK Freesat VOD publication" "XXXX - Alternative" "Integration,Direction not set"
+        ptdfvpX = bms.et -> bms.pira "DIRECTION NOT SET - Pirate to DUK Freeview VOD publication" "XXXX - Alternative" "Integration,Direction not set"
+        pte = bms.pira -> fsp.ebs "Pirate to EBS" "XXXX - Alternative" "Integration"
+        ptes = bms.pira -> mmp.msp "Pirate to Editorial Service" "Outgoing - Alternative" "Integration"
+        ptgc4ce = bms.pira -> bms.grac "DIRECTION NOT SET - Pirate to Gracenote Channel 4 channel EPGs" "XXXX - Mule" "Integration,Direction not set"
+        ptgmce = bms.pira -> bms.grac "DIRECTION NOT SET - Pirate to Gracenote music channel EPGs" "XXXX - Alternative" "Integration,Direction not set"
+        ptk = sp.ppps -> dap.barb "DIRECTION NOT SET - Pirate to Kantar" "XXXX - Mule" "Integration,Direction not set"
+        ptkfa = mmp.pmm -> dap.barb "Pirate to Kantar for Assets" "Incoming - Mule" "Integration"
+        ptl = bms.pira -> lpp.lsp "Pirate To LSP" "Incoming - Alternative" "Integration"
+        ptl2 = cp.stel -> lpp.lsp "Pirate To LSP" "Incoming - Alternative" "Integration"
+        ptmocm = sp.mod -> bms.pira "Pirate to MediaGenix On-Demand Content Metadata" "Outgoing - Mule" "Integration"
+        ptmocm2 = sp.mod -> sp.pepl "Pirate to MediaGenix On-Demand Content Metadata" "Outgoing - Mule" "Integration"
+        ptpo = sp.ppps -> mp.po "DIRECTION NOT SET - Pirate To Promo Optimser" "XXXX - Mule" "Integration,Direction not set"
+        ptss = sp.ppps -> lpp.lsp "Pirate to Schedule Service" "Incoming - Alternative" "Integration"
+        pts = bms.pira -> cp.stel "DIRECTION NOT SET - Pirate to Stellar" "XXXX - Alternative" "Integration,Direction not set"
+        ptsfac = sp.pitts -> cp.stel "Pirate to Stellar for ASRUN commercial" "Outgoing - Automate, SFTP" "Integration"
+        ptsfan = sp.ppps -> cp.stel "Pirate to Stellar for ASRUN Non-commercial" "Outgoing - Alternative" "Integration"
+        ptsfset = sp.ppps -> cp.stel "Pirate to Stellar for Schedule & Event timings" "Outgoing - Alternative" "Integration"
+        ptsufb = cp.ap -> cp.stel "Pirate to Stellar update for Brand" "Incoming - Mule" "Integration"
+        pvtrmpn = mmp.msp -> bms.ptis "DIRECTION NOT SET - Pirate VPS to (RedBee, M2A, PFT, NLDR)" "XXXX - Mule" "Integration,Direction not set"
+        pvts = mmp.msp -> mmp.pmm "Pirate VPS to S3" "Outgoing - Mule" "Integration"
+        pwfts = bms.pira -> cp.stel "DIRECTION NOT SET - Pirate Weekly Forecast to Stellar" "XXXX - Automate" "Integration,Direction not set"
+        pvtcrps = rmp.prms -> rsp.prrs "Portal view to capture Royalty Producer shares" "Incoming - Alternative" "Integration"
+        pdfpts = rsp.soun -> bms.pira "Post-TX data from Pirate to Soundmouse" "XXXX - Automate, SFTP" "Integration"
+        pcf = mmp.ppsp -> lpp.lsp "PPSP Contribution Feed" "Outgoing - Alternative" "Integration"
+        pmfd = mmp.ppsp -> mmp.msp "DIRECTION NOT SET - PPSP Media File Delivery" "XXXX - Alternative" "Integration,Direction not set"
+        pdfptsX = rsp.soun -> bms.pira "Pre-TX data from Pirate to Soundmouse" "XXXX - Automate, SFTP" "Integration"
+        prte = rsp.come -> fsp.ebs "Producer Reporting to EBS" "Outgoing - Automate" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        proebs = fsp.ebs -> rsp.come "Producer Reporting to Oracle eBusiness Suite " "Alternative" "Integration,Impact,Corporate Integration" {
+        proebs = fsp.ebs -> rsp.come "Producer Reporting to Oracle eBusiness Suite " "Outgoing - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        pptpfesdi = bms.ppp -> csp.pcc "Producers Portal to Pirate for Ed Spec Diversity info" "Mule" "Integration"
-        pasmcmcfstp = rsp.soun -> bms.pira "Programme and social media clip music cuesheets from Soundmouse to Pirate" "Automate, SFTP" "Integration"
-        ppi = fsp.ebs -> bms.pira "programme Payments Interface" "Alternative" "Integration"
-        pctm = sp.mod -> bms.pcX "Promo Create To Movida" "Mule" "Integration"
-        pctp = bms.pira -> bms.pcX "Promo Create To Pirate" "Mule" "Integration"
-        potp = bms.pira -> mp.po "Promo Optimiser to Pirate" "Mule" "Integration"
-        rtata4 = lpp.lsp -> vsp.c4sl "Real Time As-Run to ALL 4" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        pptpfesdi = csp.pcc -> bms.ppp "Producers Portal to Pirate for Ed Spec Diversity info" "Incoming - Mule" "Integration"
+        pasmcmcfstp = rsp.soun -> bms.pira "Programme and social media clip music cuesheets from Soundmouse to Pirate" "XXXX - Automate, SFTP" "Integration"
+        ppi = fsp.ebs -> bms.pira "DIRECTION NOT SET - programme Payments Interface" "XXXX - Alternative" "Integration,Direction not set"
+        pctm = sp.mod -> bms.pcX "DIRECTION NOT SET - Promo Create To Movida" "XXXX - Mule" "Integration,Direction not set"
+        pctp = bms.pira -> bms.pcX "DIRECTION NOT SET - Promo Create To Pirate" "XXXX - Mule" "Integration,Direction not set"
+        potp = bms.pira -> mp.po "DIRECTION NOT SET - Promo Optimiser to Pirate" "XXXX - Mule" "Integration,Direction not set"
+        rtata4 = lpp.lsp -> vsp.c4sl "Real Time As-Run to ALL 4" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        rdfpfcf = bms.pira -> rsp.pris "Recoupment/Advances data from Programme Finance Committee form" "Alternative" "Integration"
-        rad = csp.pcc -> rsp.pap "Repeat agreement data" "Alternative" "Integration"
-        rtc7t = rmp.prms -> bms.c7t "Rights to C4 7A Titles" "Alternative" "Integration"
-        rswe = bms.pc -> rsp.prrs "Royalty Statement (welcome Email)" "Alternative" "Integration"
-        scfmd = fsp.ebs -> cp.sc "Sales CRM to Finance ERP - Customer Master Data" "Mule" "Integration"
-        scfic = fsp.ebs -> cp.sc "Sales CRM to Finance ERP - Invoice Creation" "Mule" "Integration"
-        se = rsp.come -> rsp.pap "Sales Entry" "Alternative" "Integration"
-        str = lpp.lsp -> bms.pira "SSAPI to RTAR" "Mule" "Integration"
-        sdfp = rsp.prrs -> fsp.bsw "Statement data (for pre-approved PO's)" "Alternative" "Integration"
-        sbttefud = cp.stel -> dap.edw "Stellar BARB & TAM to EDW for universe data" "Alternative" "Integration"
-        scpddtefcm = cp.stel -> dap.edw "Stellar CB & PIB delivery data to EDW for Campaign Month" "Alternative" "Integration"
-        scdta = cp.ap -> dap.edw "Stellar commercial data to Agencies" "Mule" "Integration"
-        scdta2 = cp.ap -> cp.stel "Stellar commercial data to Agencies" "Mule" "Integration"
-        sstefsed = cp.stel -> dap.edw "Stellar Snapshots to EDW for Scheduled Episode data" "Alternative" "Integration"
-        stapkfpd = cp.ap -> cp.stel "Stellar to Agency Portal &  K2 for programme data" "Mule" "Integration"
-        stapfcap = cp.ap -> cp.stel "Stellar to Agency Portal for CB and PIB" "Alternative" "Integration"
-        strebs = fsp.ebs -> cp.stel "Stellar to EBS for Sales Orders & New Customers" "Alternative" "Integration"
-        ste-cpadpagl = cp.stel -> dap.edw "Stellar to EDW - Campaign Position and Deal Position at Group Level" "Alternative" "Integration"
-        ste-dtbuipcr = cp.stel -> dap.edw "Stellar to EDW - Data to be used in PIB & CB reporting" "Alternative" "Integration"
-        ste-pbpgd = cp.stel -> dap.edw "Stellar to EDW - Processes Base Price Group data" "Alternative" "Integration"
-        ste-rsrvpt = cp.stel -> dap.edw "Stellar to EDW - ROI Sponsorship Revenue values per transmission" "Alternative" "Integration"
-        ste-scd = cp.stel -> dap.edw "Stellar to EDW - Sponsorship campaign data" "Alternative" "Integration"
-        stefahil = cp.stel -> dap.edw "Stellar to EDW for Ad Hoc Inventory Loads" "Alternative" "Integration"
-        stefcm = cp.stel -> dap.edw "Stellar to EDW for Campaign Month" "Alternative" "Integration"
-        steficd = cp.stel -> dap.edw "Stellar to EDW for Industry Channel data" "Alternative" "Integration"
-        steflcdiabas = cp.stel -> dap.edw "Stellar to EDW for Linear Campaign Data, including Agreements, Breaks and Spots" "Alternative" "Integration"
-        stefocd = cp.stel -> dap.edw "Stellar to EDW for Online Campaign Data" "Alternative" "Integration"
-        stefpcd = cp.stel -> dap.edw "Stellar to EDW for Promo Campaign data" "Alternative" "Integration"
-        stefrsd = cp.stel -> dap.edw "Stellar to EDW for Revenue Set data" "Alternative" "Integration"
-        stefrcocs = cp.stel -> dap.edw "Stellar to EDW for ROI calculation on Channel sets" "Alternative" "Integration"
-        stffabdac = cp.fsh -> cp.stel "Stellar to Freewheel for Agencies, Brand, Deals and Campaigns" "Mule" "Integration"
-        stnabfptsl = dap.barb -> cp.stel "Stellar to NIELSEN and BARB for post transmission Spot Log" "SFTP" "Integration"
-        stof2 = cp.stel -> fsp.ebs "Stellar to Oracle Financials about Agency financial exposure" "Alternative" "Integration"
-        stof1 = cp.stel -> fsp.ebs "Stellar to Oracle Financials on Credit Policy" "Alternative" "Integration"
-        stof = cp.stel -> fsp.ebs "Stellar to Oracle Financials on invoicing" "Alternative" "Integration"
-        stpmfspf = mmp.msp -> cp.stel "Stellar to Peach Media for Spot Plus files" "Mule" "Integration"
-        stpfcbpi = sp.ppps -> cp.stel "Stellar to Pirate for Commercial break pattern information" "Alternative" "Integration"
-        stpfccr = cp.stel -> sp.ppps "Stellar to Pirate for Commercial Copy Registrations" "SFTP" "Integration"
-        stpfcp = sp.pitts -> cp.stel "Stellar to Pirate for commercial playlist" "SFTP" "Integration"
-        stpfppi = cp.stel -> sp.ppps "Stellar to Pirate for Product placement indicator" "Alternative" "Integration"
-        stpfpc = cp.stel -> sp.ppps "Stellar to Pirate for Promotional Campaigns" "Alternative" "Integration"
-        stpfpcr = cp.stel -> sp.ppps "Stellar to Pirate for Promotions Copy Registrations" "Alternative" "Integration"
-        stpfsc = cp.stel -> sp.ppps "Stellar to Pirate for Sponsorship Campaign" "Alternative" "Integration"
-        stpfscoc = cp.stel -> sp.ppps "Stellar to Pirate for Sponsorship Clocknumbers or Copy" "Alternative" "Integration"
-        stpfse = cp.stel -> sp.ppps "Stellar to Pirate for Sponsorship Events" "Alternative" "Integration"
-        stpfsefp = cp.stel -> sp.ppps "Stellar to Pirate for Sponsorship Events for Partners" "SFTP" "Integration"
-        stpftp = cp.stel -> sp.ppps "Stellar to Pirate for Trail patterns" "Alternative" "Integration"
-        stufac = mmp.msp -> cp.stel "Stellar to UKTV for Ad Certification" "SFTP" "Integration"
-        stufccr = mmp.msp -> cp.stel "Stellar to UKTV for Commercial Copy Registrations" "SFTP" "Integration"
-        scte = vsp.c4sl -> dap.edw "Streaming Consent to EDW" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        rdfpfcf = rsp.pris -> bms.pira "Recoupment/Advances data from Programme Finance Committee form" "Incoming - Alternative" "Integration"
+        rad = rsp.pap -> csp.pcc "Repeat agreement data" "Incoming - Alternative" "Integration"
+        rtc7t = rmp.prms -> bms.c7t "DIRECTION NOT SET - Rights to C4 7A Titles" "XXXX - Alternative" "Integration,Direction not set"
+        rswe = bms.pc -> rsp.prrs "Royalty Statement (welcome Email)" "Outgoing - Alternative" "Integration"
+        scfmd = fsp.ebs -> cp.sc "Sales CRM to Finance ERP - Customer Master Data" "XXXX - Mule" "Integration"
+        scfic = fsp.ebs -> cp.sc "Sales CRM to Finance ERP - Invoice Creation" "XXXX - Mule" "Integration"
+        se = rsp.pap -> rsp.come "Sales Entry" "Incoming - Alternative" "Integration"
+        str = lpp.lsp -> bms.pira "SSAPI to RTAR" "Outgoing - Mule" "Integration"
+        sdfp = rsp.prrs -> fsp.bsw "Statement data (for pre-approved PO's)" "Outgoing - Alternative" "Integration"
+        sbttefud = cp.stel -> dap.dwa "Stellar BARB & TAM to EDW for universe data" "Outgoing - Alternative" "Integration"
+        scpddtefcm = cp.stel -> dap.dwa "Stellar CB & PIB delivery data to EDW for Campaign Month" "Outgoing - Alternative" "Integration"
+        scdta = dap.dwa -> cp.ap "Stellar commercial data to Agencies" "Incoming - Mule" "Integration"
+        scdta2 = cp.stel -> cp.ap "Stellar commercial data to Agencies" "Incoming - Mule" "Integration"
+        sstefsed = cp.stel -> dap.dwa "Stellar Snapshots to EDW for Scheduled Episode data" "Outgoing - Alternative" "Integration"
+        stapkfpd = cp.stel -> cp.ap "Stellar to Agency Portal &  K2 for programme data" "Incoming - Mule" "Integration"
+        stapfcap = cp.ap -> cp.stel "Stellar to Agency Portal for CB and PIB" "Outgoing - Alternative" "Integration"
+        strebs = fsp.ebs -> cp.stel "Stellar to EBS for Sales Orders & New Customers" "XXXX - Alternative" "Integration"
+        ste-cpadpagl = cp.stel -> dap.dwa "Stellar to EDW - Campaign Position and Deal Position at Group Level" "Outgoing - Alternative" "Integration"
+        ste-dtbuipcr = cp.stel -> dap.dwa "Stellar to EDW - Data to be used in PIB & CB reporting" "Outgoing - Alternative" "Integration"
+        ste-pbpgd = cp.stel -> dap.dwa "Stellar to EDW - Processes Base Price Group data" "Outgoing - Alternative" "Integration"
+        ste-rsrvpt = cp.stel -> dap.dwa "Stellar to EDW - ROI Sponsorship Revenue values per transmission" "Outgoing - Alternative" "Integration"
+        ste-scd = cp.stel -> dap.dwa "Stellar to EDW - Sponsorship campaign data" "Outgoing - Alternative" "Integration"
+        stefahil = cp.stel -> dap.dwa "Stellar to EDW for Ad Hoc Inventory Loads" "Outgoing - Alternative" "Integration"
+        stefcm = cp.stel -> dap.dwa "Stellar to EDW for Campaign Month" "Outgoing - Alternative" "Integration"
+        steficd = cp.stel -> dap.dwa "Stellar to EDW for Industry Channel data" "Outgoing - Alternative" "Integration"
+        steflcdiabas = cp.stel -> dap.dwa "Stellar to EDW for Linear Campaign Data, including Agreements, Breaks and Spots" "Outgoing - Alternative" "Integration"
+        stefocd = cp.stel -> dap.dwa "Stellar to EDW for Online Campaign Data" "Outgoing - Alternative" "Integration"
+        stefpcd = cp.stel -> dap.dwa "Stellar to EDW for Promo Campaign data" "Outgoing - Alternative" "Integration"
+        stefrsd = cp.stel -> dap.dwa "Stellar to EDW for Revenue Set data" "Outgoing - Alternative" "Integration"
+        stefrcocs = cp.stel -> dap.dwa "Stellar to EDW for ROI calculation on Channel sets" "Outgoing - Alternative" "Integration"
+        stffabdac = cp.fsh -> cp.stel "Stellar to Freewheel for Agencies, Brand, Deals and Campaigns" "Outgoing - Mule" "Integration"
+        stnabfptsl = cp.stel -> dap.barb "Stellar to NIELSEN and BARB for post transmission Spot Log" "Incoming - SFTP" "Integration"
+        stof2 = cp.stel -> fsp.ebs "Stellar to Oracle Financials about Agency financial exposure" "Outgoing - Alternative" "Integration"
+        stof1 = cp.stel -> fsp.ebs "Stellar to Oracle Financials on Credit Policy" "Outgoing - Alternative" "Integration"
+        stof = cp.stel -> fsp.ebs "Stellar to Oracle Financials on invoicing" "Outgoing - Alternative" "Integration"
+        stpmfspf = mmp.msp -> cp.stel "Stellar to Peach Media for Spot Plus files" "Outgoing - Mule" "Integration"
+        stpfcbpi = cp.stel -> sp.ppps "Stellar to Pirate for Commercial break pattern information" "Incoming - Alternative" "Integration"
+        stpfccr = cp.stel -> sp.ppps "Stellar to Pirate for Commercial Copy Registrations" "Outgoing - SFTP" "Integration"
+        stpfcp = cp.stel -> sp.pitts "Stellar to Pirate for commercial playlist" "Incoming - SFTP" "Integration"
+        stpfppi = cp.stel -> sp.ppps "Stellar to Pirate for Product placement indicator" "Outgoing - Alternative" "Integration"
+        stpfpc = cp.stel -> sp.ppps "Stellar to Pirate for Promotional Campaigns" "Outgoing - Alternative" "Integration"
+        stpfpcr = cp.stel -> sp.ppps "Stellar to Pirate for Promotions Copy Registrations" "Outgoing - Alternative" "Integration"
+        stpfsc = cp.stel -> sp.ppps "Stellar to Pirate for Sponsorship Campaign" "Outgoing - Alternative" "Integration"
+        stpfscoc = cp.stel -> sp.ppps "Stellar to Pirate for Sponsorship Clocknumbers or Copy" "Outgoing - Alternative" "Integration"
+        stpfse = cp.stel -> sp.ppps "DIRECTION NOT SET - Stellar to Pirate for Sponsorship Events" "XXXX - Alternative" "Integration,Direction not set"
+        stpfsefp = cp.stel -> sp.ppps "Stellar to Pirate for Sponsorship Events for Partners" "Outgoing - SFTP" "Integration"
+        stpftp = cp.stel -> sp.ppps "Stellar to Pirate for Trail patterns" "Outgoing - Alternative" "Integration"
+        stufac = cp.stel -> mmp.msp "Stellar to UKTV for Ad Certification" "Incoming - SFTP" "Integration"
+        stufccr = cp.stel -> mmp.msp "Stellar to UKTV for Commercial Copy Registrations" "Incoming - SFTP" "Integration"
+        scte = vsp.c4sl -> dap.dwa "Streaming Consent to EDW" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        sbde = fsp.ebs -> rsp.pap "Supplier Bank Details Exist" "Automate" "Integration,Impact,Corporate Integration" {
+        sbde = rsp.pap -> fsp.ebs "Supplier Bank Details Exist" "Incoming - Automate" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        sffpte = rsp.prrs -> dap.edw "Supplier fields from Pirate to EDW" "Alternative" "Integration"
-        supinf = fsp.ebs -> rsp.pris "Supplier Information" "Alternative" "Integration,Impact,Corporate Integration" {
+        sffpte = rsp.prrs -> dap.dwa "Supplier fields from Pirate to EDW" "Outgoing - Alternative" "Integration"
+        supinf = rsp.pris -> fsp.ebs "Supplier Information" "Incoming - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        suprec = fsp.ebs -> rsp.pap "Supplier Records" "Alternative" "Integration,Impact,Corporate Integration" {
+        suprec = fsp.ebs -> rsp.pap "Supplier Records" "Outgoing - Alternative" "Integration,Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        ttbster = rsp.ted -> dap.edw "Ted tables batch synchronisation to EDW Redshift" "Alternative" "Integration"
-        ttn = rsp.soun -> bms.pira "Ted to Neo" "Automate, SFTP" "Integration"
-        tts = rsp.soun -> bms.pira "Ted to Silvermouse" "Automate, SFTP" "Integration"
-        ttc-r = vsp.thin -> vsp.c4sl "ThinkAnalytics to C4S - Recommendation" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        ttbster = rsp.ted -> dap.dwa "Ted tables batch synchronisation to EDW Redshift" "Outgoing - Alternative" "Integration"
+        ttn = rsp.soun -> bms.pira "DIRECTION NOT SET - Ted to Neo" "XXXX - Automate, SFTP" "Integration,Direction not set"
+        tts = rsp.soun -> bms.pira "DIRECTION NOT SET - Ted to Silvermouse" "XXXX - Automate, SFTP" "Integration,Direction not set"
+        ttc-r = vsp.thin -> vsp.c4sl "ThinkAnalytics to C4S - Recommendation" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        tsfptb = dap.barb -> sp.pass "TX Schedule from PIRATE to BARB" "Alternative" "Integration"
-        vptc = bms.osp -> vsp.c4sl "Video Pipeline to C4S" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        tsfptb = sp.pass -> dap.barb "TX Schedule from PIRATE to BARB" "Incoming - Alternative" "Integration"
+        vptc = bms.osp -> vsp.c4sl "DIRECTION NOT SET - Video Pipeline to C4S" "XXXX - Alternative" "Integration,Impact,Streaming Transformation Program,Direction not set" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        vtcs = mmp.msp -> bms.ppc "VisionCloud to Compliance Service" "Mule" "Integration"
-        vvd = dap.edw -> rsp.prrs "VOD Views Data" "Alternative" "Integration"
-        waadte = dap.wa -> dap.edw "Web Analytics (AA) data to EDW" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        vtcs = bms.ppc -> mmp.msp "VisionCloud to Compliance Service" "Incoming - Mule" "Integration"
+        vvd = rsp.prrs -> dap.dwa "VOD Views Data" "Incoming - Alternative" "Integration"
+        waadte = dap.wa -> dap.dwa "Web Analytics (AA) data to EDW" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        wdsbi = fsp.wda -> fsp.ebs "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Mule" "Integration"
-        wdsbi2 = fsp.wda -> fsp.sbi "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Mule" "Integration"
-        ytf = vsp.yosp -> cp.fsh "YoSpace to Freewheel" "Alternative" "Integration,Impact,Streaming Transformation Program" {
+        wdsbi = fsp.wda -> fsp.ebs "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Outgoing - Mule" "Integration"
+        wdsbi2 = fsp.wda -> fsp.sbi "Workday Adaptive to SplashBI (Oracle eBS Schema)" "Outgoing - Mule" "Integration"
+        ytf = vsp.yosp -> cp.fsh "DIRECTION NOT SET - YoSpace to Freewheel" "XXXX - Alternative" "Integration,Impact,Streaming Transformation Program,Direction not set" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
