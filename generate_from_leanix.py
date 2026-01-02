@@ -37,11 +37,14 @@ Examples:
   # Generate to default location (local testing)
   python generate_from_leanix.py
 
+  # Generate with a different year filter
+  python generate_from_leanix.py --year 2027
+
   # Generate directly to c4-lite project
   python generate_from_leanix.py --output ../c4-lite/core/c4-core-workspace.dsl
 
-  # Generate to absolute path
-  python generate_from_leanix.py -o /path/to/workspace.dsl
+  # Generate to absolute path with custom year
+  python generate_from_leanix.py -o /path/to/workspace.dsl -y 2027
         """
     )
 
@@ -50,6 +53,13 @@ Examples:
         type=str,
         help='Output file path (default: dsl/c4-core-workspace.dsl)',
         default='dsl/c4-core-workspace.dsl'
+    )
+
+    parser.add_argument(
+        '-y', '--year',
+        type=int,
+        help='Filter projects by year (default: 2026)',
+        default=2026
     )
 
     args = parser.parse_args()
@@ -64,6 +74,7 @@ Examples:
     print("=" * 70)
     print(f"Configuration:")
     print(f"  - Output file: {output_file}")
+    print(f"  - Project year filter: {args.year}")
     print(f"  - Projects rendered as both tags and perspectives")
     print(f"  - Platform perspectives derived from child applications")
     print()
@@ -132,11 +143,12 @@ Examples:
     print("Step 4: Mapping LeanIX data to Structurizr DSL")
     print("-" * 70)
     try:
-        mapper = LeanIXMapper()
+        mapper = LeanIXMapper(filter_year=args.year)
 
         # Use multi-platform method for all cases (works for single platform too)
         print(f"Generating DSL for {len(platforms_data)} platform(s) with enhancements:")
         print("  - LeanIX URLs for each application")
+        print(f"  - Projects filtered by year: {args.year}")
         print("  - Projects (including parent projects) as both tags and perspectives")
         print("  - Platform perspectives derived from child application projects")
         print("  - 'Impact' tag when projects are present")

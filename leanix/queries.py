@@ -35,6 +35,7 @@ query GetPlatformById($id: ID!) {
                                         node {
                                             id
                                             description
+                                            usageType
                                             factSheet {
                                                 id
                                                 name
@@ -48,6 +49,11 @@ query GetPlatformById($id: ID!) {
                                                             node {
                                                                 factSheet {
                                                                     name
+                                                                    ... on Project {
+                                                                        tags {
+                                                                            name
+                                                                        }
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -64,6 +70,11 @@ query GetPlatformById($id: ID!) {
                                             id
                                             factSheet {
                                                 name
+                                                ... on Project {
+                                                    tags {
+                                                        name
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -272,11 +283,19 @@ query GetInterfaces($limit: Int!) {
                                 factSheet {
                                     name
                                     ... on Project {
+                                        tags {
+                                            name
+                                        }
                                         relToParent {
                                             edges {
                                                 node {
                                                     factSheet {
                                                         name
+                                                        ... on Project {
+                                                            tags {
+                                                                name
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
@@ -412,6 +431,7 @@ query GetAllPlatforms($limit: Int!) {
                                                 node {
                                                     id
                                                     description
+                                                    usageType
                                                     factSheet {
                                                         id
                                                         name
@@ -426,11 +446,19 @@ query GetAllPlatforms($limit: Int!) {
                                                                         factSheet {
                                                                             name
                                                                             ... on Project {
+                                                                                tags {
+                                                                                    name
+                                                                                }
                                                                                 relToParent {
                                                                                     edges {
                                                                                         node {
                                                                                             factSheet {
                                                                                                 name
+                                                                                                ... on Project {
+                                                                                                    tags {
+                                                                                                        name
+                                                                                                    }
+                                                                                                }
                                                                                             }
                                                                                         }
                                                                                     }
@@ -453,11 +481,19 @@ query GetAllPlatforms($limit: Int!) {
                                                     factSheet {
                                                         name
                                                         ... on Project {
+                                                            tags {
+                                                                name
+                                                            }
                                                             relToParent {
                                                                 edges {
                                                                     node {
                                                                         factSheet {
                                                                             name
+                                                                            ... on Project {
+                                                                                tags {
+                                                                                    name
+                                                                                }
+                                                                            }
                                                                         }
                                                                     }
                                                                 }

@@ -24,7 +24,7 @@ Container->Container Relationships (Integrations):
 - Perspectives: All project names including parent projects
 
 Person->Container Relationships:
-- Tags: 'Impact' (if shared projects exist), plus shared project names (intersection of both)
+- Tags: 'Impact' (if shared projects exist), 'owner' (if usageType is 'owner'), plus shared project names (intersection of both)
 - Perspectives: Shared project names (intersection of both)
 """
 
@@ -35,11 +35,15 @@ from typing import Dict, List, Tuple
 class LeanIXMapper:
     """Maps LeanIX data to Structurizr DSL format."""
 
-    def __init__(self):
+    def __init__(self, filter_year=None):
         """
         Initialize mapper.
 
         Projects (including parent projects/initiatives) are always rendered as both tags and perspectives.
+
+        Args:
+            filter_year: Optional year (int) to filter projects. Only projects with start or end dates
+                        in this year will be included. Defaults to current year (2026).
         """
         self.theme_url = "https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/c4-default-theme.json"
         self.logo_url = "https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/4-logo-black.png"
@@ -47,18 +51,49 @@ class LeanIXMapper:
         self.font_url = "https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/4Text-Regular.ttf"
         self.leanix_base_url = "https://channel4.leanix.net/Channel4Prod/factsheet/Application/"
         self.duplicate_acronyms = []  # Track duplicate acronym conflicts only
+        self.filter_year = filter_year if filter_year is not None else 2026  # Default to current year
     
+    def _should_include_project(self, project_fact_sheet: dict) -> bool:
+        """
+        Check if a project should be included based on filter_year.
+
+        A project is included if it has a tag matching the filter year (e.g., "2026").
+        The PMO tags projects with the year they are actively being worked on.
+
+        Args:
+            project_fact_sheet: Project fact sheet with tags array
+
+        Returns:
+            True if project should be included, False otherwise
+        """
+        tags = project_fact_sheet.get('tags', [])
+
+        # If no tags, include by default to avoid losing data
+        if not tags:
+            return True
+
+        # Convert filter year to string for comparison
+        year_str = str(self.filter_year)
+
+        # Check if any tag matches the filter year
+        for tag in tags:
+            tag_name = tag.get('name', '')
+            if tag_name == year_str:
+                return True
+
+        return False
+
     def _generate_temp_acronym(self, name: str) -> str:
         """
         Generate a temporary acronym from a name.
-        
+
         Rules:
         - Multiple words: Use first letter of each word
         - Single word: Use first 4 characters (or all if less than 4)
-        
+
         Args:
             name: Display name
-            
+
         Returns:
             Temporary acronym (uppercase)
         """
@@ -250,21 +285,30 @@ class LeanIXMapper:
         if has_projects:
             tags.append('Impact')
 
-        # 3. Extract all project names (including parent projects)
+        # 3. Extract all project names (including parent projects), filtered by year
         all_project_names = []
 
         for edge in projects_edges:
             project_fact_sheet = edge.get('node', {}).get('factSheet', {})
+
+            # Check if project should be included based on filter year
+            if not self._should_include_project(project_fact_sheet):
+                continue
 
             # Add the project name itself
             project_name = project_fact_sheet.get('name')
             if project_name and project_name not in all_project_names:
                 all_project_names.append(project_name)
 
-            # Get parent projects and add them too
+            # Get parent projects and add them too (if they match the filter)
             parent_edges = project_fact_sheet.get('relToParent', {}).get('edges', [])
             for parent_edge in parent_edges:
                 parent_fact_sheet = parent_edge.get('node', {}).get('factSheet', {})
+
+                # Check if parent project should be included
+                if not self._should_include_project(parent_fact_sheet):
+                    continue
+
                 parent_name = parent_fact_sheet.get('name')
                 if parent_name and parent_name not in all_project_names:
                     all_project_names.append(parent_name)
@@ -315,21 +359,30 @@ class LeanIXMapper:
         if has_projects:
             tags_list.append('Impact')
 
-        # 3. Extract all project names (including parent projects)
+        # 3. Extract all project names (including parent projects), filtered by year
         all_project_names = []
 
         for edge in projects_edges:
             project_fact_sheet = edge.get('node', {}).get('factSheet', {})
+
+            # Check if project should be included based on filter year
+            if not self._should_include_project(project_fact_sheet):
+                continue
 
             # Add the project name itself
             project_name = project_fact_sheet.get('name')
             if project_name and project_name not in all_project_names:
                 all_project_names.append(project_name)
 
-            # Get parent projects and add them too
+            # Get parent projects and add them too (if they match the filter)
             parent_edges = project_fact_sheet.get('relToParent', {}).get('edges', [])
             for parent_edge in parent_edges:
                 parent_fact_sheet = parent_edge.get('node', {}).get('factSheet', {})
+
+                # Check if parent project should be included
+                if not self._should_include_project(parent_fact_sheet):
+                    continue
+
                 parent_name = parent_fact_sheet.get('name')
                 if parent_name and parent_name not in all_project_names:
                     all_project_names.append(parent_name)
@@ -402,21 +455,30 @@ class LeanIXMapper:
         if has_projects:
             tags.append('Impact')
 
-        # Extract all project names (including parent projects)
+        # Extract all project names (including parent projects), filtered by year
         all_project_names = []
 
         for edge in projects_edges:
             project_fact_sheet = edge.get('node', {}).get('factSheet', {})
+
+            # Check if project should be included based on filter year
+            if not self._should_include_project(project_fact_sheet):
+                continue
 
             # Add the project name itself
             project_name = project_fact_sheet.get('name')
             if project_name and project_name not in all_project_names:
                 all_project_names.append(project_name)
 
-            # Get parent projects and add them too
+            # Get parent projects and add them too (if they match the filter)
             parent_edges = project_fact_sheet.get('relToParent', {}).get('edges', [])
             for parent_edge in parent_edges:
                 parent_fact_sheet = parent_edge.get('node', {}).get('factSheet', {})
+
+                # Check if parent project should be included
+                if not self._should_include_project(parent_fact_sheet):
+                    continue
+
                 parent_name = parent_fact_sheet.get('name')
                 if parent_name and parent_name not in all_project_names:
                     all_project_names.append(parent_name)
@@ -776,11 +838,14 @@ class LeanIXMapper:
                 for edge in app_orgs:
                     # Get the relationship node which contains both description and factSheet
                     node = edge.get('node', {})
-                    
+
                     # Get relationship description from the node and clean it
                     raw_rel_description = node.get('description', '').strip()
                     rel_description = self._clean_description(raw_rel_description) or 'Uses'
-                    
+
+                    # Get usageType from the relationship node
+                    usage_type = (node.get('usageType') or '').strip()
+
                     # Get the actual UserGroup factSheet
                     org = node.get('factSheet', {})
                     if org:
@@ -798,8 +863,8 @@ class LeanIXMapper:
                             all_organizations[org_id] = (org_display_name, org_name, org_desc, org_acronym, org_metadata)
                         
                         # Store relationship with cleaned description from node
-                        # Include platform_identifier for qualified references
-                        all_org_to_app_relationships.append((org_id, app_id, platform_identifier, rel_description))
+                        # Include platform_identifier for qualified references and usageType
+                        all_org_to_app_relationships.append((org_id, app_id, platform_identifier, rel_description, usage_type))
 
             # Calculate platform metadata from its applications
             platform_metadata = self._extract_platform_metadata_from_applications(platform_app_metadata)
@@ -982,7 +1047,7 @@ class LeanIXMapper:
         # Add person to application relationships with qualified identifiers (deduplicated)
         # Include Impact tag if either person or container has projects
         # Include initiative perspectives when both person and container share the same initiative
-        for org_id, app_id, platform_identifier, rel_desc in org_to_app_relationships:
+        for org_id, app_id, platform_identifier, rel_desc, usage_type in org_to_app_relationships:
             org_identifier = org_id_map.get(org_id)
             if app_id in all_applications:
                 app_identifier, _, _, _, _, app_metadata = all_applications.get(app_id)
@@ -1029,6 +1094,10 @@ class LeanIXMapper:
                         # Add 'Impact' tag if there are shared projects
                         if len(shared_projects) > 0:
                             relationship_tags_list.append('Impact')
+
+                        # Add 'owner' tag if usageType is 'owner'
+                        if usage_type and usage_type.lower() == 'owner':
+                            relationship_tags_list.append('owner')
 
                         # Add shared projects to both tags and perspectives
                         relationship_tags_list.extend(shared_projects)
