@@ -28,7 +28,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             tags "customer"
         }
         bt = person "Broadcast Technology" "" {
-            tags "team"
+            tags "team,Impact,Playout Next Gen"
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
         }
         av = person "AV" "" {
             tags "businessUnit"
@@ -90,10 +93,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             tags "businessUnit"
         }
         ccf = person "Finance" "" {
-            tags "businessUnit,Impact,Corporate Integration,Finance & People Transformation,Transactional Reporting Solution"
+            tags "businessUnit,Impact,Corporate Integration,Transactional Reporting Solution"
             perspectives {
                 "Corporate Integration" "Corporate Integration"
-                "Finance & People Transformation" "Finance & People Transformation"
                 "Transactional Reporting Solution" "Transactional Reporting Solution"
             }
         }
@@ -137,7 +139,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             tags "team"
         }
         dd = person "Duty Desk" "Team that handles live content operations for our linear channels." {
-            tags "team"
+            tags "team,Impact,Playout Next Gen"
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
         }
         peop = person "People" "" {
             tags "businessUnit"
@@ -173,26 +178,16 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             tags "businessUnit"
         }
         insi = person "Insights" "" {
-            tags "team,Impact,Customer Journey Analytics (CJA),Data Experiments"
-            perspectives {
-                "Customer Journey Analytics (CJA)" "Customer Journey Analytics (CJA)"
-                "Data Experiments" "Data Experiments"
-            }
+            tags "team,Impact"
         }
         tat = person "Tax and Treasury" "Manages tax compliance and planning while also overseeing cash flow, funding, liquidity, and fina..." {
             tags "team"
         }
         c4 = person "Channel 4" "" {
-            tags "legalEntity,Impact,Finance & People Transformation"
-            perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
-            }
+            tags "legalEntity,Impact"
         }
         ccfrss = person "Shared Services" "Team responsible for any financial transactional incoming and outgoing payment processing. Typica..." {
-            tags "team,Impact,Finance & People Transformation"
-            perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
-            }
+            tags "team,Impact"
         }
         cpX = person "Consumer Product" "" {
             tags "team"
@@ -203,11 +198,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         cc = person "Content & Commissioning" "" {
             tags "businessUnit"
         }
+        er = person "Employee Relations" "Advise on policies, resolve employee issues and managing performance." {
+            tags "team"
+        }
         corp = person "Corporate" "" {
             tags "businessUnit"
-        }
-        er = person "Employee Relations" "" {
-            tags "team"
         }
         ct = person "Corporate Technology" "" {
             tags "team"
@@ -228,11 +223,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             tags "team"
         }
         gs = person "Growth (Subscriptions)" "" {
-            tags "team,Impact,Customer Journey Analytics (CJA),Data Experiments"
-            perspectives {
-                "Customer Journey Analytics (CJA)" "Customer Journey Analytics (CJA)"
-                "Data Experiments" "Data Experiments"
-            }
+            tags "team,Impact"
         }
         fm = person "Facilities Management" "" {
             tags "team"
@@ -243,11 +234,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         cp = softwareSystem "Commercial Platform" "Platform from LeanIX" {
-            tags "Impact"
+            tags "Impact,Streaming Transformation Program,Corporate Integration,Interstellar"
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
                 "Corporate Integration" "Corporate Integration"
-                "Finance & People Transformation" "Finance & People Transformation"
                 "Interstellar" "Interstellar"
             }
 
@@ -275,10 +265,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             stel = container "Stellar" "Channel4's Sales Order Processing System" "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/36680d73-914e-4f57-a8f3-bffe87a2d6c1
-                tags "SSO,Impact,Corporate Integration,Finance & People Transformation,Interstellar"
+                tags "SSO,Impact,Corporate Integration,Interstellar"
                 perspectives {
                     "Corporate Integration" "Corporate Integration"
-                    "Finance & People Transformation" "Finance & People Transformation"
                     "Interstellar" "Interstellar"
                 }
             }
@@ -289,19 +278,23 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         bms = softwareSystem "Content Management Platform" "The applications and components that support the media management and linear scheduling for our l..." {
-            tags "Impact"
+            tags "Impact,Playout Next Gen,Streaming Transformation Program,New VoD Management System,Flexible Series,Post VMS Business Initiatives,Corporate Integration,Promo Campaign Management"
             perspectives {
+                "Playout Next Gen" "Playout Next Gen"
                 "Streaming Transformation Program" "Streaming Transformation Program"
                 "New VoD Management System" "New VoD Management System"
                 "Flexible Series" "Flexible Series"
                 "Post VMS Business Initiatives" "Post VMS Business Initiatives"
                 "Corporate Integration" "Corporate Integration"
-                "UK FAST" "UK FAST"
                 "Promo Campaign Management" "Promo Campaign Management"
             }
 
             asp = container "Access Service Provider" "" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/22db32c5-d118-4633-955e-9fdd07ab0b90
+                tags "Impact,Playout Next Gen"
+                perspectives {
+                    "Playout Next Gen" "Playout Next Gen"
+                }
             }
             acf = container "Acquired Cash Forecast" "For the management of cashflow for acquired content, this is all captured on a spreadsheet called..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/5b00cefe-c009-4684-a0f7-c699be221bd0
@@ -343,8 +336,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             osp = container "OnLine Service Provider" "Provides capabilities for ingest, transformation, transcoding, encryption and delivery of VOD; li..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/bbaf9554-9a19-44f9-83fb-f6ce638e4210
-                tags "SSO,Impact,Streaming Transformation Program"
+                tags "SSO,Impact,Playout Next Gen,Streaming Transformation Program"
                 perspectives {
+                    "Playout Next Gen" "Playout Next Gen"
                     "Streaming Transformation Program" "Streaming Transformation Program"
                 }
             }
@@ -363,10 +357,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             pass = container "Advance Scheduling System" "The Advanced Scheduling System (A55) provides a view of a schedule for a specific channel and dat..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/af539ba8-e622-46fc-b561-347dad93d8b6
-                tags "Impact,UK FAST"
-                perspectives {
-                    "UK FAST" "UK FAST"
-                }
+                tags "Impact"
             }
             pbm = container "Brand Management" "An application where can create or update Pirate Brands. This enables the business to group toget..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/40779771-f867-4ae3-b52f-eec13651d19e
@@ -394,6 +385,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             pitts = container "Interface To Transmission Systems" "ITS prepares final schedules for Playout systems. It uses Programme schedules generated from PPS ..." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ad4ff429-b9c4-4d11-9b78-e5935f33e664
+                tags "Impact,Playout Next Gen"
+                perspectives {
+                    "Playout Next Gen" "Playout Next Gen"
+                }
             }
             pmam = container "Management Account Maintenance" "Maintenance of reference data related to Management Accounts (Programme Finance)  Not used much,..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/26c1c9f6-2b27-4dfb-b20b-5d9dc0a4ce30
@@ -426,6 +421,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             prta2 = container "Real Time As-Run 2" "Provides real-time playout updates to Pirate systems." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/788ae1fa-fb93-4b5c-b452-7d3d885c75b3
+                tags "Impact,Playout Next Gen"
+                perspectives {
+                    "Playout Next Gen" "Playout Next Gen"
+                }
             }
             pswo = container "Stock Write Off" "Channel 4 commission or purchase programmes (stock) to be consumed by the schedule using annual t..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/53f21c7a-4734-4b22-a84a-25379898ef6e
@@ -486,7 +485,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         csp = softwareSystem "Content Sourcing Platform" "Platform from LeanIX" {
-            tags "Impact"
+            tags "Impact,Commissioning CRM"
             perspectives {
                 "Commissioning CRM" "Commissioning CRM"
             }
@@ -534,11 +533,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         dap = softwareSystem "Data and Analytics Platform" "An extensive Massive Parallel Processing (MPP) platform designed for analytics tasks, which inclu..." {
-            tags "Impact"
+            tags "Impact,Data Clean Room,Streaming Transformation Program"
             perspectives {
                 "Data Clean Room" "Data Clean Room"
-                "Customer Journey Analytics (CJA)" "Customer Journey Analytics (CJA)"
-                "Data Experiments" "Data Experiments"
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
 
@@ -578,11 +575,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             dwa = container "Data Warehouse AWS" "Data Warehouse application used as a host of analytics data in a star schema or a columnar databa..." "hybrid" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/22cf94d3-ac4a-40b9-b29a-09fb2307799e
-                tags "Impact,Data Clean Room,Customer Journey Analytics (CJA),Data Experiments,Streaming Transformation Program"
+                tags "Impact,Data Clean Room,Streaming Transformation Program"
                 perspectives {
                     "Data Clean Room" "Data Clean Room"
-                    "Customer Journey Analytics (CJA)" "Customer Journey Analytics (CJA)"
-                    "Data Experiments" "Data Experiments"
                     "Streaming Transformation Program" "Streaming Transformation Program"
                 }
             }
@@ -592,11 +587,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             wa = container "Web Analytics" "Web Analytics software used by M&VE for All 4 & Online Services Adobe Analytics is the solution f..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/f7a463e8-edb4-45d6-ad21-e2922b6305a7
-                tags "Impact,Customer Journey Analytics (CJA),Data Experiments"
-                perspectives {
-                    "Customer Journey Analytics (CJA)" "Customer Journey Analytics (CJA)"
-                    "Data Experiments" "Data Experiments"
-                }
+                tags "Impact"
             }
         }
 
@@ -605,10 +596,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         fsp = softwareSystem "Finance Systems Platform" "The finance platform comprises a suite of integrated systems and applications designed to support..." {
-            tags "Impact"
+            tags "Impact,Corporate Integration,Benefex Replacement,Transactional Reporting Solution"
             perspectives {
                 "Corporate Integration" "Corporate Integration"
-                "Finance & People Transformation" "Finance & People Transformation"
                 "Benefex Replacement" "Benefex Replacement"
                 "Transactional Reporting Solution" "Transactional Reporting Solution"
             }
@@ -628,10 +618,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             bsw = container "Basware" "Enterprise software for financial processes, purchase to pay and financial management. Manage Inv..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/61ea2036-2682-4999-8a2b-b56a8ff60aa8
-                tags "SSO,Impact,Corporate Integration,Finance & People Transformation"
+                tags "SSO,Impact,Corporate Integration"
                 perspectives {
                     "Corporate Integration" "Corporate Integration"
-                    "Finance & People Transformation" "Finance & People Transformation"
                 }
             }
             cmx = container "Cachematrix" "SaaS solution for cash management" "" {
@@ -639,19 +628,15 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             ebs = container "E-Business Suite" "Channel4 Oracle E-business Suite application used in Finance department for Accounts, Cash and As..." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/34852185-2e79-424a-8735-f586ca0bc6eb
-                tags "SSO,Impact,Benefex Replacement,Corporate Integration,Finance & People Transformation"
+                tags "SSO,Impact,Benefex Replacement,Corporate Integration"
                 perspectives {
                     "Benefex Replacement" "Benefex Replacement"
                     "Corporate Integration" "Corporate Integration"
-                    "Finance & People Transformation" "Finance & People Transformation"
                 }
             }
             faf = container "Finance Approval Form" "" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/331e92eb-60c0-424c-9c5c-8ed4a63e27b9
-                tags "Impact,Finance & People Transformation"
-                perspectives {
-                    "Finance & People Transformation" "Finance & People Transformation"
-                }
+                tags "Impact"
             }
             msc = container "Mastercard" "" "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/919c5f9f-50b8-4f2a-9b26-9b9a15797da8
@@ -665,23 +650,16 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             pjc = container "Project Codes" "App used to generate project codes which are used in Oracle and across Channel 4." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/94d329fc-0d88-431b-b78b-1fe85a9cbd14
-                tags "Impact,Finance & People Transformation"
-                perspectives {
-                    "Finance & People Transformation" "Finance & People Transformation"
-                }
+                tags "Impact"
             }
             sov = container "Sovos" "Sovos helps in digital transformation of tax, with complete, connected offerings for tax determin..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/c917188e-f35e-4320-a0b8-d387d6863b62
-                tags "Impact,Finance & People Transformation"
-                perspectives {
-                    "Finance & People Transformation" "Finance & People Transformation"
-                }
+                tags "Impact"
             }
             sbi = container "SplashBI" "SplashBI is an all-in-one framework for visualising, reporting and analysing data." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/618820c7-1747-4388-a9aa-cfef9e9369c0
-                tags "SSO,Impact,Finance & People Transformation,Transactional Reporting Solution"
+                tags "SSO,Impact,Transactional Reporting Solution"
                 perspectives {
-                    "Finance & People Transformation" "Finance & People Transformation"
                     "Transactional Reporting Solution" "Transactional Reporting Solution"
                 }
             }
@@ -690,10 +668,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             wda = container "Workday Adaptive" "Workday Adaptive is Channel 4 Finance's Planning and Consolidation tool" "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/4855f235-d3b0-41d0-b983-9265f83b840c
-                tags "SSO,Impact,Finance & People Transformation"
-                perspectives {
-                    "Finance & People Transformation" "Finance & People Transformation"
-                }
+                tags "SSO,Impact"
             }
         }
 
@@ -702,21 +677,18 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         lpp = softwareSystem "Linear Playout Platform" "Platform from LeanIX" {
-            tags "Impact"
+            tags "Impact,Playout Next Gen,Promo Campaign Management"
             perspectives {
-                "UK FAST" "UK FAST"
+                "Playout Next Gen" "Playout Next Gen"
                 "Promo Campaign Management" "Promo Campaign Management"
             }
 
-            ac = container "Amagi Cloudport" "<https://www.amagi.com/products/cloudport-cloud-playout>\ \ Amagi CLOUDPORT supports media ingest..." "saas" {
-                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/fec42b44-df14-4d3d-9b6d-f530a4e41a03
-                tags "Impact,UK FAST"
-                perspectives {
-                    "UK FAST" "UK FAST"
-                }
-            }
             lsp = container "Linear Service Provider" "" "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/487b00a3-39f7-4095-bdbb-526af136a1a8
+                tags "Impact,Playout Next Gen"
+                perspectives {
+                    "Playout Next Gen" "Playout Next Gen"
+                }
             }
             ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b2da1e23-df98-4af4-9c2a-904814ab181c
@@ -754,10 +726,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         mmp = softwareSystem "Media Management Platform" "Platform from LeanIX" {
-            tags "Impact"
+            tags "Impact,Promo Campaign Management,Streaming Transformation Program,Playout Next Gen"
             perspectives {
                 "Promo Campaign Management" "Promo Campaign Management"
                 "Streaming Transformation Program" "Streaming Transformation Program"
+                "Playout Next Gen" "Playout Next Gen"
             }
 
             awar = container "Awards" "Awards is a repository of all awards won by Channel 4 or where Channel 4 has been nominated. Plat..." "saas" {
@@ -783,6 +756,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             ppsp = container "Post Production Service Provider" "Post production service is pre-integrated to MSP and has suites available in HFR. This work can b..." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/8b307930-c941-4758-b3a4-f16293becdb8
+                tags "Impact,Playout Next Gen"
+                perspectives {
+                    "Playout Next Gen" "Playout Next Gen"
+                }
             }
             rta = container "Ready to Air" "Deliver pre-transmission & pre-release video to journalists securely and reliably, wherever they ..." "" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/0e668044-56f2-465b-b69c-d21a4b575553
@@ -797,21 +774,17 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         psp = softwareSystem "People Systems Platform" "The people system platform integrates a range of applications and services to manage the full emp..." {
-            tags "Impact"
+            tags "Impact,Benefex Replacement,FES Replacement"
             perspectives {
-                "AI People Team" "AI People Team"
                 "Benefex Replacement" "Benefex Replacement"
-                "Finance & People Transformation" "Finance & People Transformation"
                 "FES Replacement" "FES Replacement"
             }
 
             4peo = container "4People" "4People is a cloud HR and people system that empowers mid-size organisations to effectively respo..." "saas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3db00200-a028-4cb8-baeb-a3f88d1dd6e9
-                tags "SSO,Impact,AI People Team,Benefex Replacement,Finance & People Transformation"
+                tags "SSO,Impact,Benefex Replacement"
                 perspectives {
-                    "AI People Team" "AI People Team"
                     "Benefex Replacement" "Benefex Replacement"
-                    "Finance & People Transformation" "Finance & People Transformation"
                 }
             }
             acti = container "ActivPay" "Actvipay is Channel 4's 3rd party payroll provider." "saas" {
@@ -833,10 +806,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             fes = container "Freelancer Engagement System" "HR system to request freelancers and bring them onboard. Freelancers submit timesheets via FES. O..." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/3debbdaf-b375-475b-a9ad-aaffeff1396a
-                tags "Impact,FES Replacement,Finance & People Transformation"
+                tags "Impact,FES Replacement"
                 perspectives {
                     "FES Replacement" "FES Replacement"
-                    "Finance & People Transformation" "Finance & People Transformation"
                 }
             }
             ll = container "LinkedIn Learning" "LinkedIn Learning offers video courses taught by industry experts in software, creative, and busi..." "saas" {
@@ -877,7 +849,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         rsp = softwareSystem "Royalties and Sales Platform" "Platform from LeanIX" {
-            tags "Impact"
+            tags "Impact,Corporate Integration"
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
@@ -942,13 +914,13 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         sp = softwareSystem "Scheduling Platform" "The Scheduling Platform is a core functional domain that orchestrates the creation and management..." {
-            tags "Impact"
+            tags "Impact,New VoD Management System,Flexible Series,Post VMS Business Initiatives,Streaming Transformation Program,Playout Next Gen,Promo Campaign Management"
             perspectives {
                 "New VoD Management System" "New VoD Management System"
                 "Flexible Series" "Flexible Series"
                 "Post VMS Business Initiatives" "Post VMS Business Initiatives"
                 "Streaming Transformation Program" "Streaming Transformation Program"
-                "UK FAST" "UK FAST"
+                "Playout Next Gen" "Playout Next Gen"
                 "Promo Campaign Management" "Promo Campaign Management"
             }
 
@@ -964,16 +936,17 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
             pass = container "Advance Scheduling System" "The Advanced Scheduling System (A55) provides a view of a schedule for a specific channel and dat..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/af539ba8-e622-46fc-b561-347dad93d8b6
-                tags "Impact,UK FAST"
-                perspectives {
-                    "UK FAST" "UK FAST"
-                }
+                tags "Impact"
             }
             pepl = container "Electronic Press Listing" "Sends Electronic Programme Guide to other platforms Carries Rights information such as restart" "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/7f92cb3b-40c6-41f8-9bb0-93bb43df94ff
             }
             pitts = container "Interface To Transmission Systems" "ITS prepares final schedules for Playout systems. It uses Programme schedules generated from PPS ..." "onPremise" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ad4ff429-b9c4-4d11-9b78-e5935f33e664
+                tags "Impact,Playout Next Gen"
+                perspectives {
+                    "Playout Next Gen" "Playout Next Gen"
+                }
             }
             ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b2da1e23-df98-4af4-9c2a-904814ab181c
@@ -1033,22 +1006,22 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         vsp = softwareSystem "Video Streaming Platform" "Includes all items that provide the value chain" {
-            tags "Impact"
+            tags "Impact,Playout Next Gen,Flexible Series,Post VMS Business Initiatives,Streaming Transformation Program"
             perspectives {
+                "Playout Next Gen" "Playout Next Gen"
                 "Flexible Series" "Flexible Series"
                 "Post VMS Business Initiatives" "Post VMS Business Initiatives"
                 "Streaming Transformation Program" "Streaming Transformation Program"
-                "UK FAST" "UK FAST"
             }
 
             c4sl = container "Channel 4 Streaming (Legacy)" "Video on Demand platform across many devices including https://channel4.com" "iaas" {
                 url https://channel4.leanix.net/Channel4Prod/factsheet/Application/aa9fdfc2-1884-4181-b102-1579838e10ac
-                tags "Impact,Flexible Series,Post VMS Business Initiatives,Streaming Transformation Program,UK FAST"
+                tags "Impact,Playout Next Gen,Flexible Series,Post VMS Business Initiatives,Streaming Transformation Program"
                 perspectives {
+                    "Playout Next Gen" "Playout Next Gen"
                     "Flexible Series" "Flexible Series"
                     "Post VMS Business Initiatives" "Post VMS Business Initiatives"
                     "Streaming Transformation Program" "Streaming Transformation Program"
-                    "UK FAST" "UK FAST"
                 }
             }
             cdna = container "Content Distribution Network (Accenture)" "Logical representation of the CDN's used by Channel 4 Streaming, controlled and maintained by Acc..." "" {
@@ -1132,9 +1105,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
 
         cseToAp = cse -> cp.ap "Uses" ""
         partToAp = part -> cp.ap "Uses" ""
-        soToAp = so -> cp.ap "Uses" ""
+        soToAp = so -> cp.ap "Uses" "" "owner"
         agenToAp = agen -> cp.ap "Uses" ""
-        btToCari = bt -> cp.cari "Uses" ""
+        btToCari = bt -> cp.cari "Uses" "" "owner"
         agenToCari = agen -> cp.cari "Uses" ""
         soToCc = so -> cp.cc "Uses" ""
         soToFsh = so -> cp.fsh "Uses" ""
@@ -1149,28 +1122,32 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         trafToStel = traf -> cp.stel "Uses" ""
         tradToStel = trad -> cp.stel "Uses" ""
         paasToAsp = paas -> bms.asp "Uses" ""
-        cfToAcf = cf -> bms.acf "Uses" ""
+        cfToAcf = cf -> bms.acf "Uses" "" "owner"
         commToBynd = comm -> bms.bynd "Uses" ""
         aiXToBynd = aiX -> bms.bynd "Uses" ""
-        partToC7t = part -> bms.c7t "Uses" ""
+        partToC7t = part -> bms.c7t "Uses" "" "owner"
         clacToC7t = clac -> bms.c7t "Uses" ""
         cdToC7t = cd -> bms.c7t "Uses" ""
         4stuToC7t = 4stu -> bms.c7t "Uses" ""
         prodToC7t = prod -> bms.c7t "Uses" ""
-        paasToDasdpwpswra = paas -> bms.dasdpwpswra "Uses" ""
+        paasToDasdpwpswra = paas -> bms.dasdpwpswra "Uses" "" "owner"
         ppToEt = pp -> bms.et "Uses" ""
-        ppToGrac = pp -> bms.grac "Uses" ""
-        piToMod = pi -> bms.mod "Uses" ""
+        ppToGrac = pp -> bms.grac "Uses" "" "owner"
+        piToMod = pi -> bms.mod "Uses" "" "owner"
         paasToOlss = paas -> bms.olss "Uses" ""
         piToOsp = pi -> bms.osp "Uses" ""
-        btToOsp = bt -> bms.osp "Uses" ""
-        cfToOl = cf -> bms.ol "Uses" ""
-        coToP4ws = co -> bms.p4ws "Uses" ""
+        btToOsp = bt -> bms.osp "Uses" "" "Impact,owner,Playout Next Gen" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
+        cfToOl = cf -> bms.ol "Uses" "" "owner"
+        coToP4ws = co -> bms.p4ws "Uses" "" "owner"
         prodXToP4ws = prodX -> bms.p4ws "Uses" ""
         soToPass = so -> bms.pass "Uses" ""
         tradToPass = trad -> bms.pass "Uses" ""
         caToPass = ca -> bms.pass "Uses" ""
-        cspXToPass = cspX -> bms.pass "Uses" ""
+        cspXToPass = cspX -> bms.pass "Uses" "" "owner"
         yadToPass = yad -> bms.pass "Uses" ""
         cmToPass = cm -> bms.pass "Uses" ""
         ccfToPass = ccf -> bms.pass "Uses" ""
@@ -1179,7 +1156,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         prodToPass = prod -> bms.pass "Uses" ""
         caToPbm = ca -> bms.pbm "Uses" ""
         ccfToPbm = ccf -> bms.pbm "Uses" ""
-        cfToPbm = cf -> bms.pbm "Uses" ""
+        cfToPbm = cf -> bms.pbm "Uses" "" "owner"
         innoToPc = inno -> bms.pc "Uses" ""
         caToPc = ca -> bms.pc "Uses" ""
         cspXToPc = cspX -> bms.pc "Uses" ""
@@ -1191,7 +1168,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         yadToPc = yad -> bms.pc "Uses" ""
         cmToPc = cm -> bms.pc "Uses" ""
         ccfToPc = ccf -> bms.pc "Uses" ""
-        cfToPc = cf -> bms.pc "Uses" ""
+        cfToPc = cf -> bms.pc "Uses" "" "owner"
         sciToPc = sci -> bms.pc "Uses" ""
         f4ToPc = f4 -> bms.pc "Uses" ""
         4stuToPc = 4stu -> bms.pc "Uses" ""
@@ -1217,10 +1194,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         cmToPcps = cm -> bms.pcps "Uses" ""
         piToPcps = pi -> bms.pcps "Uses" ""
         prodToPcps = prod -> bms.pcps "Uses" ""
-        baToPdaprs = ba -> bms.pdaprs "Uses" ""
+        baToPdaprs = ba -> bms.pdaprs "Uses" "" "owner"
         soToPfas = so -> bms.pfas "Uses" ""
         caToPfas = ca -> bms.pfas "Uses" ""
-        cspXToPfas = cspX -> bms.pfas "Uses" ""
+        cspXToPfas = cspX -> bms.pfas "Uses" "" "owner"
         ccfToPfas = ccf -> bms.pfas "Uses" ""
         sciToPfas = sci -> bms.pfas "Uses" ""
         innoToPge = inno -> bms.pge "Uses" ""
@@ -1256,14 +1233,14 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         yadToPip = yad -> bms.pip "Uses" ""
         cmToPip = cm -> bms.pip "Uses" ""
         ccfToPip = ccf -> bms.pip "Uses" ""
-        cfToPip = cf -> bms.pip "Uses" ""
+        cfToPip = cf -> bms.pip "Uses" "" "owner"
         markToPip = mark -> bms.pip "Uses" ""
         prodToPip = prod -> bms.pip "Uses" ""
         piToPitts = pi -> bms.pitts "Uses" ""
         soToPmam = so -> bms.pmam "Uses" ""
         cmToPmam = cm -> bms.pmam "Uses" ""
         ccfToPmam = ccf -> bms.pmam "Uses" ""
-        cfToPmam = cf -> bms.pmam "Uses" ""
+        cfToPmam = cf -> bms.pmam "Uses" "" "owner"
         soToPmm = so -> bms.pmm "Uses" ""
         caToPmm = ca -> bms.pmm "Uses" ""
         cspXToPmm = cspX -> bms.pmm "Uses" ""
@@ -1277,13 +1254,13 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         soToPofg = so -> bms.pofg "Uses" ""
         cmToPofg = cm -> bms.pofg "Uses" ""
         ccfToPofg = ccf -> bms.pofg "Uses" ""
-        cfToPofg = cf -> bms.pofg "Uses" ""
+        cfToPofg = cf -> bms.pofg "Uses" "" "owner"
         soToPpps = so -> bms.ppps "Uses" ""
         caToPpps = ca -> bms.ppps "Uses" ""
         cspXToPpps = cspX -> bms.ppps "Uses" ""
         feToPpps = fe -> bms.ppps "Uses" ""
         cmToPpps = cm -> bms.ppps "Uses" ""
-        paasToPpps = paas -> bms.ppps "Uses" ""
+        paasToPpps = paas -> bms.ppps "Uses" "" "owner"
         sciToPpps = sci -> bms.ppps "Uses" ""
         4creToPpps = 4cre -> bms.ppps "Uses" ""
         4stuToPpps = 4stu -> bms.ppps "Uses" ""
@@ -1292,7 +1269,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         innoToPpps-p = inno -> bms.ppps-p "Uses" ""
         soToPpps-p = so -> bms.ppps-p "Uses" ""
         caToPpps-p = ca -> bms.ppps-p "Uses" ""
-        cspXToPpps-p = cspX -> bms.ppps-p "Uses" ""
+        cspXToPpps-p = cspX -> bms.ppps-p "Uses" "" "owner"
         factToPpps-p = fact -> bms.ppps-p "Uses" ""
         feToPpps-p = fe -> bms.ppps-p "Uses" ""
         cmToPpps-p = cm -> bms.ppps-p "Uses" ""
@@ -1301,7 +1278,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         markToPpps-p = mark -> bms.ppps-p "Uses" ""
         caToPpp = ca -> bms.ppp "Uses" ""
         comeToPpp = come -> bms.ppp "Uses" ""
-        cspXToPpp = cspX -> bms.ppp "Uses" ""
+        cspXToPpp = cspX -> bms.ppp "Uses" "" "owner"
         dafToPpp = daf -> bms.ppp "Uses" ""
         dramToPpp = dram -> bms.ppp "Uses" ""
         enteToPpp = ente -> bms.ppp "Uses" ""
@@ -1318,7 +1295,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         prodXToPpp = prodX -> bms.ppp "Uses" ""
         soToPpc = so -> bms.ppc "Uses" ""
         caToPpc = ca -> bms.ppc "Uses" ""
-        clacToPpc = clac -> bms.ppc "Uses" ""
+        clacToPpc = clac -> bms.ppc "Uses" "" "owner"
         cspXToPpc = cspX -> bms.ppc "Uses" ""
         dafToPpc = daf -> bms.ppc "Uses" ""
         dramToPpc = dram -> bms.ppc "Uses" ""
@@ -1362,7 +1339,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         piToTb = pi -> bms.tb "Uses" ""
         prodXToDist = prodX -> csp.dist "Uses" ""
         caToPasc = ca -> csp.pasc "Uses" ""
-        pfToPasc = pf -> csp.pasc "Uses" ""
+        pfToPasc = pf -> csp.pasc "Uses" "" "owner"
         cspXToPasc = cspX -> csp.pasc "Uses" ""
         ccfToPasc = ccf -> csp.pasc "Uses" ""
         soToPcf = so -> csp.pcf "Uses" ""
@@ -1370,12 +1347,12 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         yadToPcf = yad -> csp.pcf "Uses" ""
         cmToPcf = cm -> csp.pcf "Uses" ""
         ccfToPcf = ccf -> csp.pcf "Uses" ""
-        cfToPcf = cf -> csp.pcf "Uses" ""
+        cfToPcf = cf -> csp.pcf "Uses" "" "owner"
         innoToPcc = inno -> csp.pcc "Uses" ""
         soToPcc = so -> csp.pcc "Uses" ""
         caToPcc = ca -> csp.pcc "Uses" ""
         comeToPcc = come -> csp.pcc "Uses" ""
-        coToPcc = co -> csp.pcc "Uses" ""
+        coToPcc = co -> csp.pcc "Uses" "" "owner"
         cspXToPcc = cspX -> csp.pcc "Uses" ""
         dafToPcc = daf -> csp.pcc "Uses" ""
         dramToPcc = dram -> csp.pcc "Uses" ""
@@ -1424,7 +1401,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Data Clean Room" "Data Clean Room"
             }
         }
-        digiToDcrs = digi -> dap.dcrs "Uses" ""
+        digiToDcrs = digi -> dap.dcrs "Uses" "" "owner"
         aiXToDcrs = aiX -> dap.dcrs "C4 Audience Team and Marketing team use the Data Clean Room solution for creating overlapping aud..." ""
         dmToDcrs = dm -> dap.dcrs "Uses" ""
         soToDla = so -> dap.dla "Uses" ""
@@ -1432,121 +1409,91 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         arToDwa = ar -> dap.dwa "Uses" ""
         dsToDwa = ds -> dap.dwa "Uses" ""
         techToDwa = tech -> dap.dwa "Uses" ""
-        insiToTabl = insi -> dap.tabl "Uses" ""
-        insiToWa = insi -> dap.wa "Uses" "" "Impact,Data Experiments,Customer Journey Analytics (CJA)" {
-            perspectives {
-                "Data Experiments" "Data Experiments"
-                "Customer Journey Analytics (CJA)" "Customer Journey Analytics (CJA)"
-            }
-        }
+        insiToTabl = insi -> dap.tabl "Uses" "" "owner"
+        insiToWa = insi -> dap.wa "Uses" ""
         ccfToAtax = ccf -> fsp.atax "Uses" ""
-        tatToAtax = tat -> fsp.atax "Manage corporation tax" ""
+        tatToAtax = tat -> fsp.atax "Manage corporation tax" "" "owner"
         ccfToBbp = ccf -> fsp.bbp "Uses" ""
         tatToBbp = tat -> fsp.bbp "Corporate banking" ""
-        c4ToBsw = c4 -> fsp.bsw "Raise and approve POs" "" "Impact,Finance & People Transformation" {
-            perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
-            }
-        }
-        ccfToBsw = ccf -> fsp.bsw "Uses" "" "Impact,Corporate Integration,Finance & People Transformation" {
+        c4ToBsw = c4 -> fsp.bsw "Raise and approve POs" ""
+        ccfToBsw = ccf -> fsp.bsw "Uses" "" "Impact,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
-                "Finance & People Transformation" "Finance & People Transformation"
             }
         }
-        ccfrssToBsw = ccfrss -> fsp.bsw "Uses" "" "Impact,Finance & People Transformation" {
-            perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
-            }
-        }
-        tatToCmx = tat -> fsp.cmx "Cashflow management" ""
-        ccfToEbs = ccf -> fsp.ebs "Uses" "" "Impact,Corporate Integration,Finance & People Transformation" {
+        ccfrssToBsw = ccfrss -> fsp.bsw "Uses" "" "owner"
+        tatToCmx = tat -> fsp.cmx "Cashflow management" "" "owner"
+        ccfToEbs = ccf -> fsp.ebs "Uses" "" "Impact,owner,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
-                "Finance & People Transformation" "Finance & People Transformation"
             }
         }
-        ccfrssToEbs = ccfrss -> fsp.ebs "Uses" "" "Impact,Finance & People Transformation" {
-            perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
-            }
-        }
+        ccfrssToEbs = ccfrss -> fsp.ebs "Uses" ""
         tatToEbs = tat -> fsp.ebs "Tax data downloads and reporting" ""
-        c4ToFaf = c4 -> fsp.faf "Uses" "" "Impact,Finance & People Transformation" {
-            perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
-            }
-        }
-        ccfToMsc = ccf -> fsp.msc "Uses" "" "Impact,Corporate Integration" {
+        c4ToFaf = c4 -> fsp.faf "Uses" ""
+        ccfToMsc = ccf -> fsp.msc "Uses" "" "Impact,owner,Corporate Integration" {
             perspectives {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        ccfToSov = ccf -> fsp.sov "Uses" "" "Impact,Finance & People Transformation" {
-            perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
-            }
-        }
-        tatToSov = tat -> fsp.sov "Submit digital tax" ""
-        ccfToSbi = ccf -> fsp.sbi "Uses" "" "Impact,Transactional Reporting Solution,Finance & People Transformation" {
+        ccfToSov = ccf -> fsp.sov "Uses" "" "owner"
+        tatToSov = tat -> fsp.sov "Submit digital tax" "" "owner"
+        ccfToSbi = ccf -> fsp.sbi "Uses" "" "Impact,Transactional Reporting Solution" {
             perspectives {
                 "Transactional Reporting Solution" "Transactional Reporting Solution"
-                "Finance & People Transformation" "Finance & People Transformation"
             }
         }
-        ccfrssToSbi = ccfrss -> fsp.sbi "AP/AR reporting." "" "Impact,Finance & People Transformation" {
-            perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
-            }
-        }
+        ccfrssToSbi = ccfrss -> fsp.sbi "AP/AR reporting." ""
         tatToSbi = tat -> fsp.sbi "Tax reporting" ""
         ccfrssToTgn = ccfrss -> fsp.tgn "Managed agency invoicing." ""
-        ccfToWda = ccf -> fsp.wda "Uses" "" "Impact,Finance & People Transformation" {
+        ccfToWda = ccf -> fsp.wda "Uses" ""
+        ddToLsp = dd -> lpp.lsp "Uses" "" "Impact,Playout Next Gen" {
             perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
+                "Playout Next Gen" "Playout Next Gen"
             }
         }
-        ddToLsp = dd -> lpp.lsp "Uses" ""
         piToLsp = pi -> lpp.lsp "Uses" ""
-        btToLsp = bt -> lpp.lsp "Uses" ""
-        btToSp = bt -> lpp.sp "Uses" ""
+        btToLsp = bt -> lpp.lsp "Uses" "" "Impact,Playout Next Gen" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
+        btToSp = bt -> lpp.sp "Uses" "" "owner"
         dmToBraz = dm -> mp.braz "Uses" ""
-        cpXToMpar = cpX -> mp.mpar "Uses" ""
+        cpXToMpar = cpX -> mp.mpar "Uses" "" "owner"
         dmpToMpar = dmp -> mp.mpar "Uses" ""
         cspXToAwar = cspX -> mmp.awar "Uses" ""
         trafToMsp = traf -> mmp.msp "Uses" ""
         ccToMsp = cc -> mmp.msp "Uses" ""
         cmToMsp = cm -> mmp.msp "Uses" ""
         paasToMsp = paas -> mmp.msp "Uses" ""
-        btToMsp = bt -> mmp.msp "Uses" ""
+        btToMsp = bt -> mmp.msp "Uses" "" "owner"
         4creToMsp = 4cre -> mmp.msp "Uses" ""
         prodXToMsp = prodX -> mmp.msp "Uses" ""
         clacToPpsp = clac -> mmp.ppsp "Uses" ""
-        btToPpsp = bt -> mmp.ppsp "Uses" ""
-        4creToPpsp = 4cre -> mmp.ppsp "Uses" ""
-        c4To4peo = c4 -> psp.4peo "Uses" "" "Impact,Finance & People Transformation" {
+        btToPpsp = bt -> mmp.ppsp "Uses" "" "Impact,Playout Next Gen" {
             perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
+                "Playout Next Gen" "Playout Next Gen"
             }
         }
-        peopTo4peo = peop -> psp.4peo "Uses" ""
+        4creToPpsp = 4cre -> mmp.ppsp "Uses" ""
+        c4To4peo = c4 -> psp.4peo "Uses" ""
+        peopTo4peo = peop -> psp.4peo "Uses" "" "owner"
+        erTo4peo = er -> psp.4peo "Uses" ""
         c4ToActi = c4 -> psp.acti "Uses" ""
-        peopToActi = peop -> psp.acti "Uses" ""
+        peopToActi = peop -> psp.acti "Uses" "" "owner"
         corpToAc = corp -> psp.ac "Uses" ""
         c4ToBp = c4 -> psp.bp "Uses" ""
-        erToBp = er -> psp.bp "Uses" ""
+        erToBp = er -> psp.bp "Uses" "" "owner"
         ctToEr = ct -> psp.er "Uses" ""
-        c4ToFes = c4 -> psp.fes "Uses" "" "Impact,Finance & People Transformation" {
-            perspectives {
-                "Finance & People Transformation" "Finance & People Transformation"
-            }
-        }
+        c4ToFes = c4 -> psp.fes "Uses" ""
         tatToFes = tat -> psp.fes "Manage tax responsibilities for Freelancers." ""
-        peopToFes = peop -> psp.fes "Uses" ""
+        peopToFes = peop -> psp.fes "Uses" "" "owner"
         c4ToLl = c4 -> psp.ll "Uses" ""
-        ladToLl = lad -> psp.ll "Uses" ""
-        peopToPopp = peop -> psp.popp "Uses" ""
+        ladToLl = lad -> psp.ll "Uses" "" "owner"
+        peopToPopp = peop -> psp.popp "Uses" "" "owner"
         c4ToTlh = c4 -> psp.tlh "Uses" ""
+        ladToTlh = lad -> psp.tlh "Uses" "" "owner"
         soToPrms = so -> rmp.prms "Uses" ""
         caToPrms = ca -> rmp.prms "Uses" ""
         cspXToPrms = cspX -> rmp.prms "Uses" ""
@@ -1558,11 +1505,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         markToPrms = mark -> rmp.prms "Uses" ""
         caToRc = ca -> rmp.rc "Uses" ""
         partToCome = part -> rsp.come "Uses" ""
-        caToCome = ca -> rsp.come "Uses" ""
+        caToCome = ca -> rsp.come "Uses" "" "owner"
         piToCome = pi -> rsp.come "Uses" ""
         ccfrssToCome = ccfrss -> rsp.come "Uses" ""
-        caToEps = ca -> rsp.eps "Uses" ""
-        caToNeo = ca -> rsp.neo "Uses" ""
+        caToEps = ca -> rsp.eps "Uses" "" "owner"
+        caToNeo = ca -> rsp.neo "Uses" "" "owner"
         soToPap = so -> rsp.pap "Uses" ""
         caToPap = ca -> rsp.pap "Uses" ""
         ccfToPap = ccf -> rsp.pap "Uses" "" "Impact,Corporate Integration" {
@@ -1577,27 +1524,27 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         4stuToPris = 4stu -> rsp.pris "Uses" ""
         caToPrrs = ca -> rsp.prrs "Uses" ""
         ccfToPrrs = ccf -> rsp.prrs "Uses" ""
-        caToSd = ca -> rsp.sd "Uses" ""
+        caToSd = ca -> rsp.sd "Uses" "" "owner"
         4stuToTed = 4stu -> rsp.ted "Uses" ""
         cspXToPepl = cspX -> sp.pepl "Uses" ""
         yadToPepl = yad -> sp.pepl "Uses" ""
         cmToPepl = cm -> sp.pepl "Uses" ""
-        piToPepl = pi -> sp.pepl "Uses" ""
+        piToPepl = pi -> sp.pepl "Uses" "" "owner"
         commToPepl = comm -> sp.pepl "Uses" ""
         clacToAnda = clac -> sbs.anda "Uses" ""
         piToAnda = pi -> sbs.anda "Clunky and difficult to use." ""
         procToCms = proc -> sbs.cms "Uses" ""
-        clgToFa = clg -> sbs.fa "Uses" ""
-        techToTime = tech -> sbs.time "Uses" ""
+        clgToFa = clg -> sbs.fa "Uses" "" "owner"
+        techToTime = tech -> sbs.time "Uses" "" "owner"
         viewToC4sl = view -> vsp.c4sl "Uses" ""
         a4eToPipe = a4e -> vsp.pipe "Uses" ""
         gsToSm = gs -> vsp.sm "Uses" ""
-        techToSl = tech -> vsp.sl "Uses" ""
+        techToSl = tech -> vsp.sl "Uses" "" "owner"
         piToTr = pi -> vsp.tr "Uses" ""
-        cpXToThin = cpX -> vsp.thin "Uses" ""
+        cpXToThin = cpX -> vsp.thin "Uses" "" "owner"
         fmToCe = fm -> wsp.ce "Uses" ""
         c4ToEgen = c4 -> wsp.egen "Uses" ""
-        ccfToEgen = ccf -> wsp.egen "Uses" ""
+        ccfToEgen = ccf -> wsp.egen "Uses" "" "owner"
 
         /* ============================================================
            APPLICATION -> APPLICATION RELATIONSHIPS (from LeanIX Interfaces)
@@ -1615,10 +1562,10 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         4tc = psp.4peo -> psp.tlh "4People to Cornerstone" "Outgoing - Mule" "Integration"
         4te = psp.4peo -> wsp.egen "4People to Egencia" "Outgoing - Mule" "Integration"
         4toe = psp.4peo -> fsp.ebs "4People to Oracle EBS" "Outgoing - Mule" "Integration"
-        4tp = psp.4peo -> fsp.wda "DIRECTION NOT SET - 4People to Planning" "XXXX - Mule" "Integration,Direction not set"
+        4tp = psp.4peo -> fsp.wda "4People to Planning" "Incoming - Mule" "Integration"
         4tpX = psp.4peo -> psp.popp "4People to Poppulo" "Outgoing - Mule" "Integration"
         atsfasdf = sp.pass -> cp.stel "A55 to Stellar for Advanced Schedule data flow" "Outgoing - SFTP" "Integration"
-        aptf = psp.acti -> fsp.wda "Active Pay to Financial Planning" "Outgoing - Mule" "Integration"
+        aptf = psp.acti -> fsp.wda "Active Pay to Financial Planning" "Incoming - Mule" "Integration"
         atoe = psp.acti -> fsp.ebs "ActivPay to Oracle EBS" "Outgoing - Mule" "Integration"
         asstc = vsp.yosp -> vsp.c4sl "DIRECTION NOT SET - Ad Serving System to C4S" "XXXX - Alternative" "Integration,Impact,Streaming Transformation Program,Direction not set" {
             perspectives {
@@ -1636,8 +1583,16 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
         }
         adaa = bms.asp -> mmp.msp "DIRECTION NOT SET - ASP Delivery Acknowledgment API" "XXXX - Alternative" "Integration,Direction not set"
-        alsstl = lpp.lsp -> bms.asp "DIRECTION NOT SET - ASP live subtitle streams to LSP" "XXXX - Alternative" "Integration,Direction not set"
-        allsfl = bms.asp -> lpp.lsp "DIRECTION NOT SET - ASP low latency stream from LSP" "XXXX - Alternative" "Integration,Direction not set"
+        alsstl = lpp.lsp -> bms.asp "DIRECTION NOT SET - ASP live subtitle streams to LSP" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
+        allsfl = bms.asp -> lpp.lsp "DIRECTION NOT SET - ASP low latency stream from LSP" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
         apja = bms.asp -> mmp.msp "DIRECTION NOT SET - ASP Production Job API" "XXXX - Alternative" "Integration,Direction not set"
         apjsa = mmp.msp -> bms.asp "DIRECTION NOT SET - ASP Production Job Status API" "XXXX - Alternative" "Integration,Direction not set"
         asfp = bms.asp -> bms.pira "DIRECTION NOT SET - ASP Schedule from Pirate" "XXXX - Alternative" "Integration,Direction not set"
@@ -1742,10 +1697,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Corporate Integration" "Corporate Integration"
             }
         }
-        bta = psp.bp -> psp.acti "Benefits to Actvipay" "Incoming - Alternative" "Integration,Impact,Benefex Replacement,Review Benefits Portal" {
+        bta = psp.bp -> psp.acti "Benefits to Actvipay" "Incoming - Alternative" "Integration,Impact,Benefex Replacement" {
             perspectives {
                 "Benefex Replacement" "Benefex Replacement"
-                "Review Benefits Portal" "Review Benefits Portal"
             }
         }
         bdte = cp.stel -> dap.dwa "Budget data to EDW" "Outgoing - Alternative" "Integration"
@@ -1902,7 +1856,7 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ebspir = fsp.ebs -> rsp.come "EBS to Pirate (Comet Flim4)" "XXXX - Automate, SFTP" "Integration"
         ebsstr = fsp.ebs -> cp.stel "EBS to Stellar Daily exchange rate (in) Invoices (out)" "XXXX - Alternative" "Integration"
         ebscex = fsp.ebs -> cp.stel "EBS to Stellar for Currency Exchange" "Outgoing - SFTP" "Integration"
-        ebplan = fsp.ebs -> fsp.wda "DIRECTION NOT SET - eBusiness to Planning" "XXXX - Alternative" "Integration,Direction not set"
+        ebplan = fsp.ebs -> fsp.wda "eBusiness to Planning" "Outgoing - Mule" "Integration"
         e4ti = dap.dwa -> dap.dcri "EDW 4 to Infosum" "Incoming - Alternative" "Integration"
         emcstmdf = dap.dwa -> dap.dla "EDW Marketing Campaign Snapshots to Microsoft Data Fabric" "Incoming - Alternative" "Integration"
         emctmdf = dap.dwa -> dap.dla "EDW Marketing Campaign to Microsoft Data Fabric" "Incoming - Alternative" "Integration"
@@ -1953,15 +1907,32 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        lcflr = lpp.lsp -> mmp.ppsp "DIRECTION NOT SET - LSP Contribution Feed ( Line Record)" "XXXX - Alternative" "Integration,Direction not set"
-        lmfd = lpp.lsp -> mmp.msp "DIRECTION NOT SET - LSP Media File Delivery" "XXXX - Alternative" "Integration,Direction not set"
-        lm = lpp.lsp -> bms.osp "DIRECTION NOT SET - LSP Multicast" "XXXX - Alternative" "Integration,Direction not set"
-        lsto = bms.osp -> lpp.lsp "LSP Simulcast to OSLP" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
+        lcflr = lpp.lsp -> mmp.ppsp "DIRECTION NOT SET - LSP Contribution Feed ( Line Record)" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
             perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
+        lmfd = lpp.lsp -> mmp.msp "DIRECTION NOT SET - LSP Media File Delivery" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
+        lm = lpp.lsp -> bms.osp "DIRECTION NOT SET - LSP Multicast" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
+        lsto = bms.osp -> lpp.lsp "LSP Simulcast to OSLP" "Outgoing - Alternative" "Integration,Impact,Playout Next Gen,Streaming Transformation Program" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        ltpa = bms.pira -> lpp.lsp "DIRECTION NOT SET - LSP to Pirate Asruns" "XXXX - Alternative" "Integration,Direction not set"
+        ltpa = bms.pira -> lpp.lsp "DIRECTION NOT SET - LSP to Pirate Asruns" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
         mtbb = bms.bynd -> sp.mod "DIRECTION NOT SET - MediaGenix to Bynder Brand" "XXXX - Alternative" "Integration,Direction not set"
         mtfpi = sp.mod -> cp.fsh "MediaGenix to FreeWheel Programme Info" "Incoming - Alternative" "Integration"
         mtgc4vc = bms.grac -> sp.mod "DIRECTION NOT SET - MediaGenix to Gracenote Channel 4 VoD Catalogue" "XXXX - Mule" "Integration,Direction not set"
@@ -1989,10 +1960,26 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
-        mcra = mmp.msp -> bms.asp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Direction not set"
-        mcra2 = mmp.msp -> lpp.lsp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Direction not set"
-        mcra3 = mmp.msp -> bms.osp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Direction not set"
-        mcra4 = mmp.msp -> mmp.ppsp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Direction not set"
+        mcra = mmp.msp -> bms.asp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
+        mcra2 = mmp.msp -> lpp.lsp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
+        mcra3 = mmp.msp -> bms.osp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
+        mcra4 = mmp.msp -> mmp.ppsp "DIRECTION NOT SET - MSP Content Request API" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
         mmvfto = bms.osp -> mmp.msp "MSP Master Video Files to OLSP" "Incoming - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
@@ -2008,8 +1995,16 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         mmfd-c2 = cp.cc -> mmp.msp "MSP Media File Delivery - Commercials" "Incoming - Alternative" "Integration"
         mmfd-cp = mmp.msp -> csp.pc "DIRECTION NOT SET - MSP Media File Delivery - Commissioned Programmes" "XXXX - Alternative" "Integration,Direction not set"
         mmfd-i = mmp.msp -> csp.pc "DIRECTION NOT SET - MSP Media File Delivery - Interstitials" "XXXX - Alternative" "Integration,Direction not set"
-        mmfd-lvr = mmp.msp -> lpp.lsp "DIRECTION NOT SET - MSP Media File Delivery - LSP Video Recordings" "XXXX - Alternative" "Integration,Direction not set"
-        mmfd-lvrX = mmp.msp -> lpp.lsp "DIRECTION NOT SET - MSP Media File Delivery - LSP Voiceover Recordings" "XXXX - Alternative" "Integration,Direction not set"
+        mmfd-lvr = mmp.msp -> lpp.lsp "DIRECTION NOT SET - MSP Media File Delivery - LSP Video Recordings" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
+        mmfd-lvrX = mmp.msp -> lpp.lsp "DIRECTION NOT SET - MSP Media File Delivery - LSP Voiceover Recordings" "XXXX - Alternative" "Integration,Impact,Playout Next Gen,Direction not set" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
         mmfd-mmtsflft = mmp.msp -> cp.stel "MSP Media File Delivery - MB Media to Stellar for Long Form teleshopping" "Outgoing - SFTP" "Integration"
         mmfd-mv = mmp.msp -> cp.cari "DIRECTION NOT SET - MSP Media File Delivery - Music Videos" "XXXX - Alternative" "Integration,Direction not set"
         mmfd-sad = mmp.msp -> bms.asp "DIRECTION NOT SET - MSP Media File Delivery - Subtitles & Audio Description" "XXXX - Alternative" "Integration,Direction not set"
@@ -2067,7 +2062,6 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
             }
         }
         prdtoe = rmp.prms -> dap.dwa "PIRATE RMS data to  Oracle EDW" "Outgoing - Alternative" "Integration"
-        pta = lpp.ac -> sp.mod "DIRECTION NOT SET - Pirate To Amagi" "XXXX - Alternative" "Integration,Direction not set"
         ptbfca = bms.pira -> sp.mod "Pirate to BeBanjo for Catalogue Assets" "Incoming - Mule" "Integration"
         ptbfca2 = csp.pp -> sp.mod "Pirate to BeBanjo for Catalogue Assets" "Incoming - Mule" "Integration"
         ptbfls = bms.pira -> sp.mod "Pirate to BeBanjo for Linear Scheduling" "Incoming - Mule" "Integration"
@@ -2091,12 +2085,24 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         ptgmce = bms.pira -> bms.grac "DIRECTION NOT SET - Pirate to Gracenote music channel EPGs" "XXXX - Alternative" "Integration,Direction not set"
         ptk = sp.ppps -> dap.barb "DIRECTION NOT SET - Pirate to Kantar" "XXXX - Mule" "Integration,Direction not set"
         ptkfa = mmp.pmm -> dap.barb "Pirate to Kantar for Assets" "Incoming - Mule" "Integration"
-        ptl = bms.pira -> lpp.lsp "Pirate To LSP" "Incoming - Alternative" "Integration"
-        ptl2 = cp.stel -> lpp.lsp "Pirate To LSP" "Incoming - Alternative" "Integration"
+        ptl = bms.pira -> lpp.lsp "Pirate To LSP" "Incoming - Alternative" "Integration,Impact,Playout Next Gen" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
+        ptl2 = cp.stel -> lpp.lsp "Pirate To LSP" "Incoming - Alternative" "Integration,Impact,Playout Next Gen" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
         ptmocm = sp.mod -> bms.pira "Pirate to MediaGenix On-Demand Content Metadata" "Outgoing - Mule" "Integration"
         ptmocm2 = sp.mod -> sp.pepl "Pirate to MediaGenix On-Demand Content Metadata" "Outgoing - Mule" "Integration"
         ptpo = sp.ppps -> mp.po "DIRECTION NOT SET - Pirate To Promo Optimser" "XXXX - Mule" "Integration,Direction not set"
-        ptss = sp.ppps -> lpp.lsp "Pirate to Schedule Service" "Incoming - Alternative" "Integration"
+        ptss = sp.ppps -> lpp.lsp "Pirate to Schedule Service" "Incoming - Alternative" "Integration,Impact,Playout Next Gen" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
         pts = bms.pira -> cp.stel "DIRECTION NOT SET - Pirate to Stellar" "XXXX - Alternative" "Integration,Direction not set"
         ptsfac = sp.pitts -> cp.stel "Pirate to Stellar for ASRUN commercial" "Outgoing - Automate, SFTP" "Integration"
         ptsfan = sp.ppps -> cp.stel "Pirate to Stellar for ASRUN Non-commercial" "Outgoing - Alternative" "Integration"
@@ -2107,7 +2113,11 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         pwfts = bms.pira -> cp.stel "DIRECTION NOT SET - Pirate Weekly Forecast to Stellar" "XXXX - Automate" "Integration,Direction not set"
         pvtcrps = rmp.prms -> rsp.prrs "Portal view to capture Royalty Producer shares" "Incoming - Alternative" "Integration"
         pdfpts = rsp.soun -> bms.pira "Post-TX data from Pirate to Soundmouse" "XXXX - Automate, SFTP" "Integration"
-        pcf = mmp.ppsp -> lpp.lsp "PPSP Contribution Feed" "Outgoing - Alternative" "Integration"
+        pcf = mmp.ppsp -> lpp.lsp "PPSP Contribution Feed" "Outgoing - Alternative" "Integration,Impact,Playout Next Gen" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
         pmfd = mmp.ppsp -> mmp.msp "DIRECTION NOT SET - PPSP Media File Delivery" "XXXX - Alternative" "Integration,Direction not set"
         pdfptsX = rsp.soun -> bms.pira "Pre-TX data from Pirate to Soundmouse" "XXXX - Automate, SFTP" "Integration"
         prte = rsp.come -> fsp.ebs "Producer Reporting to EBS" "Outgoing - Automate" "Integration,Impact,Corporate Integration" {
@@ -2126,8 +2136,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         pctm = sp.mod -> bms.pcX "DIRECTION NOT SET - Promo Create To Movida" "XXXX - Mule" "Integration,Direction not set"
         pctp = bms.pira -> bms.pcX "DIRECTION NOT SET - Promo Create To Pirate" "XXXX - Mule" "Integration,Direction not set"
         potp = bms.pira -> mp.po "DIRECTION NOT SET - Promo Optimiser to Pirate" "XXXX - Mule" "Integration,Direction not set"
-        rtata4 = lpp.lsp -> vsp.c4sl "Real Time As-Run to ALL 4" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
+        rtata4 = lpp.lsp -> vsp.c4sl "Real Time As-Run to ALL 4" "Outgoing - Alternative" "Integration,Impact,Playout Next Gen,Streaming Transformation Program" {
             perspectives {
+                "Playout Next Gen" "Playout Next Gen"
                 "Streaming Transformation Program" "Streaming Transformation Program"
             }
         }
@@ -2135,10 +2146,12 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         rad = rsp.pap -> csp.pcc "Repeat agreement data" "Incoming - Alternative" "Integration"
         rtc7t = rmp.prms -> bms.c7t "DIRECTION NOT SET - Rights to C4 7A Titles" "XXXX - Alternative" "Integration,Direction not set"
         rswe = bms.pc -> rsp.prrs "Royalty Statement (welcome Email)" "Outgoing - Alternative" "Integration"
-        scfmd = fsp.ebs -> cp.sc "Sales CRM to Finance ERP - Customer Master Data" "XXXX - Mule" "Integration"
-        scfic = fsp.ebs -> cp.sc "Sales CRM to Finance ERP - Invoice Creation" "XXXX - Mule" "Integration"
         se = rsp.pap -> rsp.come "Sales Entry" "Incoming - Alternative" "Integration"
-        str = lpp.lsp -> bms.pira "SSAPI to RTAR" "Outgoing - Mule" "Integration"
+        str = lpp.lsp -> bms.pira "SSAPI to RTAR" "Outgoing - Mule" "Integration,Impact,Playout Next Gen" {
+            perspectives {
+                "Playout Next Gen" "Playout Next Gen"
+            }
+        }
         sdfp = rsp.prrs -> fsp.bsw "Statement data (for pre-approved PO's)" "Outgoing - Alternative" "Integration"
         sbttefud = cp.stel -> dap.dwa "Stellar BARB & TAM to EDW for universe data" "Outgoing - Alternative" "Integration"
         scpddtefcm = cp.stel -> dap.dwa "Stellar CB & PIB delivery data to EDW for Campaign Month" "Outgoing - Alternative" "Integration"
@@ -2203,7 +2216,6 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
         }
         ttbster = rsp.ted -> dap.dwa "Ted tables batch synchronisation to EDW Redshift" "Outgoing - Alternative" "Integration"
         ttn = rsp.soun -> bms.pira "DIRECTION NOT SET - Ted to Neo" "XXXX - Automate, SFTP" "Integration,Direction not set"
-        tts = rsp.soun -> bms.pira "DIRECTION NOT SET - Ted to Silvermouse" "XXXX - Automate, SFTP" "Integration,Direction not set"
         ttc-r = vsp.thin -> vsp.c4sl "ThinkAnalytics to C4S - Recommendation" "Outgoing - Alternative" "Integration,Impact,Streaming Transformation Program" {
             perspectives {
                 "Streaming Transformation Program" "Streaming Transformation Program"
