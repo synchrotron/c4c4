@@ -677,10 +677,9 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
            ============================================================ */
 
         lpp = softwareSystem "Linear Playout Platform" "Platform from LeanIX" {
-            tags "Impact,Playout Next Gen,Promo Campaign Management"
+            tags "Impact,Playout Next Gen"
             perspectives {
                 "Playout Next Gen" "Playout Next Gen"
-                "Promo Campaign Management" "Promo Campaign Management"
             }
 
             lsp = container "Linear Service Provider" "" "saas" {
@@ -690,18 +689,12 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                     "Playout Next Gen" "Playout Next Gen"
                 }
             }
-            ppps = container "Presentation Planning System" "Manages the detailed channel schedules with all the relevant transmission content required for br..." "desktopOrLaptop" {
-                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b2da1e23-df98-4af4-9c2a-904814ab181c
-                tags "Impact,Promo Campaign Management"
+            pitts = container "Interface To Transmission Systems" "ITS prepares final schedules for Playout systems. It uses Programme schedules generated from PPS ..." "onPremise" {
+                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/ad4ff429-b9c4-4d11-9b78-e5935f33e664
+                tags "Impact,Playout Next Gen"
                 perspectives {
-                    "Promo Campaign Management" "Promo Campaign Management"
+                    "Playout Next Gen" "Playout Next Gen"
                 }
-            }
-            pt = container "Pirate Tracker" "Monitoring Service for Pirate Services/applications" "" {
-                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/65a2ae66-2900-4133-acb6-de1758c0e930
-            }
-            sp = container "Stargate Portal" "" "saas" {
-                url https://channel4.leanix.net/Channel4Prod/factsheet/Application/b3e222c1-abbe-4a8c-ac5f-ffd927085edd
             }
         }
 
@@ -1458,7 +1451,6 @@ workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {
                 "Playout Next Gen" "Playout Next Gen"
             }
         }
-        btToSp = bt -> lpp.sp "Uses" "" "owner"
         dmToBraz = dm -> mp.braz "Uses" ""
         cpXToMpar = cpX -> mp.mpar "Uses" "" "owner"
         dmpToMpar = dmp -> mp.mpar "Uses" ""

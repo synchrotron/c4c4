@@ -29,6 +29,7 @@ Person->Container Relationships:
 """
 
 import re
+from datetime import datetime
 from typing import Dict, List, Tuple
 
 
@@ -217,30 +218,35 @@ class LeanIXMapper:
     def _extract_technology_from_components(self, it_components: list) -> str:
         """
         Extract technology keywords from IT component names.
-        
+
         Looks for: Mule, Automate, SFTP, HTTP in component names.
-        
+
         Args:
             it_components: List of IT component fact sheets
-            
+
         Returns:
-            Comma-separated technology string or "Alternative" if none found
+            Comma-separated technology string, "Alternative" if components exist but none match, or "TBC" if no components
         """
         keywords = ['Mule', 'Automate', 'SFTP', 'HTTP']
         found_technologies = []
-        
+
+        # If there are no IT components at all, return 'TBC'
+        if not it_components:
+            return 'TBC'
+
         for component in it_components:
             component_name = component.get('name', '') or component.get('displayName', '')
-            
+
             # Check for each keyword in the component name (case-insensitive)
             for keyword in keywords:
                 if keyword.lower() in component_name.lower():
                     if keyword not in found_technologies:
                         found_technologies.append(keyword)
-        
+
         if found_technologies:
             return ', '.join(found_technologies)
         else:
+            # IT components exist but none matched our keywords
             return 'Alternative'
     
     def _extract_application_metadata(self, app: dict) -> dict:
@@ -423,9 +429,10 @@ class LeanIXMapper:
                 if project_name and project_name not in all_project_names:
                     all_project_names.append(project_name)
 
-        # If we have any projects, add Impact tag and add projects ONLY to perspectives (not tags)
+        # If we have any projects, add Impact tag and add projects to both tags and perspectives
         if all_project_names:
             metadata['tags'].append('Impact')
+            metadata['tags'].extend(all_project_names)
             metadata['perspectives'].extend(all_project_names)
 
         return metadata
@@ -967,11 +974,15 @@ class LeanIXMapper:
         used_identifiers: set
     ) -> str:
         """Generate DSL for multiple platforms in a single workspace with hierarchical identifiers."""
-        
-        # Start DSL with hierarchical identifiers
+
+        # Generate timestamp in format "9 Jan 2025 21:01"
+        current_time = datetime.now().strftime("%-d %b %Y %H:%M")
+
+        # Start DSL with hierarchical identifiers and generatedTime constant
         dsl = f'''workspace "Channel 4 Core" "Enterprise Systems - Generated from LeanIX" {{
 
     !identifiers hierarchical
+    !const generatedTime "{current_time}"
 
     model {{
     
@@ -1146,18 +1157,17 @@ class LeanIXMapper:
 
                 # Prepend technology based on dataFlowDirection
                 if not data_flow_direction or data_flow_direction == '':
-                    technology_prefix = 'XXXX'
+                    # Don't prepend anything when direction is unknown
+                    modified_technology = technology
                 elif data_flow_direction == 'outgoing':
-                    technology_prefix = 'Outgoing'
+                    modified_technology = f'Outgoing - {technology}'
                 elif data_flow_direction == 'incoming':
-                    technology_prefix = 'Incoming'
+                    modified_technology = f'Incoming - {technology}'
                 elif data_flow_direction == 'bidirectional':
-                    technology_prefix = 'Bidirectional'
+                    modified_technology = f'Bidirectional - {technology}'
                 else:
-                    technology_prefix = 'XXXX'
-
-                # Prepend technology with the prefix
-                modified_technology = f'{technology_prefix} - {technology}'
+                    # Don't prepend anything when direction is unknown
+                    modified_technology = technology
 
                 # Prepend interface name and add tag for 'not set' case
                 if not data_flow_direction or data_flow_direction == '':
