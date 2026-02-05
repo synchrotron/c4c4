@@ -20,13 +20,40 @@ git clone https://github.com/synchrotron/c4c4.git
 cd c4c4
 ```
 
-### 2. That's it!
+### 2. Install dependencies
 
-No dependencies to install for basic DSL generation. Everything uses Python's standard library.
+#### For CLI Usage Only
+
+If you only need the CLI functionality:
+
+```bash
+pip install -r requirements.txt
+```
+
+This installs:
+- LeanIX integration libraries (gql, requests)
+- Data validation (pydantic)
+
+#### For Web Service
+
+If you want to run the web service, the same requirements.txt includes all dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+This installs everything needed for both CLI and web service:
+- LeanIX integration libraries
+- FastAPI and Uvicorn (web framework)
+- All other dependencies
 
 ## Usage
 
-### Generate DSL from LeanIX (Main Workflow)
+C4C4 can be used in two modes:
+1. **Command Line Interface (CLI)** - Generate DSL files locally
+2. **Web Service** - HTTP API for generating and downloading DSL
+
+### Mode 1: Command Line Interface
 
 #### Basic Usage (Local Testing)
 
@@ -64,6 +91,68 @@ This is useful when:
 python generate_from_leanix.py --help
 ```
 
+### Mode 2: Web Service
+
+#### Starting the Web Service
+
+```bash
+# Start the web service on default port 8000
+python run_server.py
+
+# Start on a custom port
+python run_server.py --port 9000
+
+# Start in development mode (with auto-reload)
+python run_server.py --dev
+
+# View all options
+python run_server.py --help
+```
+
+The web service provides multiple endpoints:
+
+#### Web Browser Interface
+
+Open http://localhost:8000 in your browser to access a simple web page with a download button.
+
+#### Download DSL with curl
+
+Stream the DSL file directly using curl:
+
+```bash
+# Download with default settings (year 2026)
+curl http://localhost:8000/api/dsl/stream > workspace.dsl
+
+# Download with custom year filter
+curl "http://localhost:8000/api/dsl/stream?year=2027" > workspace.dsl
+
+# Download with custom platform tag
+curl "http://localhost:8000/api/dsl/stream?tag=Production+Systems" > workspace.dsl
+```
+
+#### Health Check
+
+Check if the service is running:
+
+```bash
+curl http://localhost:8000/health
+```
+
+#### API Endpoints
+
+The web service provides these endpoints:
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | HTML page with download button |
+| `/api/dsl/stream` | GET | Stream DSL for curl downloads |
+| `/api/dsl/download` | GET | Trigger browser download |
+| `/health` | GET | Health check endpoint |
+
+**Query Parameters:**
+- `year` (optional, default: 2026) - Filter projects by year
+- `tag` (optional, default: "Enterprise System") - Tag to filter platforms
+
 ### Generate Static Example DSL
 
 For testing or reference, you can generate a static example:
@@ -87,17 +176,26 @@ c4c4/
 ├── README.md                      # This file
 ├── requirements.txt               # Python dependencies
 ├── .env                           # LeanIX credentials (not in git)
-├── generate_from_leanix.py        # Main: Generate DSL from LeanIX
-├── generate_c4_dsl_static.py      # Static example generator
+│
+├── generate_from_leanix.py        # CLI: Generate DSL from LeanIX
+├── app.py                         # Web service: FastAPI application
+├── run_server.py                  # Web service: Startup script
+│
+├── service/                       # Service layer (shared by CLI & web)
+│   ├── __init__.py
+│   └── generator.py               # Core DSL generation logic
+│
 ├── leanix/                        # LeanIX integration package
 │   ├── __init__.py
 │   ├── client.py                  # LeanIX GraphQL client
 │   ├── queries.py                 # GraphQL queries
 │   └── mapper.py                  # LeanIX → Structurizr mapper
+│
 ├── assets/                        # Channel 4 branding assets
 │   ├── 4-logo-black.png
 │   ├── c4-default-theme.json
 │   └── 4Text-Regular.ttf
+│
 └── dsl/                           # Generated DSL output
     └── c4-core-workspace.dsl      # Main workspace (from LeanIX)
 ```

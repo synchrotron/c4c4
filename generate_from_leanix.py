@@ -18,8 +18,7 @@ import os
 import re
 import argparse
 from pathlib import Path
-from leanix.client import LeanIXClient
-from leanix.mapper import LeanIXMapper
+from service.generator import DSLGeneratorService
 
 
 def main():
@@ -85,68 +84,21 @@ Examples:
     except Exception as e:
         print(f"Error: Cannot create output directory {output_dir}: {e}")
         return 1
-    
-    # Step 1: Connect to LeanIX
+
+    # Step 1-4: Generate DSL using service layer
     print("Step 1: Connecting to LeanIX...")
     print("-" * 70)
-    try:
-        client = LeanIXClient()
-        print("Connected to LeanIX")
-    except Exception as e:
-        print(f"Failed to connect: {e}")
-        return 1
-    print()
-    
-    # Step 2: Fetch all platforms with the specified tag
-    print(f"Step 2: Fetching platforms with tag '{tag_name}'")
-    print("-" * 70)
-    try:
-        platforms_edges = client.get_platforms_by_tag(tag_name, limit=100)
-        platforms_data = [edge.get('node', {}) for edge in platforms_edges]
-        
-        print(f"Fetched {len(platforms_data)} platforms")
-        
-        if platforms_data:
-            print()
-            print("Platforms found:")
-            for idx, platform in enumerate(platforms_data, 1):
-                platform_name = platform.get('displayName') or platform.get('name')
-                platform_type = platform.get('type')
-                app_count = len(platform.get('relTechPlatformToApplication', {}).get('edges', []))
-                print(f"  {idx}. {platform_name} ({platform_type}) - {app_count} applications")
-        else:
-            print(f"No platforms found with tag '{tag_name}'")
-            print("Please check:")
-            print("  1. Tag name is correct (case-sensitive)")
-            print("  2. Platforms in LeanIX have this tag applied")
-            return 1
-            
-    except Exception as e:
-        print(f"Failed to fetch platforms: {e}")
-        import traceback
-        traceback.print_exc()
-        return 1
-    print()
-    
-    # Step 3: Fetch Interfaces
-    print("Step 3: Fetching Interfaces (integrations)")
-    print("-" * 70)
-    try:
-        all_interfaces = client.get_all_interfaces()
-        print(f"Fetched {len(all_interfaces)} interfaces")
-    except Exception as e:
-        print(f"Failed to fetch interfaces: {e}")
-        return 1
-    print()
-    
-    # Step 4: Map to Structurizr DSL
-    print("Step 4: Mapping LeanIX data to Structurizr DSL")
-    print("-" * 70)
-    try:
-        mapper = LeanIXMapper(filter_year=args.year)
 
-        # Use multi-platform method for all cases (works for single platform too)
-        print(f"Generating DSL for {len(platforms_data)} platform(s) with enhancements:")
+    try:
+        service = DSLGeneratorService()
+        print("Connected to LeanIX")
+        print()
+
+        print(f"Step 2-4: Fetching data and generating DSL")
+        print("-" * 70)
+        print(f"Fetching platforms with tag '{tag_name}'")
+        print("Fetching interfaces (integrations)")
+        print(f"Generating DSL with enhancements:")
         print("  - LeanIX URLs for each application")
         print(f"  - Projects filtered by year: {args.year}")
         print("  - Projects (including parent projects) as both tags and perspectives")
@@ -155,9 +107,24 @@ Examples:
         print("  - SSO tags for implemented SSO")
         print("  - Category tags for persons")
         print("  - Integration tags for relationships")
-        dsl = mapper.map_multiple_platforms_to_dsl(platforms_data, all_interfaces)
-        
+
+        result = service.generate_dsl(year=args.year, tag_name=tag_name)
+        dsl = result.dsl
+
+        print()
+        print(f"Fetched {result.metadata['platform_count']} platforms")
+        print("Platforms found:")
+        for idx, platform in enumerate(result.metadata['platforms'], 1):
+            print(f"  {idx}. {platform['name']} ({platform['type']}) - {platform['app_count']} applications")
+
+        print()
+        print(f"Fetched {result.metadata['interface_count']} interfaces")
+        print()
         print("DSL generated successfully")
+
+    except ValueError as e:
+        print(f"Error: {e}")
+        return 1
     except Exception as e:
         print(f"Failed to generate DSL: {e}")
         import traceback

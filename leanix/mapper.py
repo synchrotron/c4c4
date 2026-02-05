@@ -46,10 +46,11 @@ class LeanIXMapper:
             filter_year: Optional year (int) to filter projects. Only projects with start or end dates
                         in this year will be included. Defaults to current year (2026).
         """
-        self.theme_url = "https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/c4-default-theme.json"
-        self.logo_url = "https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/4-logo-black.png"
-        self.font_name = "4Text"
-        self.font_url = "https://raw.githubusercontent.com/synchrotron/c4c4/main/assets/4Text-Regular.ttf"
+        
+        self.theme_url = "../theme/c4-default-theme.json"
+        self.logo_url = "../theme/4-logo-black.png"
+        self.font_name = "Open Sans"
+        self.font_url = "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         self.leanix_base_url = "https://channel4.leanix.net/Channel4Prod/factsheet/Application/"
         self.duplicate_acronyms = []  # Track duplicate acronym conflicts only
         self.filter_year = filter_year if filter_year is not None else 2026  # Default to current year
